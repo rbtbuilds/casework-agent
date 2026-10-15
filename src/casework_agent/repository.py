@@ -2,10 +2,11 @@ import json
 import sqlite3
 from collections.abc import Generator
 from contextlib import contextmanager
-from datetime import timedelta
+from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Literal, Self, cast
 
+from .agent import AgentContext, validate_decision
 from .clock import Clock, SystemClock
 from .contracts import (
     AgentDecision,
@@ -19,7 +20,10 @@ from .contracts import (
     Evidence,
     JsonDict,
     Operation,
+    Order,
+    Policy,
     Proposal,
+    Shipment,
     VersionRequest,
     uid,
 )
@@ -171,37 +175,81 @@ class Repository:
             error=ApiError.model_validate_json(row["error_json"]) if row["error_json"] else None,
         )
 
-    def begin_gather(self, id: str) -> bool:
+    def begin_gather(
+        self, id: str, owner_id: str | None = None, generation: int | None = None
+    ) -> str | None:
         with self.transaction():
             if self.get_case(id).state != "new":
-                return False
+                return None
+            if owner_id is not None and not self.live_owner(owner_id, generation):
+                return None
+            run_id = uid()
             self.transition(id, "gathering", "gathering_started")
-            return True
+            self.con.execute(
+                "INSERT OR REPLACE INTO gathering_runs VALUES(?,?,?,?)",
+                (id, run_id, owner_id, generation),
+            )
+            return run_id
 
-    def publish(self, id: str, decision: AgentDecision, tools: ReadTools, trace: JsonDict) -> None:
+    def live_owner(self, owner_id: str, generation: int | None) -> bool:
+        row = self.con.execute("SELECT * FROM worker_lease WHERE singleton=1").fetchone()
+        return bool(
+            row
+            and row["owner_id"] == owner_id
+            and row["generation"] == generation
+            and datetime.fromisoformat(row["heartbeat_at"])
+            > self.clock.now() - timedelta(seconds=30)
+        )
+
+    def gathering_current(self, id: str, run_id: str) -> bool:
+        row = self.con.execute("SELECT * FROM gathering_runs WHERE case_id=?", (id,)).fetchone()
+        return bool(
+            row
+            and row["run_id"] == run_id
+            and self.get_case(id).state == "gathering"
+            and (
+                row["owner_id"] is None
+                or self.live_owner(row["owner_id"], row["worker_generation"])
+            )
+        )
+
+    def publish(
+        self, id: str, decision: AgentDecision, tools: ReadTools, trace: JsonDict, run_id: str
+    ) -> None:
         assert tools.order and tools.shipment
         with self.transaction():
-            if self.get_case(id).state != "gathering":
+            if not self.gathering_current(id, run_id):
                 return
+            case = self.get_case(id)
+            validate_decision(
+                AgentContext(case_id=id, order_id=case.order_id, as_of=case.as_of), tools, decision
+            )
+            by_id = {e.id: e for e in tools.evidence}
+            cited = [by_id[eid] for eid in decision.evidence_ids]
+            order = next(e.payload for e in cited if e.source == "order")
+            shipment = next(e.payload for e in cited if e.source == "carrier")
+            policy = next(e for e in cited if e.source == "policy")
+            assert (
+                isinstance(order, Order)
+                and isinstance(shipment, Shipment)
+                and isinstance(policy.payload, Policy)
+            )
             now = self.clock.now()
             version = self.con.execute(
                 "SELECT COALESCE(MAX(version),0)+1 FROM proposals WHERE case_id=?", (id,)
             ).fetchone()[0]
-            policy = next(e for e in tools.evidence if e.source == "policy")
             proposal = Proposal(
                 case_id=id,
                 version=version,
                 policy_hash=policy.payload_hash,
                 evidence_ids=decision.evidence_ids,
-                evidence_hashes=[
-                    e.payload_hash for e in tools.evidence if e.id in decision.evidence_ids
-                ],
-                order_version=tools.order.version,
-                shipment_version=tools.shipment.version,
+                evidence_hashes=[by_id[eid].payload_hash for eid in decision.evidence_ids],
+                order_version=order.version,
+                shipment_version=shipment.version,
                 action=decision.action,
                 rationale=decision.rationale,
                 draft_note=decision.draft_note,
-                intents=compile_intents(decision, tools.order),
+                intents=compile_intents(decision, order),
                 created_at=now,
                 expires_at=now + timedelta(seconds=900),
                 hash="",
@@ -230,12 +278,27 @@ class Repository:
             self.con.execute("UPDATE cases SET proposal_id=? WHERE id=?", (proposal.id, id))
             self.transition(id, "needs_approval", "proposal_published")
 
-    def fail_gather(self, id: str, code: str) -> None:
+    def fail_gather(self, id: str, code: str, run_id: str, trace: JsonDict | None = None) -> None:
         with self.transaction():
-            if self.get_case(id).state == "gathering":
+            if self.gathering_current(id, run_id):
+                if trace is not None:
+                    self.con.execute(
+                        "INSERT INTO agent_runs VALUES(?,?,?)", (uid(), id, canonical_json(trace))
+                    )
                 self.transition(
                     id, "failed", "gathering_failed", ApiError(code=code, message=code, case_id=id)
                 )
+
+    def expire_unclaimed(self) -> None:
+        with self.transaction():
+            for case in self.list_cases():
+                if (
+                    case.state in {"needs_approval", "approved"}
+                    and case.proposal
+                    and case.proposal.expires_at <= self.clock.now()
+                    and not any(o.attempts for o in case.operations)
+                ):
+                    self.invalidate(case.id, "proposal_expired")
 
     def invalidate(self, id: str, code: str) -> None:
         self.con.execute(

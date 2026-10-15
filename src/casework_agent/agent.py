@@ -2,7 +2,8 @@ from datetime import datetime
 from typing import Protocol
 
 from .contracts import AgentDecision, StrictModel
-from .policy import allowed_action
+from .hashing import canonical_hash
+from .policy import allowed_action, current_policy
 from .tools import ReadTools
 
 
@@ -47,5 +48,17 @@ def validate_decision(context: AgentContext, tools: ReadTools, decision: AgentDe
         raise AgentValidationError("evidence_coverage")
     if tools.order is None or tools.shipment is None:
         raise AgentValidationError("missing_evidence")
+    latest = {
+        "order": canonical_hash(tools.order.model_dump(mode="json")),
+        "carrier": canonical_hash(tools.shipment.model_dump(mode="json")),
+        "policy": canonical_hash(current_policy().model_dump(mode="json")),
+    }
+    if any(
+        e.case_id != context.case_id
+        or e.payload_hash != latest[e.source]
+        or canonical_hash(e.payload.model_dump(mode="json")) != e.payload_hash
+        for e in matching
+    ):
+        raise AgentValidationError("evidence_revision")
     if decision.action != allowed_action(tools.order, tools.shipment, context.as_of):
         raise AgentValidationError("policy_mismatch")

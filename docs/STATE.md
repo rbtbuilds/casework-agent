@@ -58,3 +58,10 @@ The first Task2 commit command accidentally continued after Ruff errors;the imme
 Finish latest full suite,contract regeneration,whole-branch fresh review,clean-checkout quickstart,and precise final evidence/commit record. Fix important findings with regression tests. Preserve the failed model gate and missing manual accessibility/claims reviews. No public repository,push,release,deployment,model upload,paid resource or external message is authorised or performed.
 
 Latest47-test run passed in35.85s;strict Python/TypeScript,5Vitest tests,build,and unchanged contract regeneration passed. Fresh reviewer and clean-checkout check are next.
+
+
+## Final review fix pass
+
+One fresh judgment reviewer returned6Important findings and noCritical/Minor findings for d6aa779..009b67e. All6are addressed in the single fix pass:consistent cited snapshot,run/generation-fenced gathering and trace writes,exact scenario admission,expiry renewal,fresh pytest bootstrap,and real browser response-loss retry. New regressions were observed failing before runtime fixes;the existing browser retry behavior now has actual transport-loss coverage. Schema migration2adds gathering ownership. See ENGINEERING-DECISIONS.md for all rulings and reviewer boundaries.
+
+The expanded suite passed53tests before the final assertion addition;fresh full checks are running. All3browser flows passed,including expiry renewal and Retry saved request after committed response loss. No second reviewer or per-task worker tree was launched. Final clean-copy rerun and clean-source report capture follow.

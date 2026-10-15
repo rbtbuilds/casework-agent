@@ -18,7 +18,11 @@ export default defineConfig({
   webServer: {
     command: `../.venv/bin/python ../scripts/dev.py run --root "${root}"`,
     url: 'http://127.0.0.1:5112',
-    env: { CASEWORK_TEST_DROP_TICKET: '1', CASEWORK_TEST_DROP_ORDER: '1' },
+    env: {
+      CASEWORK_TEST_DROP_TICKET: '1',
+      CASEWORK_TEST_DROP_ORDER: '1',
+      CASEWORK_TEST_CLOCK: '1',
+    },
     reuseExistingServer: false,
     timeout: 30000,
     gracefulShutdown: { signal: 'SIGTERM', timeout: 12000 },

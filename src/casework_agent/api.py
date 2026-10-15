@@ -3,6 +3,7 @@ import contextlib
 import json
 from collections.abc import AsyncGenerator, AsyncIterator
 from contextlib import asynccontextmanager
+from pathlib import Path
 from typing import Annotated, Literal
 
 from fastapi import Depends, FastAPI, Header, Request
@@ -12,8 +13,9 @@ from fastapi.responses import JSONResponse
 from starlette.exceptions import HTTPException
 from starlette.types import ASGIApp, Message, Receive, Scope, Send
 
+from .clock import Clock
 from .config import Settings
-from .contracts import ApiError, ApprovalRequest, CaseSeed, CaseView, VersionRequest
+from .contracts import ApiError, ApprovalRequest, CaseSeed, CaseView, Order, VersionRequest
 from .model_session import snapshot
 from .repository import Conflict, Repository
 from .tools import DependencyError
@@ -75,12 +77,24 @@ class Boundary:
         await self.app(scope, replay, send)
 
 
-def create_app(settings: Settings | None = None) -> FastAPI:
+def create_app(settings: Settings | None = None, clock: Clock | None = None) -> FastAPI:
     config = settings or Settings()
+    source = config.root / "scenario.json"
+    if not source.exists():
+        source = Path(__file__).resolve().parents[2] / "fixtures/scenarios/dev-delay-01.json"
+    fixture = json.loads(source.read_text())
+    admitted = CaseSeed.model_validate(
+        {
+            "scenario_id": fixture["scenario_id"],
+            "order_id": Order.model_validate(fixture["order"]).order_id,
+            "as_of": fixture["as_of"],
+            "mode": "fixture",
+        }
+    )
 
     @asynccontextmanager
     async def lifespan(_app: FastAPI) -> AsyncGenerator[None]:
-        repo = Repository.open(config.database)
+        repo = Repository.open(config.database, clock)
         worker = Worker(repo, config)
 
         async def run() -> None:
@@ -119,7 +133,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     )
 
     async def repository() -> AsyncIterator[Repository]:
-        with Repository.open(config.database) as repo:
+        with Repository.open(config.database, clock) as repo:
             yield repo
 
     async def key(value: Annotated[str, Header(alias="Idempotency-Key")]) -> str:
@@ -193,7 +207,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         ).fetchone()
         return {
             "status": "ok",
-            "schema_version": 1,
+            "schema_version": repo.con.execute(
+                "SELECT MAX(version) FROM schema_migrations"
+            ).fetchone()[0],
             "model_available": model,
             "fixture_available": True,
             "worker_heartbeat": lease[0] if lease else None,
@@ -203,9 +219,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     async def scenarios() -> list[dict[str, str]]:
         return [
             {
-                "scenario_id": "dev-delay-01",
-                "order_id": "o-001",
-                "as_of": "2026-10-15T12:00:00Z",
+                "scenario_id": admitted.scenario_id,
+                "order_id": admitted.order_id,
+                "as_of": admitted.as_of.isoformat(),
                 "title": "Delayed delivery example",
             }
         ]
@@ -224,6 +240,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         repo: Annotated[Repository, Depends(repository)],
         token: Annotated[str, Depends(key)],
     ) -> CaseView:
+        if seed.model_dump(exclude={"mode"}) != admitted.model_dump(exclude={"mode"}):
+            raise Conflict("scenario_input_mismatch", 422)
         return repo.create_case(seed, token)
 
     @app.post("/v1/cases/{id}/decisions", response_model=CaseView)

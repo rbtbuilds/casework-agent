@@ -1,7 +1,7 @@
 from .agent import AgentContext, FixtureAdapter, validate_decision
 from .config import Settings
-from .contracts import ApprovalRequest, CaseView, JsonDict, uid
-from .hashing import canonical_hash, canonical_json
+from .contracts import ApprovalRequest, CaseView, JsonDict
+from .hashing import canonical_hash
 from .model_adapter import LocalModelAdapter, ModelClient
 from .model_session import ModelSession
 from .policy import current_policy
@@ -11,12 +11,20 @@ from .tools import ReadTools
 
 class Workflow:
     def __init__(
-        self, repo: Repository, settings: Settings, model: ModelClient | None = None
+        self,
+        repo: Repository,
+        settings: Settings,
+        model: ModelClient | None = None,
+        *,
+        owner_id: str | None = None,
+        generation: int | None = None,
     ) -> None:
         self.repo, self.settings, self.model = repo, settings, model
+        self.owner_id, self.generation = owner_id, generation
 
     async def gather(self, id: str) -> None:
-        if not self.repo.begin_gather(id):
+        run_id = self.repo.begin_gather(id, self.owner_id, self.generation)
+        if not run_id:
             return
         case = self.repo.get_case(id)
         tools = ReadTools(id, case.order_id, self.settings)
@@ -48,7 +56,7 @@ class Workflow:
                     "status": "validated",
                 }
             )
-            self.repo.publish(id, decision, tools, trace)
+            self.repo.publish(id, decision, tools, trace, run_id)
         except (ValueError, RuntimeError, OSError, TimeoutError) as exc:
             if adapter:
                 trace.update(
@@ -65,11 +73,7 @@ class Workflow:
                     "http_requests": tools.request_count,
                 }
             )
-            with self.repo.transaction():
-                self.repo.con.execute(
-                    "INSERT INTO agent_runs VALUES(?,?,?)", (uid(), id, canonical_json(trace))
-                )
-            self.repo.fail_gather(id, str(exc)[:500])
+            self.repo.fail_gather(id, str(exc)[:500], run_id, trace)
         finally:
             await tools.close()
 

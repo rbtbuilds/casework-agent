@@ -34,6 +34,7 @@ class Worker:
                 and datetime.fromisoformat(row["heartbeat_at"]) > now - timedelta(seconds=30)
             ):
                 return False
+            takeover = not row or row["owner_id"] != self.owner
             generation = int(row["generation"]) if row else 0
             if not row or row["owner_id"] != self.owner:
                 generation += 1
@@ -42,7 +43,7 @@ class Worker:
                 "INSERT OR REPLACE INTO worker_lease VALUES(1,?,?,?,?,?)",
                 (self.owner, os.getpid(), generation, now.isoformat(), now.isoformat()),
             )
-            if not self.started:
+            if not self.started or takeover:
                 for case in self.repo.list_cases():
                     if case.state == "gathering":
                         self.repo.transition(
@@ -79,6 +80,7 @@ class Worker:
     async def tick(self) -> bool:
         if not self.acquire():
             return False
+        self.repo.expire_unclaimed()
         executor = Executor(self.repo, self.settings, self.owner, self.generation, self.checkpoint)
         try:
             row = self.repo.con.execute(
@@ -96,7 +98,13 @@ class Worker:
                 return True
             for case in self.repo.list_cases():
                 if case.state == "new":
-                    await Workflow(self.repo, self.settings, self.model).gather(case.id)
+                    await Workflow(
+                        self.repo,
+                        self.settings,
+                        self.model,
+                        owner_id=self.owner,
+                        generation=self.generation,
+                    ).gather(case.id)
                     return True
                 if case.state in {"approved", "executing"}:
                     op = await executor.claim_next(case.id, self.owner, self.generation)

@@ -28,3 +28,6 @@ The integration tests launch actual order/carrier/ticket processes with separate
 The worker crash checkpoints raise an injected process-death sentinel after durable boundaries and reopen the database under an expired lease. They reproduce storage/network boundaries without claiming an operating-system SIGKILL at every checkpoint. A separate test stops and restarts the actual API process. No cross-service rollback or arbitrary-network exactly-once guarantee is claimed.
 
 Browser evidence covers keyboard approval, 375px/1440px layouts, light/dark themes, reduced motion, zero tested Axe violations and no browser page errors. Manual screen-reader use has not been tested. Full acceptance details and any untested fault edges are recorded in STATE.md and ACCEPTANCE.md.
+
+
+Final review regressions add superseded-evidence rejection,late gathering success/failure and trace fencing,scenario tuple admission,automatic expiry plus browser renewal,and actual browser response loss after approval commit. The response-loss test activates Retry saved request and verifies identical body/key and one effect pair. This supplements the earlier API-client replay test.

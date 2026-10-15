@@ -18,15 +18,17 @@ def connect(path: Path) -> sqlite3.Connection:
             if exists
             else 0
         )
-        if version not in {0, 1}:
+        if version not in {0, 1, 2}:
             raise RuntimeError("unsupported_schema_version")
-        if version == 0:
-            schema = (Path(__file__).parent / "migrations/001_initial.sql").read_text()
-            con.executescript(
-                "BEGIN IMMEDIATE;\n"
-                + schema
-                + "\nINSERT OR IGNORE INTO schema_migrations VALUES(1,datetime('now'));\nCOMMIT;"
-            )
+        if version < 2:
+            scripts: list[str] = []
+            for next_version in range(version + 1, 3):
+                name = "001_initial.sql" if next_version == 1 else "002_gathering_runs.sql"
+                scripts.append((Path(__file__).parent / "migrations" / name).read_text())
+                scripts.append(
+                    f"INSERT OR IGNORE INTO schema_migrations VALUES({next_version},datetime('now'));"
+                )
+            con.executescript("BEGIN IMMEDIATE;\n" + "\n".join(scripts) + "\nCOMMIT;")
         return con
     except BaseException:
         if con.in_transaction:

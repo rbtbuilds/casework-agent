@@ -10,6 +10,7 @@ import socket
 import subprocess
 import sys
 import time
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import cast
 
@@ -75,6 +76,8 @@ def start(root: Path) -> None:
     node = shutil.which("node")
     if not node or not (ROOT / "web/node_modules/vite/bin/vite.js").exists():
         raise RuntimeError("Install locked web dependencies first.")
+    if os.environ.get("CASEWORK_TEST_CLOCK") == "1" and not (root / "clock.txt").exists():
+        (root / "clock.txt").write_text(datetime.now(UTC).isoformat())
     nonce = secrets.token_hex(16)
     children: list[Child] = []
     try:

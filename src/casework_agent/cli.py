@@ -4,6 +4,7 @@ from pathlib import Path
 import uvicorn
 
 from .api import create_app
+from .clock import FileClock
 from .config import Settings
 
 
@@ -14,7 +15,10 @@ def main() -> None:
     parser.add_argument("--port", type=int, default=8112, choices=[8112])
     args = parser.parse_args()
     uvicorn.run(
-        create_app(Settings(root=args.root, model_root=Path(__file__).resolve().parents[2])),
+        create_app(
+            Settings(root=args.root, model_root=Path(__file__).resolve().parents[2]),
+            FileClock(args.root / "clock.txt") if (args.root / "clock.txt").exists() else None,
+        ),
         host="127.0.0.1",
         port=args.port,
         log_level="warning",
