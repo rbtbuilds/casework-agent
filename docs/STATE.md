@@ -17,7 +17,7 @@ Updated: 2026-10-15. Phase: implementation. Task1 verified; remaining tasks in p
 | Task | Status | Evidence |
 | --- | --- | --- |
 | 1 Typed storage and first API slice | Complete | pytest3passed; Ruff clean; strict Pyright0errors. |
-| 2 Independent mock services | Not started | None |
+| 2 Independent mock services | Complete | 5pytest tests passed including actual HTTP concurrency/CAS/drop recovery; strict Pyright and Ruff clean. |
 | 3 Bounded tools and fixture baseline | Not started | None |
 | 4 Local-model tool adapter | Not started | None |
 | 5 Proposal/approval protocol | Not started | None |
@@ -46,3 +46,5 @@ The optional human contribution is 5-10 lines of delivery-exception policy or in
 ## Execution record
 
 Task1: Python3.12.14, feature branch feat/casework-agent-v1. Storage reopen/hash/health tests passed. Model weights absent. Initial shared pytest housekeeping warnings resolved by project-local --basetemp; foreign files left alone.
+
+Task2: Three independent mock processes/SQLite databases verified. Dropped response uses original content length so the real HTTP client observes transport loss,not a valid short body. Concurrent same-key tickets produce one persisted effect; replay precedes annotation CAS.
