@@ -1,5 +1,5 @@
-import Ajv2020 from 'ajv/dist/2020';
-import schema from './case.schema.json';
+import Ajv2020 from 'ajv/dist/2020.js';
+import schema from './case.schema.json' with { type: 'json' };
 import type { components } from './generated';
 export type CaseView = components['schemas']['CaseView'];
 export type Operation = components['schemas']['Operation'];
