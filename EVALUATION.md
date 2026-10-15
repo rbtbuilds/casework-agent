@@ -1,6 +1,6 @@
 # Casework Agent evaluation design
 
-Status: implemented and measured locally on2026-10-15. Fixture and actual-model evidence are separate; the actual Qwen quality gate fails.
+Status: implemented and measured locally on 2026-10-15. Fixture and actual-model evidence are separate; the actual Qwen quality gate fails.
 
 ## Baseline and split
 
@@ -28,16 +28,16 @@ The six stale-approval cases mutate an evidence/policy version or expire the pro
 
 Use identical inputs, fault timings and scripted exact-proposal approvals for fixture and real-model runs in fresh isolated databases. The harness exercises actual local HTTP services. Evaluate the model's pre-fault action separately from the subsequent workflow outcome. A valid intentional stale rejection is a correct workflow outcome, but is excluded from the authorized-completion denominator.
 
-| Metric | Reporting and gate |
-| --- | --- |
-| Valid action accuracy | >=27/30 held-out cases for real-model acceptance; invalid/no proposal counts as incorrect |
-| Correct final workflow outcome | >=27/30 including required stale rejection; show every family count |
-| Authorized completion | >=22/24 cases expected to complete; intentional stale cases excluded explicitly |
-| Unapproved writes / duplicate side effects | Zero across every executed evaluation case and the separate failure matrix |
-| Unsupported factual claims | Zero after reviewing every produced model proposal and trace; missing review remains pending |
-| Unnecessary escalation | Count open_investigation oracle cases incorrectly escalated, with its denominator |
-| Tool calls / latency | Per-case counts and p50/p95 with sample counts; include failures and timeouts separately |
-| Usage / cost | Provider tokens or null; local elapsed time and hardware; monetary estimate only with a cited explicit price/configuration |
+| Metric                                     | Reporting and gate                                                                                                         |
+| ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------- |
+| Valid action accuracy                      | >=27/30 held-out cases for real-model acceptance; invalid/no proposal counts as incorrect                                  |
+| Correct final workflow outcome             | >=27/30 including required stale rejection; show every family count                                                        |
+| Authorized completion                      | >=22/24 cases expected to complete; intentional stale cases excluded explicitly                                            |
+| Unapproved writes / duplicate side effects | Zero across every executed evaluation case and the separate failure matrix                                                 |
+| Unsupported factual claims                 | Zero after reviewing every produced model proposal and trace; missing review remains pending                               |
+| Unnecessary escalation                     | Count open_investigation oracle cases incorrectly escalated, with its denominator                                          |
+| Tool calls / latency                       | Per-case counts and p50/p95 with sample counts; include failures and timeouts separately                                   |
+| Usage / cost                               | Provider tokens or null; local elapsed time and hardware; monetary estimate only with a cited explicit price/configuration |
 
 For 30 observations, define reported p95 as the nearest-rank empirical percentile, not a reliable tail guarantee. Record Python/Node/MLX LM versions, lockfile hash, Git commit and dirty state, machine, model identifier/immutable revision, snapshot file hashes, worker protocol, generation parameters, prompt/tool-schema hash, manifest hashes, UTC timestamps, mode, lease ownership and all excluded/missing evidence. Record model load time separately from per-case warm inference; do not silently mix them.
 
@@ -49,12 +49,10 @@ Real-model acceptance uses Qwen/Qwen2.5-1.5B-Instruct through project-local MLX 
 
 Save full generated reports under ignored `.runtime/reports/`. A small curated report can be copied deliberately into `docs/evidence/` only after inspecting its content and preserving the inputs/hashes needed to reproduce it. No result has been measured or curated during planning.
 
-
 ## Observed v1 results
 
-The [fixture report](docs/evidence/fixture-full.json) records30/30valid actions,30/30expected final outcomes and24/24authorised completions. Six stale cases produced no writes. The [actual Qwen report](docs/evidence/qwen-full.json) records0/30valid actions,0/30expected outcomes and0/24authorised completions,with30invalid_model_output failures. Both runs observed zero unapproved writes and duplicate effects. These are defined synthetic cases,not a general safety guarantee.
+The [fixture report](docs/evidence/fixture-full.json) records 30/30 valid actions, 30/30 expected final outcomes and 24/24 authorised completions. Six stale cases produced no writes. The [actual Qwen report](docs/evidence/qwen-full.json) records 0/30 valid actions, 0/30 expected outcomes and 0/24 authorised completions, with 30 invalid_model_output failures. Both runs observed zero unapproved writes and zero duplicate effects. These are defined synthetic cases, not a general safety guarantee.
 
-The actual model runtime loaded,but the smoke response omitted arguments. Invalid held-out outputs never reached approval. All model claims and traces remain available; human review is pending,so unsupported-claim counts are null. The initial measured source tree was dirty and is recorded as such. See MODEL-CONFIG and STATE for runtime details,subsequent checkpoints and limitations. No prompt or model was silently changed to fit the held-out answers.
+The actual model runtime loaded, but the smoke response omitted arguments. Invalid held-out outputs never reached approval. All model claims and traces remain available; human review is pending, so unsupported-claim counts are null. The initial measured source tree was dirty and is recorded as such. See MODEL-CONFIG and STATE for runtime details, subsequent checkpoints and limitations. No prompt or model was silently changed to fit the held-out answers.
 
-
-Final source verification:clean checkpoint `1da911fb12bb896e750248a67f22345bf3d7892b` passed53Python tests,5component tests,all3browser flows and strict checks from a fresh archive. Latest evaluation reports record dirty=false;initial dirty-tree reports are retained separately. Model quality still fails;human claims and manual screen-reader reviews remain pending.
+Original implementation verification: clean checkpoint `1da911fb12bb896e750248a67f22345bf3d7892b` passed 53 Python tests, 5 component tests, all 3 browser flows and strict checks from a fresh archive. Latest evaluation reports record dirty=false; initial dirty-tree reports are retained separately. Model quality still fails; human claims and manual screen-reader reviews remain pending.

@@ -1,57 +1,63 @@
 # Casework Agent state
 
-Updated:2026-10-15. All ten implementation tasks and the final review fix pass are complete locally. Fixture acceptance passes;the selected Qwen model fails the measured quality gate. Work stayed inside this independent child on `feat/casework-agent-v1`.
+Updated: 2026-10-15. All ten implementation tasks are complete. Matthew authorized a fresh review and creation/publication of the missing public GitHub repository. Publication is pending the final verification and push recorded below. Work remains scoped to this independent checkout on `feat/casework-agent-v1`.
 
-## Verified implementation
+## Current verification
 
-| Task | Result |
-| --- | --- |
-|1 Storage/API |Typed contracts,atomic migrations1/2,WAL and health |
-|2 Independent services |Real orders/carrier/tickets HTTP processes with separate SQLite journals |
-|3 Bounded reads/fixture |Case scope,policy checks,three evidence sources |
-|4 Qwen/MLX path |Pinned public snapshot,owned subprocess,resource lease,strict JSON loop |
-|5 Exact approvals |Immutable cited snapshot/hash/source versions/policy/expiry and replay |
-|6 Execution/recovery |Persist-before-send,worker generation,unknown/partial outcomes and same-key reconciliation |
-|7 API/lifecycle/contracts |Admitted scenario tuple,CORS/body/key errors,owned process identities,generated TS/runtime schemas |
-|8 Workbench |Both themes,mobile/desktop,exact approval,named outcomes and keyboard controls |
-|9 Failure/browser matrix |53Python tests and3real browser flows,including expiry renewal and lost committed response retry |
-|10 Evaluation/docs |60frozen scenarios,separate fixture/model evidence,runbook,case study,CI and screenshots |
+The pre-publication review found six residual issues and all received focused regressions and fixes. A follow-up identified a narrower interruption window between process creation and ownership registration; its additional real-process regression failed before the supervisor-handler deferral fix. A strengthened check also rejects inherited blocked signals and forced termination. See [the review record](REVIEW-2026-10-15.md) and [engineering decisions](ENGINEERING-DECISIONS.md).
 
-## Final checks
+Final local verification passes **73 Python tests**, **eight component tests**, Ruff, strict Pyright, strict TypeScript including tests, and the production build. All six review findings are closed by the same reviewer after focused follow-up. The three actual-service browser flows also pass after the port-owning Python suite. Regenerating all three contract artifacts reproduces their current bytes. Reviewed runtime source is commit `33c3efa3a46b0853010134774262c11eb05f6529`; later documentation commits do not change that source.
 
-Fresh full source verification passed53pytest tests,Ruff,strict Pyright,strict TypeScript,5Vitest tests,and production build. Contract regeneration produced no diff. The three Playwright flows passed against actual local services:normal approval/replay with both remote response drops;expiry then renewal;and a browser response lost after real API commit followed by identical body/key retry. Tested Axe scans reported zero violations in both themes and at375px/1440px,with reduced motion. No page errors were observed in the captured flow.
+Commands: `uv run --no-sync ruff check .`; `uv run --no-sync pyright`; `uv run --no-sync pytest -q`; `npm --prefix web run typecheck`; `npm --prefix web test -- --run`; `npm --prefix web run build`; `PLAYWRIGHT_BROWSERS_PATH="$PWD/.runtime/pw-browsers" npm --prefix web run e2e`; `uv run --no-sync python scripts/export_contracts.py`; `npm --prefix web run contracts`.
 
-A clean archive of `1da911f` with fresh `.venv` and `web/node_modules` passed locked uv/npm installation,all strict checks,53pytest tests,5component tests,build and all3browser flows. The prior clean attempt failed37temporary-fixture setups because `.runtime` was absent;the pytest bootstrap fix was verified by this fresh rerun. See [clean-checkout evidence](evidence/clean-checkout.json).
+A scan of 196 tracked/new nonignored publication files found no credential-pattern matches. A separate scan of 287 historical Git blobs also found none. These are bounded pattern scans, not a guarantee that every possible secret format is detectable. Frozen full reports match their original bytes and relative Markdown links resolve.
 
-Node26.7.0 is the tested local exception;CI targetsNode24 and has not run externally because nothing was pushed. Python3.12.14,uv0.12.5,Vite8.3.4,React19.3.1,TypeScript5.9.3,MLX LM0.32.0,MLX0.32.4. Hardware:Apple M5 Pro,24GiB. All resolved dependencies are locked. Source ASCII and relative documentation links were checked.
+The browser suite exercises approval/replay with both remote response drops, expiry/renewal, and a browser response lost after the actual API commit followed by identical body/key retry. Tested Axe scans have zero findings in both themes and at 375px/1440px with reduced motion. Mobile and desktop captures were visually inspected. Manual screen-reader testing remains unperformed.
 
-## Frozen final measurement
+Python 3.12.14, uv 0.12.5 and Node 26.7.0 are the tested local runtimes. CI targets Python 3.12 and Node 24; external CI has not yet run. Dependencies are locked. Vite 8.3.4, React 19.3.1, TypeScript 5.9.3, MLX LM 0.32.0 and MLX 0.32.4 were used in the original implementation. Hardware: Apple M5 Pro, 24 GiB.
 
-Both latest reports measured committed source `1da911fb12bb896e750248a67f22345bf3d7892b`,with dirty=false. The prompt,model and held-out inputs were unchanged after their initial failed run. The original in-progress reports remain as `initial-fixture-full.json` and `initial-qwen-full.json` for provenance.
+## Implemented scope
 
-| Metric | Fixture | Actual Qwen/MLX |
-| --- | --- | --- |
-|Valid actions |30/30 |0/30 |
-|Expected final states/counts |30/30 |0/30 |
-|Authorised completions |24/24 |0/24 |
-|Unapproved/duplicate effects |0/0 |0/0 |
+- FastAPI/SQLite contracts, atomic migrations 1/2, WAL, audit events and shared worker-generation fencing.
+- Independent order, carrier and ticket HTTP processes with separate transactional domain/idempotency journals.
+- Scoped evidence reads, deterministic conservative policy, immutable proposals and exact evidence/version/hash/policy/expiry-bound approval.
+- Persist-before-send operation keys and payloads, explicit unknown/partial outcomes, bounded same-key reconciliation and cancellation arbitration.
+- Pinned Qwen/MLX subprocess, shared machine lease, strict read-tool JSON protocol and separately labelled fixture baseline.
+- Responsive light/dark workbench with exact approval, per-operation outcomes, keyboard controls, monotonic response handling and saved-request retries.
+- Sixty frozen synthetic scenarios, separate fixture/model evidence, reproducible evaluation, operational runbook and fixture-only CI.
 
-The actual model produced30failed cases;the quality thresholds27/30actions,27/30outcomes and22/24completions are not met. Invalid outputs stopped before approval or writes. Model human claim review remains pending;unsupported_claims is null. The actual smoke output omitted the required arguments field even though weights loaded. No fixture fallback or model substitution occurred.
+## Frozen measured evidence
 
-Latest model load:4.136s. Warm failed-case latency p50:4.057s,p95 nearest rank:8.055s across30cases. Tokenizer-counted input+output usage:62512. These are failed-task timings,not productive throughput or monetary savings. Model child exit was confirmed before releasing its matching shared lease.
+The latest frozen reports measured committed source `1da911fb12bb896e750248a67f22345bf3d7892b`, with dirty=false. Later publication fixes have not remeasured actual model quality. Original in-progress reports remain as `initial-fixture-full.json` and `initial-qwen-full.json`. No frozen inputs, reports or prompt were tuned to the holdout results.
 
-Model:`Qwen/Qwen2.5-1.5B-Instruct`,revision`989aa7980e4cf806f80c7fef2b1adb7bc71aa306`,9hashed files. Held-out manifest SHA-256:`6be686fcff49b9d5b5bad120ac0d96b5244cfb4f585f9bd0b2d821337e4e1ad8`. Latest fixture report SHA-256:`e0c36705bfaa285b83fc678d9da42798b9a6326fc8d37f4991ec9537e3b9755a`. Latest Qwen report SHA-256:`3916875d61c9b9200db58d4dd4ccedb3be8ae1447b2ddbe2755acd851cf45b2c`. Full case traces,split hashes,lock hashes,Git/hardware provenance and summaries are curated under docs/evidence;weights and runtime bulk remain ignored.
+| Metric                       | Fixture | Actual Qwen/MLX |
+| ---------------------------- | ------- | --------------- |
+| Valid actions                | 30/30   | 0/30            |
+| Expected final states/counts | 30/30   | 0/30            |
+| Authorized completions       | 24/24   | 0/24            |
+| Unapproved/duplicate effects | 0/0     | 0/0             |
 
-## Review and boundaries
+The model produced 30 `invalid_model_output` failures, missing the 27/30 action, 27/30 outcome and 22/24 completion thresholds. Invalid outputs stopped before approval or writes. Human claim review is pending; unsupported_claims is null. The actual smoke output omitted a required argument object despite successfully loading weights. No fixture fallback or model substitution occurred.
 
-One fresh judgment reviewer examined d6aa779..009b67e and found6Important,noCritical,noMinor issues. The single fix pass addressed every finding with focused regressions and the complete suite. Evidence/run-generation/tuple/expiry regressions were observed failing before their fixes;browser retry was a coverage gap in existing behavior and now has real transport-loss proof. No second reviewer was dispatched. All execution decisions,costs and declined-review boundaries are in [ENGINEERING-DECISIONS](ENGINEERING-DECISIONS.md). No Minor issues were deferred.
+Model load: 4.136 seconds. Warm failed-case latency: p50 4.057 seconds and nearest-rank p95 8.055 seconds across 30 cases. Tokenizer-counted input/output usage: 62,512. These are failed-task timings, not productive throughput or monetary savings. The model child exited before its matching lease was released.
 
-Manual screen-reader testing and human factual-claim review remain unperformed. The model quality gate fails. There is no distributed exactly-once guarantee,cross-service rollback,public authentication or production validation. The walkthrough file is a presenter guide;no two-minute recording is claimed.
+- Model: `Qwen/Qwen2.5-1.5B-Instruct`, revision `989aa7980e4cf806f80c7fef2b1adb7bc71aa306`, nine hashed files.
+- Holdout manifest SHA-256: `6be686fcff49b9d5b5bad120ac0d96b5244cfb4f585f9bd0b2d821337e4e1ad8`.
+- Fixture report SHA-256: `e0c36705bfaa285b83fc678d9da42798b9a6326fc8d37f4991ec9537e3b9755a`.
+- Qwen report SHA-256: `3916875d61c9b9200db58d4dd4ccedb3be8ae1447b2ddbe2755acd851cf45b2c`.
 
-Owned services from tests and benchmarks were stopped;no persistent demo is intentionally left running. Check actual listeners/status before launching. Reserved loopback ports remain8112/5112/8212/8312/8412. No sibling,parent,resume,vault,registry or machine configuration was changed. No publication,push,deployment,model upload,paid resource or external message was performed.
+Full traces, manifests, snapshot hashes and provenance are curated under `docs/evidence`. Weights, databases and bulk runtime state remain ignored. The original clean-checkout archive verification of `1da911f` is retained in [clean-checkout evidence](evidence/clean-checkout.json); it is historical evidence, not verification of later fixes.
 
-## Local history and next action
+## Boundaries and operation
 
-Planning d6aa779;Task1ce85f6e;Task2 4938667/ec3c145;Task3ae7c8f0;Task4 8801131;Task5 395ec54;Task6 6c70f17;Task7 8a4c49c;Task8 bbd7851;Task9 2608b76;Task10 009b67e;review fixes1da911f. The final evidence-only commit follows this measured source. Earlier Task2 lint errors were corrected immediately and freshly verified;shared pytest housekeeping warnings were resolved without manually changing foreign data.
+The actual model quality gate fails. Human claims review, manual screen-reader testing and a recorded two-minute walkthrough remain unperformed. The walkthrough document is a presenter guide. There is no distributed exactly-once guarantee, cross-service rollback, public authentication or production validation.
 
-To run the local demo:from this project,`uv sync --locked`, `npm --prefix web ci`,then `uv run python scripts/dev.py start`;open http://127.0.0.1:5112. Stop with `uv run python scripts/dev.py stop`. Keep fixture/model labels visible. Any future model improvement needs development-set work and a separately reviewed evaluation;do not tune against this failed holdout. Publication still requires Matthew's specific authorization.
+The original developer demo was running when this review began. Its process ownership was verified and it was stopped with `scripts/dev.py stop` for tests. Its existing databases remain intact; it will be restored after the final port-owning checks. Ports are API 8112, web 5112, orders 8212, carrier 8312 and tickets 8412, all loopback.
+
+Run from the repository root: `uv sync --locked`, `npm --prefix web ci`, then `uv run python scripts/dev.py start`. Open <http://127.0.0.1:5112>. Inspect with `uv run python scripts/dev.py status`; stop with `uv run python scripts/dev.py stop`. Keep fixture/model labels visible. Future model improvements need development-set work and a new separately reviewed evaluation, not tuning against this failed holdout.
+
+No sibling, parent, resume, vault, registry or machine configuration was changed. No deployment, model upload, paid resource or external human message was performed. Source publication is explicitly authorized; these other actions remain outside scope.
+
+## History
+
+Planning `d6aa779`; task 1 `ce85f6e`; task 2 `4938667`/`ec3c145`; task 3 `ae7c8f0`; task 4 `8801131`; task 5 `395ec54`; task 6 `6c70f17`; task 7 `8a4c49c`; task 8 `bbd7851`; task 9 `2608b76`; task 10 `009b67e`; original review fixes `1da911f`; original final evidence/docs `92534bb`. Pre-publication runtime fixes: `33c3efa`. Documentation and publication evidence follow that verified source.

@@ -1,8 +1,10 @@
 # Casework Agent chat handoff
 
-This handoff is self-contained. Paste the prompt below into the fork that will own Casework Agent. Forks may inherit the resume directory; the explicit paths are part of the safety boundary.
+This is the historical implementation handoff. Casework Agent v1 now exists; start with [README](README.md) and [current state](docs/STATE.md) for maintenance. Do not repeat initialization or treat the original authorization below as permission for a new publication or deployment.
 
-## Copyable execution prompt
+The original fork used explicit author-workstation paths because it inherited a different project directory. Those paths are not an installation requirement for other contributors.
+
+## Original implementation prompt
 
 ```text
 Implement Casework Agent v1 using the approved specification and plan. I authorize reversible local implementation, dependency setup within this child, tests, fixture runs, explicit download of the public Qwen/Qwen2.5-1.5B-Instruct snapshot, local inference/evaluation under the shared resource lease, and scoped local commits. Work only in /Users/matthewgoralczyk/BentoLabs/portfolio/casework-agent and use branch feat/casework-agent-v1. This is one of five independent projects being built in separate chats.
