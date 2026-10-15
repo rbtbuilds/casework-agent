@@ -55,3 +55,6 @@ Task3: Strict policy,scope and fixture adapter verified against real services. N
 
 Task4: Public Qwen revision989aa7980e4cf806f80c7fef2b1adb7bc71aa306 downloaded,9 files hashed in ignored .runtime/models/snapshot.json. Probe returned model_busy without loading.16 prior tests plus2 approval tests passed; Ruff/strict Pyright clean.
 Task5: Immutable proposals,transactional exact approvals,replay,and stale invalidation implemented;18tests passed. Extended expiry/cancellation matrix follows in Task9.
+
+Task6:20tests passed before API expansion. Dropped ticket response reconciles to exactly1ticket/1annotation; cancellation before claim prevents writes; second live worker is fenced. Remaining crash/expiry matrix follows Task9.
+Task7:22pytest tests passed including full process HTTP create/gather/approve/complete/replay,Origin403 and error422,occupied-port refusal. Strict Pyright0errors,Ruff clean. Worker runs as an owned task in the single API process with a durable database lease and5s heartbeat.
