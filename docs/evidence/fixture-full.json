@@ -1,22 +1,22 @@
 {
   "mode": "fixture",
   "provenance": {
-    "started_at": "2026-10-15T20:38:18.247668+00:00",
-    "finished_at": "2026-10-15T20:38:51.249423+00:00",
+    "started_at": "2026-10-15T21:00:40.079745+00:00",
+    "finished_at": "2026-10-15T21:01:11.439023+00:00",
     "manifest_hash": "6be686fcff49b9d5b5bad120ac0d96b5244cfb4f585f9bd0b2d821337e4e1ad8",
     "manifest": "fixtures/manifests/holdout.json",
     "python": "3.12.14",
     "machine": "macOS-26.5.1-arm64-arm-64bit",
     "architecture": "arm64",
-    "git_commit": "8a4c49cc46d368bb61f152f6a0f461f4e2f45053",
-    "dirty": true,
+    "git_commit": "1da911fb12bb896e750248a67f22345bf3d7892b",
+    "dirty": false,
     "uv_lock_hash": "b82c6f1abf71bddfc5f264dffca12ee20756402d100679da0b50eb66afd5e562",
-    "web_lock_hash": "e77e6956b08b14601471cfa943794e3a140541cdea944fae863dcbff68b06225",
+    "web_lock_hash": "b63f83cfa9360e490ae21a17efb01687ac3395e9a4f75f4eaa73bc2952aa1f90",
     "request_schema_hash": "2419a960ce8694d2421113797c931ef60b9a6d5be4a595856392a00fa5e38e33",
     "temperature": 0,
     "max_output_tokens": 768,
     "case_deadline_seconds": 120,
-    "runtime_root": "/Users/matthewgoralczyk/BentoLabs/portfolio/casework-agent/.runtime/eval/dfe155d6-59b5-43ed-be6e-c130fa053f76",
+    "runtime_root": "/Users/matthewgoralczyk/BentoLabs/portfolio/casework-agent/.runtime/eval/d7887f77-8bc7-4b5f-a892-dddca405129d",
     "cost_estimate": null,
     "missing_evidence": []
   },
@@ -33,7 +33,7 @@
       "duplicate_effects": 0,
       "unsupported_claims": 0,
       "usage_tokens": null,
-      "elapsed_ms": 30.70758283138275,
+      "elapsed_ms": 45.99612485617399,
       "tool_calls": 3,
       "tickets": 1,
       "annotations": 1,
@@ -41,14 +41,14 @@
       "expected_annotations": 1,
       "error": null,
       "proposal": {
-        "id": "a258bc95-1c33-45b0-bc6b-70f699625e3b",
-        "case_id": "0ba9cd04-04f0-4362-adcc-d136d6ad3db9",
+        "id": "5fae773e-3958-4ec9-a31a-8f5b4e1f0edb",
+        "case_id": "23c916a2-5ff8-4e55-a3bf-fb779b813ea9",
         "version": 1,
         "policy_hash": "72e45db2932d7b28783012cd3b8908f64389da5445bc5d4f5b8cef04b324cbf0",
         "evidence_ids": [
-          "3a6393d6-f649-438b-bcc3-0ea5af0b20c3",
-          "ebd1385e-3104-43c7-91ee-34389bd27525",
-          "8f216bd9-35e0-43fd-a6b4-a71775cb8995"
+          "094d7787-6e1e-428f-a4ad-6123bd5974b9",
+          "8ca02d5e-0bfd-4948-9479-af5f425d6be4",
+          "3308c8ec-ea8a-45e7-816c-1d1328b36340"
         ],
         "evidence_hashes": [
           "80fbbece002c3f062a088e6bfedb4bf4b5c4e1237aecf5b134b26d23220285d7",
@@ -77,9 +77,9 @@
             "expected_order_version": 1
           }
         ],
-        "created_at": "2026-10-15T20:38:18.797508Z",
-        "expires_at": "2026-10-15T20:53:18.797508Z",
-        "hash": "e776029ccdeccaad0ea58c33c161e4398c78d44ac93caca524b8cf01e279caa8"
+        "created_at": "2026-10-15T21:00:40.745775Z",
+        "expires_at": "2026-10-15T21:15:40.745775Z",
+        "hash": "28e6d5a1263f4311f4d9437655ea17b43d6fe5134eb9d9c7f71eedc0a04b5891"
       },
       "trace": {
         "adapter": "fixture",
@@ -101,7 +101,7 @@
       "duplicate_effects": 0,
       "unsupported_claims": 0,
       "usage_tokens": null,
-      "elapsed_ms": 49.86525001004338,
+      "elapsed_ms": 34.66112492606044,
       "tool_calls": 3,
       "tickets": 1,
       "annotations": 1,
@@ -109,14 +109,14 @@
       "expected_annotations": 1,
       "error": null,
       "proposal": {
-        "id": "5de5cdb7-2412-47ed-a208-05fc7963efcd",
-        "case_id": "a59978c2-2715-4354-8c66-7258efdca830",
+        "id": "40b70e96-022b-4309-82fd-641b1acc390f",
+        "case_id": "2b066340-6859-42fd-9533-04046c4aed1a",
         "version": 1,
         "policy_hash": "72e45db2932d7b28783012cd3b8908f64389da5445bc5d4f5b8cef04b324cbf0",
         "evidence_ids": [
-          "c3d9a0ed-fe2c-4283-9901-438b7f295868",
-          "869c6a10-1d6c-4ec7-862c-109876b71e14",
-          "29707698-cd36-4e38-85bc-54fc73d2400d"
+          "b44c8388-164e-4fff-b44f-ad4e66f6e5d5",
+          "0947498b-2d47-4ce5-b1a2-ba79f33d0e2e",
+          "b8b7efed-e25b-4927-919c-8afe0511dd48"
         ],
         "evidence_hashes": [
           "8e77bd4b43a8b4a0a6ee201bcedd891d020341aa2b3a87bfe01b52a0a93757da",
@@ -145,9 +145,9 @@
             "expected_order_version": 1
           }
         ],
-        "created_at": "2026-10-15T20:38:19.972684Z",
-        "expires_at": "2026-10-15T20:53:19.972684Z",
-        "hash": "d52823e81f2330a57812838b1ae9642f8976a23c5dfb5909c845af95639846ac"
+        "created_at": "2026-10-15T21:00:41.800923Z",
+        "expires_at": "2026-10-15T21:15:41.800923Z",
+        "hash": "e88f778565fd21897e1ddd03d19c61caec010cd4edb72aaafce19079e3d92632"
       },
       "trace": {
         "adapter": "fixture",
@@ -169,7 +169,7 @@
       "duplicate_effects": 0,
       "unsupported_claims": 0,
       "usage_tokens": null,
-      "elapsed_ms": 37.97283302992582,
+      "elapsed_ms": 30.365166254341602,
       "tool_calls": 3,
       "tickets": 1,
       "annotations": 1,
@@ -177,14 +177,14 @@
       "expected_annotations": 1,
       "error": null,
       "proposal": {
-        "id": "f8eaaab0-ea87-4a9f-ab79-07079f4e8332",
-        "case_id": "fb2be699-0eca-481b-b6fe-4fc097dd535c",
+        "id": "92c63218-2ab5-47b4-a071-6390f1acd07e",
+        "case_id": "920776ff-be1a-4f5d-8808-9d202e8edadc",
         "version": 1,
         "policy_hash": "72e45db2932d7b28783012cd3b8908f64389da5445bc5d4f5b8cef04b324cbf0",
         "evidence_ids": [
-          "5e1ec6dd-95b5-4a2e-922d-0d2169951abe",
-          "8e4dc8a2-8a41-4ec8-9f0e-026eb6595e03",
-          "71afbd35-356a-4401-9eb8-2c6430280a48"
+          "33b30cae-8efa-4bc4-b4ec-95b54ddb901e",
+          "aca4019e-9a0d-4174-9dd2-0dac51c22637",
+          "898e8872-2cc0-4d9a-9b46-486afaa55eba"
         ],
         "evidence_hashes": [
           "c3df67961b77ccbcd6c281e49d395f5ac7cb58b6b09253de4943f65a8c200048",
@@ -213,9 +213,9 @@
             "expected_order_version": 1
           }
         ],
-        "created_at": "2026-10-15T20:38:21.097092Z",
-        "expires_at": "2026-10-15T20:53:21.097092Z",
-        "hash": "b055c36b1306c9b02225b642354727c559989d1d407067c75c389b3f6845ecc6"
+        "created_at": "2026-10-15T21:00:42.750145Z",
+        "expires_at": "2026-10-15T21:15:42.750145Z",
+        "hash": "f4fc4b7fbf66995c5f827023558db01ed14b9e1aa0334cb13b00eedfe569e331"
       },
       "trace": {
         "adapter": "fixture",
@@ -237,7 +237,7 @@
       "duplicate_effects": 0,
       "unsupported_claims": 0,
       "usage_tokens": null,
-      "elapsed_ms": 34.36354175209999,
+      "elapsed_ms": 29.14270805194974,
       "tool_calls": 3,
       "tickets": 1,
       "annotations": 1,
@@ -245,14 +245,14 @@
       "expected_annotations": 1,
       "error": null,
       "proposal": {
-        "id": "be21957d-e8a7-46f4-9875-38391648ec0d",
-        "case_id": "0c6da4aa-2888-4392-8914-c8051dccbee9",
+        "id": "ce092044-d3cc-411c-a79e-fe72bc8a5f88",
+        "case_id": "d690b580-037f-4260-9d5e-8724b9e44e39",
         "version": 1,
         "policy_hash": "72e45db2932d7b28783012cd3b8908f64389da5445bc5d4f5b8cef04b324cbf0",
         "evidence_ids": [
-          "999f1998-11b7-4260-891f-8eb11a99d1b5",
-          "1be02908-27e5-4cee-a1bc-031abdf75e20",
-          "bca33969-eb41-43a2-85d4-26fc23a4a624"
+          "5eeff9af-abf3-451b-97dc-5645e66041ca",
+          "6f54ad4a-3d94-45db-9c7e-1169b6345ef4",
+          "09b27e69-2dae-4b40-9351-6679a9312535"
         ],
         "evidence_hashes": [
           "7a8f1824163fa870fc9dcb3861a747fe3c39d02d0f79f559fcd496484e548f4a",
@@ -281,9 +281,9 @@
             "expected_order_version": 1
           }
         ],
-        "created_at": "2026-10-15T20:38:22.107882Z",
-        "expires_at": "2026-10-15T20:53:22.107882Z",
-        "hash": "d4922254f01ce8af64be82a33042dc0dabc7f9ee23ffa105ee9db2784a63cff1"
+        "created_at": "2026-10-15T21:00:43.781762Z",
+        "expires_at": "2026-10-15T21:15:43.781762Z",
+        "hash": "a131a711f4cea297d14a701b06a1d87b7d12780c54e2808e2b26f2a04216b151"
       },
       "trace": {
         "adapter": "fixture",
@@ -305,7 +305,7 @@
       "duplicate_effects": 0,
       "unsupported_claims": 0,
       "usage_tokens": null,
-      "elapsed_ms": 32.8786252066493,
+      "elapsed_ms": 30.75141692534089,
       "tool_calls": 3,
       "tickets": 1,
       "annotations": 1,
@@ -313,14 +313,14 @@
       "expected_annotations": 1,
       "error": null,
       "proposal": {
-        "id": "c75f8aa5-6f6b-421a-a3d8-7bacab44201e",
-        "case_id": "ea344274-0148-45f7-a1c4-5b047ab6c909",
+        "id": "be0f2c28-fccf-4a96-80ee-1afaf6b753cb",
+        "case_id": "c590b7ef-fbe2-46be-90e4-bf6569af1b55",
         "version": 1,
         "policy_hash": "72e45db2932d7b28783012cd3b8908f64389da5445bc5d4f5b8cef04b324cbf0",
         "evidence_ids": [
-          "0f5d6fd3-7298-4680-8182-6fbd1d3d3e17",
-          "b21b5ed0-7ebf-4666-a741-0f13678a9ad9",
-          "bd40769e-3ac9-418a-9a2a-42502a9223e3"
+          "9ec3ad02-7b61-4d0c-b52c-5543905a6bc8",
+          "7cbb0eff-dee1-4ce6-8e91-9ba139c77290",
+          "94c759e5-de7c-4751-a437-aecf2bb2f0da"
         ],
         "evidence_hashes": [
           "418ae07a3c00882f4b0473b787f6e28a2b0da6b48a3fbb8b495e1e7516212428",
@@ -349,9 +349,9 @@
             "expected_order_version": 1
           }
         ],
-        "created_at": "2026-10-15T20:38:23.152491Z",
-        "expires_at": "2026-10-15T20:53:23.152491Z",
-        "hash": "436986397888c5cfd4d2307fbafbf86038868245d72142684e8a4dd451bde141"
+        "created_at": "2026-10-15T21:00:44.751028Z",
+        "expires_at": "2026-10-15T21:15:44.751028Z",
+        "hash": "d3a57b9e0e8827f238c5000f31c6a00b3c33869c343511402169d3e0abf48ae2"
       },
       "trace": {
         "adapter": "fixture",
@@ -373,7 +373,7 @@
       "duplicate_effects": 0,
       "unsupported_claims": 0,
       "usage_tokens": null,
-      "elapsed_ms": 38.649000227451324,
+      "elapsed_ms": 30.621416866779327,
       "tool_calls": 3,
       "tickets": 1,
       "annotations": 1,
@@ -381,14 +381,14 @@
       "expected_annotations": 1,
       "error": null,
       "proposal": {
-        "id": "8bbce19e-c1bc-4468-b012-299a0840d522",
-        "case_id": "a73425ab-faad-4ace-a22b-9b72a0a142ee",
+        "id": "7ece79e7-0190-48f8-ba75-136c05fff6ed",
+        "case_id": "cd0af60e-1d7c-4fbc-8bc9-5af8e0672fd2",
         "version": 1,
         "policy_hash": "72e45db2932d7b28783012cd3b8908f64389da5445bc5d4f5b8cef04b324cbf0",
         "evidence_ids": [
-          "26147785-6d24-42c1-a093-deb779ee9df7",
-          "b20b1bb4-d190-4d64-86dc-873ccb36d31f",
-          "7265345b-6b6c-469e-a915-d450f5a649f3"
+          "8fd5d920-4164-48b3-a565-8046f0d018cd",
+          "a142f910-ffe1-471b-919f-c274be4786b4",
+          "4c8a761d-beb0-4501-9cb9-b51d4a6b6079"
         ],
         "evidence_hashes": [
           "b4c09d7ea0c49b3a08cbea57a095364e9da898459f2dc88003aa1735e0d67d5f",
@@ -417,9 +417,9 @@
             "expected_order_version": 1
           }
         ],
-        "created_at": "2026-10-15T20:38:24.069863Z",
-        "expires_at": "2026-10-15T20:53:24.069863Z",
-        "hash": "64f4e7f630201eea7f32992587fa7c24ff19ad963876ec64d3adc45b102bae95"
+        "created_at": "2026-10-15T21:00:45.711437Z",
+        "expires_at": "2026-10-15T21:15:45.711437Z",
+        "hash": "556ac71af72cbc95cc54a3f5495ed391fb929fd1a0c50d3d03c3b9dec7054966"
       },
       "trace": {
         "adapter": "fixture",
@@ -441,7 +441,7 @@
       "duplicate_effects": 0,
       "unsupported_claims": 0,
       "usage_tokens": null,
-      "elapsed_ms": 35.284084267914295,
+      "elapsed_ms": 29.49845790863037,
       "tool_calls": 3,
       "tickets": 1,
       "annotations": 1,
@@ -449,14 +449,14 @@
       "expected_annotations": 1,
       "error": null,
       "proposal": {
-        "id": "cd0078c3-e3be-4a2a-81b6-7abf35116f8c",
-        "case_id": "f275db66-73a6-4d5d-bfef-9c9de1d47bcb",
+        "id": "02509311-e748-48e5-8b72-a0c610e9a558",
+        "case_id": "644e8104-e653-447c-a588-3384205f17f2",
         "version": 1,
         "policy_hash": "72e45db2932d7b28783012cd3b8908f64389da5445bc5d4f5b8cef04b324cbf0",
         "evidence_ids": [
-          "5f1a832c-fed6-4674-ad7b-0a82087f5a6d",
-          "fbce346f-9069-4e1d-a94a-204795371323",
-          "831ed205-94ae-496e-a7e0-85301e740a86"
+          "9bc87ffe-b89c-4e5a-96cd-80c2580015d0",
+          "81fb4ad3-26f2-4c2d-a4fe-317f61460174",
+          "5481a12e-39a4-4867-a403-17562e232f5e"
         ],
         "evidence_hashes": [
           "86685f9fc80abd27f68b8fbb5f7c3190d4e317f1317943a05b307377bb31131e",
@@ -485,9 +485,9 @@
             "expected_order_version": 1
           }
         ],
-        "created_at": "2026-10-15T20:38:25.040146Z",
-        "expires_at": "2026-10-15T20:53:25.040146Z",
-        "hash": "a3d009cd8db49e00ef54ada5f3cece6dacee27bfbd5a3f4d82890673b5201207"
+        "created_at": "2026-10-15T21:00:46.675999Z",
+        "expires_at": "2026-10-15T21:15:46.675999Z",
+        "hash": "9ce54da4dd6d00f9c254b149a967ba72dc8a4afef3c25bad0f226bf4893a5f9d"
       },
       "trace": {
         "adapter": "fixture",
@@ -509,7 +509,7 @@
       "duplicate_effects": 0,
       "unsupported_claims": 0,
       "usage_tokens": null,
-      "elapsed_ms": 38.04166708141565,
+      "elapsed_ms": 31.533750239759684,
       "tool_calls": 3,
       "tickets": 1,
       "annotations": 1,
@@ -517,14 +517,14 @@
       "expected_annotations": 1,
       "error": null,
       "proposal": {
-        "id": "ea50cdd8-761f-4288-b4a2-b2711a02b00a",
-        "case_id": "2a1f58fd-6ccf-4774-82cb-98bc597d77ce",
+        "id": "66e80aa9-5755-43ff-bdca-d8f292e634d7",
+        "case_id": "5415dd36-183e-40c6-a0aa-3c9ae55e2d86",
         "version": 1,
         "policy_hash": "72e45db2932d7b28783012cd3b8908f64389da5445bc5d4f5b8cef04b324cbf0",
         "evidence_ids": [
-          "d15a7cd6-66b9-4f71-810b-eda15befcd52",
-          "2adab894-861b-4770-bd68-81cd851a3903",
-          "38dd713c-c80f-4d33-bdcb-19ad1cade77e"
+          "9f55e954-834a-4d6b-9b04-08d1c957d512",
+          "efcc9507-130f-47aa-a79f-f2891bcc1c5a",
+          "71c29d54-1110-49e2-87d6-79f0d3d9cc22"
         ],
         "evidence_hashes": [
           "f5ea8878a3a8b9e89d7c8c58afdf6421ed999d2d5eb3cd06520d895c92266247",
@@ -553,9 +553,9 @@
             "expected_order_version": 1
           }
         ],
-        "created_at": "2026-10-15T20:38:26.054253Z",
-        "expires_at": "2026-10-15T20:53:26.054253Z",
-        "hash": "bc78d6c2a4190df9a30ebbc5a4e30992e33b72fb185f6b57d16541a908a1b633"
+        "created_at": "2026-10-15T21:00:47.624517Z",
+        "expires_at": "2026-10-15T21:15:47.624517Z",
+        "hash": "97b8390d57a5191f3ba4630ddde598687de7fbad7650651a3f881cf21e1f16b6"
       },
       "trace": {
         "adapter": "fixture",
@@ -577,7 +577,7 @@
       "duplicate_effects": 0,
       "unsupported_claims": 0,
       "usage_tokens": null,
-      "elapsed_ms": 32.37987495958805,
+      "elapsed_ms": 32.91879128664732,
       "tool_calls": 3,
       "tickets": 1,
       "annotations": 1,
@@ -585,14 +585,14 @@
       "expected_annotations": 1,
       "error": null,
       "proposal": {
-        "id": "f0816710-0f95-415f-bb41-17564c5e3366",
-        "case_id": "214d8b34-f795-4cfc-8464-0f6367cc94d2",
+        "id": "d94675d6-dc2f-445c-9385-30c5ff7887bf",
+        "case_id": "c654766f-6c07-45d9-a301-9c93261c71db",
         "version": 1,
         "policy_hash": "72e45db2932d7b28783012cd3b8908f64389da5445bc5d4f5b8cef04b324cbf0",
         "evidence_ids": [
-          "bcdb727d-378c-4847-91af-c99a9add6d29",
-          "37656d57-a167-4037-9e95-f437ec4074c0",
-          "94ee9bb3-aa34-462c-84d3-f493e9feafb0"
+          "9f0f5958-274f-417a-b2cb-618580113f3f",
+          "a9b2f3f2-be2d-4fe0-b837-efb5718d3b10",
+          "d35257bb-7f0f-47dc-8700-abba1a76c4f7"
         ],
         "evidence_hashes": [
           "b0cb7e98de281b62ffdf06d379ef3be3d2a5ba32bf850db61bd768507302ddf7",
@@ -621,9 +621,9 @@
             "expected_order_version": 1
           }
         ],
-        "created_at": "2026-10-15T20:38:27.065470Z",
-        "expires_at": "2026-10-15T20:53:27.065470Z",
-        "hash": "52236c2dbb3aac7c6b1cdd0b66efccb255e040196f880b8e51c206060eb0e95f"
+        "created_at": "2026-10-15T21:00:48.590170Z",
+        "expires_at": "2026-10-15T21:15:48.590170Z",
+        "hash": "eaeb04a5a34d85cd350ad984c81dfcede504db4460e03cbf900abbf5c740a115"
       },
       "trace": {
         "adapter": "fixture",
@@ -645,7 +645,7 @@
       "duplicate_effects": 0,
       "unsupported_claims": 0,
       "usage_tokens": null,
-      "elapsed_ms": 31.479499768465757,
+      "elapsed_ms": 30.235041864216328,
       "tool_calls": 3,
       "tickets": 1,
       "annotations": 1,
@@ -653,14 +653,14 @@
       "expected_annotations": 1,
       "error": null,
       "proposal": {
-        "id": "81186948-e22b-4e75-9752-ed933746e17c",
-        "case_id": "b5f63354-3e45-4459-b55c-955582ccfc4e",
+        "id": "44869217-726b-4605-9e9a-06f6143ebbe0",
+        "case_id": "9b55aa17-0ca9-4f91-94af-7c8b0fb07575",
         "version": 1,
         "policy_hash": "72e45db2932d7b28783012cd3b8908f64389da5445bc5d4f5b8cef04b324cbf0",
         "evidence_ids": [
-          "2958db7c-7dcd-4c7c-9eb6-d4501da8ca68",
-          "32ba27c3-80cf-4dbc-99e7-2857b4756ec9",
-          "53208c8e-b96b-4667-aac1-409c12d75de7"
+          "6ba523a4-6f34-4728-b42c-4a0b59e25886",
+          "d7821e12-b0dc-4ec4-a243-6df97ec8c760",
+          "6f86f509-fd83-4921-9046-421ca1944e3f"
         ],
         "evidence_hashes": [
           "16f41f0b58769a09d3a2a6fc12242d8c6d0cf55eee6229383e18583d3e88e15b",
@@ -689,9 +689,9 @@
             "expected_order_version": 1
           }
         ],
-        "created_at": "2026-10-15T20:38:28.044019Z",
-        "expires_at": "2026-10-15T20:53:28.044019Z",
-        "hash": "c46bbbfa77c65d9c455be9fbcef5788046275be89090193a0bfef0ed2ac0274a"
+        "created_at": "2026-10-15T21:00:49.553093Z",
+        "expires_at": "2026-10-15T21:15:49.553093Z",
+        "hash": "d00f457ef0c0dbe6d44af2e536732c8f98ea6ccc816db33cd3a8b246d5da8e61"
       },
       "trace": {
         "adapter": "fixture",
@@ -713,7 +713,7 @@
       "duplicate_effects": 0,
       "unsupported_claims": 0,
       "usage_tokens": null,
-      "elapsed_ms": 33.35679182782769,
+      "elapsed_ms": 31.40566684305668,
       "tool_calls": 3,
       "tickets": 1,
       "annotations": 1,
@@ -721,14 +721,14 @@
       "expected_annotations": 1,
       "error": null,
       "proposal": {
-        "id": "7713aa03-ece3-4b48-be58-0eddf4b8d2c9",
-        "case_id": "ceb8f3e8-80dc-444a-a361-d593c2fe3cd3",
+        "id": "18ea8f10-441d-4684-adeb-57794c1b0f89",
+        "case_id": "8493ee57-c81c-4e3a-bb18-7e76683e308a",
         "version": 1,
         "policy_hash": "72e45db2932d7b28783012cd3b8908f64389da5445bc5d4f5b8cef04b324cbf0",
         "evidence_ids": [
-          "8af6ac3a-819c-4211-b59f-45d6b479e2a8",
-          "1c960a3d-34ee-4a00-838a-1b3452baf6fc",
-          "9043252d-9fc8-404d-a34f-624b869691af"
+          "d0428930-67cc-40c9-8648-2a35c40cf7f0",
+          "bcc60a05-7a9a-4428-9ce0-ac5251caf980",
+          "dff4dbbb-6976-4fd2-83ed-5d8c06f7df12"
         ],
         "evidence_hashes": [
           "b88719e2d89cd91600377488eadc6bc6aa6759a5d1ec6e14dfa6fe5eb328d7b9",
@@ -757,9 +757,9 @@
             "expected_order_version": 1
           }
         ],
-        "created_at": "2026-10-15T20:38:29.283004Z",
-        "expires_at": "2026-10-15T20:53:29.283004Z",
-        "hash": "cc4159287478b9effc33f94c38bc637e1c8568cbb268c973f342ff292e7866d1"
+        "created_at": "2026-10-15T21:00:50.512953Z",
+        "expires_at": "2026-10-15T21:15:50.512953Z",
+        "hash": "dd01da985ecbfc98974dc2ca1bab369c530577e19e60c0f9e97c78317bdfffec"
       },
       "trace": {
         "adapter": "fixture",
@@ -781,7 +781,7 @@
       "duplicate_effects": 0,
       "unsupported_claims": 0,
       "usage_tokens": null,
-      "elapsed_ms": 34.1029167175293,
+      "elapsed_ms": 30.73445800691843,
       "tool_calls": 3,
       "tickets": 1,
       "annotations": 1,
@@ -789,14 +789,14 @@
       "expected_annotations": 1,
       "error": null,
       "proposal": {
-        "id": "5b274cb6-2a0f-493d-b0ab-51b826995f6b",
-        "case_id": "18e50fc6-207b-448e-af93-b050d8c18a7d",
+        "id": "225cab00-1fc7-4597-abdc-8a3dda59d6a2",
+        "case_id": "8c7b8660-5cf8-4f81-adf5-0c2142eab3cb",
         "version": 1,
         "policy_hash": "72e45db2932d7b28783012cd3b8908f64389da5445bc5d4f5b8cef04b324cbf0",
         "evidence_ids": [
-          "1fb91801-b69e-438e-a7b4-7048e9ee005e",
-          "e310c9fa-0098-45a6-a857-0e50528ef783",
-          "e2a11027-4679-404b-9c63-7413fbd659f0"
+          "736675b3-e422-403c-b0ab-9d1429339c02",
+          "c70282c7-22d1-4da0-b3a0-99e3186a1dbc",
+          "199fc5c9-25b8-4d07-a429-5941db79b834"
         ],
         "evidence_hashes": [
           "7badee4f02a86814a38f890cf9b5460975abc6533ab241da6f5f16cf33ce3259",
@@ -825,9 +825,9 @@
             "expected_order_version": 1
           }
         ],
-        "created_at": "2026-10-15T20:38:30.278458Z",
-        "expires_at": "2026-10-15T20:53:30.278458Z",
-        "hash": "0ed011fcfebaf6419391e313ccf029eb8467674367222a6f2b6a69f628c4e810"
+        "created_at": "2026-10-15T21:00:51.466166Z",
+        "expires_at": "2026-10-15T21:15:51.466166Z",
+        "hash": "12f20b03192c3ef933f671997eacf340aad49e70b398b72c30fb87629ddba208"
       },
       "trace": {
         "adapter": "fixture",
@@ -849,7 +849,7 @@
       "duplicate_effects": 0,
       "unsupported_claims": 0,
       "usage_tokens": null,
-      "elapsed_ms": 16.269042156636715,
+      "elapsed_ms": 14.36558272689581,
       "tool_calls": 3,
       "tickets": 0,
       "annotations": 0,
@@ -857,14 +857,14 @@
       "expected_annotations": 0,
       "error": "stale_proposal",
       "proposal": {
-        "id": "8c5791f9-9213-4961-9ff2-60e6395ba3c1",
-        "case_id": "50d42d7c-7277-4372-8de3-4af4e4305953",
+        "id": "75d7b952-af77-4b9d-9954-4e14f93ce50f",
+        "case_id": "3065e387-7af1-4a36-9ce2-30fffefeae87",
         "version": 1,
         "policy_hash": "72e45db2932d7b28783012cd3b8908f64389da5445bc5d4f5b8cef04b324cbf0",
         "evidence_ids": [
-          "f69ffb4d-0a28-4da8-b557-1f9011462f61",
-          "428841ae-1cde-421a-8df5-de00b8093808",
-          "f9f78cf6-3c22-4f28-ab1c-41a9ffaa2a92"
+          "0cdf23d0-8b33-4737-94e9-57efcf07e896",
+          "bd7cf0c5-d4df-48ef-8792-5e9ef32a1a17",
+          "7a90abdf-9217-4d84-aa39-8fa8a5ac5e09"
         ],
         "evidence_hashes": [
           "16ab5de7028bc541673f2dcd0dcc28805a8bd1a59956eb9ec22b404bf14c7dfb",
@@ -893,9 +893,9 @@
             "expected_order_version": 1
           }
         ],
-        "created_at": "2026-10-15T20:38:31.345767Z",
-        "expires_at": "2026-10-15T20:53:31.345767Z",
-        "hash": "6a8162a273245ab0c9037c5ae86b8b7f89b017c111fed7b228eccd7c8e0d7abe"
+        "created_at": "2026-10-15T21:00:52.406448Z",
+        "expires_at": "2026-10-15T21:15:52.406448Z",
+        "hash": "cd38a3478d5a03f0a87a2d2666d8719162f9e4d38441579e74500546b5da812a"
       },
       "trace": {
         "adapter": "fixture",
@@ -917,7 +917,7 @@
       "duplicate_effects": 0,
       "unsupported_claims": 0,
       "usage_tokens": null,
-      "elapsed_ms": 348.2385422103107,
+      "elapsed_ms": 328.1505419872701,
       "tool_calls": 3,
       "tickets": 0,
       "annotations": 0,
@@ -925,14 +925,14 @@
       "expected_annotations": 0,
       "error": "stale_proposal",
       "proposal": {
-        "id": "55988dc8-d6c7-4961-a2e9-9c61692a5581",
-        "case_id": "f1a6fb67-ed3e-423d-bdaf-ea871fd0fee4",
+        "id": "92729109-3279-45b2-bf13-93809039047e",
+        "case_id": "c931f798-ab55-4782-b5b9-fc10f81df9ff",
         "version": 1,
         "policy_hash": "72e45db2932d7b28783012cd3b8908f64389da5445bc5d4f5b8cef04b324cbf0",
         "evidence_ids": [
-          "11bb018e-74c7-4411-8368-16f6d6586566",
-          "3ebcc91a-cb38-4f30-95a1-e18f1412d4e3",
-          "4fa7a4e8-d5f0-44f4-8d2e-9d73ad5334e0"
+          "92267e2b-8be6-4ea8-8d49-f6ee6f24abe8",
+          "54710420-d5cf-4001-b31b-ce51d84ca8e9",
+          "e3363d29-f7d5-406e-bacb-a062fce4458b"
         ],
         "evidence_hashes": [
           "7e2396ae0b8b56380b583cd5eaf4148dc662d6e44e1161b793e1e51312a48eaa",
@@ -961,9 +961,9 @@
             "expected_order_version": 1
           }
         ],
-        "created_at": "2026-10-15T20:38:32.391637Z",
-        "expires_at": "2026-10-15T20:53:32.391637Z",
-        "hash": "85b81d3cdc8c904a253af35e34631ac517355f0cb141fee41782941f864cc4de"
+        "created_at": "2026-10-15T21:00:53.363576Z",
+        "expires_at": "2026-10-15T21:15:53.363576Z",
+        "hash": "5b8530fd80819303aa785e907888c59e6826d0a2d5fa0159e724921a60763c95"
       },
       "trace": {
         "adapter": "fixture",
@@ -985,7 +985,7 @@
       "duplicate_effects": 0,
       "unsupported_claims": 0,
       "usage_tokens": null,
-      "elapsed_ms": 386.40891620889306,
+      "elapsed_ms": 388.95674981176853,
       "tool_calls": 3,
       "tickets": 0,
       "annotations": 0,
@@ -993,14 +993,14 @@
       "expected_annotations": 0,
       "error": "stale_proposal",
       "proposal": {
-        "id": "7ef3646a-297f-4d06-b303-c007a519a5cc",
-        "case_id": "ccdcbbbb-5b4b-4b44-9dfc-77faffbb32eb",
+        "id": "09b2f69d-8fd2-4f56-a1c3-3b8aad7bdcdd",
+        "case_id": "764ccc36-717a-4aba-be54-fba114c273f8",
         "version": 1,
         "policy_hash": "72e45db2932d7b28783012cd3b8908f64389da5445bc5d4f5b8cef04b324cbf0",
         "evidence_ids": [
-          "a1d1caaa-2e2b-4f22-a2df-71ac10d3e91d",
-          "5d03f7c5-4f3b-45db-a00f-61897b90f50a",
-          "4ab50009-7e9c-4755-92c6-548310c6496a"
+          "0e3602a9-8f23-4423-b9cc-83a943df7742",
+          "f7ae424d-79a2-404f-a158-c3fe31c7e362",
+          "0b4ae7c5-4e0f-4b36-9412-8ff0ca748ddd"
         ],
         "evidence_hashes": [
           "4c526a3d1a0343760ce2c9dbc7a3fb343b4bae7e4464bf1b96c78742c43b6747",
@@ -1029,9 +1029,9 @@
             "expected_order_version": 1
           }
         ],
-        "created_at": "2026-10-15T20:38:33.716365Z",
-        "expires_at": "2026-10-15T20:53:33.716365Z",
-        "hash": "d25fb8abb22e23beba5badcfba26e1cc82ff0544defad469c627317a2ea1c654"
+        "created_at": "2026-10-15T21:00:54.688237Z",
+        "expires_at": "2026-10-15T21:15:54.688237Z",
+        "hash": "d5cd99bef1735df6bfd3803eb7a5a3b2052e8b406abd9214340ec3e9de13479c"
       },
       "trace": {
         "adapter": "fixture",
@@ -1053,7 +1053,7 @@
       "duplicate_effects": 0,
       "unsupported_claims": 0,
       "usage_tokens": null,
-      "elapsed_ms": 18.475166987627745,
+      "elapsed_ms": 14.280166011303663,
       "tool_calls": 3,
       "tickets": 0,
       "annotations": 0,
@@ -1061,14 +1061,14 @@
       "expected_annotations": 0,
       "error": "stale_proposal",
       "proposal": {
-        "id": "f73b94d1-6390-4479-910f-13729a6e7120",
-        "case_id": "16e67043-8d57-4669-b46c-194338a9714d",
+        "id": "4666fd70-57de-40bd-85c2-4f5f5a176b8d",
+        "case_id": "08b71152-a104-4ce3-9d5a-ed861e8b9b2e",
         "version": 1,
         "policy_hash": "72e45db2932d7b28783012cd3b8908f64389da5445bc5d4f5b8cef04b324cbf0",
         "evidence_ids": [
-          "ccc6d434-c0b3-45d8-8e27-1913144f77ee",
-          "10cbfcc1-b673-4b6c-9f34-9eabdb3bcd4d",
-          "2c0fab4f-9dc8-4abd-8a25-cd68e61448c8"
+          "dd218f65-b086-4dc5-ba59-a3aae182a727",
+          "0f8cce5a-1c17-4781-ad56-f06d961199e1",
+          "8e85a35c-e427-4311-ba62-df82da506e82"
         ],
         "evidence_hashes": [
           "1ddc1bef8e8eb05d5df83b6732c3fffa16874761c26f2d845197dc160edca46d",
@@ -1097,9 +1097,9 @@
             "expected_order_version": 1
           }
         ],
-        "created_at": "2026-10-15T20:38:35.135949Z",
-        "expires_at": "2026-10-15T20:53:35.135949Z",
-        "hash": "6e081ad94bcb7696c81d4ec6476877c21e6f8c0e074512f8cdfeab269f52fc95"
+        "created_at": "2026-10-15T21:00:56.062274Z",
+        "expires_at": "2026-10-15T21:15:56.062274Z",
+        "hash": "311bc49fb8667376d74e39a5e534a4204fcb85521ddd135b3d6a0f8b7cf237a7"
       },
       "trace": {
         "adapter": "fixture",
@@ -1121,7 +1121,7 @@
       "duplicate_effects": 0,
       "unsupported_claims": 0,
       "usage_tokens": null,
-      "elapsed_ms": 341.7422496713698,
+      "elapsed_ms": 331.94583281874657,
       "tool_calls": 3,
       "tickets": 0,
       "annotations": 0,
@@ -1129,14 +1129,14 @@
       "expected_annotations": 0,
       "error": "stale_proposal",
       "proposal": {
-        "id": "726680d7-f5f7-44e6-ae86-a111c8498b50",
-        "case_id": "32866c4a-16f5-4356-92f8-b200f06e9b71",
+        "id": "ee64af9b-f9ea-47d6-a6e5-a6683259f0d5",
+        "case_id": "6df62185-7222-4be4-a287-db913887b0c3",
         "version": 1,
         "policy_hash": "72e45db2932d7b28783012cd3b8908f64389da5445bc5d4f5b8cef04b324cbf0",
         "evidence_ids": [
-          "e7ec4a04-126a-497a-ba8f-11c4a239f113",
-          "4b57d868-539d-4f3e-831b-2817f3028362",
-          "e078a4b0-5ef2-492f-924d-77f82fc5a828"
+          "37c6202a-5002-4d6b-a520-0a49c80ee47e",
+          "92b5d946-ee4a-4aa5-a560-d77319118f3e",
+          "980c9685-1dc3-4d54-b213-338a9bde5262"
         ],
         "evidence_hashes": [
           "632424c41da3977567175e6039dcad4129b7d97ceb3ee378b2f05a25667453fd",
@@ -1165,9 +1165,9 @@
             "expected_order_version": 1
           }
         ],
-        "created_at": "2026-10-15T20:38:36.095296Z",
-        "expires_at": "2026-10-15T20:53:36.095296Z",
-        "hash": "be83dc346b9eae81e8dadbdbd899fb4f2120ec767281f60ee8665b52382f76ee"
+        "created_at": "2026-10-15T21:00:57.033545Z",
+        "expires_at": "2026-10-15T21:15:57.033545Z",
+        "hash": "e34d2c92ce0f702015acab24780ff3be17c5c0b81efbe9df753f4e224c2305dd"
       },
       "trace": {
         "adapter": "fixture",
@@ -1189,7 +1189,7 @@
       "duplicate_effects": 0,
       "unsupported_claims": 0,
       "usage_tokens": null,
-      "elapsed_ms": 301.6625000163913,
+      "elapsed_ms": 378.2354169525206,
       "tool_calls": 3,
       "tickets": 0,
       "annotations": 0,
@@ -1197,14 +1197,14 @@
       "expected_annotations": 0,
       "error": "stale_proposal",
       "proposal": {
-        "id": "84b974b8-7966-4c7e-bc87-d4ce98c04df7",
-        "case_id": "32586d56-68e2-49a0-92e3-8fd6fac2ee13",
+        "id": "6cd3eb46-7331-4e66-b0f7-c5a485474c3c",
+        "case_id": "15c06ebc-7f68-42c7-8589-b1dd6d9684b3",
         "version": 1,
         "policy_hash": "72e45db2932d7b28783012cd3b8908f64389da5445bc5d4f5b8cef04b324cbf0",
         "evidence_ids": [
-          "d7992dbc-eb86-4591-8e69-27b71af54c04",
-          "7b9a356c-03e2-4d7b-b5bd-099c7f39578d",
-          "3cee01fb-3263-49fb-94ed-7b90fdba82a3"
+          "633e1754-515c-418a-85e3-75cfd416473a",
+          "2c45cf8e-3b77-469b-aefe-00e5d6799af4",
+          "6b5db049-2486-4f9c-b67e-6c02521880d1"
         ],
         "evidence_hashes": [
           "071a081f5d4862ce55df405d126fa3cfe1139e61ae24531ebfdd92b1cf6389f1",
@@ -1233,9 +1233,9 @@
             "expected_order_version": 1
           }
         ],
-        "created_at": "2026-10-15T20:38:37.428388Z",
-        "expires_at": "2026-10-15T20:53:37.428388Z",
-        "hash": "98331857f4986cc0aaaff41bf92cdb567a84ecbe6bbd7dc8dd2e58fb5c123760"
+        "created_at": "2026-10-15T21:00:58.348970Z",
+        "expires_at": "2026-10-15T21:15:58.348970Z",
+        "hash": "eadfc0a67b1d8502e468467c191f964aab62a05925850fd5b9d500e3a17574f5"
       },
       "trace": {
         "adapter": "fixture",
@@ -1257,7 +1257,7 @@
       "duplicate_effects": 0,
       "unsupported_claims": 0,
       "usage_tokens": null,
-      "elapsed_ms": 35.96387477591634,
+      "elapsed_ms": 30.64124984666705,
       "tool_calls": 3,
       "tickets": 1,
       "annotations": 1,
@@ -1265,14 +1265,14 @@
       "expected_annotations": 1,
       "error": null,
       "proposal": {
-        "id": "37f9273a-22a3-48a1-9b7c-541591080a17",
-        "case_id": "3c979300-f1cf-4c84-af63-db632148e571",
+        "id": "e55a7b45-9229-4b36-9397-cbce0ff13d25",
+        "case_id": "58382432-1491-445f-8d21-3b41cdccf513",
         "version": 1,
         "policy_hash": "72e45db2932d7b28783012cd3b8908f64389da5445bc5d4f5b8cef04b324cbf0",
         "evidence_ids": [
-          "bacc7ac0-dff2-43f0-8267-f9dbcb7e0bed",
-          "631d321e-4699-4db8-aac7-6faadd99fb49",
-          "524ecc53-193a-4fbd-ba5b-21daa6e234d7"
+          "c6949969-02a9-4bf8-888f-2c2322e11898",
+          "e790fc8d-bfe9-4387-9ad8-adb72d9ebb2a",
+          "fa48ae1c-3336-4b27-946e-5a6fbe230e33"
         ],
         "evidence_hashes": [
           "3e6b2405f17c466026695c2054bfa48a7af21be5e3054ada9d2ed84c95ec49f6",
@@ -1301,9 +1301,9 @@
             "expected_order_version": 1
           }
         ],
-        "created_at": "2026-10-15T20:38:38.809722Z",
-        "expires_at": "2026-10-15T20:53:38.809722Z",
-        "hash": "89133cf9b2235aaae20c39e5d7c8ef7eb3ff0d7a815734e9848072b683284662"
+        "created_at": "2026-10-15T21:00:59.703028Z",
+        "expires_at": "2026-10-15T21:15:59.703028Z",
+        "hash": "8b8ead982ce1151e2955b28946913cdab6112665d35adbbc80d9b6eff61cce2f"
       },
       "trace": {
         "adapter": "fixture",
@@ -1325,7 +1325,7 @@
       "duplicate_effects": 0,
       "unsupported_claims": 0,
       "usage_tokens": null,
-      "elapsed_ms": 35.300583112984896,
+      "elapsed_ms": 30.721541959792376,
       "tool_calls": 3,
       "tickets": 1,
       "annotations": 1,
@@ -1333,14 +1333,14 @@
       "expected_annotations": 1,
       "error": null,
       "proposal": {
-        "id": "011bcae1-bf1f-4202-bb7a-821cc17dfab7",
-        "case_id": "ce31f203-7006-400c-99c2-a9bbc92e0fb2",
+        "id": "2daddd6c-0933-4eee-a36d-84fdc96b0511",
+        "case_id": "5337a05e-1c14-4dfe-88e2-19f000be60d8",
         "version": 1,
         "policy_hash": "72e45db2932d7b28783012cd3b8908f64389da5445bc5d4f5b8cef04b324cbf0",
         "evidence_ids": [
-          "1bda6a2f-68d6-411d-95bf-bb5df79dcdc4",
-          "4657ce2e-6fb6-46e8-a766-20878c5b0b22",
-          "064bd965-2eda-4bf6-82d4-4708ca7d4e3c"
+          "cdf6ef42-db86-4e3c-a2ab-41390b48d426",
+          "d8b3da69-da9e-4b5a-ab8a-f125269c0012",
+          "29709138-db80-41a2-a22b-b8daed58505d"
         ],
         "evidence_hashes": [
           "06380059240c2901a66e235e9ba41d3de839282c5efec3fc44ee4473ac23ae48",
@@ -1369,9 +1369,9 @@
             "expected_order_version": 1
           }
         ],
-        "created_at": "2026-10-15T20:38:39.790999Z",
-        "expires_at": "2026-10-15T20:53:39.790999Z",
-        "hash": "5fa9f73489bac1051f9e4bd3bed5c80a843631ce1a2659620a57d0b964cf47e7"
+        "created_at": "2026-10-15T21:01:00.718186Z",
+        "expires_at": "2026-10-15T21:16:00.718186Z",
+        "hash": "af6be9160a920ca756abbe8ea143419e507e689013e2b35765965f17d3e1ad92"
       },
       "trace": {
         "adapter": "fixture",
@@ -1393,7 +1393,7 @@
       "duplicate_effects": 0,
       "unsupported_claims": 0,
       "usage_tokens": null,
-      "elapsed_ms": 39.825249928981066,
+      "elapsed_ms": 30.559708829969168,
       "tool_calls": 3,
       "tickets": 1,
       "annotations": 1,
@@ -1401,14 +1401,14 @@
       "expected_annotations": 1,
       "error": null,
       "proposal": {
-        "id": "f915ca91-e859-410d-9eb3-896e9eba9030",
-        "case_id": "dfb9c7ea-f24d-4c5c-be8e-efde59faeb88",
+        "id": "6d814ab7-30b4-482e-8938-4e50328f61c4",
+        "case_id": "fb041c30-8e0f-468c-837c-1ce222bcf91e",
         "version": 1,
         "policy_hash": "72e45db2932d7b28783012cd3b8908f64389da5445bc5d4f5b8cef04b324cbf0",
         "evidence_ids": [
-          "a98b2d4a-4311-4760-a0a5-6317cbb52e73",
-          "843a2898-9c1d-4cb5-a200-c4ed027438da",
-          "7676e38a-521e-468c-bc27-646436213fd2"
+          "470b2b1e-d439-42aa-951d-5d19bb8183a1",
+          "7c4308df-baef-42d0-9b9b-610642f72f5c",
+          "205bd92f-cc38-478b-a7dd-25182699d0ed"
         ],
         "evidence_hashes": [
           "c2cdde5385283b8e2d3bbf0d5fc92ccb5d0df0acfc35c311266173a9e2fb7d3f",
@@ -1437,9 +1437,9 @@
             "expected_order_version": 1
           }
         ],
-        "created_at": "2026-10-15T20:38:40.816843Z",
-        "expires_at": "2026-10-15T20:53:40.816843Z",
-        "hash": "17b8906f9d9be16f2aecfa87104dd9fe451bc3abe99b3df86b848e9de2c98ca2"
+        "created_at": "2026-10-15T21:01:01.763774Z",
+        "expires_at": "2026-10-15T21:16:01.763774Z",
+        "hash": "fdde4344ebfe19351c0a026e25c2e0039b37003421ca26659d4482b63e8b00a1"
       },
       "trace": {
         "adapter": "fixture",
@@ -1461,7 +1461,7 @@
       "duplicate_effects": 0,
       "unsupported_claims": 0,
       "usage_tokens": null,
-      "elapsed_ms": 42.86374989897013,
+      "elapsed_ms": 67.29562487453222,
       "tool_calls": 3,
       "tickets": 1,
       "annotations": 1,
@@ -1469,14 +1469,14 @@
       "expected_annotations": 1,
       "error": null,
       "proposal": {
-        "id": "685ea0c8-c129-40f8-8aea-6c6ce66adb35",
-        "case_id": "c1d4eeaa-751c-404d-b2b6-a5b6de7ab6b5",
+        "id": "e0d925bd-e538-40d1-921e-7cdbbdf82cce",
+        "case_id": "37e2b0da-559e-4e2b-9266-378c1a35219f",
         "version": 1,
         "policy_hash": "72e45db2932d7b28783012cd3b8908f64389da5445bc5d4f5b8cef04b324cbf0",
         "evidence_ids": [
-          "95807e18-91e3-4143-8a74-0fb4362805fc",
-          "ad43ee4c-97d9-4ddf-87e9-0e26ecd61059",
-          "59ef4180-6d0b-4073-aa45-748694f2719f"
+          "ccf46fc5-9a62-4480-aeca-de22c87920c5",
+          "5ed20efa-0708-4688-b45c-6940ba9e6ec4",
+          "a6e749e1-d0b9-4e9c-ae10-a61255a30788"
         ],
         "evidence_hashes": [
           "6a412f835292ed5260b85e57173a87253912726e5e3c9c125b22969d07b177a8",
@@ -1505,9 +1505,9 @@
             "expected_order_version": 1
           }
         ],
-        "created_at": "2026-10-15T20:38:41.896511Z",
-        "expires_at": "2026-10-15T20:53:41.896511Z",
-        "hash": "6425d852907918c5078b099167b566b9fa1daf4f248e378dc8091167a6e9c2c8"
+        "created_at": "2026-10-15T21:01:02.925879Z",
+        "expires_at": "2026-10-15T21:16:02.925879Z",
+        "hash": "e7dec2b48d82a982c7b517a017d715eb7440334fc17e746ba84c4dcf13a8f64e"
       },
       "trace": {
         "adapter": "fixture",
@@ -1529,7 +1529,7 @@
       "duplicate_effects": 0,
       "unsupported_claims": 0,
       "usage_tokens": null,
-      "elapsed_ms": 34.74200004711747,
+      "elapsed_ms": 45.908291824162006,
       "tool_calls": 3,
       "tickets": 1,
       "annotations": 1,
@@ -1537,14 +1537,14 @@
       "expected_annotations": 1,
       "error": null,
       "proposal": {
-        "id": "e96ab89f-49b7-41e5-bc51-a0d313e64eea",
-        "case_id": "560bd076-669a-49f3-8be3-711e059ffef5",
+        "id": "4f13650b-f723-40d4-b881-42a045b898be",
+        "case_id": "c71f1e30-e57d-4f74-9b8d-74807f78116e",
         "version": 1,
         "policy_hash": "72e45db2932d7b28783012cd3b8908f64389da5445bc5d4f5b8cef04b324cbf0",
         "evidence_ids": [
-          "fe9ab22e-3ca6-48d4-9895-2c9713e81ba8",
-          "423be35f-fae5-4735-a769-a239d66d0448",
-          "5e5c1e13-6380-4650-a281-3cdddce7c107"
+          "b62d90a8-8fec-4d2c-8fc9-865feadcac3d",
+          "b8b38f77-6b66-4a9d-a7d4-a080fcf8edf8",
+          "b6993352-60c3-4713-94a8-22dcccf3a4ca"
         ],
         "evidence_hashes": [
           "415197b6c3f83087fb2a4a5419daf3df69ee9595519c86feca4216b1c1202756",
@@ -1573,9 +1573,9 @@
             "expected_order_version": 1
           }
         ],
-        "created_at": "2026-10-15T20:38:42.900850Z",
-        "expires_at": "2026-10-15T20:53:42.900850Z",
-        "hash": "37e081ebcf7d0a195b022a03f45fcf580cd9acfc5badc70dd1ebae3d32d0c71f"
+        "created_at": "2026-10-15T21:01:04.139098Z",
+        "expires_at": "2026-10-15T21:16:04.139098Z",
+        "hash": "5ace0f12f0fd85fb15ee44d76f1bb8222d90ae0051a3b4f88ebb6747ffd8dd83"
       },
       "trace": {
         "adapter": "fixture",
@@ -1597,7 +1597,7 @@
       "duplicate_effects": 0,
       "unsupported_claims": 0,
       "usage_tokens": null,
-      "elapsed_ms": 37.06687502563,
+      "elapsed_ms": 31.47741686552763,
       "tool_calls": 3,
       "tickets": 1,
       "annotations": 1,
@@ -1605,14 +1605,14 @@
       "expected_annotations": 1,
       "error": null,
       "proposal": {
-        "id": "7c0abdb6-2e07-461c-9ec3-fe5cae1270cd",
-        "case_id": "721d450f-77ab-48ff-a779-e6dabd477f2f",
+        "id": "b8d8f8e9-cd42-41f0-b58a-56bf620a793b",
+        "case_id": "2e971be7-a836-43ad-ba75-212f689ac61f",
         "version": 1,
         "policy_hash": "72e45db2932d7b28783012cd3b8908f64389da5445bc5d4f5b8cef04b324cbf0",
         "evidence_ids": [
-          "e3232733-229a-41be-b409-c97528850c66",
-          "333acb22-930a-49a8-8b64-1c84c05de6b9",
-          "c07d2359-af5b-4c84-8d61-debad0364598"
+          "17fc244b-ebb3-4bba-8505-b87e7446f000",
+          "c68495fb-e57b-4b76-8ad1-066b22d0120f",
+          "c74e3ea9-dab0-47e6-95bc-dc4aec23d972"
         ],
         "evidence_hashes": [
           "5001adf39f1b3ad4ee2b37e1c8be60ff5f7c3b70df614b8d270edb928f389331",
@@ -1641,9 +1641,9 @@
             "expected_order_version": 1
           }
         ],
-        "created_at": "2026-10-15T20:38:43.922895Z",
-        "expires_at": "2026-10-15T20:53:43.922895Z",
-        "hash": "2f6674b73cbd444458dc8de8d85cccc97d7c449b9a1b546ce208d857fbe8a086"
+        "created_at": "2026-10-15T21:01:05.179280Z",
+        "expires_at": "2026-10-15T21:16:05.179280Z",
+        "hash": "24a18e456f77b44ba7e83cda651ca9794b01abd855061a19fd58b8507f6db0b7"
       },
       "trace": {
         "adapter": "fixture",
@@ -1665,7 +1665,7 @@
       "duplicate_effects": 0,
       "unsupported_claims": 0,
       "usage_tokens": null,
-      "elapsed_ms": 49.93404122069478,
+      "elapsed_ms": 46.91775003448129,
       "tool_calls": 3,
       "tickets": 1,
       "annotations": 1,
@@ -1673,14 +1673,14 @@
       "expected_annotations": 1,
       "error": null,
       "proposal": {
-        "id": "5dda97f5-ca61-467c-a1fb-78b80cea3855",
-        "case_id": "7cab297e-a81b-4ddb-be39-80b2348c411c",
+        "id": "15c56241-1dc3-4bff-b36e-266de23b7403",
+        "case_id": "cafa9a27-a575-41ba-8997-5d7f489023b6",
         "version": 1,
         "policy_hash": "72e45db2932d7b28783012cd3b8908f64389da5445bc5d4f5b8cef04b324cbf0",
         "evidence_ids": [
-          "4ab41105-40d4-4290-bb30-a3c58c754c4c",
-          "a0985925-a6a0-4afe-8153-001527b62d8e",
-          "46cd99df-70c4-41dc-803e-8e8b4c632935"
+          "89408d7f-df6e-4760-9de2-38a73c008c7a",
+          "953f59b9-54ca-4759-ae09-83872604a504",
+          "8d55a087-4ed6-4df0-9e8b-ccd8a410d91d"
         ],
         "evidence_hashes": [
           "d9e57fe11b1a9f341a3e756a4940e0eef0e4b6e86f1fcae6dcf943f3947a4aeb",
@@ -1709,9 +1709,9 @@
             "expected_order_version": 1
           }
         ],
-        "created_at": "2026-10-15T20:38:45.094854Z",
-        "expires_at": "2026-10-15T20:53:45.094854Z",
-        "hash": "8b44f8017caa2973e5d71862cca64bf3fee16e5f413cc4074625b35aa6250629"
+        "created_at": "2026-10-15T21:01:06.144159Z",
+        "expires_at": "2026-10-15T21:16:06.144159Z",
+        "hash": "003c58a1f2b81350507aeb4a3cff21ed1edce6f561e70bcf4a3f7661acfd0060"
       },
       "trace": {
         "adapter": "fixture",
@@ -1733,7 +1733,7 @@
       "duplicate_effects": 0,
       "unsupported_claims": 0,
       "usage_tokens": null,
-      "elapsed_ms": 42.11400030180812,
+      "elapsed_ms": 44.969458132982254,
       "tool_calls": 3,
       "tickets": 1,
       "annotations": 1,
@@ -1741,14 +1741,14 @@
       "expected_annotations": 1,
       "error": null,
       "proposal": {
-        "id": "b9d27150-4e7e-4f46-9364-b712aeaba430",
-        "case_id": "6008b328-940b-4d44-b00d-6929fb5aa9c1",
+        "id": "74259b81-c1f2-417f-b905-7debfec85b28",
+        "case_id": "db927430-f745-4a17-a544-f78bd0c0261b",
         "version": 1,
         "policy_hash": "72e45db2932d7b28783012cd3b8908f64389da5445bc5d4f5b8cef04b324cbf0",
         "evidence_ids": [
-          "d4ecb65d-d545-4442-b02f-901efa30e2b8",
-          "08fab1ed-9106-4115-be67-a89657605c05",
-          "800d0f59-ca58-4b09-8a75-d592263f6544"
+          "f35d7427-91b1-4aa4-a8a0-f381aeb732dd",
+          "0658287d-ffd7-4561-a545-6e78cfb707d5",
+          "eed1b6f4-35ee-4ac1-b62a-36cff0477220"
         ],
         "evidence_hashes": [
           "7a5acabc3a93a7c44d76b5b32a79093556267acfe37949f103a325f91e8027a1",
@@ -1777,9 +1777,9 @@
             "expected_order_version": 1
           }
         ],
-        "created_at": "2026-10-15T20:38:46.132995Z",
-        "expires_at": "2026-10-15T20:53:46.132995Z",
-        "hash": "ffe533bc803b18c0e2e24c9897c2687b4ce428a1d8c466f2f83080432880d1c7"
+        "created_at": "2026-10-15T21:01:07.111161Z",
+        "expires_at": "2026-10-15T21:16:07.111161Z",
+        "hash": "9a28dd837edafbdeb97eaef90f114a1c244c2c587cd30d14f2e7964a15444392"
       },
       "trace": {
         "adapter": "fixture",
@@ -1801,7 +1801,7 @@
       "duplicate_effects": 0,
       "unsupported_claims": 0,
       "usage_tokens": null,
-      "elapsed_ms": 52.573582623153925,
+      "elapsed_ms": 40.61979101970792,
       "tool_calls": 3,
       "tickets": 1,
       "annotations": 1,
@@ -1809,14 +1809,14 @@
       "expected_annotations": 1,
       "error": null,
       "proposal": {
-        "id": "85a32e3f-c19c-4bd0-81b6-38cb80a1786c",
-        "case_id": "298aa71f-f72e-4ba0-a98e-75606dabd354",
+        "id": "f33dd65b-be23-4e40-be29-004c32543a59",
+        "case_id": "e0a939fb-1e56-4c78-a175-fa4dce38c972",
         "version": 1,
         "policy_hash": "72e45db2932d7b28783012cd3b8908f64389da5445bc5d4f5b8cef04b324cbf0",
         "evidence_ids": [
-          "51400c78-16e6-4b55-ab0c-fc2878552ccf",
-          "858bca55-3b80-4d51-a29b-eb2261a36a06",
-          "2a1922c8-abde-4ecc-99b5-f238f33a4d26"
+          "49caaf80-5159-4943-86b2-147603b92870",
+          "da7408d6-4a98-4b3e-b64d-d8a05f2bf60d",
+          "9ac940b8-78d4-4792-8a87-f7a08ff0ad71"
         ],
         "evidence_hashes": [
           "3539eb258646f6bb1889c173d3219bdf0018947612fd34f59e32e3cb0e3994f4",
@@ -1845,9 +1845,9 @@
             "expected_order_version": 1
           }
         ],
-        "created_at": "2026-10-15T20:38:47.265481Z",
-        "expires_at": "2026-10-15T20:53:47.265481Z",
-        "hash": "64fee5ca9104e0bcbefc67e9f6e532677df9a12834d83113525d86fbbc708610"
+        "created_at": "2026-10-15T21:01:08.077583Z",
+        "expires_at": "2026-10-15T21:16:08.077583Z",
+        "hash": "f4af1db61d507dbdd38017a96cccebe85fb6b252f28d57cdfe95f45ecbaf603d"
       },
       "trace": {
         "adapter": "fixture",
@@ -1869,7 +1869,7 @@
       "duplicate_effects": 0,
       "unsupported_claims": 0,
       "usage_tokens": null,
-      "elapsed_ms": 59.93183283135295,
+      "elapsed_ms": 38.687916938215494,
       "tool_calls": 3,
       "tickets": 1,
       "annotations": 1,
@@ -1877,14 +1877,14 @@
       "expected_annotations": 1,
       "error": null,
       "proposal": {
-        "id": "c604532b-2e5e-4ed2-b267-eeaf62f20f3c",
-        "case_id": "efbfdf2c-804f-4c6a-b7b9-8f2dfc8bfc27",
+        "id": "57428cd6-445d-4a48-9c71-a792956bca27",
+        "case_id": "98689dea-698f-421c-ae02-4a8394ffe194",
         "version": 1,
         "policy_hash": "72e45db2932d7b28783012cd3b8908f64389da5445bc5d4f5b8cef04b324cbf0",
         "evidence_ids": [
-          "c684602a-b66f-49bd-9b7d-f4db4d497c91",
-          "672ae914-b7f9-404a-b9bb-7878ee141268",
-          "57843a61-1f42-43da-b9ab-d0a1bb4da779"
+          "112984dd-57c8-4ce7-84c7-c0f5e1cbd0bd",
+          "60deb7c9-2508-4215-9600-f2f79fc7ce23",
+          "fa2813f2-8e48-4952-8286-cc86641074f5"
         ],
         "evidence_hashes": [
           "b755ae9e149bcab7d6cb9d31e51403e61a7941c9d215c85b347a2f52d1237ea7",
@@ -1913,9 +1913,9 @@
             "expected_order_version": 1
           }
         ],
-        "created_at": "2026-10-15T20:38:48.454239Z",
-        "expires_at": "2026-10-15T20:53:48.454239Z",
-        "hash": "65a933b5c6612c5edd2e7d9212d30583a370eb3969d90b1a7164f839ea58c64c"
+        "created_at": "2026-10-15T21:01:09.041167Z",
+        "expires_at": "2026-10-15T21:16:09.041167Z",
+        "hash": "70a6203a22d95335ccdbec3fdbb8d142d5c614164245d39a66d56d643553409f"
       },
       "trace": {
         "adapter": "fixture",
@@ -1937,7 +1937,7 @@
       "duplicate_effects": 0,
       "unsupported_claims": 0,
       "usage_tokens": null,
-      "elapsed_ms": 64.09512460231781,
+      "elapsed_ms": 41.139834094792604,
       "tool_calls": 3,
       "tickets": 1,
       "annotations": 1,
@@ -1945,14 +1945,14 @@
       "expected_annotations": 1,
       "error": null,
       "proposal": {
-        "id": "4c3d23dd-9e1b-4d99-bcbd-fe3867d7befc",
-        "case_id": "c2c4e140-7b34-4e0a-a400-d1b2614163da",
+        "id": "f54d2ffa-8c27-4da3-81db-883e081ab511",
+        "case_id": "c07940be-e1c9-49d3-981c-d23081d2fa34",
         "version": 1,
         "policy_hash": "72e45db2932d7b28783012cd3b8908f64389da5445bc5d4f5b8cef04b324cbf0",
         "evidence_ids": [
-          "6d0ebb3c-6245-4f39-8d1a-2db992a34fa2",
-          "80e8a523-d1f5-4d0a-8921-ea65a524f0ed",
-          "f1ef6e3c-b2eb-451c-8e0b-1060cd0d91f0"
+          "6dc92dae-cbd2-4269-84fb-d057b6c67183",
+          "7dce01c8-b86e-4984-9065-bc4cce6af52b",
+          "d1e10389-74e0-4bec-b53a-95185cb4eeaf"
         ],
         "evidence_hashes": [
           "281f80d2674c498323bae80adac90b2e3535b8dd04723079376785570dcdd611",
@@ -1981,9 +1981,9 @@
             "expected_order_version": 1
           }
         ],
-        "created_at": "2026-10-15T20:38:49.639623Z",
-        "expires_at": "2026-10-15T20:53:49.639623Z",
-        "hash": "811055d3a69298a4177a267ecb276ef686c88e1596601c7da549bc388e3b2238"
+        "created_at": "2026-10-15T21:01:09.989300Z",
+        "expires_at": "2026-10-15T21:16:09.989300Z",
+        "hash": "fa5d25b40fd6ca6814c6677f28846e715d06efa0f6f8dc6f2576530991af9328"
       },
       "trace": {
         "adapter": "fixture",
@@ -2005,7 +2005,7 @@
       "duplicate_effects": 0,
       "unsupported_claims": 0,
       "usage_tokens": null,
-      "elapsed_ms": 45.14145804569125,
+      "elapsed_ms": 39.462416898459196,
       "tool_calls": 3,
       "tickets": 1,
       "annotations": 1,
@@ -2013,14 +2013,14 @@
       "expected_annotations": 1,
       "error": null,
       "proposal": {
-        "id": "56818dc4-4241-46bb-b711-5e205c0c7f75",
-        "case_id": "61ea9dcf-b10d-454c-981c-abeeaf7c9fc7",
+        "id": "eb4d67b3-d73c-464f-82b7-c68e9136de24",
+        "case_id": "b9bc42e9-16b0-4183-9d39-2a9c79daac1e",
         "version": 1,
         "policy_hash": "72e45db2932d7b28783012cd3b8908f64389da5445bc5d4f5b8cef04b324cbf0",
         "evidence_ids": [
-          "129d6f5e-e54d-4a42-ad22-ecbd05ba9c96",
-          "47e9f145-9b95-4603-a0e5-84f8b8815e79",
-          "025c8dc0-b8a4-4400-a5ce-b4650a0b407b"
+          "a378b82d-cfe8-42a2-b153-0631fcd8d44b",
+          "578d6c81-d92b-44ce-97e5-9bbc4b9959c1",
+          "5712c0d6-71b4-4860-9e5e-7e60af4db6f9"
         ],
         "evidence_hashes": [
           "3458a3515bd03a6ba05f1f9c01d68b4a91bfa1b472bb0f6a6270cbd7fe9f47e2",
@@ -2049,9 +2049,9 @@
             "expected_order_version": 1
           }
         ],
-        "created_at": "2026-10-15T20:38:50.756100Z",
-        "expires_at": "2026-10-15T20:53:50.756100Z",
-        "hash": "ad7d6b1e29197f011aab9fc60eff638643f68fd59d406958bc1d8e45805e2253"
+        "created_at": "2026-10-15T21:01:10.947118Z",
+        "expires_at": "2026-10-15T21:16:10.947118Z",
+        "hash": "bbef19236aa67baaceadb72c344aa42f46b298004eb72db7a663a17b28c9ab5f"
       },
       "trace": {
         "adapter": "fixture",
@@ -2075,8 +2075,8 @@
     "unnecessary_escalations": 0,
     "investigation_denominator": 18,
     "usage_tokens": null,
-    "latency_p50_ms": 37.97283302992582,
-    "latency_p95_ms": 348.2385422103107,
+    "latency_p50_ms": 31.533750239759684,
+    "latency_p95_ms": 378.2354169525206,
     "failures": 0,
     "families": {
       "conflicting_events": {

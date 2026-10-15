@@ -25,3 +25,6 @@ The initial reports were measured on an in-progress dirty tree and identify the 
 Python fault checks use real HTTP services, owned database reopen checkpoints and a real application subprocess restart. They do not establish arbitrary distributed exactly-once execution. Browser checks include keyboard approval and reduced motion; automated checks cannot certify all assistive technology behavior.
 
 No model, fixture or screenshot contains real customer data. All third-party model terms remain separate. Weights, bulk runtime files and credentials remain ignored. Publication, push, deployment and external communications have not been performed.
+
+
+Final source verification:clean checkpoint `1da911fb12bb896e750248a67f22345bf3d7892b` passed53Python tests,5component tests,all3browser flows and strict checks from a fresh archive. Latest evaluation reports record dirty=false;initial dirty-tree reports are retained separately. Model quality still fails;human claims and manual screen-reader reviews remain pending.

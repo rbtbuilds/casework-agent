@@ -10,8 +10,8 @@ The initial compatibility probe loaded the actual weights and returned `{"kind":
 
 The held-out run used one model child and one shared lease for all30cases, with real business HTTP processes per case. All30failed validation with `invalid_model_output`; no case reached a valid proposal or approval. The model sometimes asserted delay facts before reading any source and supplied no evidence IDs. These raw outputs remain available for review; unsupported factual claims are **not certified zero**. Human review remains pending.
 
-The first measured model load took4.277seconds. Warm per-case failed workflow p50 was4.513seconds,p95 nearest-rank5.949seconds across30observations. These are failed-task timings, not productive throughput. Tokenizer-counted total input+output usage was63751tokens. There is no monetary estimate. Per-case timing excludes service startup and model load. Full provenance includes manifest/lock hashes, Git commit and dirty-state flag.
+The latest clean-source benchmark loaded in4.136seconds. Warm failed-case p50 was4.057seconds,p95 nearest-rank8.055seconds across30observations. Tokenizer-counted input+output total:62512. Service startup/model load are excluded from per-case timing. These are failure timings,not productive throughput;there is no monetary estimate.
 
-The first evidence run occurred during implementation on a dirty tree, explicitly recorded in its report. Later migration/formatting or recovery fixes do not imply the model was remeasured; use STATE.md for the latest measured checkpoint. Frozen held-out inputs and the model prompt were not tuned against the failed outcomes.
+The latest report measured clean committed source `1da911fb12bb896e750248a67f22345bf3d7892b`. Initial dirty-tree reports remain under initial-*.json for provenance. No model,prompt or holdout tuning occurred between runs. Full runtime,snapshot,manifest and lock hashes remain in the reports.
 
 Reproduce with the exact commands in [RUNBOOK](RUNBOOK.md). Before any load, acquire the atomic shared lock, retain its owner token and start identity, and release only after child exit. `model_busy` is explicit; no fallback or silent model swap exists.
