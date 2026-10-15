@@ -14,6 +14,11 @@ dependencies = [
 ]
 [project.scripts]
 casework-agent = "casework_agent.cli:main"
+
+[project.optional-dependencies]
+model = [
+    "mlx-lm==0.32.0 ; platform_machine == 'arm64' and sys_platform == 'darwin'",
+]
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"

@@ -19,8 +19,8 @@ Updated: 2026-10-15. Phase: implementation. Task1 verified; remaining tasks in p
 | 1 Typed storage and first API slice | Complete | pytest3passed; Ruff clean; strict Pyright0errors. |
 | 2 Independent mock services | Complete | 5pytest tests passed including actual HTTP concurrency/CAS/drop recovery; strict Pyright and Ruff clean. |
 | 3 Bounded tools and fixture baseline | Complete | 14pytest tests; real HTTP tools,scope gates,48hour boundary and manual review. |
-| 4 Local-model tool adapter | Not started | None |
-| 5 Proposal/approval protocol | Not started | None |
+| 4 Local-model tool adapter | Implemented; probe deferred | Typed subprocess/tool tests pass; shared lease busy. |
+| 5 Proposal/approval protocol | Implemented; extended matrix pending | Exact replay/hash and stale-source tests pass. |
 | 6 Write execution and recovery | Not started | None |
 | 7 API/lifecycle/contracts | Not started | None |
 | 8 Accessible workbench UI | Not started | None |
@@ -52,3 +52,6 @@ Task2: Three independent mock processes/SQLite databases verified. Dropped respo
 Task2 check correction: the first commit command continued after Ruff reported import ordering and blocking test-process startup. Both were fixed immediately; the fresh run passed5tests,Ruff,and strict Pyright. Later commit gates use set -e.
 
 Task3: Strict policy,scope and fixture adapter verified against real services. No write capability is exposed to either agent.
+
+Task4: Public Qwen revision989aa7980e4cf806f80c7fef2b1adb7bc71aa306 downloaded,9 files hashed in ignored .runtime/models/snapshot.json. Probe returned model_busy without loading.16 prior tests plus2 approval tests passed; Ruff/strict Pyright clean.
+Task5: Immutable proposals,transactional exact approvals,replay,and stale invalidation implemented;18tests passed. Extended expiry/cancellation matrix follows in Task9.
