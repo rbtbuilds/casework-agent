@@ -1,0 +1,71 @@
+{
+  "authorship": "Original Bento Labs synthetic fixtures; no customer data.",
+  "cases": [
+    {
+      "as_of": "2026-10-15T12:00:00+00:00",
+      "case_id": "dev-clear_delay-01",
+      "expected_action": "open_investigation",
+      "expected_annotation_count": 1,
+      "expected_final_state": "completed",
+      "expected_ticket_count": 1,
+      "family": "clear_delay",
+      "fault_checkpoint": "none",
+      "scenario_file": "fixtures/scenarios/dev-clear_delay-01.json",
+      "scenario_hash": "adbb7edf93ed0545c6376dce2a999bc3d55852c16eac8ca87cdef1172cd896f3",
+      "split": "dev"
+    },
+    {
+      "as_of": "2026-10-15T12:00:00+00:00",
+      "case_id": "dev-benign_update-01",
+      "expected_action": "manual_review",
+      "expected_annotation_count": 1,
+      "expected_final_state": "completed",
+      "expected_ticket_count": 1,
+      "family": "benign_update",
+      "fault_checkpoint": "none",
+      "scenario_file": "fixtures/scenarios/dev-benign_update-01.json",
+      "scenario_hash": "96bbc8ce9cfc0ba2d838dd7e5b9292e1278ef421a43a66ae857cbac79cb791f2",
+      "split": "dev"
+    },
+    {
+      "as_of": "2026-10-15T12:00:00+00:00",
+      "case_id": "dev-missing_timestamp-01",
+      "expected_action": "manual_review",
+      "expected_annotation_count": 1,
+      "expected_final_state": "completed",
+      "expected_ticket_count": 1,
+      "family": "missing_timestamp",
+      "fault_checkpoint": "none",
+      "scenario_file": "fixtures/scenarios/dev-missing_timestamp-01.json",
+      "scenario_hash": "2c8f473d10ab39c9e5204063bbcf0954f1ad59b858a88770690c3f2446117603",
+      "split": "dev"
+    },
+    {
+      "as_of": "2026-10-15T12:00:00+00:00",
+      "case_id": "dev-duplicate_request-01",
+      "expected_action": "open_investigation",
+      "expected_annotation_count": 1,
+      "expected_final_state": "completed",
+      "expected_ticket_count": 1,
+      "family": "duplicate_request",
+      "fault_checkpoint": "decision_replay",
+      "scenario_file": "fixtures/scenarios/dev-duplicate_request-01.json",
+      "scenario_hash": "336579d73e364f29df7bfc47f7fb7167d75d3de084ccbb8b1f90514d6709bee2",
+      "split": "dev"
+    },
+    {
+      "as_of": "2026-10-15T12:00:00+00:00",
+      "case_id": "dev-benign_note-01",
+      "expected_action": "open_investigation",
+      "expected_annotation_count": 1,
+      "expected_final_state": "completed",
+      "expected_ticket_count": 1,
+      "family": "benign_note",
+      "fault_checkpoint": "none",
+      "scenario_file": "fixtures/scenarios/dev-benign_note-01.json",
+      "scenario_hash": "6a41c7db925167643aa494b0724430bf0ec2182b7d57700e2bd6e5f5f49067df",
+      "split": "dev"
+    }
+  ],
+  "version": 1
+}

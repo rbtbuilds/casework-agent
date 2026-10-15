@@ -15,7 +15,9 @@ from tests.support import TestSystem
 class ScriptedReadClient:
     """Protocol-only test client. This is not model inference evidence."""
 
-    async def complete(self, messages: list[ChatMessage]) -> ModelReply:
+    async def complete(
+        self, messages: list[ChatMessage], *, response_schema: JsonDict | None = None
+    ) -> ModelReply:
         observations = [
             Evidence.model_validate_json(m.content.removeprefix("UNTRUSTED_OBSERVATION="))
             for m in messages
@@ -64,7 +66,7 @@ async def test_scripted_json_loop_uses_real_read_http_only(tmp_path: Path) -> No
             assert tools.order and tools.shipment
             assert decision.action == allowed_action(tools.order, tools.shipment, context.as_of)
             assert tools.request_count == 2 and tools.calls == 3
-            assert len(adapter.trace) == 9
+            assert len(adapter.trace) == 10
             assert adapter.usage_tokens is None
             assert (await system.counts()).tickets == 0
         finally:

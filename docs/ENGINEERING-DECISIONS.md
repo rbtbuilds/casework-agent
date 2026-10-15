@@ -47,6 +47,6 @@ A subsequent whole-project review at `92534bb` identified six further issues inv
 
 ## Remaining limitations
 
-The pinned Qwen model failed its published quality thresholds. The reports remain frozen at measured source `1da911f`; later fixes are not a new model measurement. Model improvements must use development cases and a separately reviewed evaluation rather than tuning to the failed holdout.
+The original Qwen2.5 1.5B model failed its published quality thresholds at source `1da911f`. Those reports remain frozen. The [model repair](MODEL-ITERATION.md) uses development-only candidate comparisons, Qwen3 4B, schema-constrained output and explicit factual context. Deterministic code validates the model's action without giving policy-answer feedback. Fresh evaluation uses a separately authored, frozen challenge after the inference source and prompt freeze.
 
 Human factual-claim review and manual screen-reader testing remain pending. The application has no public authentication, tenant isolation or production validation. Independent review examined the code; execution evidence comes from recorded local checks and GitHub CI.

@@ -1,0 +1,11 @@
+{
+  "protocol_valid": true,
+  "protocol_version": "casework-json-schema-v2",
+  "snapshot_hash": "eae8b2c756d7af136d04a1f8e70681759dc5c21af182ef9934f5997657c468eb",
+  "reply": {
+    "text": "{\"kind\":\"tool\",\"name\":\"get_policy\",\"arguments\":{}}",
+    "input_tokens": 93,
+    "output_tokens": 14,
+    "elapsed_ms": 791.9165003113449
+  }
+}

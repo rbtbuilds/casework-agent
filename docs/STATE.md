@@ -1,65 +1,33 @@
 # Casework Agent state
 
-Updated: 2026-10-15. The application and deterministic fixture workflow are implemented and publicly available at [rbtbuilds/casework-agent](https://github.com/rbtbuilds/casework-agent). The default branch is `main`. The experimental Qwen adapter fails the published model-quality thresholds.
+Updated: 2026-10-16. Repository: [rbtbuilds/casework-agent](https://github.com/rbtbuilds/casework-agent). The local model repair selects pinned Qwen3 4B Instruct 2507 4-bit with MLX and schema-constrained decoding. Fixture mode remains explicit and separate.
 
-## Current verification
+## Verified implementation checkpoint
 
-The pre-publication review found six residual issues and all received focused regressions and fixes. A follow-up identified a narrower interruption window between process creation and ownership registration; its additional real-process regression failed before the supervisor-handler deferral fix. A strengthened check also rejects inherited blocked signals and forced termination. See [the review record](REVIEW-2026-10-15.md) and [engineering decisions](ENGINEERING-DECISIONS.md).
+All **83 Python tests**, **eight component tests**, Ruff, strict Pyright, strict TypeScript including browser tests, and the production build pass. All **four browser flows pass together**, including actual Qwen inference through the UI/API and both dropped-write responses. The actual-model browser check observed zero writes before approval, two uncertain-outcome events, then one confirmed ticket and one annotation, with one send per operation and no browser errors.
 
-Final local verification passes **73 Python tests**, **eight component tests**, Ruff, strict Pyright, strict TypeScript including tests, and the production build. All six review findings are closed by the same reviewer after focused follow-up. The three actual-service browser flows also pass after the port-owning Python suite. Regenerating all three contract artifacts reproduces their current bytes. Reviewed runtime source is commit `33c3efa3a46b0853010134774262c11eb05f6529`; later documentation commits do not change that source.
+The three fixture browser flows also pass without model execution; the optional model test is explicitly skipped in that configuration. An earlier actual-model browser attempt returned `model_busy` while another project held the shared lease. It was interrupted and is excluded from successful inference evidence. The subsequent complete four-test run used the available lease and passed.
 
-Commands: `uv run --no-sync ruff check .`; `uv run --no-sync pyright`; `uv run --no-sync pytest -q`; `npm --prefix web run typecheck`; `npm --prefix web test -- --run`; `npm --prefix web run build`; `PLAYWRIGHT_BROWSERS_PATH="$PWD/.runtime/pw-browsers" npm --prefix web run e2e`; `uv run --no-sync python scripts/export_contracts.py`; `npm --prefix web run contracts`.
+Commands: `uv run --no-sync ruff check .`; `uv run --no-sync pyright`; `uv run --no-sync pytest -q`; `npm --prefix web run typecheck`; `npm --prefix web test -- --run`; `npm --prefix web run build`; `CASEWORK_REAL_MODEL=1 PLAYWRIGHT_BROWSERS_PATH="$PWD/.runtime/pw-browsers" npm --prefix web run e2e`. Python and browser process suites ran sequentially. Regenerating the three API contract artifacts reproduced their bytes; application contracts have not changed.
 
-A scan of 196 tracked/new nonignored publication files found no credential-pattern matches. A separate scan of 287 historical Git blobs also found none. These are bounded pattern scans, not a guarantee that every possible secret format is detectable. Frozen full reports match their original bytes and relative Markdown links resolve.
+A separate source reviewer closed all findings, including loaded-snapshot attribution, shared browser identity/counts, external manifest metadata and binary policy-answer feedback. See [the review](REVIEW-2026-10-16.md). Wrong policy decisions now fail without feedback or another choice. A compact context copies observed fields and calculates event age without supplying an action oracle. Generated factual claims still require review.
 
-The browser suite exercises approval/replay with both remote response drops, expiry/renewal, and a browser response lost after the actual API commit followed by identical body/key retry. Tested Axe scans have zero findings in both themes and at 375px/1440px with reduced motion. Mobile and desktop captures were visually inspected. Manual screen-reader testing remains unperformed.
+## Model development and evaluation boundary
 
-Python 3.12.14, uv 0.12.5 and Node 26.7.0 are the tested local runtimes. GitHub CI targets Python 3.12 and Node 24 on Ubuntu. Its first external run is [38810735255](https://github.com/rbtbuilds/casework-agent/actions/runs/38810735255), against `9140ba8`. The run **passed**, including locked installation, all 73 Python tests, eight component tests, all three real-service browser flows, strict checks, production build and contract regeneration. CI verifies the supported Node.js 24 runtime. Node.js 26.7.0 is retained here as historical development provenance, not a setup requirement. Dependencies are locked. Vite 8.3.4, React 19.3.1, TypeScript 5.9.3, MLX LM 0.32.0 and MLX 0.32.4 were used in the original implementation. Hardware: Apple M5 Pro, 24 GiB.
+The original 1.5B/MLX benchmark remains frozen at source `1da911fb12bb896e750248a67f22345bf3d7892b`: **0/30 actions, 0/24 completions**, with no writes. The original fixture report records 30/30 actions and outcomes, 24/24 completions and no unapproved or duplicate effects. These are historical measurements, not current-model results.
 
-## Implemented scope
+Development comparisons selected Qwen3 after 1.5B and 7B candidates produced 2/5 and 3/5 correct actions. Qwen3 produced 5/5 in the initial comparison. After compact fact preparation, its larger development run produced **29/30** correct actions and completed workflows; the single missing-timestamp error stopped before approval or writes. The final chronology clarification then passed **6/6** development regressions, including that failure. Development reports record their actual in-progress source state and separate prompt hashes. See [the iteration record](MODEL-ITERATION.md).
 
-- FastAPI/SQLite contracts, atomic migrations 1/2, WAL, audit events and shared worker-generation fencing.
-- Independent order, carrier and ticket HTTP processes with separate transactional domain/idempotency journals.
-- Scoped evidence reads, deterministic conservative policy, immutable proposals and exact evidence/version/hash/policy/expiry-bound approval.
-- Persist-before-send operation keys and payloads, explicit unknown/partial outcomes, bounded same-key reconciliation and cancellation arbitration.
-- Pinned Qwen/MLX subprocess, shared machine lease, strict read-tool JSON protocol and separately labelled fixture baseline.
-- Responsive light/dark workbench with exact approval, per-operation outcomes, keyboard controls, monotonic response handling and saved-request retries.
-- Sixty frozen synthetic scenarios, separate fixture/model evidence, reproducible evaluation, operational runbook and fixture-only CI.
+At this implementation checkpoint, the separately authored 30-case challenge is frozen and **has not been opened by the implementer or evaluated**. Its manifest hash is `74a9dbbf7dbe2c6722cca29ec646cef438095dae2bc24a722c7ee9c282ecc67f`. It will be promoted unchanged after committing this model/protocol freeze. Challenge execution and its measured results remain pending at this checkpoint.
 
-## Frozen measured evidence
+The selected model is `mlx-community/Qwen3-4B-Instruct-2507-4bit`, revision `50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b`. Preparation hashes weights, configuration, tokenizer and the separate chat template. Actual inference uses an offline owned child under the shared machine lease. The original 1.5B and comparison 7B profiles remain explicit options, with no automatic substitution. See [MODEL-CONFIG](MODEL-CONFIG.md) and [RUNBOOK](RUNBOOK.md).
 
-The latest frozen reports measured committed source `1da911fb12bb896e750248a67f22345bf3d7892b`, with dirty=false. Later publication fixes have not remeasured actual model quality. Original in-progress reports remain as `initial-fixture-full.json` and `initial-qwen-full.json`. No frozen inputs, reports or prompt were tuned to the holdout results.
+## Publication and remaining limits
 
-| Metric                       | Fixture | Actual Qwen/MLX |
-| ---------------------------- | ------- | --------------- |
-| Valid actions                | 30/30   | 0/30            |
-| Expected final states/counts | 30/30   | 0/30            |
-| Authorized completions       | 24/24   | 0/24            |
-| Unapproved/duplicate effects | 0/0     | 0/0             |
+The published-history audit found no active credentials, weights, databases, customer records or unrelated source. Historical reports contain workstation paths and obsolete local cleanup markers; the author email already matches public profile contact information. New curated development exports remove private runtime paths and ownership metadata, preserve measurements and identify their raw source hashes. All 13 original evidence files remain unchanged. See [the bounded publication audit](PUBLICATION-AUDIT.md).
 
-The model produced 30 `invalid_model_output` failures, missing the 27/30 action, 27/30 outcome and 22/24 completion thresholds. Invalid outputs stopped before approval or writes. Human claim review is pending; unsupported_claims is null. The actual smoke output omitted a required argument object despite successfully loading weights. No fixture fallback or model substitution occurred.
+Human factual-claim review, manual screen-reader testing and a recorded walkthrough remain unperformed. The model's generated prose is not certified free of unsupported claims. Automated accessibility checks cover both themes and desktop/mobile widths in the fixture browser flow. The application remains a loopback, single-operator simulation with synthetic records, no public authentication, cross-service rollback or production validation.
 
-Model load: 4.136 seconds. Warm failed-case latency: p50 4.057 seconds and nearest-rank p95 8.055 seconds across 30 cases. Tokenizer-counted input/output usage: 62,512. These are failed-task timings, not productive throughput or monetary savings. The model child exited before its matching lease was released.
+Python 3.12.14, MLX LM 0.32.0, MLX 0.32.4 and Outlines 1.3.3 run on Apple M5 Pro hardware with 24 GiB memory. Node 26.7.0 is the recorded supported local exception; CI targets Python 3.12 and Node 24 on Ubuntu. The prior published source passed [CI run 38810735255](https://github.com/rbtbuilds/casework-agent/actions/runs/38810735255); a new source push must obtain its own CI result.
 
-- Model: `Qwen/Qwen2.5-1.5B-Instruct`, revision `989aa7980e4cf806f80c7fef2b1adb7bc71aa306`, nine hashed files.
-- Holdout manifest SHA-256: `6be686fcff49b9d5b5bad120ac0d96b5244cfb4f585f9bd0b2d821337e4e1ad8`.
-- Fixture report SHA-256: `e0c36705bfaa285b83fc678d9da42798b9a6326fc8d37f4991ec9537e3b9755a`.
-- Qwen report SHA-256: `3916875d61c9b9200db58d4dd4ccedb3be8ae1447b2ddbe2755acd851cf45b2c`.
-
-Full traces, manifests, snapshot hashes and provenance are curated under `docs/evidence`. Weights, databases and bulk runtime state remain ignored. The original clean-checkout archive verification of `1da911f` is retained in [clean-checkout evidence](evidence/clean-checkout.json); it is historical evidence, not verification of later fixes.
-
-## Boundaries and operation
-
-The actual model quality gate fails. Human claims review, manual screen-reader testing and a recorded two-minute walkthrough remain unperformed. The walkthrough document is a presenter guide. There is no distributed exactly-once guarantee, cross-service rollback, public authentication or production validation.
-
-The lifecycle helper stores process ownership in the ignored `.runtime/dev/processes.json` file. Use `scripts/dev.py status` for current process identities; process IDs are intentionally excluded from maintained documentation. Default loopback ports are API 8112, web 5112, orders 8212, carrier 8312 and tickets 8412.
-
-Run from the repository root: `uv sync --locked`, `npm --prefix web ci`, then `uv run python scripts/dev.py start`. Open <http://127.0.0.1:5112>. Inspect with `uv run python scripts/dev.py status`; stop with `uv run python scripts/dev.py stop`. Keep fixture/model labels visible. Future model improvements need development-set work and a new separately reviewed evaluation, not tuning against this failed holdout.
-
-## Documentation maintenance
-
-The public documentation uses the supported toolchain as its setup contract. Benchmark hardware and runtime versions remain explicit measurement provenance. Chat-specific instructions and temporary workstation state have been removed from contributor guidance. This editorial revision does not change runtime source, benchmark inputs or measured reports.
-
-## History
-
-Planning `d6aa779`; task 1 `ce85f6e`; task 2 `4938667`/`ec3c145`; task 3 `ae7c8f0`; task 4 `8801131`; task 5 `395ec54`; task 6 `6c70f17`; task 7 `8a4c49c`; task 8 `bbd7851`; task 9 `2608b76`; task 10 `009b67e`; original review fixes `1da911f`; original final evidence/docs `92534bb`. Pre-publication runtime fixes: `33c3efa`; publication documentation: `9140ba8`. The latter is the initial GitHub `main` commit. The subsequent documentation commit `a6ce554` also passed [Linux CI](https://github.com/rbtbuilds/casework-agent/actions/runs/38811164548). Private vulnerability reporting is enabled. Further documentation evidence follows that verified source.
+The developer stack was stopped through its ownership-checked lifecycle helper for tests. Its original databases are preserved; restore that stack after final verification. No model weights, private runtime state or unrelated files belong in a source push.

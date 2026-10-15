@@ -16,7 +16,7 @@ from starlette.types import ASGIApp, Message, Receive, Scope, Send
 from .clock import Clock
 from .config import Settings
 from .contracts import ApiError, ApprovalRequest, CaseSeed, CaseView, Order, VersionRequest
-from .model_session import snapshot
+from .model_session import model_ready
 from .repository import Conflict, Repository
 from .tools import DependencyError
 from .worker import Worker
@@ -196,12 +196,7 @@ def create_app(settings: Settings | None = None, clock: Clock | None = None) -> 
 
     @app.get("/health")
     async def health(repo: Annotated[Repository, Depends(repository)]) -> dict[str, object]:
-        try:
-            snapshot(config.model_directory)
-            probe = config.model_directory / ".runtime/model-probe.json"
-            model = probe.exists() and json.loads(probe.read_text()).get("protocol_valid") is True
-        except RuntimeError:
-            model = False
+        model = model_ready(config.model_directory)
         lease = repo.con.execute(
             "SELECT heartbeat_at FROM worker_lease WHERE singleton=1"
         ).fetchone()

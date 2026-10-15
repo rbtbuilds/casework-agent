@@ -2,7 +2,7 @@ from .agent import AgentContext, FixtureAdapter, validate_decision
 from .config import Settings
 from .contracts import ApprovalRequest, CaseView, JsonDict
 from .hashing import canonical_hash
-from .model_adapter import LocalModelAdapter, ModelClient
+from .model_adapter import MODEL_PROTOCOL_VERSION, LocalModelAdapter, ModelClient
 from .model_session import ModelSession
 from .policy import current_policy
 from .repository import Repository
@@ -46,6 +46,8 @@ class Workflow:
                 trace = {
                     "adapter": "model",
                     "usage_tokens": adapter.usage_tokens,
+                    "protocol_version": MODEL_PROTOCOL_VERSION,
+                    "generation_schema_hashes": [value for value in adapter.schema_hashes],
                     "exchange": [m.model_dump(mode="json") for m in adapter.trace],
                 }
             validate_decision(context, tools, decision)
@@ -62,6 +64,8 @@ class Workflow:
                 trace.update(
                     {
                         "usage_tokens": adapter.usage_tokens,
+                        "protocol_version": MODEL_PROTOCOL_VERSION,
+                        "generation_schema_hashes": [value for value in adapter.schema_hashes],
                         "exchange": [m.model_dump(mode="json") for m in adapter.trace],
                     }
                 )

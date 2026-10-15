@@ -1,0 +1,33 @@
+# Publication audit
+
+Audit date: 2026-10-15. Published source: `d8956e035af8f30f4255a9e39a0182048105dfea` in [rbtbuilds/casework-agent](https://github.com/rbtbuilds/casework-agent).
+
+## Scope and findings
+
+The read-only audit covered all 18 published commits: 196 historical paths and 335 unique Git blobs, comprising 327 text files and eight screenshot versions. It also examined three GitHub Actions log archives, check outputs, repository settings and the available artifact/publication metadata.
+
+No active credentials, private keys, customer data, unrelated project source, database files, runtime directories or model weights were found in that scope. The tracked `.env.example` contains only a comment. All 60 benchmark scenarios reconstruct from their synthetic generator and match their manifest hashes. The additional demonstration scenario is fictional.
+
+All eight screenshot versions contain only the fictional workbench. Their PNG files have no EXIF/text metadata or appended content. Actions logs contain masked checkout credentials; no unmasked token was identified. GitHub secret scanning and push protection were enabled with zero alerts at the time of the audit.
+
+## Metadata retained in history
+
+The commit-author email matches the business email already published on the GitHub profile. It is public contact information, not a newly exposed private address.
+
+Benchmark reports and the original implementation plan retain absolute author-workstation paths. These reveal a local username and directory layout, without exposing the contents of other directories. Hardware and runtime details establish measurement provenance.
+
+Two obsolete local lease ownership tokens appear in the original model reports. They are random cleanup-ownership markers, not provider credentials. Both measured workers recorded completed cleanup; neither token matches the active machine lease or the project's running process records at audit time. No credential rotation is indicated by these findings.
+
+Future public report exports omit absolute workstation paths and raw process-ownership tokens. Any derived export identifies its source report hash and redactions. Original frozen reports remain unchanged so their existing hashes and measured provenance stay verifiable.
+
+## Limits
+
+This is a bounded publication audit, not a guarantee that every possible secret format or application vulnerability has been detected. Dedicated Gitleaks/TruffleHog executables were unavailable. The audit combined credential-pattern, high-entropy and sensitive-assignment checks with source-context and image inspection.
+
+Two dependency-cache entries were listed, but their payloads could not be inspected through the available API. Unreachable/deleted remote objects and third-party copies were outside scope. The audit did not change repository visibility or rewrite published Git history.
+
+## Model-repair follow-up
+
+A separate read-only review checked the initial model-repair changes and four curated five-case development reports. Each export's source hash and declared redactions matched its ignored raw report; results, scores and gates were unchanged. No credentials, private paths, ownership tokens, customer records, runtime files, weights or unrelated material were found in that reviewed snapshot. The public smoke manifest matches the input hash retained in those reports.
+
+All 13 original evidence files remained byte-for-byte unchanged. The regression tests' invented private-owner path and `foreign` ownership marker are synthetic test inputs. The exporter removes specified provenance metadata; future report content still requires explicit inspection.

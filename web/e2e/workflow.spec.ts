@@ -9,21 +9,39 @@ test('actual service approval, replay, recovery and responsive accessible states
 }) => {
   const errors: string[] = [];
   page.on('pageerror', (e) => errors.push(e.message));
+  const beforeCounts = execFileSync(
+    '../.venv/bin/python',
+    [
+      '-c',
+      "import os,sqlite3,json;from pathlib import Path;r=Path(os.environ['CASEWORK_BROWSER_ROOT']);print(json.dumps([sqlite3.connect(r/'tickets.sqlite3').execute('SELECT COUNT(*) FROM tickets').fetchone()[0],sqlite3.connect(r/'orders.sqlite3').execute('SELECT COUNT(*) FROM annotations').fetchone()[0]]))",
+    ],
+    { encoding: 'utf8' },
+  );
+  const previousCounts: unknown = JSON.parse(beforeCounts);
+  if (
+    !Array.isArray(previousCounts) ||
+    !previousCounts.every((n) => typeof n === 'number')
+  )
+    throw new Error('Invalid initial counts.');
   await page.goto('/');
+  const creationResponse = page.waitForResponse(
+    (r) => r.url().endsWith('/v1/cases') && r.request().method() === 'POST',
+  );
   await page
     .getByRole('button', { name: 'Open delayed delivery example' })
     .click();
+  const created = parseCase(await (await creationResponse).json());
   await expect(
     page.getByRole('button', { name: 'Approve fictional action' }),
   ).toBeVisible();
   await expect(
     page.getByText('Fixture workflow', { exact: true }).last(),
   ).toBeVisible();
-  const cases: unknown = await (
-    await request.get('http://127.0.0.1:8112/v1/cases')
-  ).json();
-  if (!Array.isArray(cases) || !cases[0]) throw new Error('No case created.');
-  const before = parseCase(cases[0]);
+  const before = parseCase(
+    await (
+      await request.get(`http://127.0.0.1:8112/v1/cases/${created.id}`)
+    ).json(),
+  );
   if (!before.proposal) throw new Error('Proposal missing.');
   await page.screenshot({
     path: '../.runtime/evidence/desktop-light.png',
@@ -72,7 +90,7 @@ test('actual service approval, replay, recovery and responsive accessible states
     ],
     { encoding: 'utf8' },
   );
-  expect(JSON.parse(counts)).toEqual([1, 1]);
+  expect(JSON.parse(counts)).toEqual(previousCounts.map((n: number) => n + 1));
   await page.getByRole('combobox', { name: 'Appearance' }).selectOption('dark');
   await page.screenshot({
     path: '../.runtime/evidence/desktop-dark.png',

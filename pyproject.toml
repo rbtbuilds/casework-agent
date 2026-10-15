@@ -18,6 +18,7 @@ casework-agent = "casework_agent.cli:main"
 [project.optional-dependencies]
 model = [
     "mlx-lm==0.32.0 ; platform_machine == 'arm64' and sys_platform == 'darwin'",
+    "outlines==1.3.3 ; platform_machine == 'arm64' and sys_platform == 'darwin'",
 ]
 [build-system]
 requires = ["hatchling"]
@@ -40,9 +41,11 @@ target-version = "py312"
 
 [dependency-groups]
 dev = [
+    "jsonschema==4.26.0",
     "pyright==1.1.414",
     "pytest==9.1.1",
     "pytest-asyncio==1.4.0",
     "ruff==0.17.1",
+    "types-jsonschema==4.26.0.20261006",
     "types-psutil==7.2.2.20260906",
 ]

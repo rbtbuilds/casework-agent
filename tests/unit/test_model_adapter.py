@@ -5,13 +5,16 @@ import pytest
 
 from casework_agent.agent import AgentContext, AgentValidationError
 from casework_agent.config import Settings
+from casework_agent.contracts import JsonDict
 from casework_agent.model_adapter import ChatMessage, LocalModelAdapter, ModelReply
 from casework_agent.model_session import MachineLease, ModelBusy
 from casework_agent.tools import ReadTools
 
 
 class MaliciousClient:
-    async def complete(self, messages: list[ChatMessage]) -> ModelReply:
+    async def complete(
+        self, messages: list[ChatMessage], *, response_schema: JsonDict | None = None
+    ) -> ModelReply:
         return ModelReply(text='{"kind":"tool","name":"create_ticket","arguments":{}}')
 
 
@@ -48,7 +51,9 @@ async def test_model_deadline_includes_awaited_tools(
     import casework_agent.model_adapter as module
 
     class ReadClient:
-        async def complete(self, messages: list[ChatMessage]) -> ModelReply:
+        async def complete(
+            self, messages: list[ChatMessage], *, response_schema: JsonDict | None = None
+        ) -> ModelReply:
             return ModelReply(
                 text='{"kind":"tool","name":"get_order","arguments":{"order_id":"o"}}'
             )
@@ -65,5 +70,48 @@ async def test_model_deadline_includes_awaited_tools(
                 await LocalModelAdapter(ReadClient()).propose(
                     AgentContext(case_id="c", order_id="o", as_of=datetime.now(UTC)), tools
                 )
+    finally:
+        await tools.close()
+
+
+async def test_wrong_policy_action_fails_without_feedback_or_second_guess(tmp_path: Path) -> None:
+    from datetime import timedelta
+
+    from casework_agent.contracts import AgentDecision, Order, Shipment
+    from casework_agent.policy import current_policy
+
+    tools = ReadTools("case", "order", Settings(root=tmp_path))
+    context = AgentContext(case_id="case", order_id="order", as_of=datetime.now(UTC))
+    tools.order = Order(order_id="order", shipment_id="shipment", status="in_transit")
+    tools.shipment = Shipment(
+        shipment_id="shipment", status="delayed", last_event_at=context.as_of - timedelta(hours=60)
+    )
+    tools.record("order", "order", "1", tools.order)
+    tools.record("carrier", "shipment", "1", tools.shipment)
+    policy = current_policy()
+    tools.record("policy", policy.version, policy.hash, policy)
+
+    class WrongAction:
+        calls = 0
+
+        async def complete(
+            self, messages: list[ChatMessage], *, response_schema: JsonDict | None = None
+        ) -> ModelReply:
+            self.calls += 1
+            decision = AgentDecision(
+                action="manual_review",
+                rationale="Incorrect policy choice.",
+                draft_note="Fictional internal case: review.",
+                evidence_ids=[e.id for e in tools.evidence],
+            )
+            return ModelReply(
+                text='{"kind":"proposal","decision":' + decision.model_dump_json() + "}"
+            )
+
+    client = WrongAction()
+    try:
+        with pytest.raises(AgentValidationError, match="policy_mismatch"):
+            await LocalModelAdapter(client).propose(context, tools)
+        assert client.calls == 1
     finally:
         await tools.close()

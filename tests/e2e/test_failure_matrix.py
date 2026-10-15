@@ -281,14 +281,16 @@ async def test_cancel_during_scripted_model_gather_cannot_publish(tmp_path: Path
     from datetime import UTC, datetime
 
     from casework_agent.config import Settings
-    from casework_agent.contracts import CaseSeed
+    from casework_agent.contracts import CaseSeed, JsonDict
     from casework_agent.model_adapter import ChatMessage, ModelReply
     from casework_agent.workflow import Workflow
 
     entered, release = asyncio.Event(), asyncio.Event()
 
     class WaitingClient:
-        async def complete(self, messages: list[ChatMessage]) -> ModelReply:
+        async def complete(
+            self, messages: list[ChatMessage], *, response_schema: JsonDict | None = None
+        ) -> ModelReply:
             entered.set()
             await release.wait()
             return ModelReply(text='{"kind":"tool","name":"create_ticket","arguments":{}}')

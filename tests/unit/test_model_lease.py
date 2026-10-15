@@ -5,6 +5,7 @@ from pathlib import Path
 
 import pytest
 
+from casework_agent.contracts import JsonDict
 from casework_agent.model_adapter import ChatMessage
 from casework_agent.model_session import MachineLease, ModelSession
 
@@ -84,4 +85,28 @@ def test_failed_acquisition_leaves_no_owned_lock(
     with pytest.raises((OSError, psutil.AccessDenied)):
         lease.acquire("scripted acquisition failure")
     assert not lease.owned
+    assert not lease.path.exists()
+
+
+async def test_schema_crosses_the_owned_child_protocol_without_loading_weights(
+    tmp_path: Path,
+) -> None:
+    lease = MachineLease(tmp_path / "lease")
+    lease.acquire("scripted schema protocol")
+    session = ModelSession(tmp_path, lease=lease)
+    session.process = await asyncio.create_subprocess_exec(
+        sys.executable,
+        "-c",
+        "import sys,json;\nfor line in sys.stdin: print(json.dumps({'text':json.dumps(json.loads(line)['response_schema'])}),flush=True)",
+        stdin=asyncio.subprocess.PIPE,
+        stdout=asyncio.subprocess.PIPE,
+    )
+    try:
+        schema: JsonDict = {"type": "object", "properties": {"required_field": {"type": "string"}}}
+        reply = await session.complete(
+            [ChatMessage(role="user", content="Protocol test")], response_schema=schema
+        )
+        assert json.loads(reply.text) == schema
+    finally:
+        await session.close()
     assert not lease.path.exists()

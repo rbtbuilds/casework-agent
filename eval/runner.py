@@ -13,7 +13,12 @@ from casework_agent.clock import FrozenClock
 from casework_agent.config import Settings
 from casework_agent.contracts import ApprovalRequest, CaseSeed, JsonDict, uid
 from casework_agent.hashing import canonical_hash
-from casework_agent.model_adapter import REQUEST, ModelClient
+from casework_agent.model_adapter import (
+    MODEL_PROTOCOL_VERSION,
+    REQUEST,
+    ModelClient,
+    system_instruction,
+)
 from casework_agent.repository import Conflict, Repository
 from casework_agent.worker import Worker
 from casework_agent.workflow import Workflow
@@ -187,6 +192,10 @@ async def evaluate(
         "uv_lock_hash": digest(ROOT / "uv.lock"),
         "web_lock_hash": digest(ROOT / "web/package-lock.json"),
         "request_schema_hash": canonical_hash(REQUEST.json_schema()),
+        "model_protocol_version": MODEL_PROTOCOL_VERSION if mode == "model" else None,
+        "system_instruction_hash": canonical_hash(system_instruction())
+        if mode == "model"
+        else None,
         "temperature": 0,
         "max_output_tokens": 768,
         "case_deadline_seconds": 120,
@@ -194,9 +203,6 @@ async def evaluate(
         "cost_estimate": None,
         "missing_evidence": ["Human review of model claims"] if mode == "model" else [],
     }
-    pointer = ROOT / ".runtime/models/snapshot.json"
-    if mode == "model" and pointer.exists():
-        provenance["snapshot"] = cast(JsonDict, json.loads(pointer.read_text()))
     gates: JsonDict = {
         "valid_actions": score.valid_action_count >= 27,
         "correct_workflow": score.correct_workflow_count >= 27,

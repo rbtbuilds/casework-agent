@@ -12,7 +12,8 @@ import psutil
 from pydantic import BaseModel
 
 from .contracts import JsonDict
-from .model_adapter import ChatMessage, ModelReply
+from .hashing import canonical_hash
+from .model_adapter import MODEL_PROTOCOL_VERSION, ChatMessage, ModelReply
 
 
 class ModelBusy(RuntimeError):
@@ -94,6 +95,25 @@ def snapshot(root: Path) -> Snapshot:
     return value
 
 
+def snapshot_hash(value: Snapshot) -> str:
+    return canonical_hash(
+        {"model_id": value.model_id, "revision": value.revision, "files": value.files}
+    )
+
+
+def model_ready(root: Path) -> bool:
+    try:
+        value = snapshot(root)
+        probe = json.loads((root / ".runtime/model-probe.json").read_text())
+        return (
+            probe.get("protocol_valid") is True
+            and probe.get("protocol_version") == MODEL_PROTOCOL_VERSION
+            and probe.get("snapshot_hash") == snapshot_hash(value)
+        )
+    except (RuntimeError, OSError, ValueError, AttributeError):
+        return False
+
+
 class ModelSession:
     def __init__(
         self, root: Path, purpose: str = "casework model", lease: MachineLease | None = None
@@ -102,10 +122,12 @@ class ModelSession:
         self.purpose = purpose
         self.lease = lease or MachineLease()
         self.process: asyncio.subprocess.Process | None = None
+        self.loaded_snapshot: Snapshot | None = None
         self.log_path = root / ".runtime/model-worker.log"
 
     async def __aenter__(self) -> Self:
         value = snapshot(self.root)
+        self.loaded_snapshot = value
         self.lease.acquire(self.purpose)
         try:
             for name, want in value.files.items():
@@ -128,6 +150,12 @@ class ModelSession:
                     "--snapshot",
                     value.path,
                     cwd=self.root,
+                    env=dict(
+                        os.environ,
+                        OUTLINES_CACHE_DIR=str(self.root / ".runtime/outlines-cache"),
+                        HF_HUB_OFFLINE="1",
+                        TRANSFORMERS_OFFLINE="1",
+                    ),
                     stdin=asyncio.subprocess.PIPE,
                     stdout=asyncio.subprocess.PIPE,
                     stderr=log,
@@ -142,11 +170,18 @@ class ModelSession:
             await self.close()
             raise
 
-    async def complete(self, messages: list[ChatMessage]) -> ModelReply:
+    async def complete(
+        self, messages: list[ChatMessage], *, response_schema: JsonDict | None = None
+    ) -> ModelReply:
         proc = self.process
         if proc is None or proc.stdin is None or proc.stdout is None:
             raise ModelUnavailable("worker_not_running")
-        raw = json.dumps({"messages": [m.model_dump() for m in messages]}).encode() + b"\n"
+        raw = (
+            json.dumps(
+                {"messages": [m.model_dump() for m in messages], "response_schema": response_schema}
+            ).encode()
+            + b"\n"
+        )
         if len(raw) > 32768:
             raise ModelUnavailable("prompt_bytes_limit")
         proc.stdin.write(raw)

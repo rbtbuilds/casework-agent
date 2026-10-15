@@ -5,6 +5,7 @@ import sys
 import time
 from typing import Protocol, cast
 
+from .contracts import JsonDict, StrictModel
 from .model_adapter import ChatMessage
 
 
@@ -26,11 +27,31 @@ class MLX(Protocol):
         max_tokens: int,
         sampler: object,
         verbose: bool,
+        logits_processors: list[object] | None,
     ) -> str: ...
 
 
 class Samplers(Protocol):
     def make_sampler(self, *, temp: float) -> object: ...
+
+
+class StructuredModule(Protocol):
+    def from_mlxlm(self, model: object, tokenizer: Tokenizer) -> object: ...
+
+
+class BackendModule(Protocol):
+    def get_json_schema_logits_processor(
+        self,
+        backend_name: str,
+        model: object,
+        json_schema: str,
+        whitespace_pattern: str | None = None,
+    ) -> object: ...
+
+
+class InferenceRequest(StrictModel):
+    messages: list[ChatMessage]
+    response_schema: JsonDict | None = None
 
 
 def main() -> None:
@@ -40,11 +61,21 @@ def main() -> None:
     module = cast(MLX, importlib.import_module("mlx_lm"))
     samplers = cast(Samplers, importlib.import_module("mlx_lm.sample_utils"))
     model, tokenizer = module.load(args.snapshot)
+    outlines = cast(StructuredModule, importlib.import_module("outlines"))
+    backends = cast(BackendModule, importlib.import_module("outlines.backends"))
+    structured = outlines.from_mlxlm(model, tokenizer)
     print(json.dumps({"status": "ready"}), flush=True)
     for line in sys.stdin:
         try:
-            data = json.loads(line)
-            messages = [ChatMessage.model_validate(m) for m in data["messages"]]
+            request = InferenceRequest.model_validate_json(line)
+            messages = list(request.messages)
+            processor: object | None = None
+            if request.response_schema is not None:
+                schema = json.dumps(request.response_schema, separators=(",", ":"))
+                processor = backends.get_json_schema_logits_processor(
+                    "outlines_core", structured, schema, whitespace_pattern=r"[ ]?"
+                )
+                messages.append(ChatMessage(role="user", content="NEXT_RESPONSE_SCHEMA=" + schema))
             prompt = tokenizer.apply_chat_template(
                 [{"role": m.role, "content": m.content} for m in messages],
                 tokenize=False,
@@ -61,6 +92,7 @@ def main() -> None:
                 max_tokens=768,
                 sampler=samplers.make_sampler(temp=0.0),
                 verbose=False,
+                logits_processors=[processor] if processor is not None else None,
             )
             print(
                 json.dumps(

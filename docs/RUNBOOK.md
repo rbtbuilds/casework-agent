@@ -57,9 +57,19 @@ uv run --extra model python scripts/model_session.py probe
 uv run --extra model python scripts/dev.py start
 ```
 
-The public download resolves an immutable revision and hashes files under this project's `.runtime/models`. It does not upload anything. `prepare` makes network requests to the public model host; do not run it when reproducing a frozen report unless deliberately preparing the same snapshot. Model dependencies are optional on Apple Silicon. Fixture mode remains available without them. The UI never silently substitutes fixture decisions for a failed model run. Health reports protocol availability only after a successful saved probe; inspect the probe result itself.
+The default download selects pinned `mlx-community/Qwen3-4B-Instruct-2507-4bit` and hashes its weights, tokenizer, configuration and chat template under this project's `.runtime/models`. It does not upload anything. `prepare` makes network requests to the public model host; use the profile and source revision recorded by the report when reproducing a benchmark. Model dependencies are optional on Apple Silicon. Fixture mode remains available without them. The UI never silently substitutes fixture decisions for a failed model run. Health reports protocol availability only after a saved probe matching the selected snapshot and protocol version; inspect the probe result itself. The probe does not establish task quality.
 
 Before loading weights, `ModelSession` atomically creates `/tmp/bentolabs-portfolio-ml.lock`. Its owner record includes project, PID, process start time, UTC start, purpose and random token. If occupied, the model case fails explicitly with `model_busy`; do not steal or delete it. Model weights live only in an owned child process. Normal completion, cancellation and startup failure wait for child exit before releasing the matching token. If cleanup fails, preserve the lease and investigate that exact recorded process. The protocol is JSON lines over pipes; no model server port is used.
+
+The default profile is `qwen3-4b`. `prepare --profile baseline1.5b` and `prepare --profile qwen7b` select the preserved development comparisons explicitly. Changing profiles requires another probe. The original 0/30 report used the old adapter at its recorded source revision; selecting old weights with current code is a different experiment.
+
+The actual-model browser check is opt-in and requires the pinned weights and an available shared lease. Stop the developer stack first. This runs all browser flows together, including Qwen proposal generation and both post-commit response drops:
+
+```sh
+CASEWORK_REAL_MODEL=1 PLAYWRIGHT_BROWSERS_PATH="$PWD/.runtime/pw-browsers" npm --prefix web run e2e
+```
+
+Without that environment variable, the model check is explicitly skipped and the fixture browser suite runs without model dependencies. No browser business response is substituted with a fixture in the opt-in model check.
 
 ## Evaluation
 
