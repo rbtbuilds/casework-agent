@@ -1,0 +1,6 @@
+import type { CaseView } from '../api/schema';
+export const readyCase = {
+ id: 'case', scenario_id: 'scenario', order_id: 'order', as_of: '2026-10-15T12:00:00Z', mode: 'fixture', state: 'needs_approval', version: 3,
+ evidence: [], operations: [], events: [], error: null, available_actions: ['approve', 'reject', 'cancel'],
+ proposal: { id: 'proposal', case_id: 'case', version: 1, policy_hash: 'policy', evidence_ids: ['a','b','c'], evidence_hashes: ['a','b','c'], order_version: 1, shipment_version: 1, action: 'open_investigation', rationale: 'Observed delay meets the policy.', draft_note: 'Fictional internal note.', created_at: '2026-10-15T12:00:00Z', expires_at: '2099-10-15T12:15:00Z', hash: 'a'.repeat(64), intents: [{kind:'create_ticket', order_id:'order', action:'open_investigation', queue:'delivery_investigation', priority:'normal', internal_note:'Fictional internal note.'}, {kind:'annotate_order', order_id:'order', action:'open_investigation', ticket_ref:'$ticket', expected_order_version:1}] },
+} satisfies CaseView;
