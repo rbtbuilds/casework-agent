@@ -58,3 +58,5 @@ Task5: Immutable proposals,transactional exact approvals,replay,and stale invali
 
 Task6:20tests passed before API expansion. Dropped ticket response reconciles to exactly1ticket/1annotation; cancellation before claim prevents writes; second live worker is fenced. Remaining crash/expiry matrix follows Task9.
 Task7:22pytest tests passed including full process HTTP create/gather/approve/complete/replay,Origin403 and error422,occupied-port refusal. Strict Pyright0errors,Ruff clean. Worker runs as an owned task in the single API process with a durable database lease and5s heartbeat.
+
+Task7 follow-up: Node26.7 local exception tested with Vite8.3.4/React19.3.1; CI will useNode24. TypeScript5.9.3 pinned after latest TypeScript broke openapi-typescript7.13.0. Generated OpenAPI/TS and runtime JSON-schema validation implemented. Foreground dev run added for browser ownership; detached start retains verified PID/start/argv/nonce records.15expanded crash/approval/recovery tests passed.

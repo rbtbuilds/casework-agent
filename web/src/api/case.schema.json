@@ -1,0 +1,838 @@
+{
+  "$defs": {
+    "Action": {
+      "enum": [
+        "open_investigation",
+        "manual_review"
+      ],
+      "type": "string"
+    },
+    "AnnotationIntent": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "$ref": "#/$defs/Action"
+        },
+        "expected_order_version": {
+          "minimum": 1,
+          "title": "Expected Order Version",
+          "type": "integer"
+        },
+        "kind": {
+          "const": "annotate_order",
+          "default": "annotate_order",
+          "title": "Kind",
+          "type": "string"
+        },
+        "order_id": {
+          "title": "Order Id",
+          "type": "string"
+        },
+        "ticket_ref": {
+          "const": "$ticket",
+          "default": "$ticket",
+          "title": "Ticket Ref",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "order_id",
+        "action",
+        "ticket_ref",
+        "expected_order_version"
+      ],
+      "title": "AnnotationIntent",
+      "type": "object"
+    },
+    "ApiError": {
+      "additionalProperties": false,
+      "properties": {
+        "case_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Case Id"
+        },
+        "code": {
+          "title": "Code",
+          "type": "string"
+        },
+        "details": {
+          "$ref": "#/$defs/JsonDict"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "request_id": {
+          "title": "Request Id",
+          "type": "string"
+        },
+        "retryable": {
+          "default": false,
+          "title": "Retryable",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "code",
+        "message",
+        "retryable",
+        "case_id",
+        "request_id",
+        "details"
+      ],
+      "title": "ApiError",
+      "type": "object"
+    },
+    "AuditEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "case_id": {
+          "title": "Case Id",
+          "type": "string"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "integer"
+        },
+        "kind": {
+          "title": "Kind",
+          "type": "string"
+        },
+        "payload": {
+          "$ref": "#/$defs/JsonDict"
+        }
+      },
+      "required": [
+        "id",
+        "case_id",
+        "kind",
+        "payload",
+        "created_at"
+      ],
+      "title": "AuditEvent",
+      "type": "object"
+    },
+    "CarrierEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "at": {
+          "format": "date-time",
+          "title": "At",
+          "type": "string"
+        },
+        "code": {
+          "maxLength": 100,
+          "title": "Code",
+          "type": "string"
+        },
+        "description": {
+          "maxLength": 500,
+          "title": "Description",
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "at",
+        "description"
+      ],
+      "title": "CarrierEvent",
+      "type": "object"
+    },
+    "CaseState": {
+      "enum": [
+        "new",
+        "gathering",
+        "needs_approval",
+        "approved",
+        "executing",
+        "completed",
+        "failed",
+        "rejected",
+        "cancelled",
+        "stale",
+        "review_required"
+      ],
+      "type": "string"
+    },
+    "Evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "case_id": {
+          "title": "Case Id",
+          "type": "string"
+        },
+        "fetched_at": {
+          "format": "date-time",
+          "title": "Fetched At",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "payload": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Order"
+            },
+            {
+              "$ref": "#/$defs/Shipment"
+            },
+            {
+              "$ref": "#/$defs/Policy"
+            }
+          ],
+          "title": "Payload"
+        },
+        "payload_hash": {
+          "title": "Payload Hash",
+          "type": "string"
+        },
+        "source": {
+          "enum": [
+            "order",
+            "carrier",
+            "policy"
+          ],
+          "title": "Source",
+          "type": "string"
+        },
+        "source_id": {
+          "title": "Source Id",
+          "type": "string"
+        },
+        "source_version": {
+          "title": "Source Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "case_id",
+        "source",
+        "source_id",
+        "source_version",
+        "payload",
+        "payload_hash",
+        "fetched_at"
+      ],
+      "title": "Evidence",
+      "type": "object"
+    },
+    "Identifier": {
+      "maxLength": 160,
+      "minLength": 1,
+      "type": "string"
+    },
+    "JsonDict": {
+      "additionalProperties": {
+        "$ref": "#/$defs/JsonValue"
+      },
+      "type": "object"
+    },
+    "JsonValue": {},
+    "Mode": {
+      "enum": [
+        "fixture",
+        "model"
+      ],
+      "type": "string"
+    },
+    "Operation": {
+      "additionalProperties": false,
+      "properties": {
+        "approval_id": {
+          "title": "Approval Id",
+          "type": "string"
+        },
+        "attempts": {
+          "default": 0,
+          "title": "Attempts",
+          "type": "integer"
+        },
+        "case_id": {
+          "title": "Case Id",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "key": {
+          "title": "Key",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "create_ticket",
+            "annotate_order"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "last_error": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Last Error"
+        },
+        "ordinal": {
+          "enum": [
+            1,
+            2
+          ],
+          "title": "Ordinal",
+          "type": "integer"
+        },
+        "remote_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Remote Id"
+        },
+        "request_hash": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Request Hash"
+        },
+        "request_json": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/JsonDict"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "response_json": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/JsonDict"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "state": {
+          "$ref": "#/$defs/OperationState",
+          "default": "pending"
+        },
+        "worker_generation": {
+          "default": 0,
+          "title": "Worker Generation",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "case_id",
+        "approval_id",
+        "ordinal",
+        "kind",
+        "key",
+        "request_json",
+        "request_hash",
+        "state",
+        "attempts",
+        "remote_id",
+        "response_json",
+        "last_error",
+        "worker_generation"
+      ],
+      "title": "Operation",
+      "type": "object"
+    },
+    "OperationState": {
+      "enum": [
+        "pending",
+        "in_flight",
+        "unknown",
+        "succeeded",
+        "rejected"
+      ],
+      "type": "string"
+    },
+    "Order": {
+      "additionalProperties": false,
+      "properties": {
+        "annotations": {
+          "items": {
+            "$ref": "#/$defs/OrderAnnotation"
+          },
+          "title": "Annotations",
+          "type": "array"
+        },
+        "note": {
+          "default": "",
+          "maxLength": 2000,
+          "title": "Note",
+          "type": "string"
+        },
+        "order_id": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "policy_exception": {
+          "anyOf": [
+            {
+              "maxLength": 500,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Policy Exception"
+        },
+        "shipment_id": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "status": {
+          "enum": [
+            "in_transit",
+            "delivered",
+            "cancelled",
+            "unknown"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "version": {
+          "default": 1,
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "order_id",
+        "shipment_id",
+        "status",
+        "version",
+        "note",
+        "policy_exception",
+        "annotations"
+      ],
+      "title": "Order",
+      "type": "object"
+    },
+    "OrderAnnotation": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "$ref": "#/$defs/Action"
+        },
+        "annotation_id": {
+          "title": "Annotation Id",
+          "type": "string"
+        },
+        "operation_key": {
+          "title": "Operation Key",
+          "type": "string"
+        },
+        "ticket_id": {
+          "title": "Ticket Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "annotation_id",
+        "ticket_id",
+        "action",
+        "operation_key"
+      ],
+      "title": "OrderAnnotation",
+      "type": "object"
+    },
+    "Policy": {
+      "additionalProperties": false,
+      "properties": {
+        "approval_ttl_seconds": {
+          "default": 900,
+          "title": "Approval Ttl Seconds",
+          "type": "integer"
+        },
+        "delay_hours": {
+          "default": 48,
+          "title": "Delay Hours",
+          "type": "integer"
+        },
+        "hash": {
+          "title": "Hash",
+          "type": "string"
+        },
+        "rules": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Rules",
+          "type": "array"
+        },
+        "version": {
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "version",
+        "hash",
+        "delay_hours",
+        "approval_ttl_seconds",
+        "rules"
+      ],
+      "title": "Policy",
+      "type": "object"
+    },
+    "Proposal": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "$ref": "#/$defs/Action"
+        },
+        "case_id": {
+          "title": "Case Id",
+          "type": "string"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "draft_note": {
+          "title": "Draft Note",
+          "type": "string"
+        },
+        "evidence_hashes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Evidence Hashes",
+          "type": "array"
+        },
+        "evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Evidence Ids",
+          "type": "array"
+        },
+        "expires_at": {
+          "format": "date-time",
+          "title": "Expires At",
+          "type": "string"
+        },
+        "hash": {
+          "title": "Hash",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "intents": {
+          "maxItems": 2,
+          "minItems": 2,
+          "prefixItems": [
+            {
+              "$ref": "#/$defs/TicketIntent"
+            },
+            {
+              "$ref": "#/$defs/AnnotationIntent"
+            }
+          ],
+          "title": "Intents",
+          "type": "array"
+        },
+        "order_version": {
+          "title": "Order Version",
+          "type": "integer"
+        },
+        "policy_hash": {
+          "title": "Policy Hash",
+          "type": "string"
+        },
+        "rationale": {
+          "title": "Rationale",
+          "type": "string"
+        },
+        "shipment_version": {
+          "title": "Shipment Version",
+          "type": "integer"
+        },
+        "version": {
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "case_id",
+        "version",
+        "policy_hash",
+        "evidence_ids",
+        "evidence_hashes",
+        "order_version",
+        "shipment_version",
+        "action",
+        "rationale",
+        "draft_note",
+        "intents",
+        "created_at",
+        "expires_at",
+        "hash"
+      ],
+      "title": "Proposal",
+      "type": "object"
+    },
+    "Queue": {
+      "enum": [
+        "delivery_investigation",
+        "human_review"
+      ],
+      "type": "string"
+    },
+    "Shipment": {
+      "additionalProperties": false,
+      "properties": {
+        "conflicting_events": {
+          "default": false,
+          "title": "Conflicting Events",
+          "type": "boolean"
+        },
+        "events": {
+          "items": {
+            "$ref": "#/$defs/CarrierEvent"
+          },
+          "title": "Events",
+          "type": "array"
+        },
+        "last_event_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Last Event At"
+        },
+        "shipment_id": {
+          "$ref": "#/$defs/Identifier"
+        },
+        "status": {
+          "enum": [
+            "delayed",
+            "in_transit",
+            "delivered",
+            "unknown"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "version": {
+          "default": 1,
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "shipment_id",
+        "status",
+        "version",
+        "last_event_at",
+        "conflicting_events",
+        "events"
+      ],
+      "title": "Shipment",
+      "type": "object"
+    },
+    "TicketIntent": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "$ref": "#/$defs/Action"
+        },
+        "internal_note": {
+          "maxLength": 500,
+          "minLength": 1,
+          "title": "Internal Note",
+          "type": "string"
+        },
+        "kind": {
+          "const": "create_ticket",
+          "default": "create_ticket",
+          "title": "Kind",
+          "type": "string"
+        },
+        "order_id": {
+          "title": "Order Id",
+          "type": "string"
+        },
+        "priority": {
+          "const": "normal",
+          "default": "normal",
+          "title": "Priority",
+          "type": "string"
+        },
+        "queue": {
+          "$ref": "#/$defs/Queue"
+        }
+      },
+      "required": [
+        "kind",
+        "order_id",
+        "action",
+        "queue",
+        "priority",
+        "internal_note"
+      ],
+      "title": "TicketIntent",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "as_of": {
+      "format": "date-time",
+      "title": "As Of",
+      "type": "string"
+    },
+    "available_actions": {
+      "items": {
+        "enum": [
+          "approve",
+          "reject",
+          "cancel",
+          "repropose",
+          "reconcile"
+        ],
+        "type": "string"
+      },
+      "title": "Available Actions",
+      "type": "array"
+    },
+    "error": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ApiError"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "events": {
+      "items": {
+        "$ref": "#/$defs/AuditEvent"
+      },
+      "title": "Events",
+      "type": "array"
+    },
+    "evidence": {
+      "items": {
+        "$ref": "#/$defs/Evidence"
+      },
+      "title": "Evidence",
+      "type": "array"
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "mode": {
+      "$ref": "#/$defs/Mode"
+    },
+    "operations": {
+      "items": {
+        "$ref": "#/$defs/Operation"
+      },
+      "title": "Operations",
+      "type": "array"
+    },
+    "order_id": {
+      "title": "Order Id",
+      "type": "string"
+    },
+    "proposal": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Proposal"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "scenario_id": {
+      "title": "Scenario Id",
+      "type": "string"
+    },
+    "state": {
+      "$ref": "#/$defs/CaseState"
+    },
+    "version": {
+      "title": "Version",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "id",
+    "scenario_id",
+    "order_id",
+    "as_of",
+    "mode",
+    "state",
+    "version",
+    "proposal",
+    "evidence",
+    "operations",
+    "events",
+    "available_actions",
+    "error"
+  ],
+  "title": "CaseView",
+  "type": "object"
+}

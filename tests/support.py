@@ -10,6 +10,8 @@ from typing import Self
 
 import httpx
 
+from casework_agent.contracts import CaseView
+
 ROOT = Path(__file__).resolve().parents[1]
 PORTS = {"orders": 8212, "carrier": 8312, "tickets": 8412, "app": 8112}
 
@@ -80,3 +82,15 @@ class TestSystem:
             with sqlite3.connect(self.root/f"{name}.sqlite3") as con:
                 return int(con.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0])
         return Counts(count("tickets","tickets"),count("orders","annotations"))
+
+    async def wait_state(self, id: str, state: str) -> CaseView:
+        for _ in range(160):
+            response = await self.api.get(f"/v1/cases/{id}")
+            response.raise_for_status()
+            case = CaseView.model_validate(response.json())
+            if case.state == state:
+                return case
+            if case.state in {"failed", "stale", "review_required"}:
+                raise AssertionError(case.model_dump_json())
+            await asyncio.sleep(0.05)
+        raise AssertionError(f"Timed out waiting for {state}")

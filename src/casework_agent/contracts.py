@@ -16,7 +16,7 @@ def uid() -> str:
     return str(uuid4())
 
 class StrictModel(BaseModel):
-    model_config = ConfigDict(extra="forbid", validate_assignment=True)
+    model_config = ConfigDict(extra="forbid", validate_assignment=True, json_schema_serialization_defaults_required=True)
 
 class CaseSeed(StrictModel):
     scenario_id: Identifier
