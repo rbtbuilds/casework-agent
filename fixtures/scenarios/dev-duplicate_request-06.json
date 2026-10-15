@@ -1,0 +1,21 @@
+{
+  "as_of": "2026-10-15T12:00:00+00:00",
+  "order": {
+    "annotations": [],
+    "note": "Fictional box label is intact.",
+    "order_id": "o-dev-duplicate_request-06",
+    "policy_exception": null,
+    "shipment_id": "s-dev-duplicate_request-06",
+    "status": "in_transit",
+    "version": 1
+  },
+  "scenario_id": "dev-duplicate_request-06",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [],
+    "last_event_at": "2026-10-10T12:00:00+00:00",
+    "shipment_id": "s-dev-duplicate_request-06",
+    "status": "delayed",
+    "version": 1
+  }
+}

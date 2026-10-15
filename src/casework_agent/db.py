@@ -1,26 +1,35 @@
 import sqlite3
 from pathlib import Path
 
-SCHEMA = """
-CREATE TABLE IF NOT EXISTS schema_migrations(version INTEGER PRIMARY KEY,applied_at TEXT NOT NULL);
-CREATE TABLE IF NOT EXISTS cases(id TEXT PRIMARY KEY,seed_json TEXT NOT NULL,state TEXT NOT NULL CHECK(state IN ('new','gathering','needs_approval','approved','executing','completed','failed','rejected','cancelled','stale','review_required')),version INTEGER NOT NULL CHECK(version>=1),proposal_id TEXT,error_json TEXT,created_at TEXT NOT NULL,updated_at TEXT NOT NULL,reconcile_requested INTEGER NOT NULL DEFAULT 0);
-CREATE TABLE IF NOT EXISTS evidence(id TEXT PRIMARY KEY,case_id TEXT NOT NULL REFERENCES cases(id),source TEXT NOT NULL,payload_json TEXT NOT NULL);
-CREATE TABLE IF NOT EXISTS proposals(id TEXT PRIMARY KEY,case_id TEXT NOT NULL REFERENCES cases(id),version INTEGER NOT NULL,payload_json TEXT NOT NULL,hash TEXT NOT NULL,created_at TEXT NOT NULL,expires_at TEXT NOT NULL,UNIQUE(case_id,version));
-CREATE TABLE IF NOT EXISTS approvals(id TEXT PRIMARY KEY,case_id TEXT NOT NULL REFERENCES cases(id),proposal_id TEXT NOT NULL UNIQUE REFERENCES proposals(id),payload_json TEXT NOT NULL);
-CREATE TABLE IF NOT EXISTS operations(id TEXT PRIMARY KEY,case_id TEXT NOT NULL REFERENCES cases(id),ordinal INTEGER NOT NULL CHECK(ordinal IN(1,2)),key TEXT NOT NULL UNIQUE,state TEXT NOT NULL CHECK(state IN ('pending','in_flight','unknown','succeeded','rejected')),attempts INTEGER NOT NULL DEFAULT 0,worker_generation INTEGER NOT NULL DEFAULT 0,payload_json TEXT NOT NULL,UNIQUE(case_id,ordinal));
-CREATE TABLE IF NOT EXISTS audit_events(id INTEGER PRIMARY KEY AUTOINCREMENT,case_id TEXT NOT NULL REFERENCES cases(id),kind TEXT NOT NULL,payload_json TEXT NOT NULL,created_at TEXT NOT NULL);
-CREATE TABLE IF NOT EXISTS api_idempotency(key TEXT PRIMARY KEY,fingerprint TEXT NOT NULL,status INTEGER NOT NULL,response_json TEXT NOT NULL,created_at TEXT NOT NULL);
-CREATE TABLE IF NOT EXISTS agent_runs(id TEXT PRIMARY KEY,case_id TEXT NOT NULL REFERENCES cases(id),payload_json TEXT NOT NULL);
-CREATE TABLE IF NOT EXISTS worker_lease(singleton INTEGER PRIMARY KEY CHECK(singleton=1),owner_id TEXT NOT NULL,pid INTEGER NOT NULL,generation INTEGER NOT NULL,heartbeat_at TEXT NOT NULL,acquired_at TEXT NOT NULL);
-"""
 
 def connect(path: Path) -> sqlite3.Connection:
     path.parent.mkdir(parents=True, exist_ok=True)
     con = sqlite3.connect(path, isolation_level=None, timeout=5)
     con.row_factory = sqlite3.Row
-    con.execute("PRAGMA foreign_keys=ON")
-    con.execute("PRAGMA journal_mode=WAL")
-    con.execute("PRAGMA busy_timeout=5000")
-    con.executescript(SCHEMA)
-    con.execute("INSERT OR IGNORE INTO schema_migrations VALUES(1,datetime('now'))")
-    return con
+    try:
+        con.execute("PRAGMA foreign_keys=ON")
+        con.execute("PRAGMA journal_mode=WAL")
+        con.execute("PRAGMA busy_timeout=5000")
+        exists = con.execute(
+            "SELECT name FROM sqlite_master WHERE name='schema_migrations'"
+        ).fetchone()
+        version = (
+            con.execute("SELECT COALESCE(MAX(version),0) FROM schema_migrations").fetchone()[0]
+            if exists
+            else 0
+        )
+        if version not in {0, 1}:
+            raise RuntimeError("unsupported_schema_version")
+        if version == 0:
+            schema = (Path(__file__).parent / "migrations/001_initial.sql").read_text()
+            con.executescript(
+                "BEGIN IMMEDIATE;\n"
+                + schema
+                + "\nINSERT OR IGNORE INTO schema_migrations VALUES(1,datetime('now'));\nCOMMIT;"
+            )
+        return con
+    except BaseException:
+        if con.in_transaction:
+            con.rollback()
+        con.close()
+        raise

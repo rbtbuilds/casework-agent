@@ -1,0 +1,21 @@
+{
+  "as_of": "2026-10-15T12:00:00+00:00",
+  "order": {
+    "annotations": [],
+    "note": "Fictional carrier depot changed shift.",
+    "order_id": "o-holdout-stale_approval-04",
+    "policy_exception": null,
+    "shipment_id": "s-holdout-stale_approval-04",
+    "status": "in_transit",
+    "version": 1
+  },
+  "scenario_id": "holdout-stale_approval-04",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [],
+    "last_event_at": "2026-10-11T12:00:00+00:00",
+    "shipment_id": "s-holdout-stale_approval-04",
+    "status": "delayed",
+    "version": 1
+  }
+}

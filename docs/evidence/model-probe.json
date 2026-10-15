@@ -1,0 +1,9 @@
+{
+  "protocol_valid": false,
+  "reply": {
+    "text": "{\"kind\":\"tool\",\"name\":\"get_policy\"}",
+    "input_tokens": 36,
+    "output_tokens": 10,
+    "elapsed_ms": 1416.111916769296
+  }
+}

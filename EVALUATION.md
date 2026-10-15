@@ -1,6 +1,6 @@
 # Casework Agent evaluation design
 
-Status: planned evaluation. No results have been measured.
+Status: implemented and measured locally on2026-10-15. Fixture and actual-model evidence are separate; the actual Qwen quality gate fails.
 
 ## Baseline and split
 
@@ -48,3 +48,10 @@ Fixture acceptance requires strict Python/TypeScript checks including tests, uni
 Real-model acceptance uses Qwen/Qwen2.5-1.5B-Instruct through project-local MLX LM. Explicitly download and hash an immutable public snapshot, probe schema-valid JSON tool selection in the owned model subprocess, then run the full held-out evaluation with complete traces and review of factual claims. The parent benchmark process owns the shared lease for the full run; do not load before acquiring it or retain the child after release. No server configuration, cloud keys or paid resources are required. An actual download/runtime/probe failure, occupied lease or missing review affects that gate only; report it exactly and finish independent fixture work. A quality failure must be reported as measured, without adapting to holdout answers or silently changing models.
 
 Save full generated reports under ignored `.runtime/reports/`. A small curated report can be copied deliberately into `docs/evidence/` only after inspecting its content and preserving the inputs/hashes needed to reproduce it. No result has been measured or curated during planning.
+
+
+## Observed v1 results
+
+The [fixture report](docs/evidence/fixture-full.json) records30/30valid actions,30/30expected final outcomes and24/24authorised completions. Six stale cases produced no writes. The [actual Qwen report](docs/evidence/qwen-full.json) records0/30valid actions,0/30expected outcomes and0/24authorised completions,with30invalid_model_output failures. Both runs observed zero unapproved writes and duplicate effects. These are defined synthetic cases,not a general safety guarantee.
+
+The actual model runtime loaded,but the smoke response omitted arguments. Invalid held-out outputs never reached approval. All model claims and traces remain available; human review is pending,so unsupported-claim counts are null. The initial measured source tree was dirty and is recorded as such. See MODEL-CONFIG and STATE for runtime details,subsequent checkpoints and limitations. No prompt or model was silently changed to fit the held-out answers.

@@ -10,7 +10,8 @@ class TicketCreate(StrictModel):
     action: Action
     queue: Queue
     priority: Literal["normal"]
-    internal_note: str = Field(min_length=1,max_length=500)
+    internal_note: str = Field(min_length=1, max_length=500)
+
 
 class AnnotationCreate(StrictModel):
     order_id: str

@@ -16,7 +16,16 @@ async def test_drop_after_ticket_commit_recovers_once(tmp_path: Path) -> None:
         try:
             case = repo.get_case(id)
             assert case.proposal
-            await flow.decide(id, ApprovalRequest(proposal_id=case.proposal.id, proposal_hash=case.proposal.hash, expected_case_version=case.version, decision="approve"), "approve")
+            await flow.decide(
+                id,
+                ApprovalRequest(
+                    proposal_id=case.proposal.id,
+                    proposal_hash=case.proposal.hash,
+                    expected_case_version=case.version,
+                    decision="approve",
+                ),
+                "approve",
+            )
             worker = Worker(repo, flow.settings)
             for _ in range(8):
                 await worker.tick()
@@ -26,7 +35,9 @@ async def test_drop_after_ticket_commit_recovers_once(tmp_path: Path) -> None:
             assert (await system.counts()).tickets == 1
             assert (await system.counts()).annotations == 1
             with pytest.raises(Conflict, match="execution_started"):
-                repo.command(id, "cancel", VersionRequest(expected_case_version=result.version), "cancel")
+                repo.command(
+                    id, "cancel", VersionRequest(expected_case_version=result.version), "cancel"
+                )
             await worker.close()
         finally:
             repo.close()
@@ -39,8 +50,19 @@ async def test_cancel_wins_before_claim_and_second_worker_is_fenced(tmp_path: Pa
         try:
             case = repo.get_case(id)
             assert case.proposal
-            approved = await flow.decide(id, ApprovalRequest(proposal_id=case.proposal.id, proposal_hash=case.proposal.hash, expected_case_version=case.version, decision="approve"), "approve")
-            repo.command(id, "cancel", VersionRequest(expected_case_version=approved.version), "cancel")
+            approved = await flow.decide(
+                id,
+                ApprovalRequest(
+                    proposal_id=case.proposal.id,
+                    proposal_hash=case.proposal.hash,
+                    expected_case_version=case.version,
+                    decision="approve",
+                ),
+                "approve",
+            )
+            repo.command(
+                id, "cancel", VersionRequest(expected_case_version=approved.version), "cancel"
+            )
             first, second = Worker(repo, flow.settings), Worker(repo, flow.settings)
             await first.tick()
             assert not await second.tick()
