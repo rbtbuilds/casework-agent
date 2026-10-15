@@ -40,7 +40,7 @@ class TestSystem:
         self.root.mkdir(parents=True, exist_ok=True)
         log = (self.root / f"{name}.log").open("wb")
         env = dict(os.environ, CASEWORK_ROOT=str(self.root))
-        proc = subprocess.Popen([sys.executable, "-m", module, "--root", str(self.root), "--port", str(port), *(extra or [])], cwd=ROOT, stdout=log, stderr=log, env=env)
+        proc = await asyncio.to_thread(subprocess.Popen, [sys.executable, "-m", module, "--root", str(self.root), "--port", str(port), *(extra or [])], cwd=ROOT, stdout=log, stderr=log, env=env)
         log.close()
         self.processes[name] = proc
         async with httpx.AsyncClient() as client:

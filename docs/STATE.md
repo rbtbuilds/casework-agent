@@ -48,3 +48,5 @@ The optional human contribution is 5-10 lines of delivery-exception policy or in
 Task1: Python3.12.14, feature branch feat/casework-agent-v1. Storage reopen/hash/health tests passed. Model weights absent. Initial shared pytest housekeeping warnings resolved by project-local --basetemp; foreign files left alone.
 
 Task2: Three independent mock processes/SQLite databases verified. Dropped response uses original content length so the real HTTP client observes transport loss,not a valid short body. Concurrent same-key tickets produce one persisted effect; replay precedes annotation CAS.
+
+Task2 check correction: the first commit command continued after Ruff reported import ordering and blocking test-process startup. Both were fixed immediately; the fresh run passed5tests,Ruff,and strict Pyright. Later commit gates use set -e.

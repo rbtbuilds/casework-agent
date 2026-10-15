@@ -11,10 +11,10 @@ from fastapi.responses import JSONResponse, Response, StreamingResponse
 from starlette.middleware.base import RequestResponseEndpoint
 
 from casework_agent.contracts import Order, Shipment
+from casework_agent.hashing import canonical_json
 
 from .contracts import AnnotationCreate, TicketCreate
 from .faults import FaultConfig
-from casework_agent.hashing import canonical_json
 from .storage import MockStore
 
 type ServiceKind = Literal["orders","carrier","tickets"]
