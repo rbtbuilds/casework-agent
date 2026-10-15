@@ -6,7 +6,7 @@ A local delivery-exception workbench that gathers evidence from independent APIs
 
 ![Actual fixture workbench before approval](docs/evidence/desktop-light.png)
 
-The application works in labelled fixture mode. The selected Qwen model runs locally through MLX, but its measured v1 quality gate **fails**: 0/30 valid held-out actions. The validator rejected every invalid proposal before any write. This repository preserves that result rather than presenting the deterministic workflow as AI performance.
+The application works in labelled fixture mode. The selected Qwen model runs locally through MLX, but its measured v1 quality gate **fails**: 0/30 valid held-out actions. Every invalid run stopped before any write. This repository preserves that result rather than presenting the deterministic workflow as AI performance.
 
 ## Run locally
 

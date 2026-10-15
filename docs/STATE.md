@@ -1,6 +1,6 @@
 # Casework Agent state
 
-Updated: 2026-10-15. All ten implementation tasks are complete. Matthew authorized a fresh review and creation/publication of the missing public GitHub repository. Publication is pending the final verification and push recorded below. Work remains scoped to this independent checkout on `feat/casework-agent-v1`.
+Updated: 2026-10-15. All ten implementation tasks are complete. Matthew authorized a fresh review and creation/publication of the missing public GitHub repository. The public repository is [rbtbuilds/casework-agent](https://github.com/rbtbuilds/casework-agent), with default branch `main`. Source and documentation were pushed at `9140ba8`; GitHub CI status is recorded below. Work remains scoped to this independent checkout on `feat/casework-agent-v1`.
 
 ## Current verification
 
@@ -14,7 +14,7 @@ A scan of 196 tracked/new nonignored publication files found no credential-patte
 
 The browser suite exercises approval/replay with both remote response drops, expiry/renewal, and a browser response lost after the actual API commit followed by identical body/key retry. Tested Axe scans have zero findings in both themes and at 375px/1440px with reduced motion. Mobile and desktop captures were visually inspected. Manual screen-reader testing remains unperformed.
 
-Python 3.12.14, uv 0.12.5 and Node 26.7.0 are the tested local runtimes. CI targets Python 3.12 and Node 24; external CI has not yet run. Dependencies are locked. Vite 8.3.4, React 19.3.1, TypeScript 5.9.3, MLX LM 0.32.0 and MLX 0.32.4 were used in the original implementation. Hardware: Apple M5 Pro, 24 GiB.
+Python 3.12.14, uv 0.12.5 and Node 26.7.0 are the tested local runtimes. GitHub CI targets Python 3.12 and Node 24 on Ubuntu. Its first external run is [38810735255](https://github.com/rbtbuilds/casework-agent/actions/runs/38810735255), against `9140ba8`. The run **passed**, including locked installation, all 73 Python tests, eight component tests, all three real-service browser flows, strict checks, production build and contract regeneration. It establishes Linux/Node 24 verification separately from the local Node 26 exception. Dependencies are locked. Vite 8.3.4, React 19.3.1, TypeScript 5.9.3, MLX LM 0.32.0 and MLX 0.32.4 were used in the original implementation. Hardware: Apple M5 Pro, 24 GiB.
 
 ## Implemented scope
 
@@ -52,7 +52,7 @@ Full traces, manifests, snapshot hashes and provenance are curated under `docs/e
 
 The actual model quality gate fails. Human claims review, manual screen-reader testing and a recorded two-minute walkthrough remain unperformed. The walkthrough document is a presenter guide. There is no distributed exactly-once guarantee, cross-service rollback, public authentication or production validation.
 
-The original developer demo was running when this review began. Its process ownership was verified and it was stopped with `scripts/dev.py stop` for tests. Its existing databases remain intact; it will be restored after the final port-owning checks. Ports are API 8112, web 5112, orders 8212, carrier 8312 and tickets 8412, all loopback.
+The original developer demo was running when this review began. It was stopped through the ownership-checked helper for tests, then restored after the final port-owning checks with its databases intact. All five HTTP endpoints returned 200. The restored owner record is `.runtime/dev/processes.json`: orders PID 71865, carrier 71866, tickets 71867, API/worker 71868, web 71869, checked on 2026-10-15. PIDs are transient; use `scripts/dev.py status` for current ownership. Ports are API 8112, web 5112, orders 8212, carrier 8312 and tickets 8412, all loopback.
 
 Run from the repository root: `uv sync --locked`, `npm --prefix web ci`, then `uv run python scripts/dev.py start`. Open <http://127.0.0.1:5112>. Inspect with `uv run python scripts/dev.py status`; stop with `uv run python scripts/dev.py stop`. Keep fixture/model labels visible. Future model improvements need development-set work and a new separately reviewed evaluation, not tuning against this failed holdout.
 
@@ -60,4 +60,4 @@ No sibling, parent, resume, vault, registry or machine configuration was changed
 
 ## History
 
-Planning `d6aa779`; task 1 `ce85f6e`; task 2 `4938667`/`ec3c145`; task 3 `ae7c8f0`; task 4 `8801131`; task 5 `395ec54`; task 6 `6c70f17`; task 7 `8a4c49c`; task 8 `bbd7851`; task 9 `2608b76`; task 10 `009b67e`; original review fixes `1da911f`; original final evidence/docs `92534bb`. Pre-publication runtime fixes: `33c3efa`. Documentation and publication evidence follow that verified source.
+Planning `d6aa779`; task 1 `ce85f6e`; task 2 `4938667`/`ec3c145`; task 3 `ae7c8f0`; task 4 `8801131`; task 5 `395ec54`; task 6 `6c70f17`; task 7 `8a4c49c`; task 8 `bbd7851`; task 9 `2608b76`; task 10 `009b67e`; original review fixes `1da911f`; original final evidence/docs `92534bb`. Pre-publication runtime fixes: `33c3efa`; publication documentation: `9140ba8`. The latter is the initial GitHub `main` commit. Local branch `feat/casework-agent-v1` tracks `origin/main`; no history was rewritten. Private vulnerability reporting is enabled. Further documentation evidence follows that verified source.
