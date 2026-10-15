@@ -1,10 +1,10 @@
 # Local runbook
 
-Run every command from the root of this repository. Nothing here requires a cloud account or a paid service. All business records are original fiction.
+Run these commands from the repository root. The demo uses synthetic business records and requires no cloud credentials.
 
 ## Bootstrap and run
 
-Use Python 3.12 with uv. CI uses Node 24 LTS. This Mac was also tested with Node 26.7.0; Vite 8 accepts Node >=22.12. Do not replace a global runtime.
+Use Python 3.12 with uv and Node.js 24 LTS, matching the CI configuration. Fixture verification covers Ubuntu and macOS; optional MLX inference requires Apple Silicon. Benchmark hardware and runtime versions are recorded in [MODEL-CONFIG](MODEL-CONFIG.md).
 
 ```sh
 uv sync --locked

@@ -1,6 +1,6 @@
-# Portfolio release standard
+# Release checklist
 
-A project is ready for the portfolio when another engineer can run it, inspect the evidence and understand its limits. A documented design is a planned project, not a shipped application.
+A release must provide a reproducible setup, inspectable evidence and clear operating limits. Design documents alone do not establish implementation or acceptance.
 
 ## Repository contents
 
@@ -24,7 +24,7 @@ Before implementation, define typography, spacing, palette, responsive behavior,
 
 Bound file sizes, job duration, concurrency and model calls. Provide cancellation, readable failures, request identifiers and health status where relevant. Document restart and recovery behavior. Do not claim deployment, latency or throughput on hardware that was not tested.
 
-## Portfolio case study
+## Case study
 
 Explain the intended user, current manual workflow, constraints and acceptance criteria. Show the baseline and the measured change, a meaningful failure, and a technical decision made from evidence. Use a reproducible local simulation where no real customer pilot exists. Never describe simulated time savings as customer impact.
 
@@ -32,4 +32,4 @@ A two-minute walkthrough should show input, processing, evidence, an error or un
 
 ## Publication boundary
 
-Publish each child repository independently after its scope is accepted. Never initialise or publish a repository at the portfolio parent: its legacy folders are unrelated and may contain private material. Exclude local datasets, recordings, model weights, credentials, caches and generated benchmark output by default. Review explicit release artifacts separately.
+Verify the intended Git root and release scope before publication. Exclude unrelated repositories and private material. Exclude local datasets, recordings, model weights, credentials, caches and generated benchmark output by default. Review explicit release artifacts separately.

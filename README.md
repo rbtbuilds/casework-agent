@@ -2,15 +2,15 @@
 
 [![Fixture verification](https://github.com/rbtbuilds/casework-agent/actions/workflows/ci.yml/badge.svg)](https://github.com/rbtbuilds/casework-agent/actions/workflows/ci.yml)
 
-A local delivery-exception workbench that gathers evidence from independent APIs, proposes an internal action, waits for exact human approval, and recovers uncertain writes using durable journals. All business records and effects are fictional.
+A human-approved agent workflow for delivery exceptions, built with FastAPI, React, TypeScript and SQLite. It gathers evidence from independent order and carrier APIs, proposes an internal action, and recovers interrupted ticket and annotation writes through durable journals. The demo uses synthetic business records.
 
-![Actual fixture workbench before approval](docs/evidence/desktop-light.png)
+![Delivery-exception workbench with source evidence and a proposal awaiting approval](docs/evidence/desktop-light.png)
 
-The application works in labelled fixture mode. The selected Qwen model runs locally through MLX, but its measured v1 quality gate **fails**: 0/30 valid held-out actions. Every invalid run stopped before any write. This repository preserves that result rather than presenting the deterministic workflow as AI performance.
+**Current status:** the deterministic fixture workflow passes the 30-case held-out evaluation. The experimental Qwen/MLX adapter scored 0/30 valid actions; invalid outputs stopped before any write. Both results are published with traces and reproducible inputs below.
 
 ## Run locally
 
-Use Python 3.12 with uv and Node 24 LTS. Node 26.7.0 was also tested on this Mac.
+Requirements: **Python 3.12**, **uv** and **Node.js 24 LTS**. The fixture workflow is verified on macOS and in Ubuntu CI. Optional model inference requires macOS on Apple Silicon.
 
 ```sh
 git clone https://github.com/rbtbuilds/casework-agent.git
@@ -23,9 +23,9 @@ uv run python scripts/dev.py status
 uv run python scripts/dev.py stop
 ```
 
-Choose **Fixture workflow**, open the delayed delivery example, inspect the source records and exact note, then approve. The final view shows a confirmed ticket and confirmed order annotation. Both the application and three mocks use real local HTTP; each service owns a separate SQLite database.
+Choose **Fixture workflow**, open the delayed delivery example, inspect the source records and exact note, then approve. The final view shows a confirmed ticket and confirmed order annotation. The application calls three independent HTTP services, each backed by its own SQLite database.
 
-Use `uv run --extra model python scripts/model_session.py prepare` to download/hash the public checkpoint, then `uv run --extra model python scripts/model_session.py probe` to check protocol output. Model execution requires Apple Silicon and the optional MLX dependencies; see [the runbook](docs/RUNBOOK.md). There are no cloud credentials or paid resources. A model failure never switches to fixture mode.
+Use `uv run --extra model python scripts/model_session.py prepare` to download/hash the public checkpoint, then `uv run --extra model python scripts/model_session.py probe` to check protocol output. See [model setup and evaluation](docs/RUNBOOK.md#local-qwen) for the optional MLX dependencies. The demo requires no cloud credentials. A model failure remains visible; fixture mode is selected explicitly.
 
 ## Durable approval and recovery
 
@@ -63,7 +63,7 @@ The actual Qwen snapshot loaded successfully, but its smoke request omitted a re
 
 ## Validation and operation
 
-[RUNBOOK](docs/RUNBOOK.md) contains exact commands, ownership checks, ports, model lease, backups, evaluation and reconciliation. [Failure matrix](docs/failure-matrix.md) documents process and HTTP fault evidence. [STATE](docs/STATE.md) records current checks, commits and limitations. [Walkthrough guide](docs/WALKTHROUGH.md) explains the two-minute demonstration sequence; it is not a recording.
+The [runbook](docs/RUNBOOK.md) covers setup, process lifecycle, model execution, backups and recovery. For implementation detail, see [engineering decisions](docs/ENGINEERING-DECISIONS.md), the [failure matrix](docs/failure-matrix.md) and [verification status](docs/STATE.md). A [walkthrough guide](docs/WALKTHROUGH.md) describes the demonstration sequence.
 
 To verify the project, stop its demo first, then run:
 
@@ -80,10 +80,8 @@ PLAYWRIGHT_BROWSERS_PATH="$PWD/.runtime/pw-browsers" npm --prefix web run e2e
 
 Strict Python/TypeScript checks include tests. Pytest exercises real subprocess services and restart boundaries. Vitest checks approval/outcome components, delayed response ordering and saved-request retries. Playwright exercises actual service writes, dropped responses, approval replay, keyboard operation, responsive themes and automated accessibility checks. Manual screen-reader testing remains unperformed. Fixture CI downloads no model weights.
 
-The pre-publication review and regression evidence are recorded in [the review log](docs/REVIEW-2026-10-15.md).
-
-The code and original fixtures are [MIT licensed](LICENSE). Qwen assets retain their separate model terms; weights stay ignored. Publishing the source does not deploy a service. This workbench binds to loopback and is not a public-facing production application.
+The workbench is a single-operator simulation bound to loopback. It has no public authentication or cross-service rollback. The code and original fixtures are [MIT licensed](LICENSE); Qwen assets retain their separate model terms. Model weights are excluded from the repository.
 
 ## Contributing
 
-See [CONTRIBUTING](CONTRIBUTING.md) for local checks and change expectations, [SECURITY](SECURITY.md) for operating boundaries and vulnerability reporting, and [CHANGELOG](CHANGELOG.md) for the implemented scope. Historical planning files are retained for traceability; the README and current state describe the maintained application.
+See [CONTRIBUTING](CONTRIBUTING.md) for local checks and change expectations, [SECURITY](SECURITY.md) for operating boundaries and vulnerability reporting, and [CHANGELOG](CHANGELOG.md) for the implemented scope. The [design specification](docs/SPEC.md) and [original implementation plan](docs/superpowers/plans/2026-10-15-v1.md) retain the design history.

@@ -47,7 +47,7 @@ Fixture acceptance requires strict Python/TypeScript checks including tests, uni
 
 Real-model acceptance uses Qwen/Qwen2.5-1.5B-Instruct through project-local MLX LM. Explicitly download and hash an immutable public snapshot, probe schema-valid JSON tool selection in the owned model subprocess, then run the full held-out evaluation with complete traces and review of factual claims. The parent benchmark process owns the shared lease for the full run; do not load before acquiring it or retain the child after release. No server configuration, cloud keys or paid resources are required. An actual download/runtime/probe failure, occupied lease or missing review affects that gate only; report it exactly and finish independent fixture work. A quality failure must be reported as measured, without adapting to holdout answers or silently changing models.
 
-Save full generated reports under ignored `.runtime/reports/`. A small curated report can be copied deliberately into `docs/evidence/` only after inspecting its content and preserving the inputs/hashes needed to reproduce it. No result has been measured or curated during planning.
+Save full generated reports under ignored `.runtime/reports/`. A small curated report can be copied deliberately into `docs/evidence/` only after inspecting its content and preserving the inputs/hashes needed to reproduce it. Published reports are listed below; each identifies its measured source commit.
 
 ## Observed v1 results
 

@@ -3,10 +3,9 @@
 ## Scope and entry
 
 - Work only inside this repository's verified checkout. Confirm the working directory, Git root, branch, status and remotes before writing. Never initialize or publish a parent folder.
-- On Matthew's Bento Labs workstation, this chat owns `/Users/matthewgoralczyk/BentoLabs/portfolio/casework-agent`; the parent `/Users/matthewgoralczyk/BentoLabs/portfolio/AGENTS.md` also applies. Other portfolio projects may be running concurrently. Do not modify siblings, the resume workspace, vault, project registries or machine configuration.
+- Read any applicable parent AGENTS.md before editing. Changes must remain within this repository; do not modify sibling projects, external workspaces or machine configuration.
 - Read README.md, docs/STATE.md, docs/SPEC.md, EVALUATION.md and docs/ENGINEERING-DECISIONS.md. The application already exists. CHAT-HANDOFF.md and the original ten-task plan are historical implementation records, not instructions to reinitialize or rebuild it.
 - Read changed files, callers and relevant tests before editing. Preserve unrelated work. Use feature branches for changes and scoped commits when requested. Do not force-push or rewrite published history.
-- In conversations with Matthew, the first word of every reply is `Matthew`.
 
 ## Runtime and ownership
 

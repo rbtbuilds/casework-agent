@@ -1,6 +1,6 @@
 # Acceptance record
 
-Implementation date: 2026-10-15. This is a local single-operator simulation. No public release or production acceptance is claimed.
+Implementation date: 2026-10-15. Acceptance covers a single-operator simulation with synthetic business data. Production deployment and model-quality acceptance remain outside the verified results.
 
 | Gate                                                    | Observed result                                                      |
 | ------------------------------------------------------- | -------------------------------------------------------------------- |
@@ -24,6 +24,6 @@ The initial reports were measured on an in-progress dirty tree and identify the 
 
 Python fault checks use real HTTP services, owned database reopen checkpoints and a real application subprocess restart. They do not establish arbitrary distributed exactly-once execution. Browser checks include keyboard approval and reduced motion; automated checks cannot certify all assistive technology behavior.
 
-No model, fixture or screenshot contains real customer data. All third-party model terms remain separate. Weights, bulk runtime files and credentials remain ignored. Source publication is authorized separately from deployment. See STATE.md for the current publication status; no deployment or external communications are implied.
+No model, fixture or screenshot contains real customer data. All third-party model terms remain separate. Weights, bulk runtime files and credentials remain ignored. The application binds to loopback and has no public authentication or tenant isolation.
 
 Original implementation verification: clean checkpoint `1da911fb12bb896e750248a67f22345bf3d7892b` passed 53 Python tests, 5 component tests, all 3 browser flows and strict checks from a fresh archive. Latest evaluation reports record dirty=false; initial dirty-tree reports are retained separately. Model quality still fails; human claims and manual screen-reader reviews remain pending.
