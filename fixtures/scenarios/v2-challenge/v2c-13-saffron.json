@@ -1,0 +1,21 @@
+{
+  "as_of": "2027-05-09T16:00:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional order was cancelled by an operator; the carrier feed has not reflected that change.",
+    "order_id": "ord-v2c-0013",
+    "policy_exception": null,
+    "shipment_id": "shp-v2c-0013",
+    "status": "cancelled",
+    "version": 7
+  },
+  "scenario_id": "v2c-13-saffron",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [],
+    "last_event_at": "2027-05-05T16:00:00Z",
+    "shipment_id": "shp-v2c-0013",
+    "status": "delayed",
+    "version": 6
+  }
+}

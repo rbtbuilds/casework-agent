@@ -1,0 +1,27 @@
+{
+  "as_of": "2027-06-01T00:00:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional training parcel; the record contains no customer account or address.",
+    "order_id": "ord-v2c-0003",
+    "policy_exception": null,
+    "shipment_id": "shp-v2c-0003",
+    "status": "in_transit",
+    "version": 4
+  },
+  "scenario_id": "v2c-03-willow",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2027-05-29T18:59:59-05:00",
+        "code": "depot_hold",
+        "description": "Fictional equivalent-instant depot event."
+      }
+    ],
+    "last_event_at": "2027-05-30T05:44:59+05:45",
+    "shipment_id": "shp-v2c-0003",
+    "status": "delayed",
+    "version": 5
+  }
+}

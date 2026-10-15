@@ -1,0 +1,27 @@
+{
+  "as_of": "2027-02-10T14:00:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional training parcel; the record contains no customer account or address.",
+    "order_id": "ord-v2c-0021",
+    "policy_exception": null,
+    "shipment_id": "shp-v2c-0021",
+    "status": "in_transit",
+    "version": 1
+  },
+  "scenario_id": "v2c-21-basil",
+  "shipment": {
+    "conflicting_events": true,
+    "events": [
+      {
+        "at": "2027-02-07T13:00:00Z",
+        "code": "held",
+        "description": "Fictional visible event; another feed is unresolved."
+      }
+    ],
+    "last_event_at": "2027-02-07T14:00:00Z",
+    "shipment_id": "shp-v2c-0021",
+    "status": "delayed",
+    "version": 5
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "as_of": "2027-09-10T12:00:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional training parcel; the record contains no customer account or address.",
+    "order_id": "ord-v2c-0012",
+    "policy_exception": null,
+    "shipment_id": "shp-v2c-0012",
+    "status": "in_transit",
+    "version": 6
+  },
+  "scenario_id": "v2c-12-quartz",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2027-09-07T11:00:00",
+        "code": "sort_scan",
+        "description": "Fictional event with unspecified timezone."
+      }
+    ],
+    "last_event_at": "2027-09-07T12:00:00Z",
+    "shipment_id": "shp-v2c-0012",
+    "status": "delayed",
+    "version": 5
+  }
+}

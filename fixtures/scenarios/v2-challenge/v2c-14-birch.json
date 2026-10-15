@@ -1,0 +1,21 @@
+{
+  "as_of": "2027-01-17T03:00:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional training parcel; the record contains no customer account or address.",
+    "order_id": "ord-v2c-0014",
+    "policy_exception": null,
+    "shipment_id": "shp-v2c-0014",
+    "status": "delivered",
+    "version": 1
+  },
+  "scenario_id": "v2c-14-birch",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [],
+    "last_event_at": "2027-01-13T03:00:00Z",
+    "shipment_id": "shp-v2c-0014",
+    "status": "delayed",
+    "version": 7
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "as_of": "2027-11-01T00:05:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional training parcel; the record contains no customer account or address.",
+    "order_id": "ord-v2c-0030",
+    "policy_exception": "Fictional customs-document hold needs a policy owner; delivery-v1 defines no exception workflow.",
+    "shipment_id": "shp-v2c-0030",
+    "status": "in_transit",
+    "version": 3
+  },
+  "scenario_id": "v2c-30-meadow",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [],
+    "last_event_at": "2027-10-30T00:05:00Z",
+    "shipment_id": "shp-v2c-0030",
+    "status": "delayed",
+    "version": 5
+  }
+}

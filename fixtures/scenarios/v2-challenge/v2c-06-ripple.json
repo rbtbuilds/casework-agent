@@ -1,0 +1,21 @@
+{
+  "as_of": "2027-04-01T08:00:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional depot memo calls this a four-day hold; the structured scan was corrected later.",
+    "order_id": "ord-v2c-0006",
+    "policy_exception": null,
+    "shipment_id": "shp-v2c-0006",
+    "status": "in_transit",
+    "version": 7
+  },
+  "scenario_id": "v2c-06-ripple",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [],
+    "last_event_at": "2027-04-01T11:00:00+09:00",
+    "shipment_id": "shp-v2c-0006",
+    "status": "delayed",
+    "version": 8
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "blindness": {
+    "provided_case_oracles_to_main_before_model_freeze": false,
+    "opened_current_development_output_files": false,
+    "read_existing_fixture_labels_for_case_design": false,
+    "read_model_adapter_or_worker": false
+  },
+  "created_at": "2026-10-15T22:01:52.787793+00:00",
+  "design_git_head": "d8956e035af8f30f4255a9e39a0182048105dfea",
+  "generation_method": "Hand-authored literal design serialized by generate.py; no randomness, model calls, or generated oracle labels.",
+  "limitations": [
+    "Synthetic edge-focused set, not an unbiased industrial benchmark.",
+    "No model or end-to-end HTTP execution during private design; these are reserved for the frozen downstream run.",
+    "Timezone-naive carrier timestamps are schema-valid business uncertainty under the current source contracts.",
+    "After all case inputs and manual oracles were authored, the coordinator sent an unsolicited aggregate development-status message. The case design was not changed in response; no per-case model output was accessed."
+  ],
+  "source_sha256": {
+    "EVALUATION.md": "2aac6665ca2116085bafd4f27f5f864cc89c8052ad86f141201e7ac0b028b9ca",
+    "docs/SPEC.md": "418098ea388fdc1c27a80bc30ca05ab1c298761d24d33db5e78d9710380d46b1",
+    "eval/contracts.py": "29051ef36b3c646640a04f6e32a2cd0bdccb70ad64de9dd21e2dc9b1e28ce571",
+    "eval/services.py": "110f72d1ae7127b1e486598ef5cbc856289fc85877347b7e826c1998aa65ea8d",
+    "mocks/service.py": "24a906c0654859bb72223fd6bc4f7cefb85e7b9399162dd72eac679722e9d50c",
+    "scripts/freeze_scenarios.py": "cc2e4e67c059b4e68baedff7f273fa87524d9ccd54d81cfd02e10356c3ca0961",
+    "src/casework_agent/contracts.py": "4992248a04f9fa6c0d908b8999e47a5be34c4eff10d9b199d4b7e627fb24903d",
+    "src/casework_agent/policy.py": "f5053a636ad2d3ccba0e236cc6cb4580e8255fab8e84562cb41ab85f6dbf0f70"
+  },
+  "source_record_sha256": "f3079c0a5cd260d0bf101e1cdaf09eaec11b832cc1bf6e66a7a479248654ea7b",
+  "omitted_authoring_metadata": [
+    "workstation note-inventory status",
+    "coordinator-specific read restrictions",
+    "private staging locations"
+  ]
+}

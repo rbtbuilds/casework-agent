@@ -1,0 +1,21 @@
+{
+  "as_of": "2027-04-27T17:00:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional training parcel; the record contains no customer account or address.",
+    "order_id": "ord-v2c-0022",
+    "policy_exception": "Fictional cold-chain handling requires a specialist decision outside delivery-v1.",
+    "shipment_id": "shp-v2c-0022",
+    "status": "in_transit",
+    "version": 2
+  },
+  "scenario_id": "v2c-22-elm",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [],
+    "last_event_at": "2027-04-24T17:00:00Z",
+    "shipment_id": "shp-v2c-0022",
+    "status": "delayed",
+    "version": 6
+  }
+}
