@@ -1,0 +1,27 @@
+{
+  "as_of": "2033-02-28T23:59:59.999999Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional carrier expanded history contains a scan beyond the immutable case cutoff.",
+    "order_id": "c92dbeab-00b1-5602-9c0a-b6c3cbe956c2",
+    "policy_exception": null,
+    "shipment_id": "3ea327fe-118c-5aff-a1a4-f3b931a56398",
+    "status": "in_transit",
+    "version": 59
+  },
+  "scenario_id": "5a1bd13e-596e-5ad7-8edd-5d4ac4e1a4cc",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2033-03-01T00:00:00Z",
+        "code": "conveyor_pause",
+        "description": "Fictional event dated just beyond the cutoff."
+      }
+    ],
+    "last_event_at": "2033-02-25T00:00:00Z",
+    "shipment_id": "3ea327fe-118c-5aff-a1a4-f3b931a56398",
+    "status": "delayed",
+    "version": 89
+  }
+}

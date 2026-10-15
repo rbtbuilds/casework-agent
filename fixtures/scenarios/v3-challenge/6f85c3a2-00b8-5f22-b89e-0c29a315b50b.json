@@ -1,0 +1,27 @@
+{
+  "as_of": "2034-12-29T00:30:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional transport leg is cancelled while another feed still marks the parcel delayed.",
+    "order_id": "5b1a8603-8022-59cf-b6e9-f94129bbffe4",
+    "policy_exception": null,
+    "shipment_id": "28d05d34-4172-5ed1-9f5b-78706ec7db93",
+    "status": "in_transit",
+    "version": 71
+  },
+  "scenario_id": "6f85c3a2-00b8-5f22-b89e-0c29a315b50b",
+  "shipment": {
+    "conflicting_events": true,
+    "events": [
+      {
+        "at": "2034-12-25T23:50:00Z",
+        "code": "cAnCeLlEd",
+        "description": "Fictional leg cancellation contradicts the summary."
+      }
+    ],
+    "last_event_at": "2034-12-26T00:30:00Z",
+    "shipment_id": "28d05d34-4172-5ed1-9f5b-78706ec7db93",
+    "status": "delayed",
+    "version": 107
+  }
+}

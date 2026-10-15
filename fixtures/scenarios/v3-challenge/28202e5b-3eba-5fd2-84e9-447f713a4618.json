@@ -1,0 +1,21 @@
+{
+  "as_of": "2034-06-07T03:45:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional shipment may need return-routing instructions from a policy owner.",
+    "order_id": "43bceec8-80e5-5693-ab7d-12cbaa0c44c6",
+    "policy_exception": "Fictional return-to-origin authorization is outside delivery-v1 and needs a specialist decision.",
+    "shipment_id": "a0a08f5c-a57d-568d-8de6-e7ae7b6bba38",
+    "status": "in_transit",
+    "version": 63
+  },
+  "scenario_id": "28202e5b-3eba-5fd2-84e9-447f713a4618",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [],
+    "last_event_at": "2034-06-04T03:45:00Z",
+    "shipment_id": "a0a08f5c-a57d-568d-8de6-e7ae7b6bba38",
+    "status": "delayed",
+    "version": 95
+  }
+}

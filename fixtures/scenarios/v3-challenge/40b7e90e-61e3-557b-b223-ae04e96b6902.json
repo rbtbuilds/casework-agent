@@ -1,0 +1,32 @@
+{
+  "as_of": "2031-10-04T17:25:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional feed supplied history but omitted its current summary time.",
+    "order_id": "42c9add3-c3c6-5119-a9bf-bbd29434b843",
+    "policy_exception": null,
+    "shipment_id": "0fe35fed-2ea8-5fae-853b-fd9e76fa3e87",
+    "status": "in_transit",
+    "version": 25
+  },
+  "scenario_id": "40b7e90e-61e3-557b-b223-ae04e96b6902",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2031-09-29T10:15:00Z",
+        "code": "received_bin",
+        "description": "Fictional receiving-bin scan."
+      },
+      {
+        "at": "2031-09-30T22:45:00+05:30",
+        "code": "waiting_manifest",
+        "description": "Fictional unresolved transport manifest."
+      }
+    ],
+    "last_event_at": null,
+    "shipment_id": "0fe35fed-2ea8-5fae-853b-fd9e76fa3e87",
+    "status": "delayed",
+    "version": 38
+  }
+}

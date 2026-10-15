@@ -1,0 +1,21 @@
+{
+  "as_of": "2031-04-09T13:13:13Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional imported order has no resolved state; the carrier lists ordinary movement.",
+    "order_id": "990992cb-574a-55fe-879d-e7aa726ffe08",
+    "policy_exception": null,
+    "shipment_id": "2d95c853-3927-538d-ae42-8d08950109a5",
+    "status": "unknown",
+    "version": 49
+  },
+  "scenario_id": "4fada86c-6b91-541f-ae17-353022862da8",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [],
+    "last_event_at": "2031-04-06T13:13:13Z",
+    "shipment_id": "2d95c853-3927-538d-ae42-8d08950109a5",
+    "status": "in_transit",
+    "version": 74
+  }
+}

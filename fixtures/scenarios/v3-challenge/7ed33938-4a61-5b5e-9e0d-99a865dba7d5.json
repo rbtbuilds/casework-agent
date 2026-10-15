@@ -1,0 +1,21 @@
+{
+  "as_of": "2031-07-15T20:20:20.000001Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional parcel is held in a locked transfer cage; no delivery or cancellation has been recorded.",
+    "order_id": "53f02325-b2f4-5889-b904-fb20323f13d7",
+    "policy_exception": null,
+    "shipment_id": "edd73ae3-bcfc-5cc2-9296-aa66bc9e379c",
+    "status": "in_transit",
+    "version": 61
+  },
+  "scenario_id": "7ed33938-4a61-5b5e-9e0d-99a865dba7d5",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [],
+    "last_event_at": "2031-07-13T20:20:20Z",
+    "shipment_id": "edd73ae3-bcfc-5cc2-9296-aa66bc9e379c",
+    "status": "delayed",
+    "version": 92
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "as_of": "2034-02-05T02:02:02Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional back-office record is delivered while the carrier aggregate is still delayed.",
+    "order_id": "bb770ec4-beec-56de-885b-a09c192f45d7",
+    "policy_exception": null,
+    "shipment_id": "27cac05f-9713-572c-8d66-3e4734c8e73b",
+    "status": "delivered",
+    "version": 47
+  },
+  "scenario_id": "b0b15556-7954-5037-a65e-0bf25306b6f2",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2034-01-31T22:22:22Z",
+        "code": "hub_received",
+        "description": "Fictional historical receiving event."
+      }
+    ],
+    "last_event_at": "2034-02-01T02:02:02Z",
+    "shipment_id": "27cac05f-9713-572c-8d66-3e4734c8e73b",
+    "status": "delayed",
+    "version": 71
+  }
+}

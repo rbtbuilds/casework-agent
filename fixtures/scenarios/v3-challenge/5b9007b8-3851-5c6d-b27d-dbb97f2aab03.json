@@ -1,0 +1,21 @@
+{
+  "as_of": "2033-04-01T00:00:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional carton has an intact route label and no delivery scan.",
+    "order_id": "5fe8a1fc-f956-548d-b147-b46f0246459f",
+    "policy_exception": null,
+    "shipment_id": "81c01d6c-6177-58e4-9fc4-0a36b301be44",
+    "status": "in_transit",
+    "version": 17
+  },
+  "scenario_id": "5b9007b8-3851-5c6d-b27d-dbb97f2aab03",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [],
+    "last_event_at": "2033-03-29T23:59:59.999999+00:00",
+    "shipment_id": "81c01d6c-6177-58e4-9fc4-0a36b301be44",
+    "status": "delayed",
+    "version": 26
+  }
+}

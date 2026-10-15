@@ -1,0 +1,21 @@
+{
+  "as_of": "2032-10-13T19:05:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional carrier migration preserved the scan time but did not map its current status.",
+    "order_id": "70133329-e6e5-5916-befa-1e60e74ed48a",
+    "policy_exception": null,
+    "shipment_id": "a64017c8-e615-57e7-ae29-28c180e6d728",
+    "status": "in_transit",
+    "version": 51
+  },
+  "scenario_id": "dee39613-f5bc-5376-8b96-5ca446dcca5e",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [],
+    "last_event_at": "2032-10-10T21:05:00+02:00",
+    "shipment_id": "a64017c8-e615-57e7-ae29-28c180e6d728",
+    "status": "unknown",
+    "version": 77
+  }
+}

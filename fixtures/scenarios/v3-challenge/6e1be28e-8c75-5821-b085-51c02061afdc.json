@@ -1,0 +1,27 @@
+{
+  "as_of": "2033-11-08T05:00:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional depot exported an unlabeled local-clock event during its autumn schedule.",
+    "order_id": "1950ffc2-1d80-5425-abac-8afcb9268d85",
+    "policy_exception": null,
+    "shipment_id": "4057c2d1-b9f9-54fd-9c3a-b435da3a0e38",
+    "status": "in_transit",
+    "version": 33
+  },
+  "scenario_id": "6e1be28e-8c75-5821-b085-51c02061afdc",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2033-11-05T01:30:00",
+        "code": "belt_hold",
+        "description": "Fictional local timestamp with no UTC offset."
+      }
+    ],
+    "last_event_at": "2033-11-05T05:00:00Z",
+    "shipment_id": "4057c2d1-b9f9-54fd-9c3a-b435da3a0e38",
+    "status": "delayed",
+    "version": 50
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "as_of": "2031-06-11T07:12:13.123456Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional export retained fractional seconds but lost the depot timezone field.",
+    "order_id": "503da95d-ef2d-5752-9816-60b1a2af66da",
+    "policy_exception": null,
+    "shipment_id": "b5d72428-8bce-5c7c-99bd-d918338fda65",
+    "status": "in_transit",
+    "version": 27
+  },
+  "scenario_id": "db0bbc2c-7e1b-52df-bca0-f2f5407045e3",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2031-06-07T23:00:00Z",
+        "code": "manifest_hold",
+        "description": "Fictional older event has a known timezone."
+      }
+    ],
+    "last_event_at": "2031-06-08T07:12:13.123456",
+    "shipment_id": "b5d72428-8bce-5c7c-99bd-d918338fda65",
+    "status": "delayed",
+    "version": 41
+  }
+}

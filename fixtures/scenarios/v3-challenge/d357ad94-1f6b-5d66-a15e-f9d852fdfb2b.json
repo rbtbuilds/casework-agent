@@ -1,0 +1,21 @@
+{
+  "as_of": "2033-09-03T15:50:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional carrier receipt was imported before the order summary was updated.",
+    "order_id": "bc6408d5-c734-57f9-a77b-86b029d1e48c",
+    "policy_exception": null,
+    "shipment_id": "e356eb46-ca38-5fcc-9b38-db920cd3c679",
+    "status": "in_transit",
+    "version": 67
+  },
+  "scenario_id": "d357ad94-1f6b-5d66-a15e-f9d852fdfb2b",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [],
+    "last_event_at": "2033-08-31T15:50:00Z",
+    "shipment_id": "e356eb46-ca38-5fcc-9b38-db920cd3c679",
+    "status": "delivered",
+    "version": 101
+  }
+}

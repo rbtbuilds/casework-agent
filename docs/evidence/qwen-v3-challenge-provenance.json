@@ -1,0 +1,49 @@
+{
+  "base_git_commit": "d8956e035af8f30f4255a9e39a0182048105dfea",
+  "blindness": {
+    "read_current_model_or_v3_inference_implementation": false,
+    "read_development_reports_or_STATE": false,
+    "read_v2_inference_outputs_or_scores": false,
+    "revealed_case_inputs_or_oracles_to_coordinator": false
+  },
+  "generator_method": "Deterministic serialization and UUID5 identity derivation; no random sampling or model calls.",
+  "intended_public_manifest": "fixtures/manifests/v3-challenge.json",
+  "intended_public_scenarios": "fixtures/scenarios/v3-challenge",
+  "limitations": [
+    "Original source contracts accept offset and timezone-naive carrier timestamps although the prose specification generally prefers UTC Z; naive values intentionally test valid business uncertainty.",
+    "Expected workflow states and counts are predeclared contracts, not observed HTTP or model results.",
+    "Synthetic edge-focused sampling does not estimate production prevalence or general model reliability.",
+    "Current STATE and model/development outputs are deliberately excluded to preserve blindness."
+  ],
+  "manual_authorship_recorded_at": "2026-10-15T23:10:33.828441+00:00",
+  "oracle_method": "Explicit hand-written literal actions and reasons committed to private manual-oracles.json before any policy import or invocation.",
+  "promotion": "Copy frozen bytes only after the coordinator explicitly freezes the new model implementation. Recheck hashes before the one fresh evaluation.",
+  "python": "3.12.14",
+  "serialized_at": "2026-10-15T23:10:33.933885+00:00",
+  "source_mapping": {
+    "docs/SPEC.md": "reference/docs/SPEC.md",
+    "eval/__init__.py": "reference/eval/__init__.py",
+    "eval/contracts.py": "reference/eval/contracts.py",
+    "eval/runner.py": "reference/eval/runner.py",
+    "eval/services.py": "reference/eval/services.py",
+    "src/casework_agent/__init__.py": "reference/casework_agent/__init__.py",
+    "src/casework_agent/contracts.py": "reference/casework_agent/contracts.py",
+    "src/casework_agent/hashing.py": "reference/casework_agent/hashing.py",
+    "src/casework_agent/policy.py": "reference/casework_agent/policy.py"
+  },
+  "source_sha256": {
+    "docs/SPEC.md": "418098ea388fdc1c27a80bc30ca05ab1c298761d24d33db5e78d9710380d46b1",
+    "eval/__init__.py": "fe7516a14715db4350d2cceb7970f081b3f021a071d84388bf766787ec5c7b36",
+    "eval/contracts.py": "29051ef36b3c646640a04f6e32a2cd0bdccb70ad64de9dd21e2dc9b1e28ce571",
+    "eval/runner.py": "c03ca71fbc40a00f74d65e733e0f484c8191c20096dde169aba7f60abf215e34",
+    "eval/services.py": "110f72d1ae7127b1e486598ef5cbc856289fc85877347b7e826c1998aa65ea8d",
+    "src/casework_agent/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/casework_agent/contracts.py": "4992248a04f9fa6c0d908b8999e47a5be34c4eff10d9b199d4b7e627fb24903d",
+    "src/casework_agent/hashing.py": "f8d7838fb81653bb51ed16433145f1b9a8c749297cb0e1612ab24f63d43debb3",
+    "src/casework_agent/policy.py": "f5053a636ad2d3ccba0e236cc6cb4580e8255fab8e84562cb41ab85f6dbf0f70"
+  },
+  "source_record_sha256": "c2cc2eaaa03b5fd6ab74b462ffa76fe9f76825ae1200b7b384324a6127650f8a",
+  "omitted_authoring_metadata": [
+    "staging"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "as_of": "2032-02-29T00:00:00.500000Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional crate of paper dividers remains at the sorting center; no exception is registered.",
+    "order_id": "5a8fbc41-827b-58a4-a5c1-1b3e58b58701",
+    "policy_exception": null,
+    "shipment_id": "af1bd912-ef82-551e-8680-38423ff8f0e5",
+    "status": "in_transit",
+    "version": 13
+  },
+  "scenario_id": "e0746dec-3ef7-545d-b700-75985253b06d",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2032-02-26T23:59:58.750000Z",
+        "code": "sort_queue",
+        "description": "Fictional queue scan before the summary."
+      }
+    ],
+    "last_event_at": "2032-02-27T00:00:00.500000Z",
+    "shipment_id": "af1bd912-ef82-551e-8680-38423ff8f0e5",
+    "status": "delayed",
+    "version": 20
+  }
+}

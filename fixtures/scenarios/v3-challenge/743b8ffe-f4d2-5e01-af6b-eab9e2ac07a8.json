@@ -1,0 +1,27 @@
+{
+  "as_of": "2034-05-07T12:00:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional incremental feed and summary disagree at their timestamp boundary.",
+    "order_id": "0a25ce59-9f0a-56cd-b8d5-f6f271f3d65a",
+    "policy_exception": null,
+    "shipment_id": "3acdc770-6ebf-589a-928c-f870d9905ada",
+    "status": "in_transit",
+    "version": 31
+  },
+  "scenario_id": "743b8ffe-f4d2-5e01-af6b-eab9e2ac07a8",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2034-05-05T05:30:00.000001+05:30",
+        "code": "placed_hold",
+        "description": "Fictional subsequent hold record."
+      }
+    ],
+    "last_event_at": "2034-05-05T00:00:00Z",
+    "shipment_id": "3acdc770-6ebf-589a-928c-f870d9905ada",
+    "status": "delayed",
+    "version": 47
+  }
+}

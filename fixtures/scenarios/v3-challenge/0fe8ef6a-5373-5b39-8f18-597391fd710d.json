@@ -1,0 +1,32 @@
+{
+  "as_of": "2032-07-03T11:30:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional transfer stations report the same hold under their respective numeric offsets.",
+    "order_id": "8d1b45d5-2189-54e0-a69a-26a67688cab4",
+    "policy_exception": null,
+    "shipment_id": "6b85d776-f74c-5860-83dc-098393fefbd6",
+    "status": "in_transit",
+    "version": 35
+  },
+  "scenario_id": "0fe8ef6a-5373-5b39-8f18-597391fd710d",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2032-07-01T00:30:00-11:00",
+        "code": "load_paused",
+        "description": "Fictional matching hold time."
+      },
+      {
+        "at": "2032-06-30T21:30:00+10:00",
+        "code": "bin_received",
+        "description": "Fictional earlier intake."
+      }
+    ],
+    "last_event_at": "2032-07-02T00:15:00+12:45",
+    "shipment_id": "6b85d776-f74c-5860-83dc-098393fefbd6",
+    "status": "delayed",
+    "version": 53
+  }
+}

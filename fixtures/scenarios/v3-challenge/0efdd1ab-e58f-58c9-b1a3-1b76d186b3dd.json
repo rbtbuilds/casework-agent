@@ -1,0 +1,21 @@
+{
+  "as_of": "2031-01-17T06:00:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional archive carton has a validated summary scan but no expanded carrier history.",
+    "order_id": "f5a66ea2-37e9-543d-9c61-93209ff97e54",
+    "policy_exception": null,
+    "shipment_id": "677fa822-a02c-5c2a-be43-fd3bd9c60d54",
+    "status": "in_transit",
+    "version": 39
+  },
+  "scenario_id": "0efdd1ab-e58f-58c9-b1a3-1b76d186b3dd",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [],
+    "last_event_at": "2031-01-01T00:00:00Z",
+    "shipment_id": "677fa822-a02c-5c2a-be43-fd3bd9c60d54",
+    "status": "delayed",
+    "version": 59
+  }
+}

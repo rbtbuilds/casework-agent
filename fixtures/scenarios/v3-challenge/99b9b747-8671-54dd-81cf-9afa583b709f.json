@@ -1,0 +1,32 @@
+{
+  "as_of": "2032-08-06T04:20:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional earlier inquiry concerned a label correction. The label was reprinted before the current hold; no exception remains recorded.",
+    "order_id": "b4c3de43-72b3-523e-8f12-baf4cf43d087",
+    "policy_exception": null,
+    "shipment_id": "4c1f5f97-12f4-5d2c-9d27-bc1e4f9b6e6f",
+    "status": "in_transit",
+    "version": 43
+  },
+  "scenario_id": "99b9b747-8671-54dd-81cf-9afa583b709f",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2032-08-03T20:15:00Z",
+        "code": "label_reprinted",
+        "description": "Fictional label corrected before the hold."
+      },
+      {
+        "at": "2032-08-03T23:10:00Z",
+        "code": "dispatch_hold",
+        "description": "Fictional current dispatch hold."
+      }
+    ],
+    "last_event_at": "2032-08-03T23:10:00Z",
+    "shipment_id": "4c1f5f97-12f4-5d2c-9d27-bc1e4f9b6e6f",
+    "status": "delayed",
+    "version": 65
+  }
+}

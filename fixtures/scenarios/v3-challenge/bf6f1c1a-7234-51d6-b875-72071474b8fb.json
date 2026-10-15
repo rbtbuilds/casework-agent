@@ -1,0 +1,27 @@
+{
+  "as_of": "2034-01-01T00:00:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional carrier stations use different numeric offsets for the same container hold.",
+    "order_id": "68807b5e-fec0-51cf-a6de-525a5690d0d1",
+    "policy_exception": null,
+    "shipment_id": "30a0b1c5-7b0d-5c2f-902d-bf2a966eb30d",
+    "status": "in_transit",
+    "version": 19
+  },
+  "scenario_id": "bf6f1c1a-7234-51d6-b875-72071474b8fb",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2033-12-29T14:00:00-10:00",
+        "code": "container_hold",
+        "description": "Fictional alternate-offset record of the hold."
+      }
+    ],
+    "last_event_at": "2033-12-30T13:00:00+13:00",
+    "shipment_id": "30a0b1c5-7b0d-5c2f-902d-bf2a966eb30d",
+    "status": "delayed",
+    "version": 29
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "as_of": "2031-02-06T08:08:08Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional carrier has a consistent sequence of intake, label check, and hold records.",
+    "order_id": "ea9dd443-93dc-5fe4-a7c8-f163b737c713",
+    "policy_exception": null,
+    "shipment_id": "8f5d655e-c4c6-5332-ad6b-91d6a4f0f858",
+    "status": "in_transit",
+    "version": 69
+  },
+  "scenario_id": "dae2d325-0e85-53e1-80bc-9037fc0b64be",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2031-02-02T18:08:08Z",
+        "code": "receipt_check",
+        "description": "Fictional intake verification."
+      },
+      {
+        "at": "2031-02-03T00:08:08Z",
+        "code": "label_check",
+        "description": "Fictional label inspection."
+      },
+      {
+        "at": "2031-02-03T08:08:08Z",
+        "code": "line_hold",
+        "description": "Fictional latest hold."
+      }
+    ],
+    "last_event_at": "2031-02-03T08:08:08Z",
+    "shipment_id": "8f5d655e-c4c6-5332-ad6b-91d6a4f0f858",
+    "status": "delayed",
+    "version": 104
+  }
+}

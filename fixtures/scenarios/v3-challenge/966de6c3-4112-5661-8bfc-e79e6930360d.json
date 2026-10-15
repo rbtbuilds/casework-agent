@@ -1,0 +1,27 @@
+{
+  "as_of": "2033-05-15T10:00:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional parcel returned to the depot after an unsuccessful doorstep attempt.",
+    "order_id": "8bee0db6-745d-56af-945c-365574e9e021",
+    "policy_exception": "",
+    "shipment_id": "898f4c6f-bcfa-516a-9190-3b909664728b",
+    "status": "in_transit",
+    "version": 41
+  },
+  "scenario_id": "966de6c3-4112-5661-8bfc-e79e6930360d",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2033-05-13T08:00:00Z",
+        "code": "delivery_attempted",
+        "description": "Fictional attempt failed; no delivery was completed."
+      }
+    ],
+    "last_event_at": "2033-05-13T08:30:00Z",
+    "shipment_id": "898f4c6f-bcfa-516a-9190-3b909664728b",
+    "status": "delayed",
+    "version": 62
+  }
+}

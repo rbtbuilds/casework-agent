@@ -1,0 +1,27 @@
+{
+  "as_of": "2032-12-15T00:00:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional scanner clock may be ahead; its most recent summary must be reconciled.",
+    "order_id": "1e530ab3-3f57-555a-9587-d54b5547ab97",
+    "policy_exception": null,
+    "shipment_id": "eb9d20fa-09c5-5e91-807e-8609b8b61a10",
+    "status": "in_transit",
+    "version": 29
+  },
+  "scenario_id": "7f468f37-b469-5ac0-81ad-0dbb41769ed1",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2032-12-14T23:59:00Z",
+        "code": "arrived_cage",
+        "description": "Fictional pre-cutoff scan."
+      }
+    ],
+    "last_event_at": "2032-12-14T20:00:00.000001-04:00",
+    "shipment_id": "eb9d20fa-09c5-5e91-807e-8609b8b61a10",
+    "status": "delayed",
+    "version": 44
+  }
+}

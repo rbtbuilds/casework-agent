@@ -1,0 +1,21 @@
+{
+  "as_of": "2033-06-30T23:55:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional order cancellation preceded reconciliation of the delayed carrier record.",
+    "order_id": "09fc036f-0966-5353-80f6-0de2be6f233b",
+    "policy_exception": null,
+    "shipment_id": "97387f24-fc2e-5422-a021-51488b90e86b",
+    "status": "cancelled",
+    "version": 45
+  },
+  "scenario_id": "f85e48fe-9fbc-5a79-ba61-3f892e4ff241",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [],
+    "last_event_at": "2033-06-28T23:55:00Z",
+    "shipment_id": "97387f24-fc2e-5422-a021-51488b90e86b",
+    "status": "delayed",
+    "version": 68
+  }
+}

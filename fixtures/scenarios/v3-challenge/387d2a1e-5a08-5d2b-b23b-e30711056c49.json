@@ -1,0 +1,32 @@
+{
+  "as_of": "2034-09-24T16:40:20Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional feed replayed the same intake row twice; the parcel remains on hold.",
+    "order_id": "2e9c8567-5d79-562c-87d6-997ba2fd32cd",
+    "policy_exception": null,
+    "shipment_id": "541abf43-bd41-51b9-824f-f32a5204f333",
+    "status": "in_transit",
+    "version": 37
+  },
+  "scenario_id": "387d2a1e-5a08-5d2b-b23b-e30711056c49",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2034-09-20T15:10:00Z",
+        "code": "bay_received",
+        "description": "Fictional bay intake."
+      },
+      {
+        "at": "2034-09-20T15:10:00Z",
+        "code": "bay_received",
+        "description": "Fictional bay intake."
+      }
+    ],
+    "last_event_at": "2034-09-20T16:40:20Z",
+    "shipment_id": "541abf43-bd41-51b9-824f-f32a5204f333",
+    "status": "delayed",
+    "version": 56
+  }
+}

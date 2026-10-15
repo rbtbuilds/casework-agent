@@ -1,0 +1,27 @@
+{
+  "as_of": "2032-04-18T14:05:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional depot clocks use an explicit offset; the held parcel has no special handling flag.",
+    "order_id": "7e779d71-8441-506d-be6e-db05095cd2a6",
+    "policy_exception": null,
+    "shipment_id": "b2140511-1397-5ed8-8c4c-5d6fa8488397",
+    "status": "in_transit",
+    "version": 65
+  },
+  "scenario_id": "bab8a9ce-00fc-5c62-9e4d-398494f572bb",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2032-04-16T13:35:00Z",
+        "code": "awaiting_trailer",
+        "description": "Fictional event before the summary hold."
+      }
+    ],
+    "last_event_at": "2032-04-16T10:20:00-03:45",
+    "shipment_id": "b2140511-1397-5ed8-8c4c-5d6fa8488397",
+    "status": "delayed",
+    "version": 98
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "as_of": "2033-08-31T09:00:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional sorting team recorded a fresh delay scan during the current shift.",
+    "order_id": "b9ebe4f8-0646-5951-82d6-161a8b923dcb",
+    "policy_exception": null,
+    "shipment_id": "3f1f49c9-fbe2-5092-bf04-288f950a3de0",
+    "status": "in_transit",
+    "version": 23
+  },
+  "scenario_id": "b94d6738-1d07-5805-bae0-3d84c3c91b3d",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [],
+    "last_event_at": "2033-08-31T03:45:00-03:30",
+    "shipment_id": "3f1f49c9-fbe2-5092-bf04-288f950a3de0",
+    "status": "delayed",
+    "version": 35
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "as_of": "2031-12-01T00:00:00.250000Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional dispatch screen rounded the age to two days; the source retains microsecond precision.",
+    "order_id": "c6bba0e3-1e89-5060-a9e0-15bf9933cfe5",
+    "policy_exception": null,
+    "shipment_id": "a884424b-f00b-5e84-b27d-3d1e6e0d1ab3",
+    "status": "in_transit",
+    "version": 15
+  },
+  "scenario_id": "419f23a7-8878-58d3-85b4-324c4eee7c8b",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [],
+    "last_event_at": "2031-11-29T00:00:00.250001Z",
+    "shipment_id": "a884424b-f00b-5e84-b27d-3d1e6e0d1ab3",
+    "status": "delayed",
+    "version": 23
+  }
+}
