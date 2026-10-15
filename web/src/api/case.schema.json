@@ -461,6 +461,9 @@
           "$ref": "#/$defs/Action"
         },
         "annotation_id": {
+          "maxLength": 160,
+          "minLength": 1,
+          "pattern": "^\\S+$",
           "title": "Annotation Id",
           "type": "string"
         },

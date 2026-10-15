@@ -41,6 +41,11 @@ def allowed_action(order: Order, shipment: Shipment, as_of: datetime) -> Action:
         return "manual_review"
     if shipment.last_event_at.tzinfo is None or as_of.tzinfo is None:
         return "manual_review"
+    if shipment.last_event_at > as_of or any(
+        event.at.tzinfo is None or event.at > shipment.last_event_at or event.at > as_of
+        for event in shipment.events
+    ):
+        return "manual_review"
     return (
         "open_investigation"
         if as_of - shipment.last_event_at >= timedelta(hours=48)

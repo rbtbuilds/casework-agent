@@ -50,7 +50,7 @@ class CaseSeed(StrictModel):
 
 
 class OrderAnnotation(StrictModel):
-    annotation_id: str = Field(default_factory=uid)
+    annotation_id: str = Field(min_length=1, max_length=160, pattern=r"^\S+$")
     ticket_id: str
     action: Action
     operation_key: str
@@ -181,7 +181,7 @@ class Operation(StrictModel):
 
 
 class Ticket(StrictModel):
-    ticket_id: str = Field(default_factory=uid)
+    ticket_id: str = Field(min_length=1, max_length=160, pattern=r"^\S+$")
     order_id: str
     action: Action
     queue: Queue

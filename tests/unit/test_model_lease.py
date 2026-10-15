@@ -60,3 +60,28 @@ async def test_cancellation_stops_owned_child_before_releasing_lease(tmp_path: P
     assert proc.returncode is not None
     assert session.process is None
     assert not lease.path.exists()
+
+
+@pytest.mark.parametrize("failure", ["metadata", "process"])
+def test_failed_acquisition_leaves_no_owned_lock(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, failure: str
+) -> None:
+    import psutil
+
+    lease = MachineLease(tmp_path / "lease")
+    if failure == "metadata":
+
+        def fail_dump(*args: object, **kwargs: object) -> None:
+            raise OSError("injected metadata failure")
+
+        monkeypatch.setattr(json, "dump", fail_dump)
+    else:
+
+        def fail_process(_self: psutil.Process) -> float:
+            raise psutil.AccessDenied()
+
+        monkeypatch.setattr(psutil.Process, "create_time", fail_process)
+    with pytest.raises((OSError, psutil.AccessDenied)):
+        lease.acquire("scripted acquisition failure")
+    assert not lease.owned
+    assert not lease.path.exists()

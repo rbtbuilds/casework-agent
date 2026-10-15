@@ -10,6 +10,8 @@ import socket
 import subprocess
 import sys
 import time
+from collections.abc import Generator
+from contextlib import contextmanager
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import cast
@@ -60,7 +62,28 @@ def stop_children(children: list[Child]) -> None:
                     process.wait(5)
 
 
-def start(root: Path) -> None:
+class StartupInterrupt:
+    def __init__(self) -> None:
+        self.deferred = False
+        self.requested = False
+
+    def handle(self, _signum: int, _frame: object) -> None:
+        self.requested = True
+        if not self.deferred:
+            raise KeyboardInterrupt
+
+    @contextmanager
+    def registration(self) -> Generator[None]:
+        self.deferred = True
+        try:
+            yield
+        finally:
+            self.deferred = False
+        if self.requested:
+            raise KeyboardInterrupt
+
+
+def start(root: Path, interruption: StartupInterrupt) -> None:
     root.mkdir(parents=True, exist_ok=True)
     manifest = root / "processes.json"
     if manifest.exists():
@@ -98,25 +121,27 @@ def start(root: Path) -> None:
                 if name == "tickets" and os.environ.get("CASEWORK_TEST_DROP_TICKET") == "1":
                     args.append("--drop-after-commit")
                 cwd = ROOT
-            with (root / f"{name}.log").open("ab") as log:
-                proc = subprocess.Popen(
-                    args,
-                    cwd=cwd,
-                    env=dict(os.environ, CASEWORK_OWNER=nonce),
-                    stdout=log,
-                    stderr=log,
-                    start_new_session=True,
+            # Defer only the supervisor handler; children must inherit unblocked signals.
+            with interruption.registration():
+                with (root / f"{name}.log").open("ab") as log:
+                    proc = subprocess.Popen(
+                        args,
+                        cwd=cwd,
+                        env=dict(os.environ, CASEWORK_OWNER=nonce),
+                        stdout=log,
+                        stderr=log,
+                        start_new_session=True,
+                    )
+                process = psutil.Process(proc.pid)
+                child = Child(
+                    name=name,
+                    pid=proc.pid,
+                    created=process.create_time(),
+                    argv=process.cmdline(),
+                    nonce=nonce,
                 )
-            process = psutil.Process(proc.pid)
-            child = Child(
-                name=name,
-                pid=proc.pid,
-                created=process.create_time(),
-                argv=process.cmdline(),
-                nonce=nonce,
-            )
-            children.append(child)
-            manifest.write_text(json.dumps([c.model_dump() for c in children], indent=2))
+                children.append(child)
+                manifest.write_text(json.dumps([c.model_dump() for c in children], indent=2))
             url = f"http://127.0.0.1:{port}" + ("/" if name == "web" else "/health")
             for _ in range(100):
                 if proc.poll() is not None:
@@ -144,24 +169,33 @@ def main() -> None:
     if not root.is_relative_to((ROOT / ".runtime").resolve()):
         raise ValueError("Lifecycle roots must stay inside this project .runtime")
     if args.command in {"start", "run"}:
-        start(root)
-        if args.command == "run":
-
-            def interrupted(_signum: int, _frame: object) -> None:
-                raise KeyboardInterrupt
-
-            signal.signal(signal.SIGTERM, interrupted)
-            try:
+        interruption = StartupInterrupt()
+        previous_handlers = {
+            value: signal.signal(value, interruption.handle)
+            for value in (signal.SIGTERM, signal.SIGINT)
+        }
+        started = False
+        try:
+            start(root, interruption)
+            started = True
+            if args.command == "run":
                 while True:
                     time.sleep(1)
-            except KeyboardInterrupt:
-                pass
+        except KeyboardInterrupt:
+            pass
+        finally:
+            try:
+                if started and args.command == "run":
+                    children = [
+                        Child.model_validate(v)
+                        for v in cast(
+                            list[object], json.loads((root / "processes.json").read_text())
+                        )
+                    ]
+                    stop_children(children)
             finally:
-                children = [
-                    Child.model_validate(v)
-                    for v in cast(list[object], json.loads((root / "processes.json").read_text()))
-                ]
-                stop_children(children)
+                for value, previous_handler in previous_handlers.items():
+                    signal.signal(value, previous_handler)
     else:
         manifest = root / "processes.json"
         children = (

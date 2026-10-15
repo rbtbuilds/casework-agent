@@ -40,3 +40,19 @@ def test_uncertain_or_excluded_evidence_is_manual(reason: str) -> None:
         conflicting_events=reason == "conflicting",
     )
     assert allowed_action(order, shipment, NOW) == "manual_review"
+
+
+@pytest.mark.parametrize(
+    "event_at", [NOW - timedelta(hours=1), NOW + timedelta(hours=1), NOW.replace(tzinfo=None)]
+)
+def test_contradictory_event_times_require_manual_review(event_at: datetime) -> None:
+    from casework_agent.contracts import CarrierEvent
+
+    order = Order(order_id="o", shipment_id="s", status="in_transit")
+    shipment = Shipment(
+        shipment_id="s",
+        status="delayed",
+        last_event_at=NOW - timedelta(hours=72),
+        events=[CarrierEvent(code="scan", at=event_at, description="Fictional scan")],
+    )
+    assert allowed_action(order, shipment, NOW) == "manual_review"

@@ -1,6 +1,5 @@
 import asyncio
 import json
-import time
 from typing import Annotated, Literal, Protocol
 
 from pydantic import Field, TypeAdapter, ValidationError
@@ -40,6 +39,9 @@ class ProposalRequest(StrictModel):
 REQUEST = TypeAdapter(Annotated[ToolRequest | ProposalRequest, Field(discriminator="kind")])
 
 
+CASE_DEADLINE_SECONDS = 120
+
+
 class LocalModelAdapter:
     def __init__(self, client: ModelClient) -> None:
         self.client = client
@@ -47,6 +49,14 @@ class LocalModelAdapter:
         self.usage_tokens: int | None = 0
 
     async def propose(self, context: AgentContext, tools: ReadTools) -> AgentDecision:
+        self.usage_tokens = 0
+        try:
+            async with asyncio.timeout(CASE_DEADLINE_SECONDS):
+                return await self._propose(context, tools)
+        except TimeoutError as exc:
+            raise AgentValidationError("model_deadline") from exc
+
+    async def _propose(self, context: AgentContext, tools: ReadTools) -> AgentDecision:
         from .policy import current_policy
 
         instruction = (
@@ -65,13 +75,9 @@ class LocalModelAdapter:
             ChatMessage(role="user", content=context.model_dump_json()),
         ]
         self.trace = messages
-        deadline = time.monotonic() + 120
         errors = 0
         for _ in range(8):
-            remaining = deadline - time.monotonic()
-            if remaining <= 0:
-                raise AgentValidationError("model_deadline")
-            reply = await asyncio.wait_for(self.client.complete(messages), timeout=remaining)
+            reply = await self.client.complete(messages)
             if self.usage_tokens is not None:
                 if reply.input_tokens is None or reply.output_tokens is None:
                     self.usage_tokens = None

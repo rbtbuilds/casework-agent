@@ -10,6 +10,7 @@ from casework_agent.contracts import (
     OrderAnnotation,
     Shipment,
     Ticket,
+    uid,
 )
 from casework_agent.hashing import canonical_hash
 
@@ -77,7 +78,7 @@ class MockStore:
                     status = 409
                     result = {"error": {"code": "policy_conflict"}}
                 else:
-                    ticket = Ticket(**body.model_dump(), operation_key=key)
+                    ticket = Ticket(ticket_id=uid(), **body.model_dump(), operation_key=key)
                     self.con.execute(
                         "INSERT INTO tickets VALUES(?,?,?)",
                         (ticket.ticket_id, ticket.model_dump_json(), key),
@@ -90,7 +91,10 @@ class MockStore:
                     result = {"error": {"code": "version_conflict"}}
                 else:
                     annotation = OrderAnnotation(
-                        ticket_id=body.ticket_id, action=body.action, operation_key=key
+                        annotation_id=uid(),
+                        ticket_id=body.ticket_id,
+                        action=body.action,
+                        operation_key=key,
                     )
                     order.annotations.append(annotation)
                     order.version += 1

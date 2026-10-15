@@ -30,11 +30,6 @@ class MachineLease:
         self.owned = False
 
     def acquire(self, purpose: str) -> None:
-        try:
-            self.path.mkdir(mode=0o700)
-        except FileExistsError as exc:
-            raise ModelBusy("model_busy") from exc
-        self.owned = True
         info = {
             "project": "casework-agent",
             "pid": os.getpid(),
@@ -43,7 +38,32 @@ class MachineLease:
             "purpose": purpose,
             "owner_token": self.token,
         }
-        (self.path / "owner.json").write_text(json.dumps(info))
+        try:
+            self.path.mkdir(mode=0o700)
+        except FileExistsError as exc:
+            raise ModelBusy("model_busy") from exc
+        directory = self.path.stat()
+        owner_path = self.path / "owner.json"
+        owner_identity: tuple[int, int] | None = None
+        try:
+            with owner_path.open("x") as stream:
+                identity = os.fstat(stream.fileno())
+                owner_identity = (identity.st_dev, identity.st_ino)
+                json.dump(info, stream)
+        except BaseException:
+            # Never remove a replaced directory or a metadata file we did not create.
+            current = self.path.stat()
+            if (current.st_dev, current.st_ino) == (directory.st_dev, directory.st_ino):
+                if owner_identity is not None and owner_path.exists():
+                    current_owner = owner_path.stat()
+                    if (current_owner.st_dev, current_owner.st_ino) == owner_identity:
+                        owner_path.unlink()
+                try:
+                    self.path.rmdir()
+                except OSError:
+                    pass
+            raise
+        self.owned = True
 
     def release(self) -> None:
         if not self.owned:

@@ -8,6 +8,7 @@ from pydantic import BaseModel
 from .config import Settings
 from .contracts import Evidence, Order, Policy, Shipment
 from .hashing import canonical_hash
+from .http import ResponseLimit, bounded_request
 from .policy import current_policy
 
 
@@ -36,12 +37,12 @@ class ReadTools:
         for attempt in range(3):
             self.request_count += 1
             try:
-                response = await self.client.get(url)
+                response = await bounded_request(self.client, "GET", url, deadline=2)
                 response.raise_for_status()
-                if len(response.content) > 32768:
-                    raise DependencyError("oversized_response")
                 return cls.model_validate_json(response.content)
-            except (httpx.HTTPError, ValueError) as exc:
+            except ResponseLimit as exc:
+                raise DependencyError(str(exc)) from exc
+            except (httpx.HTTPError, ValueError, TimeoutError) as exc:
                 if attempt == 2:
                     raise DependencyError("read_failed") from exc
                 await asyncio.sleep([0.1, 0.3][attempt])

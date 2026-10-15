@@ -9,6 +9,7 @@ import httpx
 from .config import Settings
 from .contracts import Approval, JournalResult, JsonDict, Operation, OrderAnnotation, Ticket
 from .hashing import canonical_hash
+from .http import bounded_request
 from .policy import current_policy
 from .repository import Repository
 from .tools import ReadTools
@@ -194,15 +195,20 @@ class Executor:
         )
         try:
             async with httpx.AsyncClient(timeout=3, follow_redirects=False) as client:
-                response = await client.post(
-                    url, json=op.request_json, headers={"Idempotency-Key": op.key}
+                response = await bounded_request(
+                    client,
+                    "POST",
+                    url,
+                    body=op.request_json,
+                    deadline=3,
+                    headers={"Idempotency-Key": op.key},
                 )
                 self.checkpoint(
                     "ticket_committed_before_local_result"
                     if op.ordinal == 1
                     else "annotation_committed_before_local_result"
                 )
-                if response.status_code != 201 or len(response.content) > 32768:
+                if response.status_code != 201:
                     self.unknown(op, f"mutation_http_{response.status_code}")
                     return
                 body = cast(JsonDict, response.json())
@@ -216,15 +222,18 @@ class Executor:
                     committed_at=self.repo.clock.now(),
                 )
                 self.save_result(op, result)
-        except (httpx.HTTPError, ValueError) as exc:
+        except (httpx.HTTPError, ValueError, TimeoutError) as exc:
             self.unknown(op, type(exc).__name__)
 
     async def reconcile_operation(self, op: Operation) -> None:
         async with httpx.AsyncClient(timeout=3, follow_redirects=False) as client:
             for attempt in range(3):
                 try:
-                    response = await client.get(
-                        f"{self.base(op)}/v1/operations/{quote(op.key, safe='')}"
+                    response = await bounded_request(
+                        client,
+                        "GET",
+                        f"{self.base(op)}/v1/operations/{quote(op.key, safe='')}",
+                        deadline=3,
                     )
                     if response.status_code == 404:
                         if op.attempts < 3:
@@ -241,12 +250,10 @@ class Executor:
                             self.unknown(op, "send_budget_exhausted")
                         return
                     response.raise_for_status()
-                    if len(response.content) > 32768:
-                        raise ValueError("journal_oversized")
                     journal = JournalResult.model_validate_json(response.content)
                     self.save_result(op, journal)
                     return
-                except (httpx.HTTPError, ValueError):
+                except (httpx.HTTPError, ValueError, TimeoutError):
                     if attempt < 2:
                         await asyncio.sleep([0.1, 0.3][attempt])
             self.unknown(op, "journal_unavailable")

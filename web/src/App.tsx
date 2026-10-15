@@ -18,22 +18,41 @@ export default function App() {
     [error, setError] = useState('');
   const [pending, setPending] = useState(false),
     [loading, setLoading] = useState(true),
+    [selecting, setSelecting] = useState(false),
     [mode, setMode] = useState<'fixture' | 'model'>('fixture');
   const heading = useRef<HTMLHeadingElement>(null),
     busy = useRef(false),
-    attempt = useRef<Attempt | null>(null);
+    attempt = useRef<Attempt | null>(null),
+    selectionGeneration = useRef(0),
+    latest = useRef(new Map<string, CaseView>());
+  const remember = useCallback((values: CaseView[]) => {
+    const resolved = values.map((value) => {
+      const previous = latest.current.get(value.id);
+      const next =
+        previous && previous.version > value.version ? previous : value;
+      latest.current.set(value.id, next);
+      return next;
+    });
+    setCases((inbox) => [
+      ...resolved.filter(
+        (value) => !inbox.some((item) => item.id === value.id),
+      ),
+      ...inbox.map((item) => latest.current.get(item.id) ?? item),
+    ]);
+    return resolved;
+  }, []);
   const activeId = active?.id;
   const refresh = useCallback(async () => {
     const inbox = await api.listCases();
-    setCases(inbox);
-  }, []);
+    remember(inbox);
+  }, [remember]);
   useEffect(() => {
     let alive = true;
     void Promise.all([api.listScenarios(), api.listCases()])
       .then(([samples, inbox]) => {
         if (alive) {
           setScenarios(samples);
-          setCases(inbox);
+          remember(inbox);
         }
       })
       .catch((e: unknown) => {
@@ -48,7 +67,7 @@ export default function App() {
     return () => {
       alive = false;
     };
-  }, []);
+  }, [remember]);
   useEffect(() => {
     if (!activeId) return;
     let alive = true;
@@ -60,12 +79,11 @@ export default function App() {
         .getCase(activeId)
         .then((value) => {
           if (alive) {
-            setActive((current) =>
-              current?.id === activeId ? value : current,
-            );
-            setCases((inbox) =>
-              inbox.map((item) => (item.id === value.id ? value : item)),
-            );
+            const next = remember([value])[0];
+            if (next)
+              setActive((current) =>
+                current?.id === activeId ? next : current,
+              );
           }
         })
         .catch((e: unknown) => {
@@ -80,7 +98,7 @@ export default function App() {
       alive = false;
       window.clearInterval(timer);
     };
-  }, [activeId]);
+  }, [activeId, remember]);
   useEffect(() => {
     heading.current?.focus();
   }, [activeId]);
@@ -90,6 +108,8 @@ export default function App() {
   ) {
     if (busy.current) return;
     busy.current = true;
+    selectionGeneration.current += 1;
+    setSelecting(false);
     setPending(true);
     setError('');
     if (attempt.current?.identity !== identity) {
@@ -98,7 +118,7 @@ export default function App() {
     }
     try {
       const result = await attempt.current.execute();
-      setActive(result);
+      setActive(remember([result])[0] ?? result);
       attempt.current = null;
       await refresh();
     } catch (e: unknown) {
@@ -153,12 +173,19 @@ export default function App() {
     });
   }
   async function select(id: string) {
+    if (busy.current) return;
+    const generation = ++selectionGeneration.current;
+    setSelecting(true);
     try {
-      setActive(await api.getCase(id));
-      setError('');
-      attempt.current = null;
+      const value = await api.getCase(id);
+      if (generation !== selectionGeneration.current) return;
+      setActive(remember([value])[0] ?? value);
+      if (!attempt.current) setError('');
     } catch (e: unknown) {
-      setError(e instanceof Error ? e.message : 'Could not open case.');
+      if (generation === selectionGeneration.current)
+        setError(e instanceof Error ? e.message : 'Could not open case.');
+    } finally {
+      if (generation === selectionGeneration.current) setSelecting(false);
     }
   }
   return (
@@ -286,8 +313,13 @@ export default function App() {
                 </p>
               )}
             </section>
+            {selecting && <p role="status">Loading selected case...</p>}
             <EvidencePanel active={active} />
-            <ProposalPanel active={active} pending={pending} onAction={act} />
+            <ProposalPanel
+              active={active}
+              pending={pending || selecting}
+              onAction={act}
+            />
           </div>
         ) : (
           <section className="empty-state" aria-labelledby="case-heading">

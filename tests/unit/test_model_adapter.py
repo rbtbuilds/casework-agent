@@ -38,3 +38,32 @@ def test_machine_lease_does_not_steal_another_owner(tmp_path: Path) -> None:
     finally:
         lease.release()
     assert not lock.exists()
+
+
+async def test_model_deadline_includes_awaited_tools(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    import asyncio
+
+    import casework_agent.model_adapter as module
+
+    class ReadClient:
+        async def complete(self, messages: list[ChatMessage]) -> ModelReply:
+            return ModelReply(
+                text='{"kind":"tool","name":"get_order","arguments":{"order_id":"o"}}'
+            )
+
+    async def stalled_order(_order_id: str) -> None:
+        await asyncio.sleep(5)
+
+    tools = ReadTools("c", "o", Settings(root=tmp_path))
+    monkeypatch.setattr(tools, "get_order", stalled_order)
+    monkeypatch.setattr(module, "CASE_DEADLINE_SECONDS", 0.02, raising=False)
+    try:
+        async with asyncio.timeout(0.2):
+            with pytest.raises(AgentValidationError, match="model_deadline"):
+                await LocalModelAdapter(ReadClient()).propose(
+                    AgentContext(case_id="c", order_id="o", as_of=datetime.now(UTC)), tools
+                )
+    finally:
+        await tools.close()
