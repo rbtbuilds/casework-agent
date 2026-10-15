@@ -1,12 +1,14 @@
 # Model configuration and evidence
 
-The selected profile is **Qwen3 4B Instruct 2507, 4-bit**, served locally through MLX. Public checkpoint: `mlx-community/Qwen3-4B-Instruct-2507-4bit`; immutable revision: `50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b`. Preparation downloads approximately 2.3 GB of weights and hashes the selected files, including the checkpoint's separate chat template. Weights remain ignored. The model's Apache-2.0 terms are separate from this project's MIT code licence.
+The selected profile is **Qwen3 14B, 4-bit**, served locally through MLX. Public checkpoint: `mlx-community/Qwen3-14B-4bit`; immutable revision: `a4d9b2df59d2c150bef02fcbe0d91046b7ca33a4`. Preparation downloads approximately 8.3 GB of weights and hashes the selected files, including its embedded tokenizer chat template. Weights remain ignored. The model's Apache-2.0 terms are separate from this project's MIT code licence.
 
 ## Generation and validation
 
 The measured runtime uses Python 3.12.14, MLX LM 0.32.0, MLX 0.32.4 and Outlines 1.3.3 on an Apple M5 Pro with 24 GiB memory. Optional model dependencies apply to macOS on Apple Silicon; fixture CI runs without weights on Ubuntu.
 
-The worker applies the checkpoint's chat template once and samples at temperature 0. Generation is limited to 768 output tokens and 8,192 prompt tokens. A complete case has eight assistant turns, at most eight reads and a 120-second deadline including awaited tools. One protocol repair is allowed. A policy mismatch fails immediately without answer feedback or a second choice.
+Qwen's [14B model card](https://huggingface.co/Qwen/Qwen3-14B) documents the `enable_thinking=False` template option for non-thinking output.
+
+The worker applies the checkpoint's chat template once with `enable_thinking=False` and samples at temperature 0. Consecutive messages from the same role are merged; the final user turn includes the latest evidence, facts and response schema. Content is escaped before rendering so replayed replies, errors and business data cannot insert raw chat-role delimiters. Raw traces remain unchanged. Generation is limited to 768 output tokens and 8,192 prompt tokens. A complete case has eight assistant turns, at most eight reads and a 120-second deadline including awaited tools. One protocol repair is allowed. A policy mismatch fails immediately without answer feedback or a second choice.
 
 Outlines restricts each response to a JSON Schema. Before all evidence is read, the schema permits only unread `get_order`, `get_shipment` and `get_policy` calls with exact scoped identifiers and arguments. The final schema binds citations to the fetched observations and permits both policy actions. Qwen selects the action and generates the rationale and note; deterministic code independently validates the decision before publishing a proposal. See [the model iteration](MODEL-ITERATION.md) for context preparation and development comparisons.
 
@@ -26,6 +28,6 @@ The original **Qwen2.5 1.5B** run used revision `989aa7980e4cf806f80c7fef2b1adb7
 
 That failed run loaded in 4.136 seconds; failed-case p50 was 4.057 seconds and nearest-rank p95 was 8.055 seconds, with 62,512 input/output tokens across 30 cases. These are failure timings. Initial dirty-tree reports remain under `initial-*.json` for provenance.
 
-`prepare --profile baseline1.5b` selects the original weights with the current protocol; it does not reproduce the old adapter. `prepare --profile qwen7b` selects the development comparison checkpoint `mlx-community/Qwen2.5-7B-Instruct-4bit`, revision `c26a38f6a37d0a51b4e9a1eb3026530fa35d9fed`. Neither comparison profile is an automatic fallback. Restore the default with `prepare --profile qwen3-4b` and rerun the probe.
+`prepare --profile baseline1.5b` selects the original weights with the current protocol; it does not reproduce the old adapter. `prepare --profile qwen7b` selects the development comparison checkpoint `mlx-community/Qwen2.5-7B-Instruct-4bit`, revision `c26a38f6a37d0a51b4e9a1eb3026530fa35d9fed`. Neither comparison profile is an automatic fallback. The failed 4B comparison remains available as `prepare --profile qwen3-4b`. Restore the default with `prepare --profile qwen3-14b` and rerun the probe.
 
 Use the [runbook](RUNBOOK.md) for commands and [evaluation](../EVALUATION.md) for measured quality and limitations. Human review of generated factual claims remains pending.

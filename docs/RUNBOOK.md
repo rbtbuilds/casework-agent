@@ -57,11 +57,11 @@ uv run --extra model python scripts/model_session.py probe
 uv run --extra model python scripts/dev.py start
 ```
 
-The default download selects pinned `mlx-community/Qwen3-4B-Instruct-2507-4bit` and hashes its weights, tokenizer, configuration and chat template under this project's `.runtime/models`. It does not upload anything. `prepare` makes network requests to the public model host; use the profile and source revision recorded by the report when reproducing a benchmark. Model dependencies are optional on Apple Silicon. Fixture mode remains available without them. The UI never silently substitutes fixture decisions for a failed model run. Health reports protocol availability only after a saved probe matching the selected snapshot and protocol version; inspect the probe result itself. The probe does not establish task quality.
+The default download selects pinned `mlx-community/Qwen3-14B-4bit` and hashes its weights, tokenizer, configuration and chat template under this project's `.runtime/models`. It does not upload anything. `prepare` makes network requests to the public model host; use the profile and source revision recorded by the report when reproducing a benchmark. Model dependencies are optional on Apple Silicon. Fixture mode remains available without them. The UI never silently substitutes fixture decisions for a failed model run. Health reports protocol availability only after a saved probe matching the selected snapshot and protocol version; inspect the probe result itself. The probe does not establish task quality.
 
 Before loading weights, `ModelSession` atomically creates `/tmp/bentolabs-portfolio-ml.lock`. Its owner record includes project, PID, process start time, UTC start, purpose and random token. If occupied, the model case fails explicitly with `model_busy`; do not steal or delete it. Model weights live only in an owned child process. Normal completion, cancellation and startup failure wait for child exit before releasing the matching token. If cleanup fails, preserve the lease and investigate that exact recorded process. The protocol is JSON lines over pipes; no model server port is used.
 
-The default profile is `qwen3-4b`. `prepare --profile baseline1.5b` and `prepare --profile qwen7b` select the preserved development comparisons explicitly. Changing profiles requires another probe. The original 0/30 report used the old adapter at its recorded source revision; selecting old weights with current code is a different experiment.
+The default profile is `qwen3-14b` (approximately 8.3 GB of weights). `prepare --profile qwen3-4b` retains the failed 4B comparison. `prepare --profile baseline1.5b` and `prepare --profile qwen7b` select the preserved development comparisons explicitly. Changing profiles requires another probe. The original 0/30 report used the old adapter at its recorded source revision; selecting old weights with current code is a different experiment.
 
 The actual-model browser check is opt-in and requires the pinned weights and an available shared lease. Stop the developer stack first. This runs all browser flows together, including Qwen proposal generation and both post-commit response drops:
 
@@ -74,8 +74,8 @@ Without that environment variable, the model check is explicitly skipped and the
 ## Evaluation
 
 ```sh
-uv run python -m eval.runner --manifest fixtures/manifests/holdout.json --mode fixture --output .runtime/reports/fixture.json
-uv run --extra model python scripts/model_session.py evaluate --manifest fixtures/manifests/holdout.json --output .runtime/reports/qwen.json
+uv run python -m eval.runner --manifest fixtures/manifests/v3-challenge.json --mode fixture --output .runtime/reports/fixture-v3.json
+uv run --extra model python scripts/model_session.py evaluate --manifest fixtures/manifests/v3-challenge.json --output .runtime/reports/qwen-v3.json
 ```
 
 Each case uses fresh isolated databases and three actual HTTP processes. The model benchmark holds one lease and one model child throughout; business calls still cross HTTP. Output includes per-case traces and an incremental progress file. Oracle fields and split labels never enter the agent context. Six stale cases expect zero writes; 24 expect a completed ticket/annotation pair. An aborted or busy run is not a passing report. Reports remain ignored until deliberately inspected and curated. No monetary savings or customer impact is inferred.

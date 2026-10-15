@@ -33,6 +33,36 @@ The final prompt makes the existing chronology policy explicit: missing or timez
 
 ## Runtime and reproducibility
 
+The independently authored v2 challenge was promoted only after source freeze
+`26643635f312e076dff75ea7905c742ddea7b195`. Its first actual-model run at clean
+source `bd94e418e9b7f9df60709a9eb8801ef6555e0f2a` produced **17/30** valid actions
+and correct workflows, with **14/24** authorised completions. All 13 incorrect
+actions failed policy validation before approval or writes. There were zero
+unapproved writes and duplicate effects. The [full model report](evidence/qwen-v2-challenge.json)
+and [same-input fixture report](evidence/fixture-v2-challenge.json) preserve this
+failure; the fixture completed 30/30 workflows and 24/24 authorised actions.
+Generated claims still lack human review. The 4B candidate failed the quality
+gate despite its stronger development results.
+
+The next development iteration tests a pinned 14B Qwen checkpoint, explicit
+non-thinking rendering, and one final user turn containing the latest evidence,
+compact facts and response schema. The v2 renderer put the schema in a separate
+last user message. JSON serialization now escapes angle brackets so business
+text cannot insert raw tokenizer role delimiters. These changes do not change
+the policy or supply an action. A new independently authored v3 challenge stays
+private until the next source freeze. V2 inputs and results remain immutable.
+
+The first 14B development run passed **12/16** cases with zero unapproved or
+duplicate effects. The model quoted an excluded shipment status correctly but
+still chose investigation; it also missed three carrier-event exclusions.
+Its [report](evidence/qwen-v3-initial-development.json) remains calibration
+evidence. A larger checkpoint and corrected rendering alone did not establish
+adequate policy reasoning. The next development change requires an explicit,
+model-generated assessment of each policy condition before the action, with
+neutral timestamp differences to reduce calendar arithmetic. Those assessments
+are model outputs, not supplied eligibility answers. The independent challenge
+remains unopened.
+
 Model preparation uses named profiles with immutable public revisions. A checkpoint's separate `.jinja` chat-template file is downloaded and hashed alongside its configuration, tokenizer and weights. A temporary pointer replaces the selected snapshot only after the download and hashing complete. The original 1.5B profile remains available.
 
 An owned subprocess loads the verified snapshot under the shared machine lease. Model execution is offline; Outlines caches stay in the project's ignored runtime directory. Probe and benchmark identities come from the snapshot captured by that session, even if another preparation changes the selection pointer. Readiness requires the matching snapshot hash and protocol version.

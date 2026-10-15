@@ -42,8 +42,13 @@ class ProposalRequest(StrictModel):
 REQUEST = TypeAdapter(Annotated[ToolRequest | ProposalRequest, Field(discriminator="kind")])
 
 
-MODEL_PROTOCOL_VERSION = "casework-json-schema-v2"
+MODEL_PROTOCOL_VERSION = "casework-json-schema-v3"
 CASE_DEADLINE_SECONDS = 120
+
+
+def prompt_json(value: JsonDict) -> str:
+    # JSON escapes preserve field values without admitting tokenizer role delimiters.
+    return json.dumps(value, separators=(",", ":")).replace("<", r"\u003c").replace(">", r"\u003e")
 
 
 def generation_schema(context: AgentContext, tools: ReadTools) -> JsonDict:
@@ -181,7 +186,7 @@ class LocalModelAdapter:
         instruction = system_instruction()
         messages = [
             ChatMessage(role="system", content=instruction),
-            ChatMessage(role="user", content=context.model_dump_json()),
+            ChatMessage(role="user", content=prompt_json(context.model_dump(mode="json"))),
         ]
         self.trace = messages
         errors = 0
@@ -193,7 +198,8 @@ class LocalModelAdapter:
                 messages.append(
                     ChatMessage(
                         role="user",
-                        content="OBSERVED_CASE_FACTS=" + json.dumps(decision_facts(context, tools)),
+                        content="OBSERVED_CASE_FACTS="
+                        + prompt_json(decision_facts(context, tools)),
                     )
                 )
                 facts_added = True
@@ -229,7 +235,9 @@ class LocalModelAdapter:
                     raise AgentValidationError("tool_arguments")
                 messages.append(
                     ChatMessage(
-                        role="user", content="UNTRUSTED_OBSERVATION=" + evidence.model_dump_json()
+                        role="user",
+                        content="UNTRUSTED_OBSERVATION="
+                        + prompt_json(evidence.model_dump(mode="json")),
                     )
                 )
             except (ValidationError, ToolPermissionError, AgentValidationError) as exc:

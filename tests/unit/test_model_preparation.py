@@ -43,13 +43,16 @@ def test_prepare_pins_candidate_and_keeps_the_baseline_profile(
     assert first["revision"] == "c26a38f6a37d0a51b4e9a1eb3026530fa35d9fed"
     cli.prepare()
     selected = json.loads((tmp_path / ".runtime/models/snapshot.json").read_text())
-    assert selected["model_id"] == "mlx-community/Qwen3-4B-Instruct-2507-4bit"
-    assert selected["revision"] == "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b"
+    assert selected["model_id"] == "mlx-community/Qwen3-14B-4bit"
+    assert selected["revision"] == "a4d9b2df59d2c150bef02fcbe0d91046b7ca33a4"
+    cli.prepare("qwen3-4b")
+    previous = json.loads((tmp_path / ".runtime/models/snapshot.json").read_text())
+    assert previous["model_id"] == "mlx-community/Qwen3-4B-Instruct-2507-4bit"
     cli.prepare("baseline1.5b")
     second = json.loads((tmp_path / ".runtime/models/snapshot.json").read_text())
     assert second["model_id"] == "Qwen/Qwen2.5-1.5B-Instruct"
     assert second["revision"] == "989aa7980e4cf806f80c7fef2b1adb7bc71aa306"
-    assert len(revisions) == 3
+    assert len(revisions) == 4
     assert Path(first["path"]).is_dir()
 
 

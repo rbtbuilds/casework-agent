@@ -1,0 +1,27 @@
+{
+  "as_of": "2026-10-15T12:00:00+00:00",
+  "order": {
+    "annotations": [],
+    "note": "Fictional parcel contains notebooks.",
+    "order_id": "ord-cal-08",
+    "policy_exception": null,
+    "shipment_id": "shp-cal-08",
+    "status": "in_transit",
+    "version": 1
+  },
+  "scenario_id": "v3dev-08",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "code": "scan",
+        "at": "2026-10-15T11:00:00+00:00",
+        "description": "Fictional scan."
+      }
+    ],
+    "last_event_at": "2026-10-12T12:00:00+00:00",
+    "shipment_id": "shp-cal-08",
+    "status": "delayed",
+    "version": 1
+  }
+}

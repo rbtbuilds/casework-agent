@@ -6,12 +6,17 @@ import time
 from typing import Protocol, cast
 
 from .contracts import JsonDict, StrictModel
-from .model_adapter import ChatMessage
+from .model_adapter import ChatMessage, prompt_json
 
 
 class Tokenizer(Protocol):
     def apply_chat_template(
-        self, messages: list[dict[str, str]], *, tokenize: bool, add_generation_prompt: bool
+        self,
+        messages: list[dict[str, str]],
+        *,
+        tokenize: bool,
+        add_generation_prompt: bool,
+        enable_thinking: bool,
     ) -> str: ...
     def encode(self, text: str) -> list[int]: ...
 
@@ -54,6 +59,28 @@ class InferenceRequest(StrictModel):
     response_schema: JsonDict | None = None
 
 
+def render_prompt(
+    tokenizer: Tokenizer, messages: list[ChatMessage], response_schema: JsonDict | None
+) -> str:
+    turns: list[dict[str, str]] = []
+    for message in messages:
+        # Replayed replies and repair errors may also carry untrusted identifiers.
+        content = message.content.replace("<", r"\u003c")
+        if turns and turns[-1]["role"] == message.role:
+            turns[-1]["content"] += "\n\n" + content
+        else:
+            turns.append({"role": message.role, "content": content})
+    if response_schema is not None:
+        schema_message = "NEXT_RESPONSE_SCHEMA=" + prompt_json(response_schema)
+        if turns and turns[-1]["role"] == "user":
+            turns[-1]["content"] += "\n\n" + schema_message
+        else:
+            turns.append({"role": "user", "content": schema_message})
+    return tokenizer.apply_chat_template(
+        turns, tokenize=False, add_generation_prompt=True, enable_thinking=False
+    )
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--snapshot", required=True)
@@ -68,19 +95,13 @@ def main() -> None:
     for line in sys.stdin:
         try:
             request = InferenceRequest.model_validate_json(line)
-            messages = list(request.messages)
             processor: object | None = None
             if request.response_schema is not None:
                 schema = json.dumps(request.response_schema, separators=(",", ":"))
                 processor = backends.get_json_schema_logits_processor(
                     "outlines_core", structured, schema, whitespace_pattern=r"[ ]?"
                 )
-                messages.append(ChatMessage(role="user", content="NEXT_RESPONSE_SCHEMA=" + schema))
-            prompt = tokenizer.apply_chat_template(
-                [{"role": m.role, "content": m.content} for m in messages],
-                tokenize=False,
-                add_generation_prompt=True,
-            )
+            prompt = render_prompt(tokenizer, request.messages, request.response_schema)
             inputs = len(tokenizer.encode(prompt))
             if inputs > 8192:
                 raise ValueError("prompt_tokens_limit")

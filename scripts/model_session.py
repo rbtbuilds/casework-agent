@@ -18,6 +18,10 @@ from eval.runner import evaluate
 
 ROOT = Path(__file__).resolve().parents[1]
 MODEL_PROFILES = {
+    "qwen3-14b": (
+        "mlx-community/Qwen3-14B-4bit",
+        "a4d9b2df59d2c150bef02fcbe0d91046b7ca33a4",
+    ),
     "qwen3-4b": (
         "mlx-community/Qwen3-4B-Instruct-2507-4bit",
         "50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b",
@@ -47,7 +51,7 @@ class HubDownloads(Protocol):
     ) -> str: ...
 
 
-def prepare(profile: str = "qwen3-4b") -> None:
+def prepare(profile: str = "qwen3-14b") -> None:
     model_id, revision = MODEL_PROFILES[profile]
     info = HfApi(token=False).model_info(model_id, revision=revision)
     if info.sha != revision:
@@ -60,7 +64,15 @@ def prepare(profile: str = "qwen3-4b") -> None:
         local_dir=target,
         cache_dir=ROOT / ".runtime/hf-cache",
         max_workers=2,
-        allow_patterns=["*.safetensors", "*.json", "*.txt", "*.model", "*.jinja", "LICENSE", "README.md"],
+        allow_patterns=[
+            "*.safetensors",
+            "*.json",
+            "*.txt",
+            "*.model",
+            "*.jinja",
+            "LICENSE",
+            "README.md",
+        ],
     )
     files: dict[str, str] = {}
     for path in sorted(target.iterdir()):
@@ -74,7 +86,8 @@ def prepare(profile: str = "qwen3-4b") -> None:
     temporary = pointer.with_suffix(".pending.json")
     temporary.write_text(
         json.dumps(
-            {"model_id": model_id, "revision": revision, "path": str(target), "files": files}, indent=2
+            {"model_id": model_id, "revision": revision, "path": str(target), "files": files},
+            indent=2,
         )
     )
     temporary.replace(pointer)
@@ -138,6 +151,8 @@ async def benchmark(manifest: Path, output: Path) -> None:
                 "mlx": importlib.metadata.version("mlx"),
                 "outlines": importlib.metadata.version("outlines"),
                 "decoder": "outlines_core JSON Schema",
+                "enable_thinking": False,
+                "prompt_rendering": "merged consecutive turns; schema appended to final user turn",
                 "protocol_version": MODEL_PROTOCOL_VERSION,
                 "lease_owner": json.loads((session.lease.path / "owner.json").read_text()),
                 "worker_protocol": "typed JSON lines on owned subprocess pipes",
@@ -150,7 +165,7 @@ async def benchmark(manifest: Path, output: Path) -> None:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("command", choices=["prepare", "probe", "evaluate"])
-    parser.add_argument("--profile", choices=list(MODEL_PROFILES), default="qwen3-4b")
+    parser.add_argument("--profile", choices=list(MODEL_PROFILES), default="qwen3-14b")
     parser.add_argument("--manifest", type=Path)
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()

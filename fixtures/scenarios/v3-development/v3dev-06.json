@@ -1,0 +1,21 @@
+{
+  "as_of": "2026-10-15T12:00:00+00:00",
+  "order": {
+    "annotations": [],
+    "note": "Fictional parcel contains notebooks.",
+    "order_id": "ord-cal-06",
+    "policy_exception": "Fictional refund request needs separate authority.",
+    "shipment_id": "shp-cal-06",
+    "status": "in_transit",
+    "version": 1
+  },
+  "scenario_id": "v3dev-06",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [],
+    "last_event_at": "2026-10-12T12:00:00+00:00",
+    "shipment_id": "shp-cal-06",
+    "status": "delayed",
+    "version": 1
+  }
+}

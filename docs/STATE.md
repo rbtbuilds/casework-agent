@@ -2,6 +2,30 @@
 
 Updated: 2026-10-16. Repository: [rbtbuilds/casework-agent](https://github.com/rbtbuilds/casework-agent). The local model repair selects pinned Qwen3 4B Instruct 2507 4-bit with MLX and schema-constrained decoding. Fixture mode remains explicit and separate.
 
+## Active iteration after the implementation checkpoint
+
+The first clean-source v2 challenge at `bd94e418e9b7f9df60709a9eb8801ef6555e0f2a`
+has now finished: **17/30** valid actions and correct workflows, **14/24**
+authorised completions, zero unapproved writes and duplicate effects. All 13
+incorrect proposals stopped at policy validation. Human claim review is pending.
+The same-input fixture run passed 30/30 workflows and 24/24 completions. Both
+reports are preserved in `docs/evidence/*-v2-challenge.json`; the original v1
+reports and challenge inputs are unchanged.
+
+V3 development is in progress: pinned Qwen3 14B 4-bit, explicit non-thinking
+template rendering, merged consecutive chat turns and escaped role delimiters
+inside serialized business data. The policy and quality gates are unchanged.
+The fresh v3 challenge remains private to its independent author until source
+freeze. No v3 challenge result or acceptance is claimed. No source push has occurred
+during this repair; public main remains `d8956e0`.
+
+The initial 14B development run has now produced **12/16** valid actions and
+workflows, with four policy mismatches blocked before writes. It exposed missed
+shipment-status and carrier-event exclusions. The report is preserved as
+`qwen-v3-initial-development.json`. The next change will make the model assess
+each policy condition explicitly before choosing its action; no v3 challenge
+measurement exists yet.
+
 ## Verified implementation checkpoint
 
 All **83 Python tests**, **eight component tests**, Ruff, strict Pyright, strict TypeScript including browser tests, and the production build pass. All **four browser flows pass together**, including actual Qwen inference through the UI/API and both dropped-write responses. The actual-model browser check observed zero writes before approval, two uncertain-outcome events, then one confirmed ticket and one annotation, with one send per operation and no browser errors.
