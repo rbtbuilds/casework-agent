@@ -1,6 +1,6 @@
 # Casework Agent state
 
-Updated: 2026-10-15. Phase: planning only. Implementation: not started.
+Updated: 2026-10-15. Phase: implementation. Task1 verified; remaining tasks in progress.
 
 ## Verified planning facts
 
@@ -16,7 +16,7 @@ Updated: 2026-10-15. Phase: planning only. Implementation: not started.
 
 | Task | Status | Evidence |
 | --- | --- | --- |
-| 1 Typed storage and first API slice | Not started | None |
+| 1 Typed storage and first API slice | Complete | pytest3passed; Ruff clean; strict Pyright0errors. |
 | 2 Independent mock services | Not started | None |
 | 3 Bounded tools and fixture baseline | Not started | None |
 | 4 Local-model tool adapter | Not started | None |
@@ -42,3 +42,7 @@ Updated: 2026-10-15. Phase: planning only. Implementation: not started.
 Matthew can paste CHAT-HANDOFF.md's execution prompt into the assigned fork. The executor reads the absolute inputs, proves its workdir, inspects Git/runtime/process reality and begins Task 1 under native superpowers:executing-plans.
 
 The optional human contribution is 5-10 lines of delivery-exception policy or internal-note preferences. The SPEC's conservative defaults permit implementation without it. Real-model acceptance uses the selected public Qwen checkpoint and local MLX LM, with explicit snapshot download and load/unload inside the shared lease. No model/server configuration is required from Matthew.
+
+## Execution record
+
+Task1: Python3.12.14, feature branch feat/casework-agent-v1. Storage reopen/hash/health tests passed. Model weights absent. Initial shared pytest housekeeping warnings resolved by project-local --basetemp; foreign files left alone.
