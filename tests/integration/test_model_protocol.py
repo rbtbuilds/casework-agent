@@ -3,12 +3,16 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import cast
 
+import pytest
+
 from casework_agent.agent import AgentContext
 from casework_agent.config import Settings
-from casework_agent.contracts import AgentDecision, Evidence, JsonDict, Order
+from casework_agent.contracts import AgentDecision, CaseSeed, Evidence, JsonDict, Order
 from casework_agent.model_adapter import ChatMessage, LocalModelAdapter, ModelReply
 from casework_agent.policy import allowed_action
+from casework_agent.repository import Repository
 from casework_agent.tools import ReadTools
+from casework_agent.worker import Worker
 from tests.support import TestSystem
 
 
@@ -48,6 +52,14 @@ class ScriptedReadClient:
             )
             body = {
                 "kind": "proposal",
+                "assessment": {
+                    "order_in_transit": True,
+                    "shipment_delayed": True,
+                    "no_policy_exception": True,
+                    "no_conflicting_or_terminal_events": True,
+                    "timestamps_known_and_consistent": True,
+                    "age_at_least_48_hours": True,
+                },
                 "decision": cast(JsonDict, decision.model_dump(mode="json")),
             }
         return ModelReply(text=json.dumps(body))
@@ -71,3 +83,47 @@ async def test_scripted_json_loop_uses_real_read_http_only(tmp_path: Path) -> No
             assert (await system.counts()).tickets == 0
         finally:
             await tools.close()
+
+
+@pytest.mark.parametrize("timestamp", ["0001-01-01T00:00:00+01:00", "9999-12-31T23:59:59-01:00"])
+async def test_unrepresentable_utc_clock_does_not_stop_following_case(
+    tmp_path: Path, timestamp: str
+) -> None:
+    source = Path(__file__).resolve().parents[2] / "fixtures/scenarios/dev-delay-01.json"
+    scenario = json.loads(source.read_text())
+    scenario["shipment"]["events"] = [
+        {"code": "scan", "at": timestamp, "description": "Fictional date boundary."}
+    ]
+    (tmp_path / "scenario.json").write_text(json.dumps(scenario))
+    async with TestSystem(tmp_path) as system:
+        await system.start()
+        with Repository.open(tmp_path / ".runtime/app.sqlite3") as repo:
+            worker = Worker(repo, Settings(root=tmp_path), model=ScriptedReadClient())
+            try:
+                invalid = repo.create_case(
+                    CaseSeed(
+                        scenario_id="boundary",
+                        order_id="o-001",
+                        mode="model",
+                        as_of=datetime(2026, 10, 15, 12, tzinfo=UTC),
+                    )
+                )
+                assert await worker.tick()
+                failed = repo.get_case(invalid.id)
+                assert failed.state == "failed"
+                assert failed.error and failed.error.code == "timestamp_out_of_utc_range"
+                assert failed.proposal is None and not failed.operations
+                following = repo.create_case(
+                    CaseSeed(
+                        scenario_id="following",
+                        order_id="o-001",
+                        mode="fixture",
+                        as_of=datetime(2026, 10, 15, 12, tzinfo=UTC),
+                    )
+                )
+                assert await worker.tick()
+                assert repo.get_case(following.id).state == "needs_approval"
+                counts = await system.counts()
+                assert counts.tickets == 0 and counts.annotations == 0
+            finally:
+                await worker.close()

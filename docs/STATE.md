@@ -1,57 +1,31 @@
 # Casework Agent state
 
-Updated: 2026-10-16. Repository: [rbtbuilds/casework-agent](https://github.com/rbtbuilds/casework-agent). The local model repair selects pinned Qwen3 4B Instruct 2507 4-bit with MLX and schema-constrained decoding. Fixture mode remains explicit and separate.
+Updated 2026-10-16. Repository: [rbtbuilds/casework-agent](https://github.com/rbtbuilds/casework-agent).
 
-## Active iteration after the implementation checkpoint
+## Current implementation checkpoint
 
-The first clean-source v2 challenge at `bd94e418e9b7f9df60709a9eb8801ef6555e0f2a`
-has now finished: **17/30** valid actions and correct workflows, **14/24**
-authorised completions, zero unapproved writes and duplicate effects. All 13
-incorrect proposals stopped at policy validation. Human claim review is pending.
-The same-input fixture run passed 30/30 workflows and 24/24 completions. Both
-reports are preserved in `docs/evidence/*-v2-challenge.json`; the original v1
-reports and challenge inputs are unchanged.
+The model path uses pinned `mlx-community/Qwen3-14B-4bit`, revision `a4d9b2df59d2c150bef02fcbe0d91046b7ca33a4`, with MLX LM and Outlines. Qwen generates six policy-assessment booleans, chooses its action and drafts the note. The decoder leaves both boolean values and both actions available. Deterministic policy validation rejects an incorrect decision without feedback or another choice. Fixture mode remains explicit and separate.
 
-V3 development is in progress: pinned Qwen3 14B 4-bit, explicit non-thinking
-template rendering, merged consecutive chat turns and escaped role delimiters
-inside serialized business data. The policy and quality gates are unchanged.
-The fresh v3 challenge remains private to its independent author until source
-freeze. No v3 challenge result or acceptance is claimed. No source push has occurred
-during this repair; public main remains `d8956e0`.
+All **94 Python tests**, **eight component tests**, Ruff, strict Pyright, strict TypeScript including browser tests, and the production build pass. Regenerating the three API contract artifacts reproduced their bytes. The full Python suite passed in 49.30 seconds. Port-owning suites ran sequentially.
 
-The initial 14B development run has now produced **12/16** valid actions and
-workflows, with four policy mismatches blocked before writes. It exposed missed
-shipment-status and carrier-event exclusions. The report is preserved as
-`qwen-v3-initial-development.json`. The next change will make the model assess
-each policy condition explicitly before choosing its action; no v3 challenge
-measurement exists yet.
+Commands: `uv run --no-sync ruff check .`; `uv run --no-sync pyright`; `uv run --no-sync pytest -q`; `npm --prefix web run typecheck`; `npm --prefix web test -- --run`; `npm --prefix web run build`; `uv run --no-sync python scripts/export_contracts.py`; `npm --prefix web run contracts`. Browser and fresh-challenge execution remain pending for this checkpoint.
 
-## Verified implementation checkpoint
+The protocol probe succeeded for the pinned 14B snapshot. The first 14B development run passed only 12/16; the explicit-assessment protocol then passed **16/16 actions and workflows**, with zero unapproved or duplicate effects. Both reports remain calibration evidence with their actual dirty source states and prompt hashes. See [MODEL-ITERATION](MODEL-ITERATION.md) and the [development report](evidence/qwen-v3-development.json).
 
-All **83 Python tests**, **eight component tests**, Ruff, strict Pyright, strict TypeScript including browser tests, and the production build pass. All **four browser flows pass together**, including actual Qwen inference through the UI/API and both dropped-write responses. The actual-model browser check observed zero writes before approval, two uncertain-outcome events, then one confirmed ticket and one annotation, with one send per operation and no browser errors.
+The source review closed the replayed-delimiter and UTC-overflow findings. Regressions prove that invalid UTC case clocks return HTTP 422 without creating a case, an unnormalizable carrier event fails gathering without operations, and the same worker handles its next case. The [review record](REVIEW-2026-10-16.md) distinguishes source inspection from execution evidence.
 
-The three fixture browser flows also pass without model execution; the optional model test is explicitly skipped in that configuration. An earlier actual-model browser attempt returned `model_busy` while another project held the shared lease. It was interrupted and is excluded from successful inference evidence. The subsequent complete four-test run used the available lease and passed.
+## Evaluation boundary
 
-Commands: `uv run --no-sync ruff check .`; `uv run --no-sync pyright`; `uv run --no-sync pytest -q`; `npm --prefix web run typecheck`; `npm --prefix web test -- --run`; `npm --prefix web run build`; `CASEWORK_REAL_MODEL=1 PLAYWRIGHT_BROWSERS_PATH="$PWD/.runtime/pw-browsers" npm --prefix web run e2e`. Python and browser process suites ran sequentially. Regenerating the three API contract artifacts reproduced their bytes; application contracts have not changed.
+The original 1.5B report remains **0/30** actions and **0/24** completions. The independently frozen 4B v2 report remains **17/30** actions/workflows and **14/24** completions; all 13 incorrect proposals stopped before writes. The same-input v2 fixture passed 30/30 workflows and 24/24 completions. These reports and their inputs are unchanged.
 
-A separate source reviewer closed all findings, including loaded-snapshot attribution, shared browser identity/counts, external manifest metadata and binary policy-answer feedback. See [the review](REVIEW-2026-10-16.md). Wrong policy decisions now fail without feedback or another choice. A compact context copies observed fields and calculates event age without supplying an action oracle. Generated factual claims still require review.
+The independently authored v3 challenge remains private and unopened by the implementer at this source checkpoint. Its manifest SHA-256 is `a51c64475b1a5081b60b117d78a961e248f35b2edf7749b7ff56868ab9870e4c`. It will be promoted unchanged after the implementation freeze, then measured once on clean committed source. No v3 challenge result or model acceptance is claimed here.
 
-## Model development and evaluation boundary
+## Runtime and publication
 
-The original 1.5B/MLX benchmark remains frozen at source `1da911fb12bb896e750248a67f22345bf3d7892b`: **0/30 actions, 0/24 completions**, with no writes. The original fixture report records 30/30 actions and outcomes, 24/24 completions and no unapproved or duplicate effects. These are historical measurements, not current-model results.
+Python 3.12.14, MLX LM 0.32.0, MLX 0.32.4 and Outlines 1.3.3 run on Apple M5 Pro hardware with 24 GiB memory. Node 26.7.0 is the supported local exception; CI targets Python 3.12 and Node 24 on Ubuntu. Fixture CI downloads no weights. Model execution uses an offline owned child under the shared machine lease, with exit confirmed before release.
 
-Development comparisons selected Qwen3 after 1.5B and 7B candidates produced 2/5 and 3/5 correct actions. Qwen3 produced 5/5 in the initial comparison. After compact fact preparation, its larger development run produced **29/30** correct actions and completed workflows; the single missing-timestamp error stopped before approval or writes. The final chronology clarification then passed **6/6** development regressions, including that failure. Development reports record their actual in-progress source state and separate prompt hashes. See [the iteration record](MODEL-ITERATION.md).
+No source push has occurred during this repair; public main remains `d8956e0`. The publication audit found no active credentials, customer records, weights, databases or unrelated source in its inspected scope. Historical workstation paths and obsolete cleanup markers remain documented. New exports redact runtime paths and ownership metadata while preserving measurements and identifying raw report hashes. See [PUBLICATION-AUDIT](PUBLICATION-AUDIT.md).
 
-At this implementation checkpoint, the separately authored 30-case challenge is frozen and **has not been opened by the implementer or evaluated**. Its manifest hash is `74a9dbbf7dbe2c6722cca29ec646cef438095dae2bc24a722c7ee9c282ecc67f`. It will be promoted unchanged after committing this model/protocol freeze. Challenge execution and its measured results remain pending at this checkpoint.
+Human factual-claim review, manual screen-reader testing and a recorded walkthrough remain unperformed. Assessments and generated prose remain model claims. The application is a loopback, single-operator simulation without public authentication, tenant isolation, cross-service rollback or production validation.
 
-The selected model is `mlx-community/Qwen3-4B-Instruct-2507-4bit`, revision `50d427756c6b1b2fe0c0a10f67fbda1fc8e82c1b`. Preparation hashes weights, configuration, tokenizer and the separate chat template. Actual inference uses an offline owned child under the shared machine lease. The original 1.5B and comparison 7B profiles remain explicit options, with no automatic substitution. See [MODEL-CONFIG](MODEL-CONFIG.md) and [RUNBOOK](RUNBOOK.md).
-
-## Publication and remaining limits
-
-The published-history audit found no active credentials, weights, databases, customer records or unrelated source. Historical reports contain workstation paths and obsolete local cleanup markers; the author email already matches public profile contact information. New curated development exports remove private runtime paths and ownership metadata, preserve measurements and identify their raw source hashes. All 13 original evidence files remain unchanged. See [the bounded publication audit](PUBLICATION-AUDIT.md).
-
-Human factual-claim review, manual screen-reader testing and a recorded walkthrough remain unperformed. The model's generated prose is not certified free of unsupported claims. Automated accessibility checks cover both themes and desktop/mobile widths in the fixture browser flow. The application remains a loopback, single-operator simulation with synthetic records, no public authentication, cross-service rollback or production validation.
-
-Python 3.12.14, MLX LM 0.32.0, MLX 0.32.4 and Outlines 1.3.3 run on Apple M5 Pro hardware with 24 GiB memory. Node 26.7.0 is the recorded supported local exception; CI targets Python 3.12 and Node 24 on Ubuntu. The prior published source passed [CI run 38810735255](https://github.com/rbtbuilds/casework-agent/actions/runs/38810735255); a new source push must obtain its own CI result.
-
-The developer stack was stopped through its ownership-checked lifecycle helper for tests. Its original databases are preserved; restore that stack after final verification. No model weights, private runtime state or unrelated files belong in a source push.
+The developer stack was stopped through its ownership-checked helper for tests. Its original databases are preserved; restore it after final verification. No model weights, private runtime state or unrelated files belong in a source push.

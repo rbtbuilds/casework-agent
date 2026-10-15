@@ -46,7 +46,10 @@ class CaseSeed(StrictModel):
     def utc_date(cls, value: datetime) -> datetime:
         if value.tzinfo is None:
             raise ValueError("Timezone required")
-        return value.astimezone(UTC)
+        try:
+            return value.astimezone(UTC)
+        except OverflowError as exc:
+            raise ValueError("timestamp_out_of_utc_range") from exc
 
 
 class OrderAnnotation(StrictModel):

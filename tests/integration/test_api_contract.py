@@ -18,6 +18,22 @@ async def test_api_errors_origin_and_full_http_workflow(tmp_path: Path) -> None:
             "/v1/cases", json={}, headers={"Idempotency-Key": "invalid"}
         )
         assert invalid.status_code == 422 and invalid.json()["error"]["code"] == "validation_error"
+        for index, timestamp in enumerate(
+            ["0001-01-01T00:00:00+01:00", "9999-12-31T23:59:59-01:00"]
+        ):
+            invalid_clock = await system.api.post(
+                "/v1/cases",
+                json={
+                    "scenario_id": "dev-delay-01",
+                    "order_id": "o-001",
+                    "as_of": timestamp,
+                    "mode": "model",
+                },
+                headers={"Idempotency-Key": f"clock-boundary-{index}"},
+            )
+            assert invalid_clock.status_code == 422
+            assert invalid_clock.json()["error"]["code"] == "validation_error"
+        assert (await system.api.get("/v1/cases")).json() == []
         scenarios = (await system.api.get("/v1/scenarios")).json()
         assert "expected_action" not in str(scenarios)
         response = await system.api.post(

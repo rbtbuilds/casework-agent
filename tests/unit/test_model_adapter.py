@@ -1,3 +1,4 @@
+import json
 from datetime import UTC, datetime
 from pathlib import Path
 
@@ -105,7 +106,20 @@ async def test_wrong_policy_action_fails_without_feedback_or_second_guess(tmp_pa
                 evidence_ids=[e.id for e in tools.evidence],
             )
             return ModelReply(
-                text='{"kind":"proposal","decision":' + decision.model_dump_json() + "}"
+                text=json.dumps(
+                    {
+                        "kind": "proposal",
+                        "assessment": {
+                            "order_in_transit": True,
+                            "shipment_delayed": True,
+                            "no_policy_exception": True,
+                            "no_conflicting_or_terminal_events": True,
+                            "timestamps_known_and_consistent": True,
+                            "age_at_least_48_hours": True,
+                        },
+                        "decision": decision.model_dump(mode="json"),
+                    }
+                )
             )
 
     client = WrongAction()

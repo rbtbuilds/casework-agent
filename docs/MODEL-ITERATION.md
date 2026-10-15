@@ -10,7 +10,7 @@ Both final actions remain available to the model. The decoder receives no oracle
 
 Before the proposal, a compact context message repeats the fetched status, exception, conflict and event fields. Its elapsed-hours value is ordinary timestamp subtraction using the case's business clock. Missing or timezone-naive timestamps produce an unknown age. This summary contains no action recommendation; the original observations and their hashes remain in the trace.
 
-The model writes its rationale before its action. The prompt requires short explanations grounded in the supplied fields. Exact approval still covers the generated note, including any factual error an operator needs to reject. Action validation does not certify free-text factual accuracy.
+The model now generates an assessment of each policy condition before its rationale and action. Each boolean is an unrestricted model output. The prompt requires short explanations grounded in the supplied fields, identifying the first failed condition or why all six pass. Exact approval still covers the generated note, including any factual error an operator needs to reject. Action validation does not certify free-text factual accuracy.
 
 ## Development comparisons
 
@@ -63,6 +63,17 @@ neutral timestamp differences to reduce calendar arithmetic. Those assessments
 are model outputs, not supplied eligibility answers. The independent challenge
 remains unopened.
 
+The assessment protocol also supplies exact signed integer microsecond differences
+for event age and chronology, plus UTC timestamp copies and lowercased event
+codes. These are arithmetic and normalization of observations, with no policy
+predicates or action recommendation. Null differences preserve unknown or naive
+timestamps. The prompt describes the unchanged six conditions in order and
+requires proposed-action wording in the internal note. The decoder does not
+force a condition to pass or fail, and the backend does not derive its action
+from the model's checklist. Incorrect policy choices still fail once, without
+answer feedback. This iteration is being checked on the same development inputs;
+the private challenge has not been opened.
+
 Model preparation uses named profiles with immutable public revisions. A checkpoint's separate `.jinja` chat-template file is downloaded and hashed alongside its configuration, tokenizer and weights. A temporary pointer replaces the selected snapshot only after the download and hashing complete. The original 1.5B profile remains available.
 
 An owned subprocess loads the verified snapshot under the shared machine lease. Model execution is offline; Outlines caches stay in the project's ignored runtime directory. Probe and benchmark identities come from the snapshot captured by that session, even if another preparation changes the selection pointer. Readiness requires the matching snapshot hash and protocol version.
@@ -82,3 +93,11 @@ See the [model configuration](MODEL-CONFIG.md), [evaluation contract](../EVALUAT
 - [Qwen3 protocol probe](evidence/qwen-v2-probe.json): schema-valid tool request, bound to its snapshot hash.
 
 Every calibration report records its own prompt hash and in-progress source state. Counts from these development checks are not held-out acceptance results.
+
+The explicit-assessment development run then passed **16/16** actions and
+workflows, with 16/16 authorised completions and zero unapproved or duplicate
+effects. Its [report](evidence/qwen-v3-development.json) preserves the same
+16 development inputs as the initial 12/16 run. These are calibration results.
+A subsequent UTC-boundary guard makes unrepresentable dates handled errors;
+unit, HTTP-admission and same-worker continuation regressions cover that guard.
+The final 30-case challenge remains unopened at this source checkpoint.
