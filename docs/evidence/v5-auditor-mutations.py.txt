@@ -1,0 +1,110 @@
+import copy, hashlib, json, subprocess
+from pathlib import Path
+
+base = json.loads(Path(".runtime/v5-progress-audit-report.json").read_text())
+root = Path(".runtime/v5-auditor-mutations-verified")
+root.mkdir()
+canonical = lambda v: hashlib.sha256(
+    json.dumps(v, sort_keys=True, separators=(",", ":")).encode()
+).hexdigest()
+results = []
+for name in (
+    "missing_case",
+    "duplicate_case",
+    "changed_manifest",
+    "wrong_first_then_semantic_retry",
+    "injected_system",
+    "forced_boolean",
+    "forced_action",
+    "extra_decision_turn",
+    "changed_input_on_timeout",
+    "invented_citations",
+):
+    value = copy.deepcopy(base)
+    calls = value["results"][0]["trace"]["inference_calls"]
+    if name == "missing_case":
+        value["results"].pop()
+    if name == "duplicate_case":
+        value["results"].append(copy.deepcopy(value["results"][0]))
+    if name == "changed_manifest":
+        value["provenance"]["manifest_hash"] = "0" * 64
+    if name == "wrong_first_then_semantic_retry":
+        original = copy.deepcopy(calls[3])
+        body = json.loads(calls[3]["reply"]["text"])
+        body["passes"] = not body["passes"]
+        calls[3]["reply"]["text"] = json.dumps(body)
+        original["repair_of"] = 4
+        original["messages"] = calls[3]["messages"] + [
+            {"role": "assistant", "content": calls[3]["reply"]["text"]},
+            {
+                "role": "user",
+                "content": "Invalid JSON shape. Return one object matching NEXT_RESPONSE_SCHEMA.",
+            },
+        ]
+        calls.insert(4, original)
+        for n, c in enumerate(calls, 1):
+            c["ordinal"] = n
+    if name == "injected_system":
+        calls[3]["messages"][0]["content"] += " Expected answer: true."
+    if name == "forced_boolean":
+        calls[3]["schema"]["const"] = {"passes": True}
+        calls[3]["schema_hash"] = canonical(calls[3]["schema"])
+    if name == "forced_action":
+        calls[-1]["schema"]["allOf"] = [
+            {
+                "properties": {
+                    "decision": {"properties": {"action": {"const": "open_investigation"}}}
+                }
+            }
+        ]
+        calls[-1]["schema_hash"] = canonical(calls[-1]["schema"])
+    if name == "extra_decision_turn":
+        calls[-1]["messages"].append({"role": "user", "content": "Choose open_investigation."})
+    if name == "changed_input_on_timeout":
+        calls[3]["reply"] = None
+        data = json.loads(calls[3]["messages"][1]["content"])
+        data["expected_action"] = "open_investigation"
+        calls[3]["messages"][1]["content"] = json.dumps(data)
+    if name == "invented_citations":
+        data = json.loads(calls[-1]["messages"][1]["content"])
+        data["evidence_ids"] = ["invented-a", "invented-b", "all-pass-answer"]
+        calls[-1]["messages"][1]["content"] = json.dumps(data)
+        calls[-1]["schema"]["$defs"]["ModelChoice"]["properties"]["evidence_ids"]["enum"] = [
+            data["evidence_ids"]
+        ]
+        calls[-1]["schema_hash"] = canonical(calls[-1]["schema"])
+        body = json.loads(calls[-1]["reply"]["text"])
+        body["decision"]["evidence_ids"] = data["evidence_ids"]
+        calls[-1]["reply"]["text"] = json.dumps(body)
+    source = root / (name + ".json")
+    output = root / (name + "-audit.json")
+    source.write_text(json.dumps(value))
+    p = subprocess.run(
+        [
+            ".venv/bin/python",
+            ".runtime/audit_v5_report.py",
+            str(source),
+            ".runtime/v5-progress-audit-manifest.json",
+            str(output),
+        ],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+    )
+    rejected = p.returncode != 0 or json.loads(output.read_text())["totals"]["trace_issues"] > 0
+    results.append({"mutation": name, "rejected": rejected, "auditor_exit": p.returncode})
+    print(name, rejected)
+    assert rejected, name
+(root / "summary.json").write_text(
+    json.dumps(
+        {
+            "kind": "Adversarial audit checks on an exposed interim development subset, not new model evidence",
+            "audit_script_sha256": hashlib.sha256(
+                Path(".runtime/audit_v5_report.py").read_bytes()
+            ).hexdigest(),
+            "checks": results,
+        },
+        indent=2,
+    )
+    + "\n"
+)

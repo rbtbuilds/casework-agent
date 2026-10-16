@@ -1,0 +1,56 @@
+{
+  "kind": "Adversarial audit checks on an exposed interim development subset, not new model evidence",
+  "audit_script_sha256": "ee249ed277dbdf11358bd13d7b28a881bb16d33966c31d23dbc4c3369a5ecaed",
+  "checks": [
+    {
+      "mutation": "missing_case",
+      "rejected": true,
+      "auditor_exit": 1
+    },
+    {
+      "mutation": "duplicate_case",
+      "rejected": true,
+      "auditor_exit": 1
+    },
+    {
+      "mutation": "changed_manifest",
+      "rejected": true,
+      "auditor_exit": 1
+    },
+    {
+      "mutation": "wrong_first_then_semantic_retry",
+      "rejected": true,
+      "auditor_exit": 0
+    },
+    {
+      "mutation": "injected_system",
+      "rejected": true,
+      "auditor_exit": 0
+    },
+    {
+      "mutation": "forced_boolean",
+      "rejected": true,
+      "auditor_exit": 0
+    },
+    {
+      "mutation": "forced_action",
+      "rejected": true,
+      "auditor_exit": 0
+    },
+    {
+      "mutation": "extra_decision_turn",
+      "rejected": true,
+      "auditor_exit": 0
+    },
+    {
+      "mutation": "changed_input_on_timeout",
+      "rejected": true,
+      "auditor_exit": 0
+    },
+    {
+      "mutation": "invented_citations",
+      "rejected": true,
+      "auditor_exit": 0
+    }
+  ]
+}

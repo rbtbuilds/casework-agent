@@ -1,0 +1,425 @@
+"""Independent post-run review of generated values and request boundaries."""
+
+import argparse, hashlib, json, copy
+from datetime import datetime, timezone
+from pathlib import Path
+from uuid import UUID
+from jsonschema import Draft202012Validator
+
+FIELDS = [
+    "order_in_transit",
+    "shipment_delayed",
+    "no_policy_exception",
+    "no_conflicting_or_terminal_events",
+    "timestamps_known_and_consistent",
+    "age_at_least_48_hours",
+]
+
+
+def digest(p):
+    return hashlib.sha256(p.read_bytes()).hexdigest()
+
+
+def canonical(x):
+    return hashlib.sha256(
+        json.dumps(x, sort_keys=True, separators=(",", ":"), ensure_ascii=True).encode()
+    ).hexdigest()
+
+
+def utc(x):
+    if x is None:
+        return None
+    value = datetime.fromisoformat(x)
+    return value.astimezone(timezone.utc) if value.tzinfo is not None else None
+
+
+def micros(later, earlier):
+    if later is None or earlier is None:
+        return None
+    delta = later - earlier
+    return delta.days * 86400000000 + delta.seconds * 1000000 + delta.microseconds
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("report", type=Path)
+    parser.add_argument("manifest", type=Path)
+    parser.add_argument("output", type=Path)
+    parser.add_argument(
+        "--protocol", type=Path, default=Path(".runtime/v5-protocol-definition.json")
+    )
+    parser.add_argument("--root", type=Path, default=Path.cwd())
+    args = parser.parse_args()
+    report = json.loads(args.report.read_text())
+    manifest = json.loads(args.manifest.read_text())
+    protocol = json.loads(args.protocol.read_text())
+    rows = {r["case_id"]: r for r in manifest["cases"]}
+    assert len(rows) == len(manifest["cases"]), "duplicate manifest ID"
+    ids = [r["case_id"] for r in report["results"]]
+    assert len(set(ids)) == len(ids) and set(ids) == set(rows), (
+        "incomplete/duplicate/unexpected report cases"
+    )
+    assert report["provenance"]["manifest_hash"] == digest(args.manifest), "report manifest binding"
+    assert report["provenance"]["protocol_definition"] == protocol, "protocol definition binding"
+    assert report["provenance"]["protocol_definition_hash"] == canonical(protocol), (
+        "protocol hash binding"
+    )
+    summary = {
+        "kind": "Independent AI-assisted post-run deterministic trace audit; not human factual review",
+        "report_sha256": digest(args.report),
+        "manifest_sha256": digest(args.manifest),
+        "audit_script_sha256": digest(Path(__file__)),
+        "protocol_sha256": digest(args.protocol),
+        "cases": [],
+    }
+    for case in report["results"]:
+        row = rows[case["case_id"]]
+        scenario = (args.root / row["scenario_file"]).resolve()
+        assert scenario.is_relative_to((args.root / "fixtures/scenarios").resolve()), (
+            "scenario outside root"
+        )
+        assert digest(scenario) == row["scenario_hash"], "changed scenario bytes"
+        raw = json.loads(scenario.read_text())
+        order = raw["order"]
+        shipment = raw["shipment"]
+        now = utc(row["as_of"])
+        last = utc(shipment.get("last_event_at"))
+        events = [utc(e["at"]) for e in shipment.get("events", [])]
+        age = micros(now, last)
+        expected = dict(
+            zip(
+                FIELDS,
+                [
+                    order["status"] == "in_transit",
+                    shipment["status"] == "delayed",
+                    order.get("policy_exception") in (None, ""),
+                    not shipment.get("conflicting_events", False)
+                    and all(
+                        e["code"].lower() not in ("delivered", "cancelled")
+                        for e in shipment.get("events", [])
+                    ),
+                    last is not None
+                    and now is not None
+                    and last <= now
+                    and all(e is not None and e <= last and e <= now for e in events),
+                    age is not None and age >= 172800000000,
+                ],
+                strict=True,
+            )
+        )
+
+        def relation(left, right):
+            d = micros(left, right)
+            return "unknown" if d is None else "before" if d < 0 else "after" if d > 0 else "equal"
+
+        expected_groups = {
+            "order_in_transit": {"order_status": order["status"]},
+            "shipment_delayed": {"shipment_status": shipment["status"]},
+            "no_policy_exception": {"policy_exception": order.get("policy_exception")},
+            "no_conflicting_or_terminal_events": {
+                "conflicting_events": shipment.get("conflicting_events", False),
+                "normalized_event_codes": [e["code"].lower() for e in shipment.get("events", [])],
+            },
+            "timestamps_known_and_consistent": {
+                "last_event_relative_to_as_of": relation(last, now),
+                "carrier_event_relative_to_last_event": [relation(e, last) for e in events],
+                "carrier_event_relative_to_as_of": [relation(e, now) for e in events],
+                "timestamps_utc": [
+                    v.isoformat() if v is not None else None for v in [now, last, *events]
+                ],
+                "last_event_microseconds_before_as_of": age,
+                "carrier_event_microseconds_before_last_event": [micros(last, e) for e in events],
+                "carrier_event_microseconds_before_as_of": [micros(now, e) for e in events],
+            },
+            "age_at_least_48_hours": {
+                "elapsed_microseconds_since_last_event": age,
+                "delay_threshold_microseconds": 172800000000,
+                "age_minus_threshold_microseconds": None if age is None else age - 172800000000,
+            },
+        }
+        calls = case["trace"].get("inference_calls", [])
+        generated = {}
+        decision = None
+        issues = []
+        schema_errors = 0
+        repair_calls = 0
+        previous = None
+        accepted = set()
+        normal_stages = []
+        reads = []
+        observations = [
+            json.loads(m["content"].removeprefix("UNTRUSTED_OBSERVATION="))
+            for m in case["trace"].get("exchange", [])
+            if m["content"].startswith("UNTRUSTED_OBSERVATION=")
+        ]
+        observation_ids = [e["id"] for e in observations]
+        if len(set(observation_ids)) != len(observation_ids):
+            issues.append("duplicate_observation_ids")
+        for observation in observations:
+            try:
+                UUID(observation["id"])
+            except ValueError:
+                issues.append("observation_id_not_uuid")
+            source = observation["source"]
+            source_id = observation["source_id"]
+            if source == "order" and (
+                source_id != order["order_id"]
+                or observation["payload"]["order_id"] != order["order_id"]
+            ):
+                issues.append("order_observation_scope")
+            elif source == "carrier" and (
+                source_id != shipment["shipment_id"]
+                or observation["payload"]["shipment_id"] != shipment["shipment_id"]
+            ):
+                issues.append("carrier_observation_scope")
+            elif source not in ("order", "carrier", "policy"):
+                issues.append("unknown_observation_source")
+        if any(c["phase"] != "read" for c in calls) and (
+            {e["source"] for e in observations} != {"order", "carrier", "policy"}
+            or len(observations) != 3
+        ):
+            issues.append("missing_or_extra_observations")
+        for ordinal, call in enumerate(calls, 1):
+            if call["ordinal"] != ordinal:
+                issues.append("request_ordinal")
+            if call["schema_hash"] != canonical(call["schema"]):
+                issues.append("schema_hash")
+            if call["repair_of"] is not None:
+                repair_calls += 1
+                if (
+                    previous is None
+                    or call["repair_of"] != ordinal - 1
+                    or previous["phase"] != call["phase"]
+                    or previous["field"] != call["field"]
+                    or previous.get("reply") is None
+                ):
+                    issues.append("invalid_repair_identity")
+                else:
+                    try:
+                        previous_body = json.loads(previous["reply"]["text"])
+                        previous_valid = Draft202012Validator(previous["schema"]).is_valid(
+                            previous_body
+                        )
+                    except ValueError:
+                        previous_valid = False
+                    if previous_valid:
+                        issues.append("semantic_retry")
+                    expected_repair = previous["messages"] + [
+                        {"role": "assistant", "content": previous["reply"]["text"]},
+                        {
+                            "role": "user",
+                            "content": "Invalid JSON shape. Return one object matching NEXT_RESPONSE_SCHEMA.",
+                        },
+                    ]
+                    if call["messages"] != expected_repair or call["schema"] != previous["schema"]:
+                        issues.append("repair_feedback")
+            else:
+                normal_stages.append((call["phase"], call["field"]))
+            previous = call
+            phase = call["phase"]
+            field = call["field"]
+            messages = call["messages"]
+            if call["repair_of"] is None and phase in ("condition", "decision"):
+                if len(messages) != 2 or [m["role"] for m in messages] != ["system", "user"]:
+                    issues.append("fresh_context_roles")
+                expected_system = (
+                    protocol["condition_instructions"].get(field)
+                    if phase == "condition"
+                    else protocol["decision_instruction"]
+                )
+                if messages[0]["content"] != expected_system:
+                    issues.append("phase_instruction")
+            if phase == "condition":
+                group = json.loads(messages[1]["content"])
+                if group != expected_groups[field]:
+                    issues.append("condition_input_changed_or_extra")
+                if call["schema"] != protocol["condition_schema"]:
+                    issues.append("condition_schema_template")
+                if not all(
+                    Draft202012Validator(call["schema"]).is_valid({"passes": v})
+                    for v in (True, False)
+                ):
+                    issues.append("forced_boolean")
+            if phase == "decision":
+                data = json.loads(messages[1]["content"])
+                citations = observation_ids
+                if data.get("evidence_ids") != observation_ids:
+                    issues.append("decision_citation_inputs")
+                template = copy.deepcopy(protocol["decision_schema"])
+                template["$defs"]["ModelChoice"]["properties"]["evidence_ids"] = {
+                    "type": "array",
+                    "items": {"type": "string"},
+                    "enum": [citations],
+                }
+                if call["schema"] != template:
+                    issues.append("decision_schema_template")
+                effective = Draft202012Validator(call["schema"])
+                if not all(
+                    effective.is_valid(
+                        {
+                            "kind": "proposal",
+                            "primary_reason": reason,
+                            "decision": {"action": action, "evidence_ids": citations},
+                        }
+                    )
+                    for reason in FIELDS + ["all_pass"]
+                    for action in ("open_investigation", "manual_review")
+                ):
+                    issues.append("forced_decision")
+                if data.get("MODEL_ASSESSMENT") != generated or set(data) != {
+                    "MODEL_ASSESSMENT",
+                    "evidence_ids",
+                }:
+                    issues.append("decision_input_or_feedback")
+            if phase == "read" and (
+                not messages
+                or messages[0] != {"role": "system", "content": protocol["read_instruction"]}
+            ):
+                issues.append("read_instruction")
+            reply = call.get("reply")
+            if reply is None:
+                continue
+            try:
+                body = json.loads(reply["text"])
+            except ValueError:
+                schema_errors += 1
+                continue
+            errors = list(Draft202012Validator(call["schema"]).iter_errors(body))
+            if errors:
+                schema_errors += 1
+                continue
+            key = (phase, field) if phase != "read" else (phase, body.get("name"))
+            if key in accepted:
+                issues.append("repeated_accepted_stage")
+            else:
+                accepted.add(key)
+            if phase == "read":
+                reads.append(body.get("name"))
+                expected_arguments = {
+                    "get_order": {"order_id": order["order_id"]},
+                    "get_shipment": {"shipment_id": shipment["shipment_id"]},
+                    "get_policy": {},
+                }
+                if body.get("kind") != "tool" or body.get("arguments") != expected_arguments.get(
+                    body.get("name")
+                ):
+                    issues.append("read_scope")
+            if call["phase"] == "condition":
+                field = call["field"]
+                if field not in generated:
+                    generated[field] = body["passes"]
+                if call["repair_of"] is None and len(messages) != 2:
+                    issues.append("condition_context")
+                group = json.loads(messages[1]["content"])
+                if group != expected_groups[field]:
+                    issues.append("condition_input_changed_or_extra")
+                # A condition context contains no identifiers, sibling outputs, oracle or fault labels.
+                if {
+                    "MODEL_ASSESSMENT",
+                    "expected_action",
+                    "fault_checkpoint",
+                    "case_id",
+                    "family",
+                    "assessment",
+                } & set(group):
+                    issues.append("condition_leakage")
+                if call["schema"]["properties"]["passes"] != {"type": "boolean"}:
+                    issues.append("boolean_not_free")
+            if call["phase"] == "decision":
+                if body["decision"]["evidence_ids"] != observation_ids:
+                    issues.append("invented_reply_citation")
+                if decision is None:
+                    decision = body
+                provided = json.loads(messages[1]["content"])
+                if provided.get("MODEL_ASSESSMENT") != generated:
+                    issues.append("changed_model_values")
+                if set(provided) != {"MODEL_ASSESSMENT", "evidence_ids"}:
+                    issues.append("decision_extra_input")
+                action_schema = call["schema"]["$defs"]["Action"]
+                if set(action_schema["enum"]) != {"open_investigation", "manual_review"}:
+                    issues.append("action_not_free")
+                reason_schema = (
+                    call["schema"]["$defs"]["PrimaryReason"]
+                    if "PrimaryReason" in call["schema"]["$defs"]
+                    else call["schema"]["properties"]["primary_reason"]
+                )
+                if "$ref" in reason_schema:
+                    reason_schema = call["schema"]["$defs"][reason_schema["$ref"].split("/")[-1]]
+                if set(reason_schema["enum"]) != set(FIELDS + ["all_pass"]):
+                    issues.append("reason_not_free")
+        if len(calls) > 11 or repair_calls > 1:
+            issues.append("budget")
+        expected_stages = (
+            [("read", None)] * 3 + [("condition", f) for f in FIELDS] + [("decision", None)]
+        )
+        if normal_stages != expected_stages[: len(normal_stages)]:
+            issues.append("stage_order")
+        if case.get("proposal") and normal_stages != expected_stages:
+            issues.append("incomplete_success")
+        if len(reads) != len(set(reads)) or set(reads) - {
+            "get_order",
+            "get_shipment",
+            "get_policy",
+        }:
+            issues.append("read_repetition_or_extra")
+        if generated != case["trace"].get("model_assessment"):
+            issues.append("assembled_output_differs")
+        incorrect = [f for f in FIELDS if f in generated and generated[f] != expected[f]]
+        missing = [f for f in FIELDS if f not in generated]
+        supported = False
+        action_correct = False
+        if decision:
+            reason = decision["primary_reason"]
+            supported = (
+                all(expected.values()) if reason == "all_pass" else expected.get(reason) is False
+            )
+            expected_action = "open_investigation" if all(expected.values()) else "manual_review"
+            action_correct = (
+                decision["decision"]["action"] == expected_action == row["expected_action"]
+            )
+        proposal = case.get("proposal")
+        if proposal:
+            if not action_correct or incorrect or missing or not supported:
+                issues.append("invalid_published_proposal")
+            if proposal["evidence_ids"] != observation_ids:
+                issues.append("proposal_citation_binding")
+            if len(proposal["rationale"]) > 1000 or len(proposal["draft_note"]) > 500:
+                issues.append("unbounded_prose")
+            if (
+                "proposed" not in proposal["draft_note"]
+                or "Approval is required before any write." not in proposal["draft_note"]
+            ):
+                issues.append("premature_note")
+        record = {
+            "case_id": case["case_id"],
+            "expected_assessment": expected,
+            "model_assessment": generated,
+            "fields_correct": 6 - len(incorrect) - len(missing),
+            "incorrect_fields": incorrect,
+            "missing_fields": missing,
+            "reason_supported": supported,
+            "raw_action_correct": action_correct,
+            "inference_calls": len(calls),
+            "schema_errors": schema_errors,
+            "repair_calls": repair_calls,
+            "trace_issues": issues,
+        }
+        summary["cases"].append(record)
+    records = summary["cases"]
+    summary["totals"] = {
+        "cases": len(records),
+        "fields_correct": sum(r["fields_correct"] for r in records),
+        "fields_total": 6 * len(records),
+        "supported_reasons": sum(r["reason_supported"] for r in records),
+        "raw_actions_correct": sum(r["raw_action_correct"] for r in records),
+        "trace_issues": sum(len(r["trace_issues"]) for r in records),
+        "syntax_errors": sum(r["schema_errors"] for r in records),
+        "syntax_repairs": sum(r["repair_calls"] for r in records),
+    }
+    with args.output.open("x") as out:
+        out.write(json.dumps(summary, indent=2) + "\n")
+    print(json.dumps(summary["totals"]))
+
+
+if __name__ == "__main__":
+    main()

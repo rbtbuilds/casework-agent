@@ -1,14 +1,20 @@
-## Active v5 repair
-
-Work on `fix/model-condition-reasoning` repairs model condition attribution and missing-timezone reasoning. The staged protocol generates six conditions in isolated contexts, then chooses action/reason from those unmodified outputs. Independent validation rejects false claims and unsupported reasons before proposal publication. Exact requests, schemas, raw replies and partial failures are persisted separately; the read exchange is explicitly labelled.
-
-Exposed captured-input development probes: nine cases (54/54 fields), two true-conflict controls (12/12), and a paired four-case replay. The paired replay reproduced both v4 errors; isolated generation was correct on all four. These are inference replays, not workflow benchmarks or fresh evidence. Raw probes remain under ignored runtime storage until curated export. Strict-claim regressions failed against v4 before implementation. Ruff, strict Pyright, strict TypeScript, all 149 Python tests, eight component tests, production build and unchanged contracts pass. All four actual-service browser flows also pass, including real Qwen, exact approval and both dropped-response recoveries. The 53-case exposed development evaluation and separately authored sealed 30-case v5 challenge are next. Independent source review identified and verified three reporting fixes: strict all-case gates, unknown token totals after interrupted requests, and independent partial-claim scoring after generation ends. No new fresh result is claimed yet. The running developer stack was stopped with ownership checks for sequential process tests; databases are preserved and the stack will be restored.
-
 # Verification state
+
+Updated 2026-10-16. Active v5 repair on `fix/model-condition-reasoning`; the fresh challenge remains sealed.
+
+## Verified v5 development
+
+At clean source `482450554abcde7c08dde0487e110a32b49080cd`, actual Qwen passed all 53 exposed cases: 53/53 actions and expected outcomes, 47/47 authorized completions, 318/318 generated fields and 53/53 supported reasons. There were zero unapproved/duplicate effects and no syntax repairs. The independently implemented trace audit agrees with every generated field, raw action and reason, with zero trace issues. The same-input fixture comparison also passed 53/53 and 47/47 at the same clean source. These inputs are development-only, including all published v4 cases; no unseen result is claimed yet.
+
+The staged protocol generates six conditions in isolated contexts and then chooses action/reason from those unchanged outputs. Independent validation rejects false claims and unsupported reasons before proposal publication. Exact request boundaries, schemas, replies and partial failures are retained. Review closed three reporting gaps: strict all-case gates, unknown usage after interrupted inference, and post-attempt scoring of partial condition outputs. Ten adversarial report mutations verified the separate auditor.
+
+Ruff, strict Pyright including tests, strict TypeScript, all 149 Python tests, eight component tests, build and unchanged contracts pass. Four actual-service browser flows pass, including real Qwen, exact approval and both dropped-response recoveries. A fresh source archive passed all 11 recorded commands: locked installation, strict checks, 149 Python tests, eight component tests, build, unchanged contract regeneration and three fixture browser flows. Its optional model test was explicitly skipped; actual-model browser inference was verified separately. The existing developer stack was ownership-checked and stopped for sequential process tests; its databases are preserved for restoration.
+
+Exposed captured-input probes remain separate from workflow measurements: nine cases (54/54 fields), two true-conflict controls (12/12), and a paired four-case replay reproducing both v4 errors while isolated requests answered correctly. Curated raw requests/replies and script snapshots are committed under `docs/evidence/v5-development-probes`. Human factual review, screen-reader testing and a recorded walkthrough remain pending.
 
 Updated 2026-10-16. This record describes a synthetic, single-operator loopback application.
 
-## Current v4 measurement
+## Historical v4 measurement
 
 The first frozen actual Qwen3 14B challenge records **29/30 correct actions**, **29/30 correct final outcomes** and **23/24 authorised completions**, with 0 unapproved writes and 0 duplicate effects. The identical-input fixture records 30/30 actions/outcomes and 24/24 completions. All six stale cases require zero writes. Both runs identify clean source `ca3141346360a17ff9fe9cd9ceaedd6963265f7d`; the 104 runtime/test/configuration files match the implementation freeze at `b7cd022`.
 
