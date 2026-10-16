@@ -1,0 +1,29 @@
+{
+  "scope": "Exposed captured-input development inference replays; not workflow or unseen evaluation evidence",
+  "files": [
+    {
+      "path": "docs/evidence/v5-development-probes/v5-isolated-condition-probe.json",
+      "sha256": "f8df504e2d4495505f0a804f3f0e04b18b5d8061c5936d2d2160dbe66124f8ad"
+    },
+    {
+      "path": "docs/evidence/v5-development-probes/v5-isolated-condition-probe.py.txt",
+      "sha256": "ee8baeb2e6ec3d5db447d29edfa44640ad30cf2bea6b3b049cb0fbc4681694ef"
+    },
+    {
+      "path": "docs/evidence/v5-development-probes/v5-isolated-conflict-controls.json",
+      "sha256": "f9f76cf35576a3fc456f52e1bbea909249a3e0a8c6cc53244bdccb7eb554ad28"
+    },
+    {
+      "path": "docs/evidence/v5-development-probes/v5-isolated-conflict-controls.py.txt",
+      "sha256": "cd95947bbe4ce9515d600af3306ec7e7840cee6ed3a70add251f107943c3d47c"
+    },
+    {
+      "path": "docs/evidence/v5-development-probes/v5-paired-condition-probe.json",
+      "sha256": "4c07965a3611b98a061c1046d2bb79ff73e7df9aceeb9ba0b040e0dd2b2b0cb7"
+    },
+    {
+      "path": "docs/evidence/v5-development-probes/v5-paired-condition-probe.py.txt",
+      "sha256": "1ba22536313245b9868944c5c7bf76ba2eee97d4667cf25e6fe6c39811ccd160"
+    }
+  ]
+}

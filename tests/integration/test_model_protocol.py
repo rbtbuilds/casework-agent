@@ -22,6 +22,22 @@ class ScriptedReadClient:
     async def complete(
         self, messages: list[ChatMessage], *, response_schema: JsonDict | None = None
     ) -> ModelReply:
+        if response_schema and "passes" in str(response_schema.get("properties", {})):
+            return ModelReply(text='{"passes":true}')
+        final = json.loads(messages[1].content)
+        if "MODEL_ASSESSMENT" in final:
+            return ModelReply(
+                text=json.dumps(
+                    {
+                        "kind": "proposal",
+                        "primary_reason": "all_pass",
+                        "decision": {
+                            "action": "open_investigation",
+                            "evidence_ids": final["evidence_ids"],
+                        },
+                    }
+                )
+            )
         observations = [
             Evidence.model_validate_json(m.content.removeprefix("UNTRUSTED_OBSERVATION="))
             for m in messages
@@ -52,14 +68,6 @@ class ScriptedReadClient:
             )
             body = {
                 "kind": "proposal",
-                "assessment": {
-                    "order_in_transit": True,
-                    "shipment_delayed": True,
-                    "no_policy_exception": True,
-                    "no_conflicting_or_terminal_events": True,
-                    "timestamps_known_and_consistent": True,
-                    "age_at_least_48_hours": True,
-                },
                 "primary_reason": "all_pass",
                 "decision": cast(
                     JsonDict, decision.model_dump(mode="json", include={"action", "evidence_ids"})
@@ -81,7 +89,8 @@ async def test_scripted_json_loop_uses_real_read_http_only(tmp_path: Path) -> No
             assert tools.order and tools.shipment
             assert decision.action == allowed_action(tools.order, tools.shipment, context.as_of)
             assert tools.request_count == 2 and tools.calls == 3
-            assert len(adapter.trace) == 10
+            assert len(adapter.trace) == 8
+            assert len(adapter.inference_calls) == 10
             assert adapter.usage_tokens is None
             assert (await system.counts()).tickets == 0
         finally:
@@ -133,7 +142,7 @@ async def test_unrepresentable_utc_clock_does_not_stop_following_case(
 
 
 @pytest.mark.parametrize("wrong_action", [False, True])
-async def test_intermediate_claims_are_diagnostic_and_cannot_authorize_wrong_action(
+async def test_intermediate_claims_fail_even_when_action_is_correct(
     tmp_path: Path, wrong_action: bool
 ) -> None:
     from casework_agent.workflow import Workflow
@@ -146,9 +155,10 @@ async def test_intermediate_claims_are_diagnostic_and_cannot_authorize_wrong_act
         ) -> ModelReply:
             reply = await super().complete(messages, response_schema=response_schema)
             body = json.loads(reply.text)
-            if body["kind"] == "proposal":
+            if "passes" in body and "shipment_status" in json.loads(messages[1].content):
+                body["passes"] = False
+            if body.get("kind") == "proposal":
                 self.proposals += 1
-                body["assessment"]["shipment_delayed"] = False
                 if wrong_action:
                     body["decision"]["action"] = "manual_review"
             return ModelReply(text=json.dumps(body))
@@ -167,14 +177,10 @@ async def test_intermediate_claims_are_diagnostic_and_cannot_authorize_wrong_act
             client = IncorrectAssessment()
             await Workflow(repo, Settings(root=tmp_path), client).gather(case.id)
             result = repo.get_case(case.id)
-            if wrong_action:
-                assert result.state == "failed" and result.proposal is None
-                assert result.error and result.error.message == "policy_mismatch"
-            else:
-                assert result.state == "needs_approval" and result.proposal is not None
-                assert result.proposal.action == "open_investigation"
-                assert "shipment is 'delayed'" in result.proposal.rationale
-                assert result.error is None and not result.operations
+            assert result.state == "failed" and result.proposal is None and not result.operations
+            assert result.error and result.error.message == (
+                "policy_mismatch" if wrong_action else "assessment_mismatch"
+            )
             counts = await system.counts()
             assert counts.tickets == 0 and counts.annotations == 0
             assert client.proposals == 1
@@ -183,17 +189,14 @@ async def test_intermediate_claims_are_diagnostic_and_cannot_authorize_wrong_act
             ).fetchone()
             assert row is not None
             trace = json.loads(row[0])
-            assert trace["status"] == ("failed" if wrong_action else "decision_validated")
-            assert trace["assessment_diagnostics"] == {
-                "authority": "untrusted_intermediate_model_output",
-                "mismatched_fields": ["shipment_delayed"],
-                "reason_supported": True,
-            }
+            assert trace["status"] == "failed"
+            diagnostics = trace["assessment_diagnostics"]
+            assert diagnostics["mismatched_fields"] == ["shipment_delayed"]
+            assert diagnostics["reason_supported"] is True
             assert trace["explanation_renderer_version"] == "observed-policy-renderer-v3"
-            assert (
-                json.loads(trace["exchange"][-1]["content"])["assessment"]["shipment_delayed"]
-                is False
-            )
+            assert trace["model_assessment"]["shipment_delayed"] is False
+            assert len(trace["inference_calls"]) == 10
+            assert trace["inference_calls"][-1]["phase"] == "decision"
 
 
 async def test_early_proposal_records_failure_and_worker_processes_next_case(
@@ -211,14 +214,6 @@ async def test_early_proposal_records_failure_and_worker_processes_next_case(
                     {
                         "kind": "proposal",
                         "primary_reason": "all_pass",
-                        "assessment": {
-                            "order_in_transit": True,
-                            "shipment_delayed": True,
-                            "no_policy_exception": True,
-                            "no_conflicting_or_terminal_events": True,
-                            "timestamps_known_and_consistent": True,
-                            "age_at_least_48_hours": True,
-                        },
                         "decision": {
                             "action": "open_investigation",
                             "evidence_ids": ["a", "b", "c"],

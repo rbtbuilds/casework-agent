@@ -83,13 +83,12 @@ async def test_final_schema_keeps_the_action_model_chosen_but_binds_citations(
             }
             proposal: JsonDict = {
                 "kind": "proposal",
-                "assessment": assessment,
                 "primary_reason": "all_pass",
                 "decision": decision,
             }
             assert schema.is_valid(proposal)
             assert not schema.is_valid({"kind": "proposal", "decision": decision})
-            assert schema.is_valid({**proposal, "assessment": {k: True for k in assessment}})
+            assert not schema.is_valid({**proposal, "assessment": {k: True for k in assessment}})
             assert not schema.is_valid(
                 {**proposal, "decision": {**decision, "evidence_ids": ["invented"] * 3}}
             )
@@ -240,17 +239,6 @@ async def test_grounded_schema_allows_model_choices_but_forbids_free_text(tmp_pa
         schema = validator(generation_schema(context, tools))
         proposal: JsonDict = {
             "kind": "proposal",
-            "assessment": {
-                name: False
-                for name in [
-                    "order_in_transit",
-                    "shipment_delayed",
-                    "no_policy_exception",
-                    "no_conflicting_or_terminal_events",
-                    "timestamps_known_and_consistent",
-                    "age_at_least_48_hours",
-                ]
-            },
             "primary_reason": "all_pass",
             "decision": {
                 "action": "open_investigation",

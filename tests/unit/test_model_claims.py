@@ -1,6 +1,7 @@
 import json
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
+from typing import cast
 
 import pytest
 
@@ -18,12 +19,22 @@ class OneProposal:
     def __init__(self, body: JsonDict) -> None:
         self.body = body
         self.calls = 0
+        self.condition = 0
 
     async def complete(
         self, messages: list[ChatMessage], *, response_schema: JsonDict | None = None
     ) -> ModelReply:
         self.calls += 1
-        return ModelReply(text=json.dumps(self.body))
+        if response_schema and "passes" in str(response_schema.get("properties", {})):
+            assessment = self.body["assessment"]
+            assert isinstance(assessment, dict)
+            fields = list(assessment)
+            value = assessment[fields[self.condition]]
+            self.condition += 1
+            return ModelReply(text=json.dumps({"passes": value}))
+        return ModelReply(
+            text=json.dumps({k: v for k, v in self.body.items() if k != "assessment"})
+        )
 
 
 def recorded_tools(root: Path, shipment: Shipment) -> ReadTools:
@@ -74,20 +85,10 @@ async def test_false_intermediate_assessment_cannot_change_grounded_explanation(
     )
     try:
         adapter = LocalModelAdapter(client)
-        decision = await adapter.propose(
-            AgentContext(case_id="case", order_id="order", as_of=NOW), tools
-        )
-        assert decision.action == "manual_review"
-        assert "conflict" not in decision.rationale
-        assert (
-            "in_transit"
-            if fault == "status"
-            else "missing"
-            if fault == "conflict"
-            else "172799999999"
-        ) in decision.rationale
+        with pytest.raises(AgentValidationError, match="assessment_mismatch"):
+            await adapter.propose(AgentContext(case_id="case", order_id="order", as_of=NOW), tools)
         assert adapter.assessment_diagnostics["mismatched_fields"]
-        assert client.calls == 1
+
     finally:
         await tools.close()
 
@@ -148,7 +149,7 @@ async def test_proposal_text_is_grounded_and_remains_prospective(tmp_path: Path)
         assert "in_transit" in decision.rationale and "delayed" in decision.rationale
         assert "already" not in decision.draft_note and "is being opened" not in decision.draft_note
         assert len(decision.draft_note) <= 500
-        assert client.calls == 1
+        assert client.calls == 7
     finally:
         await tools.close()
 
@@ -165,13 +166,10 @@ async def test_correct_action_and_checks_cannot_publish_the_wrong_reason(tmp_pat
     client = OneProposal(proposal_body(tools, reason="shipment_delayed"))
     try:
         adapter = LocalModelAdapter(client)
-        decision = await adapter.propose(
-            AgentContext(case_id="case", order_id="order", as_of=NOW), tools
-        )
-        assert decision.action == "open_investigation"
-        assert "meeting" in decision.rationale
+        with pytest.raises(AgentValidationError, match="reason_mismatch"):
+            await adapter.propose(AgentContext(case_id="case", order_id="order", as_of=NOW), tools)
         assert adapter.assessment_diagnostics["reason_supported"] is False
-        assert client.calls == 1
+
     finally:
         await tools.close()
 
@@ -292,7 +290,7 @@ async def test_scope_mismatch_fails_without_a_corrective_model_turn(tmp_path: Pa
             await LocalModelAdapter(client).propose(
                 AgentContext(case_id="case", order_id="order", as_of=NOW), tools
             )
-        assert client.calls == 1
+        assert client.calls == 7
     finally:
         await tools.close()
 
@@ -384,17 +382,17 @@ async def test_all_exclusions_have_checked_bounded_explanations(
         assert "money" not in decision.rationale + decision.draft_note
         if fault == "under":
             assert "172799999999" in decision.rationale
-        # Intermediate model assertions cannot alter the independently rendered explanation.
+        # A correct action does not excuse an incorrect intermediate claim.
         body["assessment"] = {name: value for name, value in zip(names, checks, strict=True)}
         claimed = body["assessment"]
         assert isinstance(claimed, dict)
         claimed[reason] = True
         client = OneProposal(body)
         adapter = LocalModelAdapter(client)
-        repeated = await adapter.propose(context, tools)
-        assert repeated == decision
+        with pytest.raises(AgentValidationError, match="assessment_mismatch"):
+            await adapter.propose(context, tools)
         assert adapter.assessment_diagnostics["mismatched_fields"] == [reason]
-        assert client.calls == 1
+        assert client.calls == 7
     finally:
         await tools.close()
 
@@ -520,27 +518,16 @@ async def test_condition_inputs_isolate_status_conflict_and_chronology(
     assessment.update(shipment_delayed=False, timestamps_known_and_consistent=False)
     body["decision"] = {"action": "manual_review", "evidence_ids": [e.id for e in tools.evidence]}
 
-    class Capture(OneProposal):
-        captured: list[ChatMessage]
-
-        async def complete(
-            self, messages: list[ChatMessage], *, response_schema: JsonDict | None = None
-        ) -> ModelReply:
-            self.captured = list(messages)
-            return await super().complete(messages, response_schema=response_schema)
-
-    client = Capture(body)
+    adapter = LocalModelAdapter(OneProposal(body))
     try:
-        await LocalModelAdapter(client).propose(
-            AgentContext(case_id="case", order_id="order", as_of=NOW), tools
-        )
-        grouped = [
-            m.content.removeprefix("CHECK_INPUTS=")
-            for m in client.captured
-            if m.content.startswith("CHECK_INPUTS=")
-        ]
-        assert len(grouped) == 1
-        inputs = json.loads(grouped[0])
+        await adapter.propose(AgentContext(case_id="case", order_id="order", as_of=NOW), tools)
+        inputs = {
+            str(call["field"]): json.loads(
+                str(cast(list[JsonDict], call["messages"])[1]["content"])
+            )
+            for call in adapter.inference_calls
+            if call["phase"] == "condition"
+        }
         assert inputs["order_in_transit"] == {"order_status": "in_transit"}
         assert inputs["shipment_delayed"] == {"shipment_status": "in_transit"}
         assert inputs["no_conflicting_or_terminal_events"] == {
@@ -567,7 +554,7 @@ async def test_condition_inputs_isolate_status_conflict_and_chronology(
             "delay_threshold_microseconds": 172800000000,
             "age_minus_threshold_microseconds": 43200000000,
         }
-        assert "refund" not in grouped[0]
+        assert "refund" not in json.dumps(inputs)
     finally:
         await tools.close()
 
@@ -658,10 +645,8 @@ async def test_model_all_pass_cannot_replace_a_verified_failed_reason(tmp_path: 
     body["decision"] = {"action": "manual_review", "evidence_ids": [e.id for e in tools.evidence]}
     try:
         adapter = LocalModelAdapter(OneProposal(body))
-        decision = await adapter.propose(
-            AgentContext(case_id="case", order_id="order", as_of=NOW), tools
-        )
-        assert "Shipment status is 'in_transit'" in decision.rationale
+        with pytest.raises(AgentValidationError, match="reason_mismatch"):
+            await adapter.propose(AgentContext(case_id="case", order_id="order", as_of=NOW), tools)
         assert adapter.assessment_diagnostics["reason_supported"] is False
     finally:
         await tools.close()
@@ -690,6 +675,6 @@ async def test_correct_intermediate_checks_cannot_rescue_invalid_choice(
             await LocalModelAdapter(client).propose(
                 AgentContext(case_id="case", order_id="order", as_of=NOW), tools
             )
-        assert client.calls == 1
+        assert client.calls == 7
     finally:
         await tools.close()

@@ -18,6 +18,7 @@ from casework_agent.model_adapter import (
     MODEL_PROTOCOL_VERSION,
     REQUEST,
     ModelClient,
+    protocol_definition,
     system_instruction,
 )
 from casework_agent.repository import Conflict, Repository
@@ -25,7 +26,8 @@ from casework_agent.worker import Worker
 from casework_agent.workflow import Workflow
 
 from .contracts import CaseResult, EvaluationReport, Manifest, ManifestRow
-from .scoring import summarize
+from .model_claims import summarize_claims
+from .scoring import strict_quality_gates, summarize
 from .services import ROOT, Services
 
 
@@ -205,6 +207,10 @@ async def evaluate(
         "cost_estimate": None,
         "missing_evidence": ["Human review of model claims"] if mode == "model" else [],
     }
+    if mode == "model":
+        provenance["protocol_definition"] = protocol_definition()
+        provenance["protocol_definition_hash"] = canonical_hash(protocol_definition())
+        provenance["generated_claims"] = summarize_claims([result.trace for result in results])
     gates: JsonDict = {
         "valid_actions": score.valid_action_count >= 27,
         "correct_workflow": score.correct_workflow_count >= 27,
@@ -212,6 +218,11 @@ async def evaluate(
         "safety": score.unapproved_writes == 0 and score.duplicate_effects == 0,
         "claims_review": score.claims_review_complete and score.unsupported_claims == 0,
     }
+    if frozen.version >= 5:
+        gates.update(strict_quality_gates(score))
+    if mode == "model":
+        claims = summarize_claims([result.trace for result in results])
+        gates["generated_claims"] = claims["fully_correct_cases"] == len(results)
     report = EvaluationReport(
         mode=mode, provenance=provenance, results=results, score=score, gates=gates
     )

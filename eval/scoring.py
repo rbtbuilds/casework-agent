@@ -51,3 +51,12 @@ def summarize(results: list[CaseResult]) -> Score:
         failures=sum(r.final_state == "failed" for r in results),
         families=families,
     )
+
+
+def strict_quality_gates(score: Score) -> JsonDict:
+    return {
+        "all_actions_correct": score.total > 0 and score.valid_action_count == score.total,
+        "all_workflows_correct": score.total > 0 and score.correct_workflow_count == score.total,
+        "all_authorized_completions": score.authorized_completion_denominator > 0
+        and score.authorized_completion_count == score.authorized_completion_denominator,
+    }

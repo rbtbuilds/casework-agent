@@ -1,3 +1,9 @@
+## Active v5 repair
+
+Work on `fix/model-condition-reasoning` repairs model condition attribution and missing-timezone reasoning. The staged protocol generates six conditions in isolated contexts, then chooses action/reason from those unmodified outputs. Independent validation rejects false claims and unsupported reasons before proposal publication. Exact requests, schemas, raw replies and partial failures are persisted separately; the read exchange is explicitly labelled.
+
+Exposed captured-input development probes: nine cases (54/54 fields), two true-conflict controls (12/12), and a paired four-case replay. The paired replay reproduced both v4 errors; isolated generation was correct on all four. These are inference replays, not workflow benchmarks or fresh evidence. Raw probes remain under ignored runtime storage until curated export. Strict-claim regressions failed against v4 before implementation. Ruff, strict Pyright, strict TypeScript, all 149 Python tests, eight component tests, production build and unchanged contracts pass. All four actual-service browser flows also pass, including real Qwen, exact approval and both dropped-response recoveries. The 53-case exposed development evaluation and separately authored sealed 30-case v5 challenge are next. Independent source review identified and verified three reporting fixes: strict all-case gates, unknown token totals after interrupted requests, and independent partial-claim scoring after generation ends. No new fresh result is claimed yet. The running developer stack was stopped with ownership checks for sequential process tests; databases are preserved and the stack will be restored.
+
 # Verification state
 
 Updated 2026-10-16. This record describes a synthetic, single-operator loopback application.
