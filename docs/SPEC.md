@@ -1,6 +1,6 @@
 # Casework Agent v1 specification
 
-Status: approved planning scope; implementation and measurements have not started.
+Status: historical approved v1 specification. Implementation and measurements are recorded in [STATE](STATE.md). The current internal model/explanation boundary is defined in [MODEL-REPAIR-V4](MODEL-REPAIR-V4.md); approval and recovery contracts below remain applicable.
 
 ## Product and boundaries
 

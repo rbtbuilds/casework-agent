@@ -1,12 +1,12 @@
 # Case study: an approved action with recoverable effects
 
-A delivery-exception operator needs an order record, carrier history and the applicable policy before opening an investigation. The next steps cross two systems: create an internal ticket, then annotate the order. A model can help interpret evidence and draft the note, but the workflow must preserve the operator's authority when evidence changes or a service response disappears.
+A delivery-exception operator needs an order record, carrier history and the applicable policy before opening an investigation. The next steps cross two systems: create an internal ticket, then annotate the order. A model can select an action from evidence, but the workflow must preserve the operator's authority when evidence changes or a service response disappears.
 
 Casework Agent implements that workflow with local Qwen inference, a React workbench, FastAPI and four independent SQLite databases. All business records are synthetic; no customer pilot or time saving is claimed.
 
 ## Keeping authority explicit
 
-Qwen has three scoped read tools. Schema-constrained generation binds tool identifiers and citations to the current case, while leaving both final actions available. The model chooses the action and writes the rationale and internal note. Deterministic validation checks that choice against policy without returning an answer for a second attempt.
+Qwen has three scoped read tools. Schema-constrained generation binds tool identifiers and citations to the current case, while leaving both final actions available. The model chooses the action. Deterministic validation checks that choice against policy without returning an answer for a second attempt. The application writes its own policy explanation and internal note from the observed evidence. Intermediate model assessments and reasons remain diagnostic, with errors preserved; they cannot change the displayed explanation.
 
 Approval binds the proposal hash, cited evidence, source versions, policy and expiry. A fenced worker saves each operation's key, body and hash before sending it over HTTP. The order annotation uses the confirmed ticket identifier and the approved order version.
 

@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Added exact signed age margins, UTC-normalized comparisons and evidence-derived prospective explanations.
+- Isolated untrusted intermediate model assessments from action authorization and displayed text, with explicit diagnostic mismatches and preserved failed development experiments.
+
 - Repaired local Qwen inference with pinned Qwen3 14B, constrained scoped reads/citations, model-generated policy assessments and exact numeric time context.
 - Kept both actions model-chosen, rejected policy mismatches without corrective feedback, and protected incoming/replayed content at the chat-template boundary.
 - Added a separately authored frozen v3 challenge, actual-model browser recovery evidence and preserved failed iterations.

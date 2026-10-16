@@ -50,3 +50,9 @@ A subsequent whole-project review at `92534bb` identified six further issues inv
 The original Qwen2.5 1.5B model failed its published quality thresholds at source `1da911f`. Those reports remain frozen. The [model repair](MODEL-ITERATION.md) uses development-only candidate comparisons, Qwen3 14B, schema-constrained output and explicit factual context. Deterministic code validates the model's action without giving policy-answer feedback. Fresh evaluation uses a separately authored, frozen challenge after the inference source and prompt freeze.
 
 Human factual-claim review and manual screen-reader testing remain pending. The application has no public authentication, tenant isolation or production validation. Independent review examined the code; execution evidence comes from recorded local checks and GitHub CI.
+
+## V4 explanation boundary
+
+Exact integer policy-relative age and generic UTC relations remove floating-point rounding and same-zone daylight-saving ambiguity. Qwen still selects between both actions over these computed features. The application validates scope, evidence and action before producing a proposal, with no wrong-action replacement or feedback.
+
+Development exposed correct actions accompanied by false intermediate assessments. Strictly blocking those redundant assertions reduced workflow availability; a smaller action-only experiment also failed. The versioned guarded-deliberation protocol therefore preserves intermediate generation and records its errors, but derives the displayed policy explanation independently from raw evidence. This fixes the output authority boundary; it does not establish that Qwen's reasoning is correct or improve its historical trace scores. The original broader factual-review gate is retained. See [repair evidence](MODEL-REPAIR-V4.md).

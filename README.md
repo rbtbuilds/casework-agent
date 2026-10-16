@@ -43,7 +43,7 @@ flowchart LR
   Journal --> Worker
 ```
 
-The decoder permits scoped read tools and actual citation IDs. Qwen generates a six-condition assessment, chooses the action and drafts the note; deterministic code checks its decision without giving policy-answer feedback. Approval binds the exact proposal hash, evidence versions, policy and expiry.
+The decoder permits scoped read tools and actual citation IDs. Qwen generates a six-condition intermediate assessment and chooses the action. Code validates the chosen action and writes the displayed policy explanation and exact note from observed facts. Intermediate assessment errors remain visible in diagnostics; they cannot alter the explanation or authorise writes. Approval binds the exact proposal hash, evidence versions, policy and expiry.
 
 Before every write, the worker saves its key, body and hash. A lost response remains unknown until the matching remote journal confirms it. Replays preserve the same payload and key within a three-send budget. A ticket followed by an annotation conflict remains a visible partial result; no rollback is fabricated.
 
