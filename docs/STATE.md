@@ -6,9 +6,9 @@ Updated 2026-10-16. Repository: [rbtbuilds/casework-agent](https://github.com/rb
 
 The v4 protocol computes exact signed age margins and UTC temporal relations, independently validates Qwen's selected action and citations, and renders operator-facing policy explanations from raw evidence. Intermediate assessments and reasons remain in the trace as untrusted diagnostics; they cannot authorise actions or alter displayed explanations. See [repair design](MODEL-REPAIR-V4.md). The broader factual-review gate remains unchanged; no zero-unsupported-claims claim is made.
 
-Strict-validation development experiments accepted 18/23, 22/23 and 20/23 workflows. The last produced 23/23 correct attempted actions but three intermediate-claim/reason failures; no failed workflow was reclassified. A development-only action-only probe produced 4/7 correct actions and was rejected. The final guarded-deliberation protocol still requires full calibration, browser verification and a first frozen fresh challenge. The separately authored v4 challenge remains sealed.
+Strict-validation development experiments accepted 18/23, 22/23 and 20/23 workflows. The last produced 23/23 correct attempted actions but three intermediate-claim/reason failures; no failed workflow was reclassified. A development-only action-only probe produced 4/7 correct actions and was rejected. The final guarded-deliberation calibration at clean source `9f9b245` passed 23/23 actions, workflows and completions, with zero unapproved/duplicate effects. Two intermediate carrier-check assertions and their selected reasons remain incorrect; displayed explanations identify chronology correctly. Browser verification and a first frozen fresh challenge remain pending; the separately authored challenge stays sealed.
 
-## Verified model and workflow
+## Historical v3 model and workflow
 
 Pinned `mlx-community/Qwen3-14B-4bit`, revision `a4d9b2df59d2c150bef02fcbe0d91046b7ca33a4`, runs through MLX LM with explicit non-thinking chat rendering and Outlines JSON Schema decoding. Qwen generates six policy-assessment booleans, chooses its action and drafts the note. Both boolean values and both final actions remain available; the backend supplies no eligibility answer and rejects an incorrect policy decision without feedback or a second choice.
 

@@ -1,0 +1,154 @@
+{
+  "source_commit": "9f9b2454c906c9c5093863c687e31eb5f4434aba",
+  "source": "git archive",
+  "commands": [
+    {
+      "command": [
+        "uv",
+        "sync",
+        "--locked"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.7074058749713004,
+      "log_sha256": "cd3058949d89f982805f78b6514972da827c66f576eb8a12d9dee11d77af4453"
+    },
+    {
+      "command": [
+        "npm",
+        "--prefix",
+        "web",
+        "ci"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 1.040477333124727,
+      "log_sha256": "f1a594fdeff60b952cf7e4145f053755595250d9e1fdb18d7279f16811ea5066"
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--no-sync",
+        "ruff",
+        "check",
+        "."
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.7203758750110865,
+      "log_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--no-sync",
+        "pyright"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 1.8604249157942832,
+      "log_sha256": "6d88a1b220adb7a3d62092b6e38431f0b3fe8babe9864fab90e5849766260332"
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--no-sync",
+        "pytest",
+        "-q"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 53.90552404243499,
+      "log_sha256": "9ecceb95bed6b275818f6dc5db08daeaf95ec28343b42d3a88d47fb385998705"
+    },
+    {
+      "command": [
+        "npm",
+        "--prefix",
+        "web",
+        "run",
+        "typecheck"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 1.2314763749018312,
+      "log_sha256": "83985c9bc3ee2000f00b9a9e10e6cbaeda9c237eaae34a513935247198f81e35"
+    },
+    {
+      "command": [
+        "npm",
+        "--prefix",
+        "web",
+        "test",
+        "--",
+        "--run"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 1.8296547918580472,
+      "log_sha256": "53a760727a223b7f8255bdf4aeaf0e52aef81235ae5b4b087ade8e3d66680c55"
+    },
+    {
+      "command": [
+        "npm",
+        "--prefix",
+        "web",
+        "run",
+        "build"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.7265629172325134,
+      "log_sha256": "3030824aa08b82810bd8b3ae6d00c3d40078dddbb32c92055bc3377f7b551794"
+    },
+    {
+      "command": [
+        "npm",
+        "--prefix",
+        "web",
+        "run",
+        "e2e"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 13.367631209082901,
+      "log_sha256": "4848ebf36fb258a780ae2f5184836e6183a9f974d901727885e57f6ab979863c"
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--no-sync",
+        "python",
+        "scripts/export_contracts.py"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.18007812509313226,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "npm",
+        "--prefix",
+        "web",
+        "run",
+        "contracts"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.5006804168224335,
+      "log_sha256": "d97fc5e097d7e09445bdd6da2add9356e38091453e7027c62c8ed67f18fe0ab5"
+    }
+  ],
+  "contract_hashes_before": {
+    "contracts/openapi.json": "13c7934d34fb66a962f61c0346e1d07277f9beb36f42d6c768d0ebf792c2dff9",
+    "web/src/api/generated.ts": "90832e4481ffc45d0aaf102ce383fe88d09e78aa1170a5f6fa40f6b1d7e5b4c8",
+    "web/src/api/case.schema.json": "38bde19de73af769f16fd45264093b12c0dbef1f048890d63b967d14d59b212f"
+  },
+  "contract_hashes_after": {
+    "contracts/openapi.json": "13c7934d34fb66a962f61c0346e1d07277f9beb36f42d6c768d0ebf792c2dff9",
+    "web/src/api/generated.ts": "90832e4481ffc45d0aaf102ce383fe88d09e78aa1170a5f6fa40f6b1d7e5b4c8",
+    "web/src/api/case.schema.json": "38bde19de73af769f16fd45264093b12c0dbef1f048890d63b967d14d59b212f"
+  },
+  "model_inference": "explicitly skipped; separate native evidence required",
+  "export": {
+    "source_report_sha256": "cb095db44b52fd952693fe428ddbc85ffab8762e6c9d8123adc7d3372d85b6a1",
+    "redactions": [
+      "runtime_root"
+    ],
+    "explanation": "Temporary archive directory omitted; command results and hashes unchanged."
+  }
+}
