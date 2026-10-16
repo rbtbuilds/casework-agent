@@ -1,0 +1,192 @@
+{
+  "scope": "Post-run comparison with independently AI-authored, pre-sealed civil-calendar integer UTC oracles. No labels fed to inference. Not human review.",
+  "report_sha256": "af19942e39cf48680f0348f5d4050820d2ceb92e857c7f759eb9050b8e4513dd",
+  "trace_audit_sha256": "db24e00f6d689b281d0e9db8ed4063c56690c12dd73a1b308dda062747e34a8e",
+  "pre_authored_oracles_sha256": "87f2856ea0615259febf7823fd74dd00c93717fa111471c81115db909e929758",
+  "comparison_script_sha256": "c433c9390cac1a0570580b0373ad34c0e156e9d127b4709d83bf20c191102302",
+  "case_count": 30,
+  "fields_correct": 180,
+  "fields_total": 180,
+  "cases": [
+    {
+      "case_id": "b8d6a20f74619c35",
+      "independent_auditor_matches_pre_authored_integer_oracle": true,
+      "correct_model_fields": 6,
+      "fields_total": 6
+    },
+    {
+      "case_id": "2ce7f1948ab603d5",
+      "independent_auditor_matches_pre_authored_integer_oracle": true,
+      "correct_model_fields": 6,
+      "fields_total": 6
+    },
+    {
+      "case_id": "f730be26d5189a4c",
+      "independent_auditor_matches_pre_authored_integer_oracle": true,
+      "correct_model_fields": 6,
+      "fields_total": 6
+    },
+    {
+      "case_id": "619ac7e3f02485bd",
+      "independent_auditor_matches_pre_authored_integer_oracle": true,
+      "correct_model_fields": 6,
+      "fields_total": 6
+    },
+    {
+      "case_id": "a3e17b46c98025df",
+      "independent_auditor_matches_pre_authored_integer_oracle": true,
+      "correct_model_fields": 6,
+      "fields_total": 6
+    },
+    {
+      "case_id": "76fb04d98a2315ce",
+      "independent_auditor_matches_pre_authored_integer_oracle": true,
+      "correct_model_fields": 6,
+      "fields_total": 6
+    },
+    {
+      "case_id": "d1a486e70c5932bf",
+      "independent_auditor_matches_pre_authored_integer_oracle": true,
+      "correct_model_fields": 6,
+      "fields_total": 6
+    },
+    {
+      "case_id": "405d2fb98e6137ac",
+      "independent_auditor_matches_pre_authored_integer_oracle": true,
+      "correct_model_fields": 6,
+      "fields_total": 6
+    },
+    {
+      "case_id": "e2930a67b4d81fc5",
+      "independent_auditor_matches_pre_authored_integer_oracle": true,
+      "correct_model_fields": 6,
+      "fields_total": 6
+    },
+    {
+      "case_id": "9c476e15a8f302bd",
+      "independent_auditor_matches_pre_authored_integer_oracle": true,
+      "correct_model_fields": 6,
+      "fields_total": 6
+    },
+    {
+      "case_id": "530af7c28d196e4b",
+      "independent_auditor_matches_pre_authored_integer_oracle": true,
+      "correct_model_fields": 6,
+      "fields_total": 6
+    },
+    {
+      "case_id": "ba60e9257c1483df",
+      "independent_auditor_matches_pre_authored_integer_oracle": true,
+      "correct_model_fields": 6,
+      "fields_total": 6
+    },
+    {
+      "case_id": "73dbf281c4a6095e",
+      "independent_auditor_matches_pre_authored_integer_oracle": true,
+      "correct_model_fields": 6,
+      "fields_total": 6
+    },
+    {
+      "case_id": "0f8a526d39c47be1",
+      "independent_auditor_matches_pre_authored_integer_oracle": true,
+      "correct_model_fields": 6,
+      "fields_total": 6
+    },
+    {
+      "case_id": "c68a917e40f5b32d",
+      "independent_auditor_matches_pre_authored_integer_oracle": true,
+      "correct_model_fields": 6,
+      "fields_total": 6
+    },
+    {
+      "case_id": "148e6d3ba2f9705c",
+      "independent_auditor_matches_pre_authored_integer_oracle": true,
+      "correct_model_fields": 6,
+      "fields_total": 6
+    },
+    {
+      "case_id": "ef29c580ad7416b3",
+      "independent_auditor_matches_pre_authored_integer_oracle": true,
+      "correct_model_fields": 6,
+      "fields_total": 6
+    },
+    {
+      "case_id": "52b1a8d7f603ce49",
+      "independent_auditor_matches_pre_authored_integer_oracle": true,
+      "correct_model_fields": 6,
+      "fields_total": 6
+    },
+    {
+      "case_id": "87cd4310e9b6a25f",
+      "independent_auditor_matches_pre_authored_integer_oracle": true,
+      "correct_model_fields": 6,
+      "fields_total": 6
+    },
+    {
+      "case_id": "d9506e14c82b3fa7",
+      "independent_auditor_matches_pre_authored_integer_oracle": true,
+      "correct_model_fields": 6,
+      "fields_total": 6
+    },
+    {
+      "case_id": "308a5c76e2b941fd",
+      "independent_auditor_matches_pre_authored_integer_oracle": true,
+      "correct_model_fields": 6,
+      "fields_total": 6
+    },
+    {
+      "case_id": "6f1429acb57d08e3",
+      "independent_auditor_matches_pre_authored_integer_oracle": true,
+      "correct_model_fields": 6,
+      "fields_total": 6
+    },
+    {
+      "case_id": "ae3758d109c24bf6",
+      "independent_auditor_matches_pre_authored_integer_oracle": true,
+      "correct_model_fields": 6,
+      "fields_total": 6
+    },
+    {
+      "case_id": "4b90df673e1a825c",
+      "independent_auditor_matches_pre_authored_integer_oracle": true,
+      "correct_model_fields": 6,
+      "fields_total": 6
+    },
+    {
+      "case_id": "e6c8214a7f30b95d",
+      "independent_auditor_matches_pre_authored_integer_oracle": true,
+      "correct_model_fields": 6,
+      "fields_total": 6
+    },
+    {
+      "case_id": "59a41d8be730cf26",
+      "independent_auditor_matches_pre_authored_integer_oracle": true,
+      "correct_model_fields": 6,
+      "fields_total": 6
+    },
+    {
+      "case_id": "c21f649da85730be",
+      "independent_auditor_matches_pre_authored_integer_oracle": true,
+      "correct_model_fields": 6,
+      "fields_total": 6
+    },
+    {
+      "case_id": "7a03be9d4628fc15",
+      "independent_auditor_matches_pre_authored_integer_oracle": true,
+      "correct_model_fields": 6,
+      "fields_total": 6
+    },
+    {
+      "case_id": "d42ac8e1630f795b",
+      "independent_auditor_matches_pre_authored_integer_oracle": true,
+      "correct_model_fields": 6,
+      "fields_total": 6
+    },
+    {
+      "case_id": "18eb73c5a9402fd6",
+      "independent_auditor_matches_pre_authored_integer_oracle": true,
+      "correct_model_fields": 6,
+      "fields_total": 6
+    }
+  ]
+}

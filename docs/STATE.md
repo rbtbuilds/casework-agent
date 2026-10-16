@@ -1,10 +1,17 @@
 # Verification state
 
-Updated 2026-10-16. Active v5 repair on `fix/model-condition-reasoning`; the fresh challenge remains sealed.
+Updated 2026-10-16. Active v5 repair on `fix/model-condition-reasoning`; first fresh measurement complete. Graceful-shutdown trace persistence is being repaired separately after this frozen run.
+
+## First frozen v5 result
+
+At clean source `7fe90b2657e5b8d42a655b5239d552ac65d58759`, the first 30-case actual Qwen run produced 30/30 actions/outcomes, 180/180 correct generated fields, 30/30 supported reasons and 24/24 authorized completions. Six stale cases correctly produced no writes. Unapproved and duplicate effects were both zero; no syntax or semantic retries occurred. The same-input fixture also passed 30/30 and 24/24 at the same clean source. The independent trace audit and pre-authored civil-calendar integer UTC oracles agree on every generated field and decision. Human factual review remains false/null.
+
+The 108-file implementation freeze and trace auditor preceded coordinator opening. All 31 promoted scenario/manifest files match the private originals. The author independently created literal cases and initial labels, with one documented static runner-join replacement before typed verification and sealing; original bytes and labels remain preserved. No target-model outcomes informed authoring. Authorship is by a separate AI agent, not a human, and all cases share coarse policy shapes with prior inputs. After publication, these cases are exposed inputs, not a reusable unseen test.
+
 
 ## Verified v5 development
 
-At clean source `482450554abcde7c08dde0487e110a32b49080cd`, actual Qwen passed all 53 exposed cases: 53/53 actions and expected outcomes, 47/47 authorized completions, 318/318 generated fields and 53/53 supported reasons. There were zero unapproved/duplicate effects and no syntax repairs. The independently implemented trace audit agrees with every generated field, raw action and reason, with zero trace issues. The same-input fixture comparison also passed 53/53 and 47/47 at the same clean source. These inputs are development-only, including all published v4 cases; no unseen result is claimed yet.
+At clean source `482450554abcde7c08dde0487e110a32b49080cd`, actual Qwen passed all 53 exposed cases: 53/53 actions and expected outcomes, 47/47 authorized completions, 318/318 generated fields and 53/53 supported reasons. There were zero unapproved/duplicate effects and no syntax repairs. The independently implemented trace audit agrees with every generated field, raw action and reason, with zero trace issues. The same-input fixture comparison also passed 53/53 and 47/47 at the same clean source. These inputs are development-only, including all published v4 cases; the fresh measurement is recorded above.
 
 The staged protocol generates six conditions in isolated contexts and then chooses action/reason from those unchanged outputs. Independent validation rejects false claims and unsupported reasons before proposal publication. Exact request boundaries, schemas, replies and partial failures are retained. Review closed three reporting gaps: strict all-case gates, unknown usage after interrupted inference, and post-attempt scoring of partial condition outputs. Ten adversarial report mutations verified the separate auditor.
 

@@ -1,0 +1,27 @@
+{
+  "scope": "Explicit provenance for separate raw/public-input audit executions; original artifacts retained unchanged.",
+  "executions": [
+    {
+      "split": "development",
+      "raw_report_sha256": "fb79b268fcc40e3c6ac19d5fe36e9ccb24c6bd65c1f9db012cfe3dc72e58c00f",
+      "raw_input_audit_sha256": "ac6027664ac913e1e6e957e04c7c27e321148d40c4d65d0fc0bb4253cd9bd895",
+      "public_report": "docs/evidence/qwen-v5-development.json",
+      "public_report_sha256": "a302f9faa619fdf31e124763b7617ab877fc0b8b424dfeab17ffcb859844d368",
+      "public_input_audit": "docs/evidence/qwen-v5-development-trace-review.json",
+      "public_input_audit_sha256": "a178aa9bd8544f8aa32b90b6ca1e0811642f8b2bb89c39b088a9819d37ace46a",
+      "method": "The frozen auditor executed separately against raw input and public export. Neither audit was edited or rebound; only its naturally different report_sha256 differs.",
+      "derived_calculations_identical": true
+    },
+    {
+      "split": "challenge",
+      "raw_report_sha256": "870e1c83ddbd01246c7d19d53efbf898a6db927b7f3055167142f5134a336d8f",
+      "raw_input_audit_sha256": "3f062976549b9755e21a604b26765074c16ed93b2960583dc89565fd8586af6d",
+      "public_report": "docs/evidence/qwen-v5-challenge.json",
+      "public_report_sha256": "af19942e39cf48680f0348f5d4050820d2ceb92e857c7f759eb9050b8e4513dd",
+      "public_input_audit": "docs/evidence/qwen-v5-challenge-trace-review.json",
+      "public_input_audit_sha256": "db24e00f6d689b281d0e9db8ed4063c56690c12dd73a1b308dda062747e34a8e",
+      "method": "The frozen auditor executed separately against raw input and public export. Neither audit was edited or rebound; only its naturally different report_sha256 differs.",
+      "derived_calculations_identical": true
+    }
+  ]
+}
