@@ -1,0 +1,36 @@
+{
+  "measured_source_commit": "7fe90b2657e5b8d42a655b5239d552ac65d58759",
+  "post_measurement_source_commit": "3cec490d24b9ad9287ea8b19a3d0b32a67cb5e3e",
+  "changed_frozen_files": {
+    "src/casework_agent/workflow.py": {
+      "frozen_sha256": "76e921de3b9b4d20e86affada2e3d5258dba42f2e45a343f0b7911742a111001",
+      "current_sha256": "0f114b39eaddd2065a39275b003a6c28f677fee18fa6363c912b656bc2da3b8b"
+    },
+    "tests/integration/test_model_protocol.py": {
+      "frozen_sha256": "c3f4681258c643f594adeb6c48b1c3c933cb038c7f06bb79795fb2d7bb156492",
+      "current_sha256": "bcb9b03b62c10aa976cac193bf4e051e093c684f01e229a5e7d959deb5377992"
+    }
+  },
+  "unchanged_frozen_source_files": 106,
+  "model_prompts_schemas_policies_renderers_evaluator_unchanged": true,
+  "purpose": "Persist partial inference trace on external worker cancellation under existing run/generation fence, then propagate cancellation. No inference retuning or measurement rewrite.",
+  "tests": {
+    "python": 151,
+    "components": 8,
+    "native_browser": 4,
+    "actual_model_browser_included": true,
+    "strict_python_and_typescript": true,
+    "red_then_green_real_http_cancellation_cases": 2
+  },
+  "verification_log_sha256": {
+    "v5-cancellation-red.log": "e1598538bd3c7bf746b85f18c176a9767231ab44988dc81398bcf5cc1f4f462a",
+    "v5-cancellation-green.log": "84315b5049bbc5f614fc6e492595304cead8eeb09f7697a57458f845609b6c2c",
+    "v5-runtime-pytest.log": "134a129916402ab094a82f020c859f8064c4ccfba5aba54921559e95390bdbc9",
+    "v5-runtime-web.log": "213e12fd69d1d53b62abb0559ff0f26d4af011e20013e1f989a6f2340b36b7b9",
+    "v5-runtime-browser.log": "f2fa169d67ba201926b09a0a5027a51542207c2080d54cb39bb28827375fba4e"
+  },
+  "archive_record": "docs/evidence/qwen-v5-runtime-clean-checkout.json",
+  "frozen_model_report_sha256": "af19942e39cf48680f0348f5d4050820d2ceb92e857c7f759eb9050b8e4513dd",
+  "frozen_freeze_sha256": "39c17942111475d7b6daea4f57771c7a455587f5254a5ce201436131d1b5aa61",
+  "human_factual_review_complete": false
+}

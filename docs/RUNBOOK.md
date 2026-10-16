@@ -97,3 +97,11 @@ Each service owns its own SQLite file; the application uses only HTTP to reach m
 The original fixtures can seed a fresh runtime directory. They do not overwrite an existing database. There is no production-like reset endpoint. Unknown real-world mutations, journal expiry, cross-service atomic snapshots and cross-service rollback are outside this simulation's guarantees.
 
 Browser expiry uses a constructor-injected FileClock from an explicitly created test fixture clock.txt. It advances through an atomic fixture-file replacement; no reset/time endpoint is exposed. Browser response-loss tests forward the real approval request and drop only its response after the API commits.
+
+## V5 trace and reproduction boundaries
+
+The current first-run model evidence is [v5](../EVALUATION.md#first-frozen-v5-measurement). Published challenge reruns are reproductions. Use the recorded manifest, immutable model revision and protocol when comparing results; never overwrite frozen reports.
+
+A normal v5 case makes ten model requests (three reads, six isolated conditions, one choice), with at most one global syntax repair and an eleven-request maximum under the unchanged 120-second case deadline. `inference_calls` contains exact request boundaries, schemas, raw replies and partial failures; `exchange` is read history only. Incorrect fields, unsupported reasons, wrong actions and invalid evidence fail without semantic feedback or replacement. Interrupted requests make aggregate usage unknown. After an attempt ends, available generated fields are still evaluated separately from missing fields.
+
+Graceful worker cancellation persists the available trace through the saved run/current-generation guard, marks the case `agent_interrupted`, and propagates cancellation. A hard process kill cannot persist in-memory responses; restart still fails interrupted gathering rather than inventing a proposal. Saved remote-write bodies/keys and journal recovery remain independent of model traces. Explicitly repropose an interrupted case; do not automatically reuse partial answers.

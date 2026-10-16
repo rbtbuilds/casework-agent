@@ -1,0 +1,149 @@
+{
+  "source_commit": "3cec490d24b9ad9287ea8b19a3d0b32a67cb5e3e",
+  "source": "git archive",
+  "scope": "Clean archive: locked dependencies, strict checks, full Python tests, components, build, contract regeneration and fixture browser; actual model browser verified separately.",
+  "commands": [
+    {
+      "command": [
+        "uv",
+        "sync",
+        "--locked"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.671577415894717,
+      "log_sha256": "226bae6ce9839f0496bd88b9964468a8349a37a2439a37f908d6a9f949020a47"
+    },
+    {
+      "command": [
+        "npm",
+        "--prefix",
+        "web",
+        "ci"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 3.3065710831433535,
+      "log_sha256": "cfcfd64efb13c28c3e53365ac5966a1adbfa8771f8c0c9c2aeb6c5a1abe8b9c2"
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--no-sync",
+        "ruff",
+        "check",
+        "."
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.74438437493518,
+      "log_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--no-sync",
+        "pyright"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 1.9745380417443812,
+      "log_sha256": "6d88a1b220adb7a3d62092b6e38431f0b3fe8babe9864fab90e5849766260332"
+    },
+    {
+      "command": [
+        "npm",
+        "--prefix",
+        "web",
+        "run",
+        "typecheck"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 1.0369632500223815,
+      "log_sha256": "83985c9bc3ee2000f00b9a9e10e6cbaeda9c237eaae34a513935247198f81e35"
+    },
+    {
+      "command": [
+        "npm",
+        "--prefix",
+        "web",
+        "test",
+        "--",
+        "--run"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 1.6847895001992583,
+      "log_sha256": "b30ea40049799d1adf4a7e51a62c3461ecc1764e86c119766ea899f69bed3d08"
+    },
+    {
+      "command": [
+        "npm",
+        "--prefix",
+        "web",
+        "run",
+        "build"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.8804500410333276,
+      "log_sha256": "dc40c1f41b1558264a1ced430ef1b65a20adc0ac88a2df9e5721d58d13311035"
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--no-sync",
+        "pytest",
+        "-q"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 56.386805874761194,
+      "log_sha256": "19e7d496d29f26f289d91e5918b95f9c9fc04b2431ce9599944107c1c6f9ffb8"
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--no-sync",
+        "python",
+        "scripts/export_contracts.py"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.17448045825585723,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "npm",
+        "--prefix",
+        "web",
+        "run",
+        "contracts"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.8160705827176571,
+      "log_sha256": "096bee6aaf5789a63534a12b0ab5d35f5f7eefd0263c66f664cd845dd779a8f6"
+    },
+    {
+      "command": [
+        "npm",
+        "--prefix",
+        "web",
+        "run",
+        "e2e"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 15.043890082743019,
+      "log_sha256": "5182e1e3538b24af47111cfe76bc83b6f5a95cd42c616215ac043e9f6ed4ea71"
+    }
+  ],
+  "contracts_before_sha256": {
+    "contracts/openapi.json": "13c7934d34fb66a962f61c0346e1d07277f9beb36f42d6c768d0ebf792c2dff9",
+    "web/src/api/generated.ts": "90832e4481ffc45d0aaf102ce383fe88d09e78aa1170a5f6fa40f6b1d7e5b4c8"
+  },
+  "contracts_after_sha256": {
+    "contracts/openapi.json": "13c7934d34fb66a962f61c0346e1d07277f9beb36f42d6c768d0ebf792c2dff9",
+    "web/src/api/generated.ts": "90832e4481ffc45d0aaf102ce383fe88d09e78aa1170a5f6fa40f6b1d7e5b4c8"
+  },
+  "python_tests": 151,
+  "component_tests": 8,
+  "fixture_browser_tests": 3,
+  "actual_model_browser_skipped_in_archive": true
+}

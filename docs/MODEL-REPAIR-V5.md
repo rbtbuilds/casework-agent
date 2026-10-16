@@ -29,3 +29,9 @@ Available condition outputs are assessed after the attempt ends, including when 
 All 53 exposed development cases are evaluated through actual local HTTP integrations, followed by a separately labelled fixture comparison. The separately AI-authored 30-case v5 challenge stays sealed until the implementation, prompts, model settings and evidence identities are frozen. Its first actual-model attempt is retained in full, followed by a same-input fixture comparison. No result-driven changes may turn that challenge into a fresh test again.
 
 The fresh target is 180/180 correct model fields, 30/30 supported reasons/actions/outcomes and 24/24 authorized completions, with zero unapproved or duplicate effects. Published measurements, source identities, failures and remaining limitations belong in [evaluation](../EVALUATION.md) and [STATE](STATE.md). Prior inputs and reports remain unchanged.
+
+## Measured outcome
+
+The first frozen v5 actual-model challenge passed 30/30 actions/outcomes, 180/180 generated fields, 30/30 supported reasons and 24/24 authorized completions, with zero unapproved/duplicate effects and no repairs or semantic retries. Independent raw-output review agrees with all pre-authored integer oracles. Development separately passed 53/53 and 318/318. Full reports, source boundaries and limitations are in [evaluation](../EVALUATION.md).
+
+Subsequent source review identified external cancellation bypassing partial-trace persistence. This workflow-only correction was implemented after the measurement with failing-then-passing real-HTTP worker regressions at condition and decision phases. Cancellation now saves through the existing run/generation fence and re-raises; no model, prompt, schema, policy, renderer, evaluation or success-path change was made. Frozen first-run artifacts remain unchanged. Human factual review remains pending.

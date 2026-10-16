@@ -37,6 +37,10 @@ Use the [runbook](RUNBOOK.md) for commands and [evaluation](../EVALUATION.md) fo
 
 In historical v3, two below-threshold generations falsely claimed that the event age met 48 hours. Exact policy validation rejected both before proposal publication, approval or writes. Their traces retain the one-second and one-microsecond shortfalls. A model-assisted trace review also found three incorrect assessment fields among correct decisions, two incorrect rationales, two premature escalation notes and one imprecise timestamp note. These findings are detailed in [the source and trace review](REVIEW-2026-10-16.md). Human factual review remains pending; action accuracy does not certify explanation accuracy.
 
+## Current v5 measurement
+
+The first [v5 actual-model report](evidence/qwen-v5-challenge.json) at clean source `7fe90b2657e5b8d42a655b5239d552ac65d58759` records 30/30 actions/outcomes, 180/180 generated fields, 30/30 supported reasons and 24/24 authorized completions. No unapproved/duplicate effects, syntax repairs or semantic retries occurred. The same-input fixture is separate. The source/protocol freeze preceded opening; all previous reports remain unchanged. Independent trace/oracle checks and AI-assisted prose review agree; human factual review remains pending. A later workflow cancellation-persistence correction changes no inference inputs or output validation; its source boundary is recorded separately.
+
 ## Historical v4 workflow
 
 The first frozen v4 run at clean source `ca3141346360a17ff9fe9cd9ceaedd6963265f7d` records **29/30 correct actions**, **29/30 correct final outcomes** and **23/24 authorised completions**, with 0 unapproved writes and 0 duplicate effects. The [model report](evidence/qwen-v4-challenge.json) records the loaded snapshot, protocol, prompt, input and source identities. The same-input fixture is separate. The fresh run retains 2 incorrect intermediate assessment fields across 2 attempts and 2 unsupported selected reasons. These are recorded in trace diagnostics and cannot change displayed explanations or authorise writes. Human review remains pending; the broader zero-unsupported-claims gate is not claimed.

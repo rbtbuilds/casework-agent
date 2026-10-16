@@ -4,9 +4,9 @@
 
 A local Qwen agent for delivery exceptions, with exact human approval and durable HTTP writes. Built with FastAPI, React, TypeScript and SQLite. The model reads order and carrier evidence, proposes an internal action and waits for approval. A fenced worker recovers uncertain ticket and annotation writes through remote journals. All business records are synthetic.
 
-**Actual-model result:** 29/30 correct workflows and 23/24 authorised completions on the first frozen v4 synthetic challenge. Displayed explanations are generated from evidence; intermediate model claims retain known errors. [Full evaluation](EVALUATION.md).
+**Actual-model result:** 30/30 correct decisions and workflows, 180/180 correct model-generated condition checks, and 24/24 authorised completions on the first frozen v5 synthetic challenge. [Full evaluation](EVALUATION.md).
 
-![Actual local Qwen proposal awaiting exact approval](docs/evidence/qwen-v4-proposal.png)
+![Actual local Qwen proposal awaiting exact approval](docs/evidence/qwen-v5-runtime-proposal.png)
 
 ## Run the model
 
@@ -43,36 +43,38 @@ flowchart LR
   Journal --> Worker
 ```
 
-The decoder permits scoped read tools and actual citation IDs. Qwen generates a six-condition intermediate assessment and chooses the action. Code validates the chosen action and writes the displayed policy explanation and exact note from observed facts. Intermediate assessment errors remain visible in diagnostics; they cannot alter the explanation or authorise writes. Approval binds the exact proposal hash, evidence versions, policy and expiry.
+The decoder permits scoped read tools and actual observation IDs. Qwen evaluates six policy conditions in separate contexts, then chooses its action and reason from those unchanged answers. Code independently validates every condition, reason, action and citation before rendering the displayed explanation and exact note from evidence. Wrong semantic answers fail without correction or another choice. Approval binds the exact proposal hash, evidence versions, policy and expiry.
 
 Before every write, the worker saves its key, body and hash. A lost response remains unknown until the matching remote journal confirms it. Replays preserve the same payload and key within a three-send budget. A ticket followed by an annotation conflict remains a visible partial result; no rollback is fabricated.
 
 ## Measured model workflow
 
-The first frozen v4 challenge used 30 new synthetic cases, including six stale approvals that must produce no writes. The fixture and Qwen runs used identical inputs and fault schedules.
+The first frozen v5 challenge used 30 separately AI-authored synthetic cases, including six stale approvals that must produce no writes. Source, prompts and model settings were frozen before opening the challenge. Qwen and the fixture used identical inputs and fault schedules.
 
 | Metric | Actual Qwen3 14B | Fixture |
 | --- | --- | --- |
-| Correct actions | 29/30 | 30/30 |
-| Correct final outcomes | 29/30 | 30/30 |
-| Authorised completions | 23/24 | 24/24 |
+| Correct actions | 30/30 | 30/30 |
+| Correct final outcomes | 30/30 | 30/30 |
+| Model condition checks | 180/180 | Deterministic |
+| Supported selected reasons | 30/30 | Deterministic |
+| Authorised completions | 24/24 | 24/24 |
 | Unapproved / duplicate effects | 0 / 0 | 0 / 0 |
 
-The numerical targets are 27/30 actions, 27/30 outcomes and 22/24 completions. Warm workflow p50 was 22.59 seconds and p95 24.39 seconds on an Apple M5 Pro with 24 GiB memory; loading is recorded separately. This is a small synthetic challenge, not an industrial benchmark. [Reports, traces and reproduction](EVALUATION.md) identify the frozen source, model and inputs.
+All 300 actual-model requests were retained. Independent AI-assisted review agrees with the sealed integer oracles, including missing timezones, chronology contradictions and exact microsecond boundaries. There were no syntax repairs, semantic retries or replacement answers. The 53 exposed development cases separately passed 318/318 checks and 53/53 decisions. Human factual review remains pending.
 
-Code supplies exact age arithmetic and UTC comparisons, validates the model's action, and writes the displayed explanation from evidence. One missing-timezone decision failed action validation before a proposal, approval or writes. The fresh run retains 2 incorrect intermediate assessment fields across 2 attempts and 2 unsupported selected reasons. These are recorded in trace diagnostics and cannot change displayed explanations or authorise writes. Human review remains pending; the broader zero-unsupported-claims gate is not claimed.
+Warm workflow p50 was 18.03 seconds and p95 24.77 seconds on an Apple M5 Pro with 24 GiB memory; loading is recorded separately. This is a small synthetic challenge. Code supplies exact arithmetic and UTC relations and already knows the permitted policy action; the results demonstrate guarded model inference and workflow execution. [Reports, traces and reproduction](EVALUATION.md) identify the frozen source, model and inputs.
 
 ## Evaluation history
 
 The original Qwen2.5 1.5B run produced 0/30 valid actions. A constrained Qwen3 4B iteration reached 29/30 on development cases, then 17/30 on a separately authored challenge, with 14/24 authorised completions. The failed runs remain available with source, model and input hashes. They used different case sets; their scores are not a controlled model-only comparison.
 
-The earlier 14B v3 challenge recorded 28/30 actions and outcomes with 22/24 completions, including two blocked age errors and incorrect explanations. Its inputs, replies and reports remain frozen. The [v4 repair](docs/MODEL-REPAIR-V4.md) documents the authority change and failed development experiments.
+The earlier 14B v3 challenge recorded 28/30 actions and outcomes with 22/24 completions, including two blocked age errors and incorrect explanations. Its inputs, replies and reports remain frozen. V4 then reached 29/30 but retained a missing-timezone failure and incorrect intermediate assertions. The [v5 repair](docs/MODEL-REPAIR-V5.md) isolates each condition and restores strict claim validation; prior failed reports remain unchanged.
 
 ## Verification
 
-A [fresh archive verification](docs/evidence/qwen-v4-clean-checkout.json) passed locked installation, 137 Python tests, eight component tests, strict checks, build, contract regeneration and three fixture browser flows. The model test was explicitly skipped there and exercised separately with actual inference.
+A [fresh source archive](docs/evidence/qwen-v5-runtime-clean-checkout.json) passed locked installation, 151 Python tests, eight component tests, strict Python and TypeScript checks, build, unchanged contract regeneration and three fixture browser flows. Its optional model test was explicitly skipped.
 
-The complete software checks include 137 Python tests, eight component tests, strict Python and TypeScript checks, a production build and four real-service browser flows. The actual-model browser flow verifies zero writes before approval, both post-commit response drops, and one recovered ticket/annotation pair. CI runs fixture verification without weights; actual inference is a separate opt-in check.
+All four [native browser flows](docs/evidence/qwen-v5-runtime-browser.json) also passed, including actual Qwen, zero writes before exact approval, both post-commit response drops and one recovered ticket/annotation pair. Cancellation tests preserve partial model traces, propagate shutdown and keep the next case processable. CI runs fixture verification without weights; actual inference is opt-in.
 
 ```sh
 uv run --no-sync ruff check .
@@ -88,6 +90,6 @@ CASEWORK_REAL_MODEL=1 PLAYWRIGHT_BROWSERS_PATH="$PWD/.runtime/pw-browsers" npm -
 
 Install Chromium as described in the runbook before the first browser check. Stop the demo first and run port-owning suites sequentially. Tested accessibility covers keyboard approval, reduced motion, both themes and desktop/mobile layouts with zero Axe findings in those states. Manual screen-reader testing remains unperformed.
 
-The application is a single-operator loopback simulation. It has no public authentication, cross-service rollback or distributed exactly-once guarantee. Human review remains pending, and known incorrect intermediate assertions prevent a zero-unsupported-claims claim. The displayed policy explanation is application-generated, not a certified account of model reasoning. No production deployment or customer time saving is claimed.
+The application is a single-operator loopback simulation. It has no public authentication, cross-service rollback or distributed exactly-once guarantee. Human factual review remains pending, so the broader human-review gate remains open. The displayed policy explanation is application-generated, not a certified account of model reasoning. No production deployment or customer time saving is claimed.
 
 See [evaluation](EVALUATION.md), [model configuration](docs/MODEL-CONFIG.md), [engineering decisions](docs/ENGINEERING-DECISIONS.md), [verification state](docs/STATE.md) and the [case study](docs/CASE-STUDY.md). Contribution and reporting guidance are in [CONTRIBUTING](CONTRIBUTING.md) and [SECURITY](SECURITY.md). Code and original fixtures are [MIT licensed](LICENSE); model assets retain separate terms and weights are excluded from Git.

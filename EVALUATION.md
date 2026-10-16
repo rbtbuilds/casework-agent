@@ -2,7 +2,35 @@
 
 Fixture and actual-model evidence are measured separately. The original Qwen2.5 1.5B failure remains frozen; current model configuration and verification are recorded in [MODEL-CONFIG](docs/MODEL-CONFIG.md) and [STATE](docs/STATE.md).
 
-## First frozen v4 measurement
+## First frozen v5 measurement
+
+The first [actual Qwen3 14B report](docs/evidence/qwen-v5-challenge.json) records **30/30 correct actions**, **30/30 expected outcomes**, **180/180 correct model-generated fields**, **30/30 supported selected reasons** and **24/24 authorized completions**. The [same-input fixture](docs/evidence/fixture-v5-challenge.json) also records 30/30 and 24/24. Six deliberately stale cases produce zero writes; all 24 other cases complete with one ticket and annotation each. Unapproved and duplicate effects are zero in both modes.
+
+Both measurements used clean source `7fe90b2657e5b8d42a655b5239d552ac65d58759` and manifest SHA-256 `0d298900fc37f758e9ba744d03b4e1d8b429c7a5151a24778fbbcafed2c896f5`. The [108-file freeze](docs/evidence/qwen-v5-freeze.json), protocol definition and independent trace auditor preceded [coordinator opening and exact-byte promotion](docs/evidence/qwen-v5-challenge-access.json). Model revision and snapshot remain unchanged from v4. There were no model, prompt, source or input changes during measurement.
+
+A separate AI agent authored literal inputs and initial labels without reading current inference code or prior outcomes. Independent integer Gregorian-calendar arithmetic precedes typed-policy verification. One candidate with an incompatible mock-service identifier join was replaced before verification/sealing without changing its action/fault assignment; original inputs, labels and oracles are retained. [Authorship and design](docs/evidence/v5-challenge-authorship/design.json), [pre-sealed oracles](docs/evidence/v5-challenge-authorship/manual-oracles.json), [revision record](docs/evidence/v5-challenge-authorship/authoring-revision.json) and [current-policy compatibility](docs/evidence/v5-challenge-authorship/compatibility-03542d5--compatibility.json) disclose the construction. Novelty checks found no substantive/translation-normalized duplicate among 161 prior inputs; all 30 share coarse rule shapes with earlier cases. This is separate-agent authorship, not human review or statistical independence.
+
+The frozen protocol makes three model-selected reads, six fresh condition requests and one final decision request. Every condition sees only its fixed rule and relevant input group. The last request receives six unchanged model outputs and actual citation IDs; both actions and every reason remain available. Code validates all claims after generation; it does not provide answers, semantic feedback or replacements. Exact arithmetic, UTC relations and schema-bound citations are supplied features rather than unaided arithmetic or independent evidence-selection claims. For this fixed policy the validator already knows the permitted action, so accuracy does not establish a model advantage over deterministic logic.
+
+The [independent trace audit](docs/evidence/qwen-v5-challenge-trace-review.json) verifies all 300 requests, raw outputs, effective schema freedom, input isolation, unchanged final inputs and first-answer correctness. [Oracle comparison](docs/evidence/qwen-v5-challenge-oracle-comparison.json) independently agrees with every pre-authored integer oracle. There were **zero syntax repairs and zero semantic retries**. The [review record](docs/REVIEW-2026-10-16-V5.md) also checks all 30 evidence-rendered rationales and prospective notes. These are AI-assisted/machine checks; `unsupported_claims` remains null, `claims_review_complete` false and `claims_review` false because human factual review is unperformed.
+
+Warm workflow p50 was **18.03 seconds**, nearest-rank p95 **24.77 seconds**, and recorded input/output usage **118,089 tokens**. Timings include inference, real HTTP work, scripted exact approval and execution; model loading is separate. The pinned MLX stack used Apple M5 Pro/24 GiB. Cost and customer time savings are unmeasured. All denominators, families, source identities and failures remain in the report.
+
+Before opening this challenge, all [53 exposed development cases](docs/evidence/qwen-v5-development.json) passed 53/53 actions/outcomes, 318/318 fields, 53/53 reasons and 47/47 completions, with a separate fixture comparison. These include the original v4 failures and are explicitly development inputs. Captured-input paired probes are preserved separately. Neither development nor later reruns of the now-published v5 set are unseen evidence.
+
+After this frozen measurement, source review identified a graceful-shutdown trace-persistence gap. A separately tested workflow-only correction saves the available trace through the existing generation fence and re-raises cancellation. It changes no model instructions, schemas, policy, renderer, evaluator or success path. [Post-measurement boundaries](docs/evidence/qwen-v5-postmeasurement-verification.json) identify the exact delta and verification; the original model reports and freeze remain unchanged. Final-source verification includes 151 Python tests and four native browser flows, including actual Qwen.
+
+Stop owned services before reproducing; port-owning suites are sequential. Prepare/probe the pinned snapshot and acquire the shared model lease through the standard entry point:
+
+```sh
+uv run --no-sync python scripts/model_session.py evaluate --manifest fixtures/manifests/v5-challenge.json --output .runtime/reports/qwen-v5-reproduction.json
+uv run --no-sync python -m eval.runner --manifest fixtures/manifests/v5-challenge.json --mode fixture --output .runtime/reports/fixture-v5-reproduction.json
+# Recheck the published report with the frozen independent auditor:
+.venv/bin/python docs/evidence/v5-trace-auditor.py.txt docs/evidence/qwen-v5-challenge.json fixtures/manifests/v5-challenge.json .runtime/v5-trace-recheck.json --protocol docs/evidence/qwen-v5-protocol.json
+```
+
+
+## Historical first frozen v4 measurement
 
 The first [actual Qwen3 14B report](docs/evidence/qwen-v4-challenge.json) records **29/30 correct actions**, **29/30 correct final outcomes** and **23/24 authorised completions**. The [same-input fixture](docs/evidence/fixture-v4-challenge.json) records 30/30 actions, 30/30 outcomes and 24/24 completions. Unapproved writes and duplicate effects were 0/0 for Qwen and 0/0 for the fixture. Six stale cases require zero writes and are excluded from the completion denominator.
 
@@ -42,7 +70,7 @@ No invalid choice was replaced with the policy answer. These cases failed gather
 | --- | --- | --- | --- | --- |
 | `85399891-d0d3-5b4b-be09-464ba3760c4c` | chronology_uncertainty | manual_review | policy_mismatch | 0 / 0 |
 
-The timezone-uncertainty case `85399891-d0d3-5b4b-be09-464ba3760c4c` has a timezone-naive carrier event. Its supplied event-to-summary and event-to-case relations are `unknown`, while the summary age is exactly 48 hours. Qwen incorrectly marked chronology true and attempted `open_investigation`. Raw-evidence policy validation requires `manual_review` and rejected that attempt. There was no proposal, approval, ticket or annotation. This remains an unresolved model chronology error; the supplied timestamp arithmetic is correct. The measured implementation was not retuned against it.
+The timezone-uncertainty case `85399891-d0d3-5b4b-be09-464ba3760c4c` has a timezone-naive carrier event. Its supplied event-to-summary and event-to-case relations are `unknown`, while the summary age is exactly 48 hours. Qwen incorrectly marked chronology true and attempted `open_investigation`. Raw-evidence policy validation requires `manual_review` and rejected that attempt. There was no proposal, approval, ticket or annotation. This remains an error in the frozen v4 measurement. V5 later uses it only as exposed development data; its supplied timestamp arithmetic was correct.
 
 ## First frozen v3 measurement
 

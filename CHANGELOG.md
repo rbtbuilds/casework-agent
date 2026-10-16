@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Recorded the first frozen v5 actual-model result: 30/30 decisions/outcomes, 180/180 correct generated condition fields, 30/30 supported reasons and 24/24 authorized completions.
+- Isolated six condition contexts, used unchanged model outputs for final choice, and restored strict claim/reason rejection without semantic retries or fixture fallback.
+- Preserved exact per-request schemas/messages/replies and partial diagnostics, explicit unknown usage on interrupted requests, all-case quality gates and independent raw-output/oracle audits.
+- Fixed graceful worker cancellation to persist available traces through the existing generation fence and re-raise cancellation; added real-HTTP interruption regressions.
+- Kept source freezes, pre-sealed AI authorship, failed historical measurements and post-measurement source boundaries explicit.
+
 - Recorded the first frozen v4 actual-model challenge: 29/30 actions, 29/30 outcomes and 23/24 completions, with same-input fixture comparison and explicit intermediate-claim limitations.
 
 - Added exact signed age margins, UTC-normalized comparisons and evidence-derived prospective explanations.
