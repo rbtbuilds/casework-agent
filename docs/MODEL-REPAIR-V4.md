@@ -22,3 +22,9 @@ All temporal comparisons normalise aware datetimes to UTC before subtraction or 
 6. Review all model choices and rendered explanations against observations. Model-assisted review does not satisfy the required human review. Keep known failures and pending review visible in the public acceptance record.
 
 The selected model remains the pinned Qwen3 14B checkpoint recorded in [MODEL-CONFIG](MODEL-CONFIG.md). New measurements and their source commits belong in [STATE](STATE.md) and [EVALUATION](../EVALUATION.md). Historical scores are not a controlled model-only comparison.
+
+## Development finding: condition grouping
+
+The first v4 calibration at `1631ede` accepted 18/23 cases. Every age-boundary case passed, but five assessment mismatches were blocked. Four involved chronology; three of those also incorrectly labelled a timestamp fault as a carrier conflict. Another overstated the shipment-status check. The [failed report](evidence/qwen-v4-initial-development.json) remains unchanged.
+
+The next experiment replaces the flat computed-facts block with six `CHECK_INPUTS` groups keyed by the assessment fields. Conflict input contains only the recorded flag and normalized codes; chronology contains every UTC timestamp and signed offset in source order, without statuses, codes or the age threshold. Grouping is organizational guidance inside one prompt, not a separate security boundary. It supplies no predicate outcomes and changes neither the response choices nor semantic validation. The entire same exposed development set is used for comparison.
