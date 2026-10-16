@@ -1,3 +1,5 @@
+import asyncio
+
 from .agent import AgentContext, FixtureAdapter, validate_decision
 from .config import Settings
 from .contracts import ApprovalRequest, CaseView, JsonDict
@@ -65,7 +67,10 @@ class Workflow:
                 }
             )
             self.repo.publish(id, decision, tools, trace, run_id)
-        except (ValueError, RuntimeError, OSError, TimeoutError) as exc:
+        except (ValueError, RuntimeError, OSError, TimeoutError, asyncio.CancelledError) as exc:
+            code = (
+                "agent_interrupted" if isinstance(exc, asyncio.CancelledError) else str(exc)[:500]
+            )
             if adapter:
                 trace.update(
                     {
@@ -83,12 +88,14 @@ class Workflow:
             trace.update(
                 {
                     "status": "failed",
-                    "error": str(exc)[:500],
+                    "error": code,
                     "tool_calls": tools.calls,
                     "http_requests": tools.request_count,
                 }
             )
-            self.repo.fail_gather(id, str(exc)[:500], run_id, trace)
+            self.repo.fail_gather(id, code, run_id, trace)
+            if isinstance(exc, asyncio.CancelledError):
+                raise
         finally:
             await tools.close()
 

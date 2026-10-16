@@ -261,3 +261,88 @@ async def test_early_proposal_records_failure_and_worker_processes_next_case(
                 assert counts.tickets == 0 and counts.annotations == 0
             finally:
                 await worker.close()
+
+
+@pytest.mark.parametrize("stalled_phase", ["condition", "decision"])
+async def test_worker_cancellation_persists_partial_trace_and_propagates(
+    tmp_path: Path, stalled_phase: str
+) -> None:
+    import asyncio
+
+    entered = asyncio.Event()
+
+    class InterruptedClient(ScriptedReadClient):
+        conditions = 0
+
+        async def complete(
+            self, messages: list[ChatMessage], *, response_schema: JsonDict | None = None
+        ) -> ModelReply:
+            condition = bool(
+                response_schema and "passes" in str(response_schema.get("properties", {}))
+            )
+            if condition:
+                self.conditions += 1
+            final = "MODEL_ASSESSMENT" in json.loads(messages[1].content)
+            if (stalled_phase == "condition" and condition and self.conditions == 3) or (
+                stalled_phase == "decision" and final
+            ):
+                entered.set()
+                await asyncio.Event().wait()
+            return await super().complete(messages, response_schema=response_schema)
+
+    async with TestSystem(tmp_path) as system:
+        await system.start()
+        with Repository.open(tmp_path / ".runtime/app.sqlite3") as repo:
+            worker = Worker(repo, Settings(root=tmp_path), model=InterruptedClient())
+            case = repo.create_case(
+                CaseSeed(
+                    scenario_id="interrupted",
+                    order_id="o-001",
+                    mode="model",
+                    as_of=datetime(2026, 10, 15, 12, tzinfo=UTC),
+                )
+            )
+            task = asyncio.create_task(worker.tick())
+            try:
+                async with asyncio.timeout(5):
+                    await entered.wait()
+                task.cancel()
+                with pytest.raises(asyncio.CancelledError):
+                    await task
+                failed = repo.get_case(case.id)
+                assert (
+                    failed.state == "failed" and failed.proposal is None and not failed.operations
+                )
+                assert failed.error and failed.error.code == "agent_interrupted"
+                saved = repo.con.execute(
+                    "SELECT payload_json FROM agent_runs WHERE case_id=?", (case.id,)
+                ).fetchone()
+                assert saved is not None
+                trace = json.loads(saved[0])
+                assert trace["status"] == "failed" and trace["error"] == "agent_interrupted"
+                assert trace["tool_calls"] == 3 and trace["http_requests"] == 2
+                assert trace["usage_tokens"] is None
+                assert len(trace["inference_calls"]) == (6 if stalled_phase == "condition" else 10)
+                assert trace["inference_calls"][-1]["status"] == "cancelled"
+                assert trace["inference_calls"][-1]["reply"] is None
+                assert trace["assessment_diagnostics"]["fields_correct"] == (
+                    2 if stalled_phase == "condition" else 6
+                )
+                assert trace["assessment_diagnostics"]["reason_supported"] is None
+                following = repo.create_case(
+                    CaseSeed(
+                        scenario_id="following",
+                        order_id="o-001",
+                        mode="fixture",
+                        as_of=datetime(2026, 10, 15, 12, tzinfo=UTC),
+                    )
+                )
+                assert await worker.tick()
+                assert repo.get_case(following.id).state == "needs_approval"
+                counts = await system.counts()
+                assert counts.tickets == 0 and counts.annotations == 0
+            finally:
+                if not task.done():
+                    task.cancel()
+                    await asyncio.gather(task, return_exceptions=True)
+                await worker.close()
