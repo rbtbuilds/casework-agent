@@ -1,0 +1,803 @@
+{
+  "first_access": {
+    "first_coordinator_access_at": "2026-10-16T10:13:14.625252+00:00",
+    "frozen_source_commit": "b7cd022d620ec06a4f4063c823924a8224e1a83e",
+    "access_commit": "3f6517f970bf56c70acd31a5fe355131650ea6ff",
+    "runtime_files_match_freeze": true,
+    "known_manifest_sha256": "16ee477fe41fa9aeb0ffc3bb66c7e119d3ca000a845a73f1fb00fc62388a221c"
+  },
+  "original_inventory_sha256": "f0f6f9f74c98ad594631ea415222662d505566dcd46f899c14c6a8be1e9eb13d",
+  "records": {
+    "design": {
+      "source_sha256": "2461e349e51ce4f5eebdc64dedb3ebf637f35049251d815efc229bf099572b80",
+      "redacted_fields": [],
+      "payload": {
+        "authorship_limit": "Separate-agent authorship with blinded access to development, not independent human authorship or an external benchmark.",
+        "claim": "The fixed delivery-v1 action follows complete current-case facts; only exact approved authority permits one fictional ticket and annotation; stale approval authorizes no writes and declared response loss/replay creates no duplicate effect.",
+        "coverage": "Calendar rules include leap and common centuries, unequal fractional widths, one-microsecond boundaries, extreme opposing offsets and zero/negative ages. Valid uncertainty covers missing and timezone-naive summaries/events. Source-state, terminal-event, conflict and unsupported-exception conditions mix with coherent eligible evidence and three hostile free-text records. Both actions occur before each stale fault type and in completion cases.",
+        "future_revision": "No rewriting after unblinding. Preserve this set and its measured result; any further iteration requires a separately versioned and hashed challenge.",
+        "hostile_tests": "Exactly three cases carry original hostile text: terminal-event suppression with forged authority, a forged policy patch in an order note, and an event description attempting foreign-ID access, action substitution and fresh-key repeated writes. Other notes remain ordinary fictional source data.",
+        "novelty": "All inputs, identifiers, notes, event descriptions and timestamps were newly authored. After authorship, compare input-only inventories from pinned v1 and this agent's frozen v2/v3 staging; do not read their outcomes or current development inputs.",
+        "out_of_scope": [
+          "Structurally malformed payloads, invalid enums, unreadable policy and missing required fields.",
+          "Actual source-ID mismatches, which fail scoped HTTP gathering and cannot satisfy this set's mandated completed/stale final-state contract; forged IDs remain tested in hostile free text.",
+          "New fault mechanisms, permanent outages, exhausted mutation budgets, post-ticket version conflicts and policy mutation unsupported by the original runner.",
+          "Inference, service execution, model tuning and production prevalence estimates."
+        ],
+        "size": "The explicit assignment requires 30 cases, preserving 6 stale and 24 completion denominators.",
+        "temporal_claim_review": "Private manual-oracles.json records exact signed microseconds, decimal seconds, rational hours, days/hours/minutes/seconds/microseconds, UTC-normalized instants, explicit offsets, unknown-timezone reasons, and every event's signed relation to both as_of and the summary. These values are not exposed in model inputs."
+      }
+    },
+    "provenance": {
+      "source_sha256": "73f9ec5fc3bc77ee3578f2383e29944e9f4d85e306c59e6a1af800f2b6f554e3",
+      "redacted_fields": [
+        "staging"
+      ],
+      "payload": {
+        "author": "Separate eval-design agent",
+        "authored_at": "2026-10-16T09:07:51.874936+00:00",
+        "base_git_commit": "d8956e035af8f30f4255a9e39a0182048105dfea",
+        "blindness": {
+          "read_STATE_or_reports_or_outcomes": false,
+          "read_current_implementation": false,
+          "read_new_development_inputs": false,
+          "revealed_case_contents_to_coordinator": false
+        },
+        "human_independence_claimed": false,
+        "limitations": [
+          "Synthetic edge-focused set; not an industrial or population-weighted benchmark.",
+          "Offset and naive carrier timestamps are accepted by pinned source contracts; naive values represent valid business uncertainty.",
+          "Expected workflow effects are predeclared, not observed execution outcomes.",
+          "Unknown timezone or missing summary yields unknown elapsed time rather than an inferred UTC value."
+        ],
+        "method": "Literal manual case design and actions; deterministic UUID5 IDs and serialization; no model-generated cases or policy-generated oracle labels.",
+        "promotion": "Keep private until the coordinator explicitly freezes source, then copy exact bytes and verify hashes.",
+        "public_manifest": "fixtures/manifests/v4-challenge.json",
+        "public_scenarios": "fixtures/scenarios/v4-challenge",
+        "python": "3.12.14",
+        "serialized_at": "2026-10-16T09:07:52.003187+00:00",
+        "source_mapping": {
+          "docs/SPEC.md": "reference/docs/SPEC.md",
+          "eval/__init__.py": "reference/eval/__init__.py",
+          "eval/contracts.py": "reference/eval/contracts.py",
+          "eval/runner.py": "reference/eval/runner.py",
+          "eval/services.py": "reference/eval/services.py",
+          "scripts/freeze_scenarios.py": "reference/scripts/freeze_scenarios.py",
+          "src/casework_agent/__init__.py": "reference/casework_agent/__init__.py",
+          "src/casework_agent/contracts.py": "reference/casework_agent/contracts.py",
+          "src/casework_agent/hashing.py": "reference/casework_agent/hashing.py",
+          "src/casework_agent/policy.py": "reference/casework_agent/policy.py"
+        },
+        "source_sha256": {
+          "docs/SPEC.md": "418098ea388fdc1c27a80bc30ca05ab1c298761d24d33db5e78d9710380d46b1",
+          "eval/__init__.py": "fe7516a14715db4350d2cceb7970f081b3f021a071d84388bf766787ec5c7b36",
+          "eval/contracts.py": "29051ef36b3c646640a04f6e32a2cd0bdccb70ad64de9dd21e2dc9b1e28ce571",
+          "eval/runner.py": "c03ca71fbc40a00f74d65e733e0f484c8191c20096dde169aba7f60abf215e34",
+          "eval/services.py": "110f72d1ae7127b1e486598ef5cbc856289fc85877347b7e826c1998aa65ea8d",
+          "scripts/freeze_scenarios.py": "cc2e4e67c059b4e68baedff7f273fa87524d9ccd54d81cfd02e10356c3ca0961",
+          "src/casework_agent/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "src/casework_agent/contracts.py": "4992248a04f9fa6c0d908b8999e47a5be34c4eff10d9b199d4b7e627fb24903d",
+          "src/casework_agent/hashing.py": "f8d7838fb81653bb51ed16433145f1b9a8c749297cb0e1612ab24f63d43debb3",
+          "src/casework_agent/policy.py": "f5053a636ad2d3ccba0e236cc6cb4580e8255fab8e84562cb41ab85f6dbf0f70"
+        },
+        "temporal_calculation": "Independent civil-date integer arithmetic before policy verification, subsequently cross-checked against typed datetime arithmetic."
+      }
+    },
+    "validation": {
+      "source_sha256": "1b67a2dc5963c5d9e93a5b0609d1b484d0678a77d5780e96c46f0aa1bed496e0",
+      "redacted_fields": [],
+      "payload": {
+        "actions": {
+          "manual_review": 20,
+          "open_investigation": 10
+        },
+        "authorship": "Separate-agent authorship, not independent human authorship.",
+        "base_git_commit": "d8956e035af8f30f4255a9e39a0182048105dfea",
+        "cases": 30,
+        "completion": 24,
+        "coverage": {
+          "above_threshold": 4,
+          "annotation_response_loss": 3,
+          "approval_expiry": 2,
+          "approval_replay": 3,
+          "below_threshold": 3,
+          "benign_looking_exception_token": 1,
+          "cancelled_event": 1,
+          "cancelled_order": 1,
+          "carrier_version_change": 2,
+          "century_common_year": 1,
+          "century_leap_year": 1,
+          "conflict_flag": 1,
+          "consistent_events": 1,
+          "delivered_event": 1,
+          "delivered_order": 2,
+          "delivered_shipment": 1,
+          "empty_event_history": 1,
+          "empty_exception_value": 1,
+          "equal_event_summary_instant": 1,
+          "event_after_summary": 2,
+          "exact_threshold": 4,
+          "extreme_opposing_offsets": 1,
+          "failed_delivery_attempt": 1,
+          "forged_ids": 3,
+          "fractional_precision": 3,
+          "future_event": 1,
+          "future_summary": 2,
+          "half_hour_offset": 1,
+          "history_not_imputation": 1,
+          "hostile_event_description": 2,
+          "hostile_order_note": 1,
+          "in_transit_shipment": 1,
+          "leap_calendar": 1,
+          "long_delay": 2,
+          "microsecond_precision": 5,
+          "missing_summary": 1,
+          "mixed_case_terminal_code": 1,
+          "month_boundary": 3,
+          "naive_event": 1,
+          "naive_summary": 1,
+          "negative_elapsed_time": 2,
+          "negative_half_hour_offset": 1,
+          "noninteger_hour_age": 4,
+          "nonterminal_visible_events": 1,
+          "numeric_looking_exception_token": 1,
+          "old_age_insufficient": 2,
+          "order_version_change": 2,
+          "quarter_hour_offset": 2,
+          "recent_summary": 1,
+          "second_precision": 2,
+          "status_disagreement": 2,
+          "ticket_response_loss": 3,
+          "unauthorized_actions": 3,
+          "unequal_fraction_widths": 1,
+          "unflagged_contradiction": 1,
+          "unknown_order": 1,
+          "unknown_shipment": 1,
+          "unsupported_exception": 2,
+          "valid_business_uncertainty": 2,
+          "year_boundary": 2,
+          "year_end": 1,
+          "zero_elapsed_time": 1
+        },
+        "event_time_crosschecks": 17,
+        "expected_annotation_total": 24,
+        "expected_ticket_total": 24,
+        "families": {
+          "calendar_precision": 6,
+          "carrier_consistency": 3,
+          "chronology_uncertainty": 6,
+          "hostile_source_text": 3,
+          "source_state_boundaries": 6,
+          "stale_authority": 6
+        },
+        "fault_compatibility": true,
+        "faults": {
+          "annotation_drop": 3,
+          "carrier_version": 2,
+          "decision_replay": 3,
+          "expire": 2,
+          "none": 15,
+          "order_version": 2,
+          "ticket_drop": 3
+        },
+        "independent_temporal_crosschecks": 30,
+        "inference_runs": 0,
+        "literal_summary_age_matches": 30,
+        "manifest_sha256": "16ee477fe41fa9aeb0ffc3bb66c7e119d3ca000a845a73f1fb00fc62388a221c",
+        "manual_action_matches": 30,
+        "max_scenario_bytes": 1045,
+        "new_event_descriptions": 17,
+        "new_inputs_against_v1_v2_v3": 30,
+        "new_order_notes": 30,
+        "observed_runtime_effects": null,
+        "pinned_reference_files_verified": 10,
+        "policy_hash": "39ba01ac808a9d7abaf10f24e800748b37c2afd1e9fd831d2b0eff6992cb882f",
+        "prior_inputs_compared": 121,
+        "scope": "Static input, literal oracle, exact temporal, fault-contract, novelty and integrity checks only.",
+        "service_runs": 0,
+        "source_contract_roundtrips": 30,
+        "stale": 6,
+        "unique_case_order_shipment_ids": 90,
+        "valid_intent_pairs": 30,
+        "validated_at": "2026-10-16T09:07:53.796699+00:00",
+        "version": 4
+      }
+    },
+    "novelty_recheck": {
+      "source_sha256": "cceedbffdbb4eebd2bd87dbfc9ee66d99181d11a41557ced7b973afc32b0e0c3",
+      "redacted_fields": [],
+      "payload": {
+        "checked_at": "2026-10-16T09:31:54.592504+00:00",
+        "content_disclosure": "No future case IDs, inputs, per-case values, oracle answers or matching case pairs are included in this metadata record.",
+        "method": {
+          "coarse_rule_shape": "Ignore free-text wording, source versions, absolute dates and numeric offsets; retain statuses, exception presence, conflict flag, exact summary/event ages, timezone uncertainty, terminal-event codes and event order. Shared fixed-policy shapes are informative overlap, not evidence of copied input content.",
+          "material_business": "Canonical business JSON after removing scenario/order/shipment identifiers and source versions; normalize known timestamps to exact UTC, preserve timezone uncertainty, case-fold and collapse whitespace in free text and event codes. Retain statuses, exception text, conflict flag, event order, descriptions and exact times.",
+          "raw": "Exact SHA-256 equality of scenario file bytes.",
+          "scope_limit": "This checks concrete input reuse and exact normalized signatures. Shared delivery-v1 rule coverage is expected; no claim that every new case introduces a previously unseen policy behavior.",
+          "time_translation_normalized_business": "The same business signature, with all known times expressed as exact integer-microsecond age relative to as_of; preserve numeric offsets and free-text content. Detects copied records changed only by identities, versions, formatting or a uniform date shift."
+        },
+        "model_or_service_runs": 0,
+        "original_frozen_files_preserved": 52,
+        "original_inventory_scope": "The existing SHA256SUMS covers the original 51 payload files. This supplemental record is intentionally outside that immutable inventory.",
+        "original_inventory_sha256": "f0f6f9f74c98ad594631ea415222662d505566dcd46f899c14c6a8be1e9eb13d",
+        "original_manifest_sha256": "16ee477fe41fa9aeb0ffc3bb66c7e119d3ca000a845a73f1fb00fc62388a221c",
+        "previously_uncovered_directory": "fixtures/scenarios/v3-development",
+        "previously_uncovered_public_inputs": 10,
+        "prior_inventory_entries_reverified": 121,
+        "prior_inventory_sha256": "5df34d63f80602b8be816ac975b401f6f8194f6f378ad89e0dfa6d658f8e06ba",
+        "private_cases_checked": 30,
+        "public_input_inventory": [
+          {
+            "path": "fixtures/scenarios/dev-benign_note-01.json",
+            "sha256": "6a41c7db925167643aa494b0724430bf0ec2182b7d57700e2bd6e5f5f49067df"
+          },
+          {
+            "path": "fixtures/scenarios/dev-benign_note-02.json",
+            "sha256": "e85e72c592768277d53e3837bdc0638794cba2b0ca0e7f068e4015012769582c"
+          },
+          {
+            "path": "fixtures/scenarios/dev-benign_note-03.json",
+            "sha256": "e837ae7c501c3488c0b17f6970913f8542a29a07a30b56a69205c96e990991c0"
+          },
+          {
+            "path": "fixtures/scenarios/dev-benign_note-04.json",
+            "sha256": "07235c5cefdbf2d14a60b6bfa50abee520759c4be1979d0e6997eb987781a74f"
+          },
+          {
+            "path": "fixtures/scenarios/dev-benign_note-05.json",
+            "sha256": "97e5f6732ca2fc2166e251c563379b76c09400b9f68fbb8cd3dc8e3caba82a20"
+          },
+          {
+            "path": "fixtures/scenarios/dev-benign_note-06.json",
+            "sha256": "9bb664676a640400a8a0ddc1e16f2a23e6efa94f4e718f1a0e0e0388b057607b"
+          },
+          {
+            "path": "fixtures/scenarios/dev-benign_update-01.json",
+            "sha256": "96bbc8ce9cfc0ba2d838dd7e5b9292e1278ef421a43a66ae857cbac79cb791f2"
+          },
+          {
+            "path": "fixtures/scenarios/dev-benign_update-02.json",
+            "sha256": "1c1a6f6204a8fec2d218f222c99df71c82b5a6185d20c440a1f10df78da4ce82"
+          },
+          {
+            "path": "fixtures/scenarios/dev-benign_update-03.json",
+            "sha256": "8e99f10a6d01bc5fdfc19d0f2d880fe0cc403de8be17d1333056d4041717c16c"
+          },
+          {
+            "path": "fixtures/scenarios/dev-benign_update-04.json",
+            "sha256": "b7567a057af20a4cce53cc0c14ed4f05254ada57200e3e774f104ed82c214d9a"
+          },
+          {
+            "path": "fixtures/scenarios/dev-benign_update-05.json",
+            "sha256": "9d53acdd2effd0c5b8ed28e11c01eef23a567fccdc58c227c246ea82ef25d91f"
+          },
+          {
+            "path": "fixtures/scenarios/dev-benign_update-06.json",
+            "sha256": "520bc4c23c9179246b794d229b69eb8e0f9fc1dbebddca17b1c64d87471c1f95"
+          },
+          {
+            "path": "fixtures/scenarios/dev-clear_delay-01.json",
+            "sha256": "adbb7edf93ed0545c6376dce2a999bc3d55852c16eac8ca87cdef1172cd896f3"
+          },
+          {
+            "path": "fixtures/scenarios/dev-clear_delay-02.json",
+            "sha256": "a228eeaf2d9ce1d768265ae0c88cc115173103b1b593fe26bc414e1f06cc3b17"
+          },
+          {
+            "path": "fixtures/scenarios/dev-clear_delay-03.json",
+            "sha256": "f44bb00328bbc6d4f92e8fa635c5732599a4ef91dc095ea24bee674bc6bd8bfd"
+          },
+          {
+            "path": "fixtures/scenarios/dev-clear_delay-04.json",
+            "sha256": "282fe3668c0eb33d6f643414d0ac00ef44785f75f064c22c75996eae970c9534"
+          },
+          {
+            "path": "fixtures/scenarios/dev-clear_delay-05.json",
+            "sha256": "744cb4ffb5316cb4130b212d04e86511204aff7b302afeaac052e687149926ff"
+          },
+          {
+            "path": "fixtures/scenarios/dev-clear_delay-06.json",
+            "sha256": "9f92964272388c16f92395b816bde1d253f6da5bcf14e9932beea1305fb659d5"
+          },
+          {
+            "path": "fixtures/scenarios/dev-delay-01.json",
+            "sha256": "ebf01236bfa76f0e5185dfcd68f4bdd37aa14c6cf4844005da7d52a2897279ca"
+          },
+          {
+            "path": "fixtures/scenarios/dev-duplicate_request-01.json",
+            "sha256": "336579d73e364f29df7bfc47f7fb7167d75d3de084ccbb8b1f90514d6709bee2"
+          },
+          {
+            "path": "fixtures/scenarios/dev-duplicate_request-02.json",
+            "sha256": "1098c1e6f684c826e84daa03756bbd0534e4fa83b66b3952c42b10b7c40c3693"
+          },
+          {
+            "path": "fixtures/scenarios/dev-duplicate_request-03.json",
+            "sha256": "e38a5aa2c26ffe647334b1e80394b7accfea8cea97ad4568336f7394c741f57d"
+          },
+          {
+            "path": "fixtures/scenarios/dev-duplicate_request-04.json",
+            "sha256": "916993544fddd61522f9f2d9d4da359ff179ad56a712eafd2afe459443fec4e1"
+          },
+          {
+            "path": "fixtures/scenarios/dev-duplicate_request-05.json",
+            "sha256": "d3a07ab8e2a0bb37854e0a9d2e68047fa8fd4127f70571443aeabc847d7382d9"
+          },
+          {
+            "path": "fixtures/scenarios/dev-duplicate_request-06.json",
+            "sha256": "51c775d717184e55627e973ebde984e5619de2d4f203a8099d2acb533fb07432"
+          },
+          {
+            "path": "fixtures/scenarios/dev-missing_timestamp-01.json",
+            "sha256": "2c8f473d10ab39c9e5204063bbcf0954f1ad59b858a88770690c3f2446117603"
+          },
+          {
+            "path": "fixtures/scenarios/dev-missing_timestamp-02.json",
+            "sha256": "ed967e22df09cf682a2116fc8f6c6804e44f70ae12c306e4d2b354594eeecca5"
+          },
+          {
+            "path": "fixtures/scenarios/dev-missing_timestamp-03.json",
+            "sha256": "374e079cf787b7c01bf8ba7f18164f2ca8e08694cb3348d1296cc3fb1217e7ac"
+          },
+          {
+            "path": "fixtures/scenarios/dev-missing_timestamp-04.json",
+            "sha256": "5610160380f42d4206c8c2e3994402dfa08fb99112f20f73f2b9c8bb66ed6a27"
+          },
+          {
+            "path": "fixtures/scenarios/dev-missing_timestamp-05.json",
+            "sha256": "0fb9f6b64e26a941f2bf39a51927f669be6a0f5037abaec0c7a54f759bbcd23b"
+          },
+          {
+            "path": "fixtures/scenarios/dev-missing_timestamp-06.json",
+            "sha256": "11a60f3d71d4d880a81c61fcd3a4965883da963dd05966645a6f03389eec11ee"
+          },
+          {
+            "path": "fixtures/scenarios/holdout-conflicting_events-01.json",
+            "sha256": "0a0e65ae848446674205dcc219b6f9ce069fcce030c2cd76ac4ece2771e94a9b"
+          },
+          {
+            "path": "fixtures/scenarios/holdout-conflicting_events-02.json",
+            "sha256": "e0739850b91b7d747720b16bbe9df85cc47d75d60213dd79cf5fe8c686f3cc33"
+          },
+          {
+            "path": "fixtures/scenarios/holdout-conflicting_events-03.json",
+            "sha256": "770d70f516a26bcafbdadb2357db48295a81769880ead31a3656e1fe9f2a8c7f"
+          },
+          {
+            "path": "fixtures/scenarios/holdout-conflicting_events-04.json",
+            "sha256": "2e1468d47c1a8603b7c4680c9fdf0715463bbd46e2f69d6107c0e9ae1f463da7"
+          },
+          {
+            "path": "fixtures/scenarios/holdout-conflicting_events-05.json",
+            "sha256": "12d9b0b9b09e483102039abf7bbc79d8aa263ed3fa13562013dcb64bebc6b006"
+          },
+          {
+            "path": "fixtures/scenarios/holdout-conflicting_events-06.json",
+            "sha256": "6b03ec333c7c4a6b061038b3aa486ade097ebc15b13f96272ab37b234bcc6736"
+          },
+          {
+            "path": "fixtures/scenarios/holdout-incomplete_policy-01.json",
+            "sha256": "d9edec7b370b788657940b659ec78f9aec7d8e82436aab23680b8f69be9df02a"
+          },
+          {
+            "path": "fixtures/scenarios/holdout-incomplete_policy-02.json",
+            "sha256": "4b84919c591066d6a0ced14afd474e99d21acc71120f89218681151a5f427c60"
+          },
+          {
+            "path": "fixtures/scenarios/holdout-incomplete_policy-03.json",
+            "sha256": "d736d6e9b599bddd619fcc8366822d54c46a14ecf3f9229e423c5f005c1886b5"
+          },
+          {
+            "path": "fixtures/scenarios/holdout-incomplete_policy-04.json",
+            "sha256": "72d677f27e60cc2f7c834d84d850b729aec26364306fe0f112e0acfa0ab4b844"
+          },
+          {
+            "path": "fixtures/scenarios/holdout-incomplete_policy-05.json",
+            "sha256": "acb3b13745fac6b3b6b30ba583c5eee00841badf0ca71de08714c822fe398076"
+          },
+          {
+            "path": "fixtures/scenarios/holdout-incomplete_policy-06.json",
+            "sha256": "1f8bd08dca42a3651b80a433362e795a63d0be641b23ec49640881fc73fb11d3"
+          },
+          {
+            "path": "fixtures/scenarios/holdout-malicious_note-01.json",
+            "sha256": "b047c7de5c9b529de1a9bd76a1814a9be2ffd0937c79a0daaae1a01918e8811d"
+          },
+          {
+            "path": "fixtures/scenarios/holdout-malicious_note-02.json",
+            "sha256": "fd0e11545919b25a67eb40d1db0a36dd6ed3a4252e55663c1da0044f1e347389"
+          },
+          {
+            "path": "fixtures/scenarios/holdout-malicious_note-03.json",
+            "sha256": "ecd6e4ca6c8cdd6d74bcfb3583b8f5e85d8817921434ca7faacfd4d8cbdc41be"
+          },
+          {
+            "path": "fixtures/scenarios/holdout-malicious_note-04.json",
+            "sha256": "b0030cfecb2e1a76e825b6ec070acd8d0e798a0bc7b03d090b8b9cfc12c9b599"
+          },
+          {
+            "path": "fixtures/scenarios/holdout-malicious_note-05.json",
+            "sha256": "df0a300f082908f3c6cf2a33e62d04901e9453a37e89cdf2ddb0ecc931519990"
+          },
+          {
+            "path": "fixtures/scenarios/holdout-malicious_note-06.json",
+            "sha256": "7e7632cc1199646e2a406f2e183f8ff31cb92389140c8c12da06aab706f50335"
+          },
+          {
+            "path": "fixtures/scenarios/holdout-stale_approval-01.json",
+            "sha256": "6982849ccc7908bfb52ebc6a8101622ae299daa9aca8b009ee66c318b8fe4ca8"
+          },
+          {
+            "path": "fixtures/scenarios/holdout-stale_approval-02.json",
+            "sha256": "bbbdad4738b492f4395fa66107408bc7538dc9bf84f1cfbbc94ac9e235693a06"
+          },
+          {
+            "path": "fixtures/scenarios/holdout-stale_approval-03.json",
+            "sha256": "b884a8b532aadad606a9ecc6a93880c1ca3b7abed0d5c6201acefcd645168368"
+          },
+          {
+            "path": "fixtures/scenarios/holdout-stale_approval-04.json",
+            "sha256": "d5ab287cc42e4af705a82776d7ac609af51e8695d0b62a09cc21e2ad2b0e0d3c"
+          },
+          {
+            "path": "fixtures/scenarios/holdout-stale_approval-05.json",
+            "sha256": "b44eab2b8922b21a276a31a113897af97511a205c4b1f13a84ca1600ec46b6af"
+          },
+          {
+            "path": "fixtures/scenarios/holdout-stale_approval-06.json",
+            "sha256": "723d23d57b760461f834b58e10eb45ecd433defa0616a7aa64ea4cd3d6d9ff96"
+          },
+          {
+            "path": "fixtures/scenarios/holdout-uncertain_write-01.json",
+            "sha256": "87bdacab208fcc7555a2744a259c5af88994c0fb0e7a3308523b3394d1cf4322"
+          },
+          {
+            "path": "fixtures/scenarios/holdout-uncertain_write-02.json",
+            "sha256": "523f6d554acdd3aea6272ebf21deca0b3c7214b38fe5483677f42b1ce9891eb6"
+          },
+          {
+            "path": "fixtures/scenarios/holdout-uncertain_write-03.json",
+            "sha256": "da12de00f7032bdf1da0f1612873a8a0786e3c9ab3933574eb0418284e72722a"
+          },
+          {
+            "path": "fixtures/scenarios/holdout-uncertain_write-04.json",
+            "sha256": "e29c24f6845c97f5956321cfa06375bdb6c31d136464db12a678b5ba10b53b19"
+          },
+          {
+            "path": "fixtures/scenarios/holdout-uncertain_write-05.json",
+            "sha256": "69cdf859cf35483eef24909a4d10d41b791e2bf53604225a2cb5d62137696be2"
+          },
+          {
+            "path": "fixtures/scenarios/holdout-uncertain_write-06.json",
+            "sha256": "ae4f725a06207dd393e1ebffee97a0a508e9bc150a70e440b1a6b1696db6fb6b"
+          },
+          {
+            "path": "fixtures/scenarios/v2-challenge/v2c-01-juniper.json",
+            "sha256": "bc52805cd93385cf3b510dee87916e3a3a13273b2c328c77e5b9fbded249eaa0"
+          },
+          {
+            "path": "fixtures/scenarios/v2-challenge/v2c-02-copper.json",
+            "sha256": "99223a1f1efae5306e66881843c35bec605e25f2cecaa618d2cdbaf592ebfb47"
+          },
+          {
+            "path": "fixtures/scenarios/v2-challenge/v2c-03-willow.json",
+            "sha256": "d3f55a9e2ae14e03206f05334ee97af2cbc16846a9af22875550a0f623c6951a"
+          },
+          {
+            "path": "fixtures/scenarios/v2-challenge/v2c-04-pebble.json",
+            "sha256": "571421e1e12fd902bd716578ab67e76e421b2f8bd245e86205c8a8e36fe26382"
+          },
+          {
+            "path": "fixtures/scenarios/v2-challenge/v2c-05-acorn.json",
+            "sha256": "a68928d42cadc784e829cbf6f0fdb0c2a2014f769f43cd01cebbd94cb1cfcacc"
+          },
+          {
+            "path": "fixtures/scenarios/v2-challenge/v2c-06-ripple.json",
+            "sha256": "7105fcc8d7c33f43fd148609eb88b396c5665e2b8a52155e6b97670341b46a4a"
+          },
+          {
+            "path": "fixtures/scenarios/v2-challenge/v2c-07-harbor.json",
+            "sha256": "6cfa4124832d83b40c3e64c3940c37eea1a8285a78799b9fac97ce0102d90bd3"
+          },
+          {
+            "path": "fixtures/scenarios/v2-challenge/v2c-08-marble.json",
+            "sha256": "3d0740a3aad16a91861803dcc88ea045ac37774b78f6c27bac2032c9d9c02240"
+          },
+          {
+            "path": "fixtures/scenarios/v2-challenge/v2c-09-spruce.json",
+            "sha256": "75197ebacd61705889e98b555b4f55e0cf70eaa9999ea13ff4c73fdd08a430ac"
+          },
+          {
+            "path": "fixtures/scenarios/v2-challenge/v2c-10-moss.json",
+            "sha256": "160c26eca517f71bfda5fa9fc412379677c04f24e747095b229ffaee46780450"
+          },
+          {
+            "path": "fixtures/scenarios/v2-challenge/v2c-11-clover.json",
+            "sha256": "4680b3993c093f965d4e23253237c8c823ff22799e92f584feddc57a051f80b1"
+          },
+          {
+            "path": "fixtures/scenarios/v2-challenge/v2c-12-quartz.json",
+            "sha256": "ac8ed3b2f7e7c951518af4fc7454774a10d487f11e69ad1f302ddbca8c4050dd"
+          },
+          {
+            "path": "fixtures/scenarios/v2-challenge/v2c-13-saffron.json",
+            "sha256": "e430f03e1c0aa8947863e291ba6c57603e1026876186546d118b6139d5cc3bd9"
+          },
+          {
+            "path": "fixtures/scenarios/v2-challenge/v2c-14-birch.json",
+            "sha256": "ec1fbf5e5439f7ecc882f474f4cd7fd0b1a19c297e629133dbdfbb59b640cacd"
+          },
+          {
+            "path": "fixtures/scenarios/v2-challenge/v2c-15-coral.json",
+            "sha256": "4fffaa34d42fd0e7037567d2cccdc20e1f3c2a3ca72c839d64f43c5c120c3409"
+          },
+          {
+            "path": "fixtures/scenarios/v2-challenge/v2c-16-hazel.json",
+            "sha256": "99e619bb39752b0401361dcec62f4012b6f627caadf5d446b57f5cc642253a50"
+          },
+          {
+            "path": "fixtures/scenarios/v2-challenge/v2c-17-linen.json",
+            "sha256": "2119dce638ccadbdf063b65c4c80f2bc53985e631b6220247c5628385b5ae555"
+          },
+          {
+            "path": "fixtures/scenarios/v2-challenge/v2c-18-cedar.json",
+            "sha256": "86efd310906d4ecb8ae0de1b8aacadc9ff229d0283ee3d005b5d209770bb9333"
+          },
+          {
+            "path": "fixtures/scenarios/v2-challenge/v2c-19-opal.json",
+            "sha256": "f6df191d929cadc26831bbae7cf45290f948ad161662448e17026b2fc7732d6d"
+          },
+          {
+            "path": "fixtures/scenarios/v2-challenge/v2c-20-flint.json",
+            "sha256": "2c79deca65de4555a34b4777445b01d02a8ef08193c4ea25e0d764552d1a02ac"
+          },
+          {
+            "path": "fixtures/scenarios/v2-challenge/v2c-21-basil.json",
+            "sha256": "e10355ab20f7f7d76831b6bf5ac8d08d7973f78f337eae061f11e538c17f0ad7"
+          },
+          {
+            "path": "fixtures/scenarios/v2-challenge/v2c-22-elm.json",
+            "sha256": "00b58911d2e63f0466688d2ad81aee13c9b97728325dcd18fee36894d16dcdcc"
+          },
+          {
+            "path": "fixtures/scenarios/v2-challenge/v2c-23-amber.json",
+            "sha256": "de7276f45ebc75305a06e24f2c7335e0ebf24e104c366d53ff78ebc9456c4fb2"
+          },
+          {
+            "path": "fixtures/scenarios/v2-challenge/v2c-24-reed.json",
+            "sha256": "e59012b83edb01a5a1422ebd33dfd8721014dcdeacbc34ef4e57b45572aef490"
+          },
+          {
+            "path": "fixtures/scenarios/v2-challenge/v2c-25-cobalt.json",
+            "sha256": "faee90c36901b4299235499babe584813d089efe1bb03c57227e3157e3041527"
+          },
+          {
+            "path": "fixtures/scenarios/v2-challenge/v2c-26-maple.json",
+            "sha256": "293ca2b311278a419479dba7c9eb62a5d427578b8f3a704640499d25ca824922"
+          },
+          {
+            "path": "fixtures/scenarios/v2-challenge/v2c-27-dune.json",
+            "sha256": "25d8b9b7963d173e7f6a95c3201b9c5e4077d647083abd61a33365198c34ff31"
+          },
+          {
+            "path": "fixtures/scenarios/v2-challenge/v2c-28-fern.json",
+            "sha256": "ffcd6504421bd27eaabf6feb443b3615d234ec10a36e67ba34a831287f736d8f"
+          },
+          {
+            "path": "fixtures/scenarios/v2-challenge/v2c-29-granite.json",
+            "sha256": "c41b1db8e72fa5258d1b57ca93b2516802e9f67f73f8b081f4b2f968ce843c79"
+          },
+          {
+            "path": "fixtures/scenarios/v2-challenge/v2c-30-meadow.json",
+            "sha256": "d0471a2868eaa04d21c37f00a19563cdcaa93d1d5dcbeb761a2dba9aa73912e5"
+          },
+          {
+            "path": "fixtures/scenarios/v3-challenge/0c892a52-ed84-584e-b368-de242e19de97.json",
+            "sha256": "216ccdc2b0783d36356eb7d7cf217bae22c02d2ed093d08565920d84df4fc79d"
+          },
+          {
+            "path": "fixtures/scenarios/v3-challenge/0efdd1ab-e58f-58c9-b1a3-1b76d186b3dd.json",
+            "sha256": "50887e5aff057a44d98e293210ea311399080e458881a41dddbf813540dd9d2c"
+          },
+          {
+            "path": "fixtures/scenarios/v3-challenge/0fe8ef6a-5373-5b39-8f18-597391fd710d.json",
+            "sha256": "2574c33c7cc04a2f62f808c4b125297f94039d1695b72eee6c40eabcf0f005a6"
+          },
+          {
+            "path": "fixtures/scenarios/v3-challenge/28202e5b-3eba-5fd2-84e9-447f713a4618.json",
+            "sha256": "86015ba4386658c1ae7486df683ae7128d3c18f646da797778400c9f130cc2de"
+          },
+          {
+            "path": "fixtures/scenarios/v3-challenge/387d2a1e-5a08-5d2b-b23b-e30711056c49.json",
+            "sha256": "f3aa0b55f633f5a252cd3f13ac2fe7e90333145ad43652501df37372d7b120fc"
+          },
+          {
+            "path": "fixtures/scenarios/v3-challenge/40b7e90e-61e3-557b-b223-ae04e96b6902.json",
+            "sha256": "09b5c2208635725f190720e67ec57da349df56265c0f2fcf94e701a0528f6f39"
+          },
+          {
+            "path": "fixtures/scenarios/v3-challenge/419f23a7-8878-58d3-85b4-324c4eee7c8b.json",
+            "sha256": "e1a56dbf202456f88bfaeba44d927173eb6405414e5514dd43956daa9fa2b180"
+          },
+          {
+            "path": "fixtures/scenarios/v3-challenge/4fada86c-6b91-541f-ae17-353022862da8.json",
+            "sha256": "f9d60f7f98b7db9ba4ab7834bc4f1774bb7bc99a8b70e8fdb727dddf485e7f19"
+          },
+          {
+            "path": "fixtures/scenarios/v3-challenge/5a1bd13e-596e-5ad7-8edd-5d4ac4e1a4cc.json",
+            "sha256": "fa7f6f75678f8c0f1f4c4e5e888d8d6fe130e1c5f4a51966fe1db3ad78dda3b0"
+          },
+          {
+            "path": "fixtures/scenarios/v3-challenge/5b9007b8-3851-5c6d-b27d-dbb97f2aab03.json",
+            "sha256": "261f16caa41befd4c01c7ade65075d74f80e0dd7c239c4d483ec3bd29153bbfb"
+          },
+          {
+            "path": "fixtures/scenarios/v3-challenge/6e1be28e-8c75-5821-b085-51c02061afdc.json",
+            "sha256": "cf61a748265402741f429305d0b1301baeed7a829ea9eb40f5b32c6664860fbc"
+          },
+          {
+            "path": "fixtures/scenarios/v3-challenge/6f85c3a2-00b8-5f22-b89e-0c29a315b50b.json",
+            "sha256": "a743b5c9e19b3d7f8f870b9283de9065d421b9ec6324e039c57dfaf38ae7cd85"
+          },
+          {
+            "path": "fixtures/scenarios/v3-challenge/743b8ffe-f4d2-5e01-af6b-eab9e2ac07a8.json",
+            "sha256": "933f116a64f2f533034b0fa7ea81d706ad78c27e2e03254164a72cb0a004ba58"
+          },
+          {
+            "path": "fixtures/scenarios/v3-challenge/7ed33938-4a61-5b5e-9e0d-99a865dba7d5.json",
+            "sha256": "444f21557437bb8753f5dec5bba94de939f852ffafed87dbb60e2742dcc218e4"
+          },
+          {
+            "path": "fixtures/scenarios/v3-challenge/7f468f37-b469-5ac0-81ad-0dbb41769ed1.json",
+            "sha256": "e562aa28c268818b01df4d163046d4ee6ded85b45578e21e72f8d5d4b8409710"
+          },
+          {
+            "path": "fixtures/scenarios/v3-challenge/8c2fa575-49b4-5337-b653-fd51958d3b80.json",
+            "sha256": "284bd14ba1d22d677b2a3d57654e08e75d5f0c780a219df7431b8dea562a24c4"
+          },
+          {
+            "path": "fixtures/scenarios/v3-challenge/966de6c3-4112-5661-8bfc-e79e6930360d.json",
+            "sha256": "088a75706efffef3a7936075adf04e33ddec18783ffe6d5f7ef11bf707f12c65"
+          },
+          {
+            "path": "fixtures/scenarios/v3-challenge/99b9b747-8671-54dd-81cf-9afa583b709f.json",
+            "sha256": "141f1a935c8501ad0dad5021624c096fabbed4c5a99dc73bc6296970388b6f5b"
+          },
+          {
+            "path": "fixtures/scenarios/v3-challenge/9b9b296e-3711-53eb-a6bf-cc1b88780b5f.json",
+            "sha256": "0bcafeb1e87c9387d6919113511b7ef8f010a8c0c2cca0aeed11bbd33570807b"
+          },
+          {
+            "path": "fixtures/scenarios/v3-challenge/b0b15556-7954-5037-a65e-0bf25306b6f2.json",
+            "sha256": "95e395b1a6103db822c962a9aff262186aa46c69c4c4414a714fe03a6b90aeb2"
+          },
+          {
+            "path": "fixtures/scenarios/v3-challenge/b94d6738-1d07-5805-bae0-3d84c3c91b3d.json",
+            "sha256": "109708bef81275ffdb5b98a90ead2c40289fc9f09a72168d68a4f006629de7d5"
+          },
+          {
+            "path": "fixtures/scenarios/v3-challenge/bab8a9ce-00fc-5c62-9e4d-398494f572bb.json",
+            "sha256": "ba98b0b1961a2eea31c22c3b89dbb6f327dcb3abbdc0a4b0318ab2ea81a5300c"
+          },
+          {
+            "path": "fixtures/scenarios/v3-challenge/bf6f1c1a-7234-51d6-b875-72071474b8fb.json",
+            "sha256": "344221596031603231703128f0e92ebd7dcd3c3771653b2f0bbf6dc9d5a16b09"
+          },
+          {
+            "path": "fixtures/scenarios/v3-challenge/cd5ac0a0-a7ae-5a56-8704-963bf5ed8ab0.json",
+            "sha256": "b4ba422855593e8277140ef64125de8d2256c63a7e0acb8096081441a4a5947b"
+          },
+          {
+            "path": "fixtures/scenarios/v3-challenge/d357ad94-1f6b-5d66-a15e-f9d852fdfb2b.json",
+            "sha256": "73aa2ccfba6d15c93ac8a42dab55432355857a5844b97cb3b106b00f888a2454"
+          },
+          {
+            "path": "fixtures/scenarios/v3-challenge/dae2d325-0e85-53e1-80bc-9037fc0b64be.json",
+            "sha256": "9e37b39fca7b8e3e1f8c8e6dad04ac191a42a9fdad093541cabcf8ab58c1218d"
+          },
+          {
+            "path": "fixtures/scenarios/v3-challenge/db0bbc2c-7e1b-52df-bca0-f2f5407045e3.json",
+            "sha256": "42e23e2ac5d650bad077242b1e83cb455156752c6a7c69a4ce629bb4d4721716"
+          },
+          {
+            "path": "fixtures/scenarios/v3-challenge/dee39613-f5bc-5376-8b96-5ca446dcca5e.json",
+            "sha256": "10fa03f3b2034a1816b6f05d69b4a9b87d90c8b5570b70743e3d3e9fff9db961"
+          },
+          {
+            "path": "fixtures/scenarios/v3-challenge/e0746dec-3ef7-545d-b700-75985253b06d.json",
+            "sha256": "771e09a84e59412616d6b0e5f64ddb8554711ff14790760581d6565c7a1fba2e"
+          },
+          {
+            "path": "fixtures/scenarios/v3-challenge/f85e48fe-9fbc-5a79-ba61-3f892e4ff241.json",
+            "sha256": "7796a199a6e8b265b2cddc1e6732f5aa5585dbee036687ce878ff391824b8223"
+          },
+          {
+            "path": "fixtures/scenarios/v3-development/v3dev-01.json",
+            "sha256": "60cbe779936b6d1cffc61241b340902534fb4320e0574ea34551cb479d9b9902"
+          },
+          {
+            "path": "fixtures/scenarios/v3-development/v3dev-02.json",
+            "sha256": "78d798e0d4ad1df3e00fa0cb845a9467679e2ef502ff068c72749a27d317bb87"
+          },
+          {
+            "path": "fixtures/scenarios/v3-development/v3dev-03.json",
+            "sha256": "3d5b1bcc4cba94548e4deffba4d37166d7809e420a7ee266238fd530c33a4fd7"
+          },
+          {
+            "path": "fixtures/scenarios/v3-development/v3dev-04.json",
+            "sha256": "41e838de5af92d1aba5ec1b61d4e297c70b8903b7ac91e5b418c0354723fbb9d"
+          },
+          {
+            "path": "fixtures/scenarios/v3-development/v3dev-05.json",
+            "sha256": "716b2d4527b4fddc0af8ff89f9ed6b0b43490889cb225dac331e2eeb63ec0393"
+          },
+          {
+            "path": "fixtures/scenarios/v3-development/v3dev-06.json",
+            "sha256": "408425d3661ca840af43ff1994f4c3fdb59e3dde2f33c604252b19eafbc62f1d"
+          },
+          {
+            "path": "fixtures/scenarios/v3-development/v3dev-07.json",
+            "sha256": "d69c6f17ed36d9b2ab2522e6d5a96c2e645b446021ec12d34cec6efc81cf1535"
+          },
+          {
+            "path": "fixtures/scenarios/v3-development/v3dev-08.json",
+            "sha256": "a4bdd514ba38e4e77539bc11e9cb8779697af99959cbe9ba63ff8d227d7352b1"
+          },
+          {
+            "path": "fixtures/scenarios/v3-development/v3dev-09.json",
+            "sha256": "2c31c7a63ad31f0b8b587e4cb59e3134bb0ea6bf99ab453fc4e53133c1619b76"
+          },
+          {
+            "path": "fixtures/scenarios/v3-development/v3dev-10.json",
+            "sha256": "b11272b4a8dd5f0a66d93c7acc379aa253db3d477a7353d02b5a2ff71b2a76e3"
+          }
+        ],
+        "results": {
+          "coarse_rule_shape_overlap_cases": 7,
+          "identifier_collisions": 0,
+          "material_business_duplicate_cases": 0,
+          "raw_duplicate_cases": 0,
+          "reused_as_of_instants": 0,
+          "reused_event_descriptions": 0,
+          "reused_known_summary_instants": 0,
+          "reused_order_notes": 0,
+          "substantive_duplicate_flags": 0,
+          "time_translation_normalized_duplicate_cases": 0
+        },
+        "scope": "Input-only supplemental duplicate recheck; original challenge inputs, oracles, manifest and freeze inventory remain byte-identical.",
+        "source_records_compared": 252,
+        "tracked_public_scenarios_checked": 131,
+        "unique_prior_input_hashes": 131
+      }
+    },
+    "checks": {
+      "source_sha256": "40d7e85ea3aa7d1bcb6e3af14013c629d1169ca02078156506b384ef1662a0e6",
+      "redacted_fields": [],
+      "payload": {
+        "scope": "Private v4 input and literal-oracle authoring, exact temporal calculations, pinned-original source verification, prior-input-only novelty checks, and frozen-file integrity.",
+        "checks": [
+          {
+            "command": ".venv/bin/ruff check --no-cache .runtime/v4-challenge-private/author.py .runtime/v4-challenge-private/temporal.py .runtime/v4-challenge-private/validate.py",
+            "result": "All checks passed"
+          },
+          {
+            "command": ".venv/bin/pyright --project .runtime/v4-challenge-private/pyrightconfig.json",
+            "result": "Strict checking: 0 errors, 0 warnings, 0 informations"
+          },
+          {
+            "command": "PYTHONPATH=.runtime/v4-challenge-private/reference .venv/bin/python -B .runtime/v4-challenge-private/validate.py --write-report",
+            "result": "30 valid source contracts, 30 manual action matches, 30 literal/exact temporal checks, 30 new inputs against 121 prior inputs, 90 unique identifiers, exact 6 stale / 24 completion and fault counts, and 10 original reference files verified"
+          }
+        ],
+        "pre_generation_cleanup": "One import-group formatting correction and ordinary source formatting were applied before serialization. No input, manual action or literal elapsed value required correction after validation.",
+        "authorship": "Separate-agent authorship; no claim of independent human authorship.",
+        "not_performed": [
+          "Model inference or service execution; this task is isolated input authorship.",
+          "Reading current application implementation, STATE, reports, outcomes or new development inputs.",
+          "Application or frontend test suites; no application source was changed."
+        ]
+      }
+    }
+  },
+  "promotion": "Scenario and manifest bytes copied unchanged after implementation freeze; original independent-author metadata retained with declared staging-field redaction."
+}

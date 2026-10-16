@@ -1,0 +1,27 @@
+{
+  "as_of": "2039-02-13T01:00:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional append-only event log advanced after its summary was generated.",
+    "order_id": "6d5f5a3e-a6bd-506e-a133-8b5e6fff1596",
+    "policy_exception": null,
+    "shipment_id": "53598773-1d93-51fe-a511-5c25ecd045a3",
+    "status": "in_transit",
+    "version": 158
+  },
+  "scenario_id": "b2dcf7ca-1ddf-5f53-a4fe-06c89b23e526",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2039-02-10T01:00:01Z",
+        "code": "hold_extended",
+        "description": "Fictional hold extension newer than the summary."
+      }
+    ],
+    "last_event_at": "2039-02-10T01:00:00Z",
+    "shipment_id": "53598773-1d93-51fe-a511-5c25ecd045a3",
+    "status": "delayed",
+    "version": 288
+  }
+}

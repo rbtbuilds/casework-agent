@@ -1,0 +1,27 @@
+{
+  "as_of": "2037-10-30T10:10:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional manual scan entry was saved without its clock offset.",
+    "order_id": "67ae8631-7fd9-556e-a595-bc02ca95c71b",
+    "policy_exception": null,
+    "shipment_id": "a2483cea-2fed-5f46-bfd9-809e7897a539",
+    "status": "in_transit",
+    "version": 148
+  },
+  "scenario_id": "85399891-d0d3-5b4b-be09-464ba3760c4c",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2037-10-28T09:40:00",
+        "code": "manual_sort_hold",
+        "description": "Fictional timezone-less manual hold entry."
+      }
+    ],
+    "last_event_at": "2037-10-28T10:10:00Z",
+    "shipment_id": "a2483cea-2fed-5f46-bfd9-809e7897a539",
+    "status": "delayed",
+    "version": 274
+  }
+}

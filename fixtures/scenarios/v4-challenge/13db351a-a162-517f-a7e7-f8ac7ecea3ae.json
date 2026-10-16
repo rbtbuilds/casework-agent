@@ -1,0 +1,21 @@
+{
+  "as_of": "2038-03-31T23:45:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional receipt and order completion were recorded at the saved case cutoff.",
+    "order_id": "19312bbe-1033-58a4-9b3a-cb3685a49f37",
+    "policy_exception": null,
+    "shipment_id": "b94cab69-e7d5-5d1f-9583-6998b8debbad",
+    "status": "delivered",
+    "version": 233
+  },
+  "scenario_id": "13db351a-a162-517f-a7e7-f8ac7ecea3ae",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [],
+    "last_event_at": "2038-03-31T23:45:00Z",
+    "shipment_id": "b94cab69-e7d5-5d1f-9583-6998b8debbad",
+    "status": "delivered",
+    "version": 393
+  }
+}

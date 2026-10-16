@@ -1,0 +1,21 @@
+{
+  "as_of": "2038-05-01T00:00:00.000001Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional sealed tray remains delayed without a terminal carrier scan.",
+    "order_id": "8fdafe94-50c7-53a0-a253-3f68e8685976",
+    "policy_exception": null,
+    "shipment_id": "3234cbc0-0a98-5370-8c42-372dca315af1",
+    "status": "in_transit",
+    "version": 123
+  },
+  "scenario_id": "e188b84b-cea8-55d8-a8e9-a3a2308bc1e9",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [],
+    "last_event_at": "2038-04-29T00:00:00Z",
+    "shipment_id": "3234cbc0-0a98-5370-8c42-372dca315af1",
+    "status": "delayed",
+    "version": 239
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "as_of": "2038-06-14T06:00:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional import retained a recent timestamp while both status mappings remain unresolved.",
+    "order_id": "e28ccfc0-1948-52c6-bffc-7ad9369fd86b",
+    "policy_exception": null,
+    "shipment_id": "7340ca5a-f6f3-55ff-9c91-22dd98f4e300",
+    "status": "unknown",
+    "version": 178
+  },
+  "scenario_id": "4b512706-6187-53ec-bb70-e07cf72168b1",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [],
+    "last_event_at": "2038-06-14T05:00:00Z",
+    "shipment_id": "7340ca5a-f6f3-55ff-9c91-22dd98f4e300",
+    "status": "unknown",
+    "version": 316
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "as_of": "2036-12-31T23:59:59.9Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional sorter exported tenths in one record and microseconds in the other.",
+    "order_id": "d657bdd6-17fd-5ad1-8c50-0c4be8426fa9",
+    "policy_exception": null,
+    "shipment_id": "98d11bef-7c73-5b73-a2dc-790c5218d5c4",
+    "status": "in_transit",
+    "version": 118
+  },
+  "scenario_id": "11caea64-b0ae-5dc6-9cdb-5f1ec61bd4dd",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [],
+    "last_event_at": "2036-12-29T23:59:59.900001Z",
+    "shipment_id": "98d11bef-7c73-5b73-a2dc-790c5218d5c4",
+    "status": "delayed",
+    "version": 232
+  }
+}

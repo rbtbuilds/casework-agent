@@ -1,0 +1,21 @@
+{
+  "as_of": "2100-03-01T03:02:01.234567Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional planning simulation uses a century boundary; the dated records are authoritative.",
+    "order_id": "eb21cf9f-3759-5045-b7f7-8cf4cbf30af2",
+    "policy_exception": null,
+    "shipment_id": "c06265c7-1128-5506-b740-c6c5dd3283a3",
+    "status": "in_transit",
+    "version": 113
+  },
+  "scenario_id": "330584cf-b78a-56c3-81a9-024ca97735c0",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [],
+    "last_event_at": "2100-02-28T03:02:01.234567Z",
+    "shipment_id": "c06265c7-1128-5506-b740-c6c5dd3283a3",
+    "status": "delayed",
+    "version": 225
+  }
+}

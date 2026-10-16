@@ -1,0 +1,21 @@
+{
+  "as_of": "2044-06-01T01:01:01.000033Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional carrier hold is complete enough for an internal investigation proposal.",
+    "order_id": "3a5dd599-371c-5c18-a28b-d20363b701b9",
+    "policy_exception": null,
+    "shipment_id": "1973567b-870a-5002-887c-cbe2c33b8c79",
+    "status": "in_transit",
+    "version": 228
+  },
+  "scenario_id": "17e058b6-f952-5f7d-9e07-aaf15b113935",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [],
+    "last_event_at": "2044-05-30T01:01:01Z",
+    "shipment_id": "1973567b-870a-5002-887c-cbe2c33b8c79",
+    "status": "delayed",
+    "version": 386
+  }
+}

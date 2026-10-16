@@ -1,0 +1,21 @@
+{
+  "as_of": "2041-03-09T15:00:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional long-haul container remains listed as ordinary transit rather than a reported delay.",
+    "order_id": "53fac027-a798-5d36-8f88-f77c21d744e7",
+    "policy_exception": null,
+    "shipment_id": "33c009ec-51b1-5b82-a3c8-5d4b75546ccf",
+    "status": "in_transit",
+    "version": 183
+  },
+  "scenario_id": "64c6132e-196e-559a-a8c5-42537537c527",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [],
+    "last_event_at": "2041-03-05T11:00:00Z",
+    "shipment_id": "33c009ec-51b1-5b82-a3c8-5d4b75546ccf",
+    "status": "in_transit",
+    "version": 323
+  }
+}

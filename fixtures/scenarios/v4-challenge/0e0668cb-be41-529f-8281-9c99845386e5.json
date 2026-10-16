@@ -1,0 +1,27 @@
+{
+  "as_of": "2035-02-08T19:00:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional transport cancellation appears in the event list but not the delayed summary.",
+    "order_id": "f07231d3-b508-5b4e-99ec-68568abcb24b",
+    "policy_exception": null,
+    "shipment_id": "5717ab97-1aae-528e-8e9d-b1afa6f9c3d1",
+    "status": "in_transit",
+    "version": 198
+  },
+  "scenario_id": "0e0668cb-be41-529f-8281-9c99845386e5",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2035-02-06T04:55:00Z",
+        "code": "CaNcElLeD",
+        "description": "Fictional cancellation of the assigned transport leg."
+      }
+    ],
+    "last_event_at": "2035-02-06T05:00:00Z",
+    "shipment_id": "5717ab97-1aae-528e-8e9d-b1afa6f9c3d1",
+    "status": "delayed",
+    "version": 344
+  }
+}

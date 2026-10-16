@@ -1,0 +1,27 @@
+{
+  "as_of": "2037-01-08T07:07:07Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional inventory system records delivery before the carrier summary was reconciled.",
+    "order_id": "41cc3238-3b80-5422-8259-deb51442f325",
+    "policy_exception": null,
+    "shipment_id": "725a0a50-a8cf-50d4-a6a9-77346b6df7a7",
+    "status": "delivered",
+    "version": 173
+  },
+  "scenario_id": "667d283f-a92b-51c7-b7b3-f2d680b63e44",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2037-01-05T22:07:07Z",
+        "code": "dock_intake",
+        "description": "Fictional earlier intake record with no later delivery detail."
+      }
+    ],
+    "last_event_at": "2037-01-06T07:07:07Z",
+    "shipment_id": "725a0a50-a8cf-50d4-a6a9-77346b6df7a7",
+    "status": "delayed",
+    "version": 309
+  }
+}

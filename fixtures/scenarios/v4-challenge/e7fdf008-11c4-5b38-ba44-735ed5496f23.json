@@ -1,0 +1,27 @@
+{
+  "as_of": "2044-02-29T16:13:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional weekly consolidation remains delayed with no delivery, cancellation, conflict, or exception.",
+    "order_id": "92a3cdc2-e940-5940-8eda-308f15df420a",
+    "policy_exception": null,
+    "shipment_id": "3a98fab9-01f8-571e-8c08-f2911da98a4c",
+    "status": "in_transit",
+    "version": 248
+  },
+  "scenario_id": "e7fdf008-11c4-5b38-ba44-735ed5496f23",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2044-02-22T15:58:00Z",
+        "code": "consolidation_wait",
+        "description": "Fictional consolidation wait before the summary."
+      }
+    ],
+    "last_event_at": "2044-02-22T16:00:00Z",
+    "shipment_id": "3a98fab9-01f8-571e-8c08-f2911da98a4c",
+    "status": "delayed",
+    "version": 414
+  }
+}

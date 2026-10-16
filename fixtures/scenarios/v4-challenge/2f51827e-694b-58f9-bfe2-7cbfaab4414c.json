@@ -1,0 +1,32 @@
+{
+  "as_of": "2040-06-09T09:09:09Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional scanner migration carried over history but left the last-event field empty.",
+    "order_id": "6259e077-9fc8-50cc-a86d-aed9707791e5",
+    "policy_exception": null,
+    "shipment_id": "79fb63e9-f439-51fa-b26e-054c1eed3548",
+    "status": "in_transit",
+    "version": 138
+  },
+  "scenario_id": "2f51827e-694b-58f9-bfe2-7cbfaab4414c",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2040-06-03T04:04:04Z",
+        "code": "staging_received",
+        "description": "Fictional staging intake retained from the older feed."
+      },
+      {
+        "at": "2040-06-04T12:14:16+01:00",
+        "code": "route_pending",
+        "description": "Fictional later route-pending record."
+      }
+    ],
+    "last_event_at": null,
+    "shipment_id": "79fb63e9-f439-51fa-b26e-054c1eed3548",
+    "status": "delayed",
+    "version": 260
+  }
+}

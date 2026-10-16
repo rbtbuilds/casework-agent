@@ -1,0 +1,27 @@
+{
+  "as_of": "2036-10-14T17:40:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional carrier reconciliation marked a disagreement in a source not reproduced in the visible history.",
+    "order_id": "0065e0f0-4a3c-5df5-80a3-8391a5e87c9c",
+    "policy_exception": null,
+    "shipment_id": "ff96e22f-ea90-5426-9df4-d00a58f2f6ab",
+    "status": "in_transit",
+    "version": 203
+  },
+  "scenario_id": "8afed6d5-6f2a-5b7b-aed0-244c0cd8f72f",
+  "shipment": {
+    "conflicting_events": true,
+    "events": [
+      {
+        "at": "2036-10-11T17:00:00Z",
+        "code": "cage_wait",
+        "description": "Fictional visible wait record with no terminal code."
+      }
+    ],
+    "last_event_at": "2036-10-11T17:40:00Z",
+    "shipment_id": "ff96e22f-ea90-5426-9df4-d00a58f2f6ab",
+    "status": "delayed",
+    "version": 351
+  }
+}

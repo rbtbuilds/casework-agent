@@ -1,0 +1,27 @@
+{
+  "as_of": "2043-02-07T22:05:17Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional routing cage holds a complete parcel record pending an internal trace.",
+    "order_id": "81406242-d232-52bc-9558-9b368516358d",
+    "policy_exception": null,
+    "shipment_id": "0ddb6efb-45e2-59ff-bc07-41e91433f38d",
+    "status": "in_transit",
+    "version": 238
+  },
+  "scenario_id": "585a8004-d27d-5b1c-8061-d43a0c701f17",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2043-02-05T17:27:53+04:00",
+        "code": "routing_cage",
+        "description": "Fictional event at exactly the summary time."
+      }
+    ],
+    "last_event_at": "2043-02-05T13:27:53Z",
+    "shipment_id": "0ddb6efb-45e2-59ff-bc07-41e91433f38d",
+    "status": "delayed",
+    "version": 400
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "as_of": "2035-04-05T06:45:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional equipment retained its configured numeric clock offset in the scan.",
+    "order_id": "31c90232-b5e2-5f02-9be6-d3d06b5b58f0",
+    "policy_exception": null,
+    "shipment_id": "48b3ff2c-e443-5340-a4f0-c194f3f03942",
+    "status": "in_transit",
+    "version": 133
+  },
+  "scenario_id": "515304b7-e79b-5921-89d4-1127a80a6c3c",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [],
+    "last_event_at": "2035-04-03T11:00:01+04:15",
+    "shipment_id": "48b3ff2c-e443-5340-a4f0-c194f3f03942",
+    "status": "delayed",
+    "version": 253
+  }
+}

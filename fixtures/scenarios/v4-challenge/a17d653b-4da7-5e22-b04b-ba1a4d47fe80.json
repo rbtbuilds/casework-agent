@@ -1,0 +1,21 @@
+{
+  "as_of": "2035-11-04T19:30:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional merchandise order was cancelled while its carrier summary remained delayed.",
+    "order_id": "fe5e9044-132e-5f17-b8d4-1ad6a26de0ff",
+    "policy_exception": null,
+    "shipment_id": "358ab8db-cd07-548a-a3a1-de6d233a40b0",
+    "status": "cancelled",
+    "version": 168
+  },
+  "scenario_id": "a17d653b-4da7-5e22-b04b-ba1a4d47fe80",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [],
+    "last_event_at": "2035-11-01T19:30:00Z",
+    "shipment_id": "358ab8db-cd07-548a-a3a1-de6d233a40b0",
+    "status": "delayed",
+    "version": 302
+  }
+}

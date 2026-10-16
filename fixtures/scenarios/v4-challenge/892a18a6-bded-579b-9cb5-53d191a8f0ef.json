@@ -1,0 +1,21 @@
+{
+  "as_of": "2036-09-20T12:21:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional importer wrote a numeric-looking exception token whose meaning is not defined by the policy.",
+    "order_id": "8c5ac413-87e5-5f87-93ba-4e379eaf7d28",
+    "policy_exception": "0",
+    "shipment_id": "fbdf3f71-a16b-538e-937c-29fa029e22a2",
+    "status": "in_transit",
+    "version": 243
+  },
+  "scenario_id": "892a18a6-bded-579b-9cb5-53d191a8f0ef",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [],
+    "last_event_at": "2036-09-17T12:21:00Z",
+    "shipment_id": "fbdf3f71-a16b-538e-937c-29fa029e22a2",
+    "status": "delayed",
+    "version": 407
+  }
+}

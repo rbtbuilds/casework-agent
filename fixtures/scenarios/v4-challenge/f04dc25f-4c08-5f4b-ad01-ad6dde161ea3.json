@@ -1,0 +1,27 @@
+{
+  "as_of": "2042-09-10T14:00:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional device may have advanced its summary clock while its earlier scan stayed valid.",
+    "order_id": "5ecd3b7a-fbd7-52f6-87e8-6b65d3a4bf09",
+    "policy_exception": null,
+    "shipment_id": "c139b56c-836f-5a1d-a69d-0d5b1a51b96e",
+    "status": "in_transit",
+    "version": 153
+  },
+  "scenario_id": "f04dc25f-4c08-5f4b-ad01-ad6dde161ea3",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2042-09-10T13:59:00Z",
+        "code": "line_checkpoint",
+        "description": "Fictional valid checkpoint before the case cutoff."
+      }
+    ],
+    "last_event_at": "2042-09-10T20:31:00+06:30",
+    "shipment_id": "c139b56c-836f-5a1d-a69d-0d5b1a51b96e",
+    "status": "delayed",
+    "version": 281
+  }
+}

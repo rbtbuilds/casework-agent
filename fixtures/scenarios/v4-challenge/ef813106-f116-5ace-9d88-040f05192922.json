@@ -1,0 +1,21 @@
+{
+  "as_of": "2042-04-30T10:00:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional import placed an unresolved classification token in the exception field.",
+    "order_id": "80755998-e4e7-5590-a208-df021c223fd4",
+    "policy_exception": "standard",
+    "shipment_id": "eaa8155b-8177-51c7-bdcd-7fe988de2f9f",
+    "status": "in_transit",
+    "version": 193
+  },
+  "scenario_id": "ef813106-f116-5ace-9d88-040f05192922",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [],
+    "last_event_at": "2042-04-27T10:00:00Z",
+    "shipment_id": "eaa8155b-8177-51c7-bdcd-7fe988de2f9f",
+    "status": "delayed",
+    "version": 337
+  }
+}

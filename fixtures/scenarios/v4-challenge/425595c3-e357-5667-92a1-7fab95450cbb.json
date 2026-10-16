@@ -1,0 +1,27 @@
+{
+  "as_of": "2000-03-01T03:02:01.234567Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional archival parcel from a training timeline is awaiting a depot trace.",
+    "order_id": "3542b90c-ed4f-58ae-be1c-cd75750beb30",
+    "policy_exception": null,
+    "shipment_id": "f85f7a16-af57-5ccf-b516-32dfa20cbb26",
+    "status": "in_transit",
+    "version": 108
+  },
+  "scenario_id": "425595c3-e357-5667-92a1-7fab95450cbb",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2000-02-28T02:02:01.234567Z",
+        "code": "bay_wait",
+        "description": "Fictional bay wait one hour before the summary."
+      }
+    ],
+    "last_event_at": "2000-02-28T03:02:01.234567Z",
+    "shipment_id": "f85f7a16-af57-5ccf-b516-32dfa20cbb26",
+    "status": "delayed",
+    "version": 218
+  }
+}

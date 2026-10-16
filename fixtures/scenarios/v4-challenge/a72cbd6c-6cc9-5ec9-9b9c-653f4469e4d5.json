@@ -1,0 +1,27 @@
+{
+  "as_of": "2037-08-01T00:00:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional expanded history includes an offset-stamped event beyond the saved cutoff.",
+    "order_id": "08dcb527-469d-5da6-8203-3766c9fae566",
+    "policy_exception": null,
+    "shipment_id": "6086c8b6-0180-5df3-9a15-d06011d7373f",
+    "status": "in_transit",
+    "version": 163
+  },
+  "scenario_id": "a72cbd6c-6cc9-5ec9-9b9c-653f4469e4d5",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2037-07-31T20:30:00.000001-03:30",
+        "code": "sort_lane_block",
+        "description": "Fictional lane event just beyond the immutable cutoff."
+      }
+    ],
+    "last_event_at": "2037-07-29T00:00:00Z",
+    "shipment_id": "6086c8b6-0180-5df3-9a15-d06011d7373f",
+    "status": "delayed",
+    "version": 295
+  }
+}

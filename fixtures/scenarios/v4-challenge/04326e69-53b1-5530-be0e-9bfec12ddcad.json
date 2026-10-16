@@ -1,0 +1,21 @@
+{
+  "as_of": "2041-12-31T23:59:59.999999Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional rollover scan falls just beyond the saved business timestamp.",
+    "order_id": "ac3a1b07-f39b-59ab-9bfa-5414a8a3d785",
+    "policy_exception": null,
+    "shipment_id": "a94cff43-f094-5834-a1dd-e63d2673545a",
+    "status": "in_transit",
+    "version": 253
+  },
+  "scenario_id": "04326e69-53b1-5530-be0e-9bfec12ddcad",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [],
+    "last_event_at": "2042-01-01T00:00:00Z",
+    "shipment_id": "a94cff43-f094-5834-a1dd-e63d2673545a",
+    "status": "delayed",
+    "version": 421
+  }
+}

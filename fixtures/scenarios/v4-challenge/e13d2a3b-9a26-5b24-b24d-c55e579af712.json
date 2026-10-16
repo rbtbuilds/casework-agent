@@ -1,0 +1,21 @@
+{
+  "as_of": "2041-07-11T05:22:11.4444Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional legacy device recorded four fractional digits but omitted timezone information.",
+    "order_id": "10b625af-bea3-5408-832f-4f13b4de957a",
+    "policy_exception": null,
+    "shipment_id": "bf8fef77-1f75-56ea-a705-87b72dec9d3f",
+    "status": "in_transit",
+    "version": 143
+  },
+  "scenario_id": "e13d2a3b-9a26-5b24-b24d-c55e579af712",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [],
+    "last_event_at": "2041-07-09T05:22:11.4444",
+    "shipment_id": "bf8fef77-1f75-56ea-a705-87b72dec9d3f",
+    "status": "delayed",
+    "version": 267
+  }
+}

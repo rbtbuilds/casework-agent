@@ -1,0 +1,32 @@
+{
+  "as_of": "2040-05-16T11:30:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional parcel returned to a sorting lane after a failed attempt and has remained on hold.",
+    "order_id": "98a81b89-3653-5e55-8a08-eb34f07a4f54",
+    "policy_exception": null,
+    "shipment_id": "bab41232-7409-5c1e-94b1-a63a01b1b75f",
+    "status": "in_transit",
+    "version": 208
+  },
+  "scenario_id": "1506e2e7-6664-59d7-8461-bb0e180e981d",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2040-05-11T15:15:00Z",
+        "code": "delivery_attempt_failed",
+        "description": "Fictional attempt did not complete delivery."
+      },
+      {
+        "at": "2040-05-11T21:45:00+05:45",
+        "code": "lane_hold",
+        "description": "Fictional hold matching the summary instant."
+      }
+    ],
+    "last_event_at": "2040-05-11T16:00:00Z",
+    "shipment_id": "bab41232-7409-5c1e-94b1-a63a01b1b75f",
+    "status": "delayed",
+    "version": 358
+  }
+}

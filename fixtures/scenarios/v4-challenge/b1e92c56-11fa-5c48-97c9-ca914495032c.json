@@ -1,0 +1,27 @@
+{
+  "as_of": "2040-01-02T12:34:56Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional inter-island transfer logs use offsets on opposite sides of the date line.",
+    "order_id": "8c7e7747-936d-5bbe-aa83-e0cdbbf30e69",
+    "policy_exception": null,
+    "shipment_id": "ccfa8bfe-a926-5eff-a9da-56f1fd34e767",
+    "status": "in_transit",
+    "version": 128
+  },
+  "scenario_id": "b1e92c56-11fa-5c48-97c9-ca914495032c",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2040-01-01T02:34:56+14:00",
+        "code": "transfer_wait",
+        "description": "Fictional same-instant transfer wait from the receiving station."
+      }
+    ],
+    "last_event_at": "2039-12-31T00:34:56-12:00",
+    "shipment_id": "ccfa8bfe-a926-5eff-a9da-56f1fd34e767",
+    "status": "delayed",
+    "version": 246
+  }
+}

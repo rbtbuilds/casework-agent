@@ -1,0 +1,21 @@
+{
+  "as_of": "2039-09-18T12:45:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional carrier exposes a verified summary only for this pallet; no exception is listed.",
+    "order_id": "85cf112b-1241-5420-8c29-041a9d66ac3b",
+    "policy_exception": null,
+    "shipment_id": "61bcd2fe-38d2-5a83-b066-c9be325acba1",
+    "status": "in_transit",
+    "version": 188
+  },
+  "scenario_id": "a491ee6d-67e7-5454-9c31-9662bf1e80dc",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [],
+    "last_event_at": "2039-09-16T11:00:00Z",
+    "shipment_id": "61bcd2fe-38d2-5a83-b066-c9be325acba1",
+    "status": "delayed",
+    "version": 330
+  }
+}
