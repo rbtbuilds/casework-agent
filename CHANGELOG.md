@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Recorded the first frozen v4 actual-model challenge: 29/30 actions, 29/30 outcomes and 23/24 completions, with same-input fixture comparison and explicit intermediate-claim limitations.
+
 - Added exact signed age margins, UTC-normalized comparisons and evidence-derived prospective explanations.
 - Isolated untrusted intermediate model assessments from action authorization and displayed text, with explicit diagnostic mismatches and preserved failed development experiments.
 

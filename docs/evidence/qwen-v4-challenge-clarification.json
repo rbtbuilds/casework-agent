@@ -1,0 +1,7 @@
+{
+  "kind": "Clarification of frozen authorship metadata; original inputs, oracles and records unchanged",
+  "original_provenance_sha256": "73f9ec5fc3bc77ee3578f2383e29944e9f4d85e306c59e6a1af800f2b6f554e3",
+  "clarification": "A separate AI agent authored the literal cases and initial expected actions. Deterministic scripts assigned IDs and serialized inputs. The pinned policy subsequently verified the prewritten labels. This was separate-agent authorship, not human authorship.",
+  "original_phrase_scope": "The frozen phrase 'no model-generated cases' means no separate inference or generator calls; it does not mean the cases were human-authored.",
+  "source": "Clarification supplied by the original separate case-author agent after unsealing, without changes to frozen files."
+}

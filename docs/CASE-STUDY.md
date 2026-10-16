@@ -28,6 +28,16 @@ The source was frozen at `3c5a2377bf759e9b8aee231a6c1fb547a115cdb4` before the i
 
 Two below-threshold generations falsely claimed that the event age met 48 hours. Exact policy validation rejected both before proposal publication, approval or writes. Their traces retain the one-second and one-microsecond shortfalls. A model-assisted trace review also found three incorrect assessment fields among correct decisions, two incorrect rationales, two premature escalation notes and one imprecise timestamp note. These findings are detailed in [the source and trace review](REVIEW-2026-10-16.md). Human factual review remains pending; action accuracy does not certify explanation accuracy.
 
+## V4: separating action selection from explanation
+
+The remaining age errors motivated exact signed policy-relative arithmetic and explicit UTC temporal relations. Strictly validating redundant model assessments exposed additional failures, while an action-only experiment also reduced accuracy. Those failed development results remain published.
+
+The retained model selects the action after structured intermediate generation. Its booleans and selected reason have no authority over explanations or execution. Code independently validates the action and citations, then derives a prospective policy explanation from raw observations. The original broader factual-review gate remains unchanged.
+
+After 23/23 exposed calibration cases and actual-model browser recovery passed, source and model identities were frozen before opening a separately authored 30-case challenge. The first run records **29/30 correct actions**, **29/30 correct final outcomes** and **23/24 authorised completions**; the same-input fixture records 30/30 actions/outcomes and 24/24 completions. Both observed zero unapproved and duplicate effects. The fresh run retains 2 incorrect intermediate assessment fields across 2 attempts and 2 unsupported selected reasons. These are recorded in trace diagnostics and cannot change displayed explanations or authorise writes. Human review remains pending; the broader zero-unsupported-claims gate is not claimed.
+
+The model's action remains independently selected and may fail validation. For this fixed policy, code already knows the permitted answer, so these measurements establish a guarded inference/workflow demonstration rather than a model advantage over deterministic logic. The application-generated explanation is not a claim about Qwen's reasoning.
+
 ## Operating limits
 
 The workbench is a loopback, single-operator simulation with synthetic data. Human review of generated factual claims, manual screen-reader testing and a recorded walkthrough remain pending. Automated checks cover keyboard approval, both themes, desktop/mobile layouts and reduced motion. Model failure never switches silently to fixture mode. Weights, databases and runtime output stay outside Git.

@@ -2,6 +2,48 @@
 
 Fixture and actual-model evidence are measured separately. The original Qwen2.5 1.5B failure remains frozen; current model configuration and verification are recorded in [MODEL-CONFIG](docs/MODEL-CONFIG.md) and [STATE](docs/STATE.md).
 
+## First frozen v4 measurement
+
+The first [actual Qwen3 14B report](docs/evidence/qwen-v4-challenge.json) records **29/30 correct actions**, **29/30 correct final outcomes** and **23/24 authorised completions**. The [same-input fixture](docs/evidence/fixture-v4-challenge.json) records 30/30 actions, 30/30 outcomes and 24/24 completions. Unapproved writes and duplicate effects were 0/0 for Qwen and 0/0 for the fixture. Six stale cases require zero writes and are excluded from the completion denominator.
+
+Source `ca3141346360a17ff9fe9cd9ceaedd6963265f7d` was clean for both measurements; runtime files match the [104-file implementation freeze](docs/evidence/qwen-v4-freeze.json) at `b7cd022d620ec06a4f4063c823924a8224e1a83e`. Manifest SHA-256 is `16ee477fe41fa9aeb0ffc3bb66c7e119d3ca000a845a73f1fb00fc62388a221c`. One missing-timezone decision failed action validation before a proposal, approval or writes. The model remains pinned `mlx-community/Qwen3-14B-4bit`, revision `a4d9b2df59d2c150bef02fcbe0d91046b7ca33a4`, snapshot `ca031ea5eef9f3c42f3bf3ee438491f53b326a41d31bde3289d931fef194355d`.
+
+A separate AI agent authored literal cases and initial expected actions before implementation exposure. Deterministic scripts assigned identifiers and serialized inputs; the pinned policy subsequently verified the prewritten labels. This is separate-agent authorship, not human authorship. [Authorship, first access and validation](docs/evidence/qwen-v4-challenge-authorship.json), [authorship clarification](docs/evidence/qwen-v4-challenge-clarification.json), [exact oracles](docs/evidence/qwen-v4-challenge-oracles.json) and [public checksums](docs/evidence/qwen-v4-challenge-SHA256SUMS) preserve the input history. A supplemental comparison against all 131 prior public inputs found no substantive duplicates and seven shared coarse policy shapes. The small synthetic edge-focused set does not estimate production prevalence.
+
+The first coordinator access followed source freeze and actual-model browser verification. Scenario and manifest bytes were promoted unchanged. No prompt, source, model or case changed during evaluation. Later executions of these published cases are reproductions, not unseen tests.
+
+Protocol `casework-json-schema-v4-guarded-deliberation` supplies exact signed age margins and computed UTC temporal relations. Qwen selects the action; code validates it without substitution or answer feedback. Code derives the displayed policy explanation from raw evidence. Citations are schema-bound to all fetched observations, so this is traceability rather than independent evidence selection. The deterministic validator already knows the permitted action; these results do not establish that the model adds decision quality for this fixed policy.
+
+The fresh run retains 2 incorrect intermediate assessment fields across 2 attempts and 2 unsupported selected reasons. These are recorded in trace diagnostics and cannot change displayed explanations or authorise writes. Human review remains pending; the broader zero-unsupported-claims gate is not claimed. `unsupported_claims` remains null and `claims_review_complete` remains false. Rendered-output review and intermediate assertions are assessed separately in [the trace review](docs/REVIEW-2026-10-16.md#frozen-v4-trace-review).
+
+| Family | Correct actions | Correct outcomes |
+| --- | --- | --- |
+| calendar_precision | 6/6 | 6/6 |
+| carrier_consistency | 3/3 | 3/3 |
+| chronology_uncertainty | 5/6 | 5/6 |
+| hostile_source_text | 3/3 | 3/3 |
+| source_state_boundaries | 6/6 | 6/6 |
+| stale_authority | 6/6 | 6/6 |
+
+Warm workflow p50 was 22.59 seconds and nearest-rank p95 24.39 seconds on an Apple M5 Pro with 24 GiB memory. These include inference, HTTP work, scripted exact approval and execution, but exclude separately recorded loading. Cost is unmeasured. No customer saving is claimed.
+
+Stop the developer stack before reproducing; process suites share reserved ports and run sequentially. Actual inference requires the pinned prepared snapshot and exclusive machine lease. A busy lease stops before loading and never substitutes fixture execution.
+
+```sh
+uv run --no-sync python scripts/model_session.py evaluate --manifest fixtures/manifests/v4-challenge.json --output .runtime/reports/qwen-v4-reproduction.json
+uv run --no-sync python -m eval.runner --manifest fixtures/manifests/v4-challenge.json --mode fixture --output .runtime/reports/fixture-v4-reproduction.json
+```
+
+## V4 action failures
+
+No invalid choice was replaced with the policy answer. These cases failed gathering with no proposal or approval. Their raw attempts and supplied temporal features remain in the model report.
+
+| Case | Family | Expected action | Failure | Ticket / annotation |
+| --- | --- | --- | --- | --- |
+| `85399891-d0d3-5b4b-be09-464ba3760c4c` | chronology_uncertainty | manual_review | policy_mismatch | 0 / 0 |
+
+The timezone-uncertainty case `85399891-d0d3-5b4b-be09-464ba3760c4c` has a timezone-naive carrier event. Its supplied event-to-summary and event-to-case relations are `unknown`, while the summary age is exactly 48 hours. Qwen incorrectly marked chronology true and attempted `open_investigation`. Raw-evidence policy validation requires `manual_review` and rejected that attempt. There was no proposal, approval, ticket or annotation. This remains an unresolved model chronology error; the supplied timestamp arithmetic is correct. The measured implementation was not retuned against it.
+
 ## First frozen v3 measurement
 
 The first [actual Qwen3 14B report](docs/evidence/qwen-v3-challenge.json) records **28/30 correct actions**, **28/30 correct final outcomes** and **22/24 authorised completions**. The [same-input fixture report](docs/evidence/fixture-v3-challenge.json) records 30/30 and 24/24. Both observed zero unapproved writes and duplicate effects. Human review remains pending, so the model's unsupported-claim count is null and full model acceptance remains open.
@@ -24,7 +66,7 @@ Six stale cases require zero writes; 24 expect completion. Six cases lose a post
 
 Warm workflow p50 was 35.041 seconds and nearest-rank p95 54.495 seconds across all 30 cases, including any failures. Loading took 6.987 seconds separately. Measured usage was 200,980 input/output tokens. No monetary or customer-time estimate is supplied. The small, synthetic, edge-focused set does not establish industrial reliability or a stable tail latency.
 
-To reproduce the frozen v3 workflow, prepare the pinned model as described in the runbook, stop the developer stack and run these port-owning commands sequentially:
+To reproduce the published v3 protocol, use source `a79256d09cf2dc8b1e8964ec910b826a8dd1e7c1` in a separate checkout, prepare the pinned model, stop the developer stack and run these port-owning commands sequentially. Running these published inputs on current v4 code is an exposed regression check, not reproduction of the old protocol:
 
 ```sh
 uv run --no-sync python -m eval.runner --manifest fixtures/manifests/v3-challenge.json --mode fixture --output .runtime/reports/fixture-v3.json

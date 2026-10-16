@@ -32,13 +32,10 @@ That failed run loaded in 4.136 seconds; failed-case p50 was 4.057 seconds and n
 
 Use the [runbook](RUNBOOK.md) for commands and [evaluation](../EVALUATION.md) for measured quality and limitations. Human review of generated factual claims, including the model's assessment booleans, remains pending.
 
-Two below-threshold generations falsely claimed that the event age met 48 hours. Exact policy validation rejected both before proposal publication, approval or writes. Their traces retain the one-second and one-microsecond shortfalls. A model-assisted trace review also found three incorrect assessment fields among correct decisions, two incorrect rationales, two premature escalation notes and one imprecise timestamp note. These findings are detailed in [the source and trace review](REVIEW-2026-10-16.md). Human factual review remains pending; action accuracy does not certify explanation accuracy.
+In historical v3, two below-threshold generations falsely claimed that the event age met 48 hours. Exact policy validation rejected both before proposal publication, approval or writes. Their traces retain the one-second and one-microsecond shortfalls. A model-assisted trace review also found three incorrect assessment fields among correct decisions, two incorrect rationales, two premature escalation notes and one imprecise timestamp note. These findings are detailed in [the source and trace review](REVIEW-2026-10-16.md). Human factual review remains pending; action accuracy does not certify explanation accuracy.
 
 ## Current measured workflow
 
-The first frozen v3 run at clean source `a79256d09cf2dc8b1e8964ec910b826a8dd1e7c1` produced
-28/30 correct actions, 28/30 expected final outcomes
-and 22/24 authorised completions. No unapproved or duplicate
-effects occurred. The [report](evidence/qwen-v3-challenge.json) includes the
-loaded snapshot identity and generation configuration. The matching fixture
-comparison is separate. Human factual review remains pending.
+The first frozen v4 run at clean source `ca3141346360a17ff9fe9cd9ceaedd6963265f7d` records **29/30 correct actions**, **29/30 correct final outcomes** and **23/24 authorised completions**, with 0 unapproved writes and 0 duplicate effects. The [model report](evidence/qwen-v4-challenge.json) records the loaded snapshot, protocol, prompt, input and source identities. The same-input fixture is separate. The fresh run retains 2 incorrect intermediate assessment fields across 2 attempts and 2 unsupported selected reasons. These are recorded in trace diagnostics and cannot change displayed explanations or authorise writes. Human review remains pending; the broader zero-unsupported-claims gate is not claimed.
+
+Historical v3 remains 28/30 actions/outcomes and 22/24 completions; its errors and generated prose remain preserved. The current renderer and intermediate-diagnostic boundary were frozen before the v4 challenge was opened. See [repair design](MODEL-REPAIR-V4.md) and [evaluation](../EVALUATION.md).
