@@ -1,4 +1,5 @@
 from datetime import UTC, datetime, timedelta
+from typing import Literal
 
 
 def to_utc(value: datetime | None) -> datetime | None:
@@ -15,3 +16,16 @@ def elapsed_microseconds(later: datetime | None, earlier: datetime | None) -> in
     if end is None or start is None:
         return None
     return (end - start) // timedelta(microseconds=1)
+
+
+def temporal_relation(
+    left: datetime | None, right: datetime | None
+) -> Literal["before", "equal", "after", "unknown"]:
+    difference = elapsed_microseconds(left, right)
+    if difference is None:
+        return "unknown"
+    if difference < 0:
+        return "before"
+    if difference > 0:
+        return "after"
+    return "equal"

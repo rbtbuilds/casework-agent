@@ -11,7 +11,7 @@ from .grounded_explanation import explain
 from .hashing import canonical_hash
 from .policy import current_policy
 from .policy_assessment import PolicyAssessment, PrimaryReason, assess_policy, first_failed_check
-from .temporal import elapsed_microseconds, to_utc
+from .temporal import elapsed_microseconds, temporal_relation, to_utc
 from .tools import ReadTools, ToolPermissionError
 
 
@@ -177,6 +177,9 @@ def decision_facts(context: AgentContext, tools: ReadTools) -> JsonDict:
 def policy_check_inputs(context: AgentContext, tools: ReadTools) -> JsonDict:
     facts = decision_facts(context, tools)
     events = cast(list[JsonDict], facts["carrier_events"])
+    shipment = tools.shipment
+    if shipment is None:
+        raise AgentValidationError("missing_evidence")
     return {
         "order_in_transit": {"order_status": facts["order_status"]},
         "shipment_delayed": {"shipment_status": facts["shipment_status"]},
@@ -186,6 +189,15 @@ def policy_check_inputs(context: AgentContext, tools: ReadTools) -> JsonDict:
             "normalized_event_codes": [event["normalized_code"] for event in events],
         },
         "timestamps_known_and_consistent": {
+            "last_event_relative_to_as_of": temporal_relation(
+                shipment.last_event_at, context.as_of
+            ),
+            "carrier_event_relative_to_last_event": [
+                temporal_relation(event.at, shipment.last_event_at) for event in shipment.events
+            ],
+            "carrier_event_relative_to_as_of": [
+                temporal_relation(event.at, context.as_of) for event in shipment.events
+            ],
             "timestamps_utc": [
                 facts["as_of_utc"],
                 facts["last_event_at_utc"],
@@ -225,11 +237,12 @@ def system_instruction() -> str:
         "4. no_conflicting_or_terminal_events: conflicting_events must be false AND every "
         "entry in normalized_event_codes must differ from 'delivered' and 'cancelled'. "
         "One terminal event makes this false, regardless of shipment status or age.\n"
-        "5. timestamps_known_and_consistent: EVERY entry in timestamps_utc must be non-null. "
-        "last_event_microseconds_before_as_of must be non-null and nonnegative. "
-        "EVERY entry in carrier_event_microseconds_before_last_event and "
-        "carrier_event_microseconds_before_as_of must be non-null and nonnegative. "
-        "One null or negative value makes this false. Empty event arrays add no failure.\n"
+        "5. timestamps_known_and_consistent: temporal relations are computed from UTC timestamps. "
+        "last_event_relative_to_as_of and EVERY entry in carrier_event_relative_to_last_event "
+        "and carrier_event_relative_to_as_of must be 'before' or 'equal'. "
+        "One 'after' or 'unknown' makes this false. 'after' means the left timestamp "
+        "is later than the right timestamp; a carrier event after the summary is inconsistent. "
+        "Empty event arrays add no failure. Exact timestamps and deltas remain supplied.\n"
         "6. age_at_least_48_hours: elapsed_microseconds_since_last_event must be non-null "
         "and age_minus_threshold_microseconds must be nonnegative. "
         "This is exact age minus the policy threshold: a negative value (even -1) "

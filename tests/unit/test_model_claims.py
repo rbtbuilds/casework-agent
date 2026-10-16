@@ -248,6 +248,14 @@ async def test_folded_scan_after_summary_is_a_chronology_fault(tmp_path: Path) -
         events = facts["carrier_events"]
         assert isinstance(events, list) and isinstance(events[0], dict)
         assert events[0]["microseconds_before_last_event"] == -3600000000
+        from casework_agent.model_adapter import policy_check_inputs
+
+        grouped = policy_check_inputs(
+            AgentContext(case_id="case", order_id="order", as_of=as_of), tools
+        )
+        chronology = grouped["timestamps_known_and_consistent"]
+        assert isinstance(chronology, dict)
+        assert chronology["carrier_event_relative_to_last_event"] == ["after"]
     finally:
         await tools.close()
 
@@ -481,6 +489,9 @@ async def test_condition_inputs_isolate_status_conflict_and_chronology(
             "normalized_event_codes": ["scan"],
         }
         assert inputs["timestamps_known_and_consistent"] == {
+            "last_event_relative_to_as_of": "before",
+            "carrier_event_relative_to_last_event": ["unknown" if clock == "unknown" else "after"],
+            "carrier_event_relative_to_as_of": ["unknown" if clock == "unknown" else "before"],
             "timestamps_utc": [
                 "2033-03-01T12:00:00+00:00",
                 "2033-02-27T00:00:00+00:00",
@@ -498,5 +509,77 @@ async def test_condition_inputs_isolate_status_conflict_and_chronology(
             "age_minus_threshold_microseconds": 43200000000,
         }
         assert "refund" not in grouped[0]
+    finally:
+        await tools.close()
+
+
+async def test_temporal_relation_inputs_preserve_every_event_and_exact_direction(
+    tmp_path: Path,
+) -> None:
+    from casework_agent.contracts import CarrierEvent
+    from casework_agent.model_adapter import policy_check_inputs
+
+    tools = recorded_tools(
+        tmp_path,
+        Shipment(
+            shipment_id="shipment",
+            status="delayed",
+            last_event_at=NOW - timedelta(hours=48),
+            events=[
+                CarrierEvent(
+                    code="scan", at=NOW - timedelta(hours=48, microseconds=1), description="Before"
+                ),
+                CarrierEvent(
+                    code="scan",
+                    at=datetime.fromisoformat("2033-02-27T13:00:00+01:00"),
+                    description="Equal offset",
+                ),
+                CarrierEvent(
+                    code="scan",
+                    at=NOW - timedelta(hours=48) + timedelta(microseconds=1),
+                    description="After",
+                ),
+                CarrierEvent(
+                    code="scan", at=datetime(2033, 2, 27, 12), description="Unknown timezone"
+                ),
+                CarrierEvent(code="scan", at=NOW, description="Equal case clock"),
+                CarrierEvent(
+                    code="scan", at=NOW + timedelta(microseconds=1), description="After case clock"
+                ),
+            ],
+        ),
+    )
+    try:
+        inputs = policy_check_inputs(
+            AgentContext(case_id="case", order_id="order", as_of=NOW), tools
+        )
+        chronology = inputs["timestamps_known_and_consistent"]
+        assert isinstance(chronology, dict)
+        assert chronology.get("last_event_relative_to_as_of") == "before"
+        assert chronology.get("carrier_event_relative_to_last_event") == [
+            "before",
+            "equal",
+            "after",
+            "unknown",
+            "after",
+            "after",
+        ]
+        assert chronology.get("carrier_event_relative_to_as_of") == [
+            "before",
+            "before",
+            "before",
+            "unknown",
+            "equal",
+            "after",
+        ]
+        assert tools.shipment
+        tools.shipment.last_event_at = None
+        inputs = policy_check_inputs(
+            AgentContext(case_id="case", order_id="order", as_of=NOW), tools
+        )
+        chronology = inputs["timestamps_known_and_consistent"]
+        assert isinstance(chronology, dict)
+        assert chronology.get("last_event_relative_to_as_of") == "unknown"
+        assert chronology.get("carrier_event_relative_to_last_event") == ["unknown"] * 6
     finally:
         await tools.close()
