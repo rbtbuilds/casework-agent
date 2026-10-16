@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-from typing import Literal, cast
+from typing import Literal
 
 from pydantic import StrictBool
 
@@ -53,8 +53,6 @@ def assess_policy(order: Order, shipment: Shipment, as_of: datetime) -> PolicyAs
     )
 
 
-def first_failed_check(assessment: PolicyAssessment) -> PrimaryReason:
-    for name, passed in assessment.model_dump().items():
-        if not passed:
-            return cast(PrimaryReason, name)
-    return "all_pass"
+def supports_reason(assessment: PolicyAssessment, reason: PrimaryReason) -> bool:
+    checks = assessment.model_dump()
+    return all(checks.values()) if reason == "all_pass" else checks[reason] is False

@@ -173,7 +173,7 @@ async def test_false_assessment_fails_gathering_without_proposal_or_writes(tmp_p
             assert row is not None
             trace = json.loads(row[0])
             assert trace["status"] == "failed" and trace["error"] == "assessment_mismatch"
-            assert trace["explanation_renderer_version"] == "validated-reason-renderer-v1"
+            assert trace["explanation_renderer_version"] == "validated-reason-renderer-v2"
             assert (
                 json.loads(trace["exchange"][-1]["content"])["assessment"]["shipment_delayed"]
                 is False

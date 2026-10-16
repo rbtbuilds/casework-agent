@@ -5,10 +5,15 @@ from .policy import current_policy
 from .policy_assessment import PrimaryReason
 from .temporal import elapsed_microseconds, to_utc
 
-EXPLANATION_VERSION = "validated-reason-renderer-v1"
+EXPLANATION_VERSION = "validated-reason-renderer-v2"
 
 
 def explain(reason: PrimaryReason, order: Order, shipment: Shipment, as_of: datetime) -> str:
+    detail = _detail(reason, order, shipment, as_of)
+    return detail if reason == "all_pass" else "One reason for manual review: " + detail
+
+
+def _detail(reason: PrimaryReason, order: Order, shipment: Shipment, as_of: datetime) -> str:
     threshold = current_policy().delay_hours * 3_600_000_000
     last = shipment.last_event_at
     if reason == "order_in_transit":
@@ -39,10 +44,20 @@ def explain(reason: PrimaryReason, order: Order, shipment: Shipment, as_of: date
             "A carrier event is later than the last-event summary or case clock; "
             "chronology is inconsistent."
         )
+    if reason == "age_at_least_48_hours":
+        if last is None:
+            return "Event age is unknown because the last-event timestamp is missing."
+        if last.tzinfo is None:
+            return f"Event age is unknown because the last-event timestamp {last.isoformat()} has no timezone."
+        if as_of.tzinfo is None:
+            return "Event age is unknown because the case clock has no timezone."
     assert last is not None and last.tzinfo is not None and as_of.tzinfo is not None
     age = elapsed_microseconds(as_of, last)
     assert age is not None
     if reason == "age_at_least_48_hours":
+        if age < 0:
+            unit = "microsecond" if age == -1 else "microseconds"
+            return f"The last event is {-age} {unit} after the case clock; elapsed age is {age} {unit}."
         return f"Event age is {age} microseconds, below the {threshold}-microsecond threshold."
     return (
         "Order is 'in_transit', shipment is 'delayed', with no policy exception, "

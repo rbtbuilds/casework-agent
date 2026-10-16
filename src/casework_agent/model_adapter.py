@@ -10,7 +10,7 @@ from .contracts import Action, AgentDecision, JsonDict, JsonValue, StrictModel
 from .grounded_explanation import explain
 from .hashing import canonical_hash
 from .policy import current_policy
-from .policy_assessment import PolicyAssessment, PrimaryReason, assess_policy, first_failed_check
+from .policy_assessment import PolicyAssessment, PrimaryReason, assess_policy, supports_reason
 from .temporal import elapsed_microseconds, temporal_relation, to_utc
 from .tools import ReadTools, ToolPermissionError
 
@@ -54,7 +54,7 @@ class ProposalRequest(StrictModel):
 REQUEST = TypeAdapter(Annotated[ToolRequest | ProposalRequest, Field(discriminator="kind")])
 
 
-MODEL_PROTOCOL_VERSION = "casework-json-schema-v4-grounded"
+MODEL_PROTOCOL_VERSION = "casework-json-schema-v4-supported-reason"
 CASE_DEADLINE_SECONDS = 120
 
 
@@ -251,7 +251,7 @@ def system_instruction() -> str:
         "Choose open_investigation ONLY if all six booleans are true. Otherwise manual_review. "
         "An old event cannot override a false check. Evaluate every condition independently: "
         "a timestamp fault changes check 5, not check 4; a non-delayed status changes check 2. "
-        "Set primary_reason to the FIRST false assessment field in checklist order, "
+        "Set primary_reason to any verified false assessment field explaining manual review, "
         "or all_pass only when all six are true. Return the assessment, primary_reason, "
         "chosen action and citations. Do not generate prose: the application validates "
         "your claims and renders the proposed-action explanation from observed facts. "
@@ -316,7 +316,7 @@ class LocalModelAdapter:
                         tools.order, tools.shipment, context.as_of
                     ):
                         raise AgentValidationError("assessment_mismatch")
-                    if request.primary_reason != first_failed_check(request.assessment):
+                    if not supports_reason(request.assessment, request.primary_reason):
                         raise AgentValidationError("reason_mismatch")
                     rationale = explain(
                         request.primary_reason, tools.order, tools.shipment, context.as_of

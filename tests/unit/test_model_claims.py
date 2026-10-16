@@ -408,29 +408,71 @@ async def test_early_proposal_is_a_handled_failure_with_no_answer_feedback(tmp_p
         await tools.close()
 
 
-async def test_a_later_failed_check_cannot_replace_the_first_failed_check(tmp_path: Path) -> None:
+@pytest.mark.parametrize("reason", ["shipment_delayed", "age_at_least_48_hours"])
+async def test_any_verified_failed_condition_can_explain_manual_review(
+    tmp_path: Path, reason: str
+) -> None:
     tools = recorded_tools(
         tmp_path,
         Shipment(
             shipment_id="shipment",
-            status="unknown",
-            last_event_at=NOW - timedelta(hours=60),
+            status="in_transit",
+            last_event_at=NOW - timedelta(hours=1),
         ),
     )
-    assert tools.order
-    tools.order.status = "delivered"
-    body = proposal_body(tools, reason="shipment_delayed")
+    body = proposal_body(tools, reason=reason)
     assessment = body["assessment"]
     assert isinstance(assessment, dict)
-    assessment.update(order_in_transit=False, shipment_delayed=False)
+    assessment.update(shipment_delayed=False, age_at_least_48_hours=False)
     body["decision"] = {"action": "manual_review", "evidence_ids": [e.id for e in tools.evidence]}
-    client = OneProposal(body)
     try:
-        with pytest.raises(AgentValidationError, match="reason_mismatch"):
-            await LocalModelAdapter(client).propose(
-                AgentContext(case_id="case", order_id="order", as_of=NOW), tools
-            )
-        assert client.calls == 1
+        decision = await LocalModelAdapter(OneProposal(body)).propose(
+            AgentContext(case_id="case", order_id="order", as_of=NOW), tools
+        )
+        assert decision.action == "manual_review"
+        assert "One reason for manual review" in decision.rationale
+        assert (
+            "in_transit" if reason == "shipment_delayed" else "3600000000"
+        ) in decision.rationale
+    finally:
+        await tools.close()
+
+
+@pytest.mark.parametrize("clock", ["missing", "summary_naive", "case_naive", "future"])
+async def test_age_selected_explanation_is_truthful_for_unknown_or_future_time(
+    tmp_path: Path, clock: str
+) -> None:
+    last = (
+        None
+        if clock == "missing"
+        else (
+            datetime(2033, 2, 27, 12)
+            if clock == "summary_naive"
+            else NOW + timedelta(microseconds=1)
+            if clock == "future"
+            else NOW - timedelta(hours=48)
+        )
+    )
+    tools = recorded_tools(
+        tmp_path, Shipment(shipment_id="shipment", status="delayed", last_event_at=last)
+    )
+    body = proposal_body(tools, reason="age_at_least_48_hours")
+    assessment = body["assessment"]
+    assert isinstance(assessment, dict)
+    assessment.update(timestamps_known_and_consistent=False, age_at_least_48_hours=False)
+    body["decision"] = {"action": "manual_review", "evidence_ids": [e.id for e in tools.evidence]}
+    as_of = NOW.replace(tzinfo=None) if clock == "case_naive" else NOW
+    try:
+        decision = await LocalModelAdapter(OneProposal(body)).propose(
+            AgentContext(case_id="case", order_id="order", as_of=as_of), tools
+        )
+        if clock == "future":
+            assert "1 microsecond after the case clock" in decision.rationale
+        else:
+            assert "age is unknown" in decision.rationale
+            assert ("missing" if clock == "missing" else "timezone") in decision.rationale
+            assert "below" not in decision.rationale
+        assert len(decision.draft_note) <= 500
     finally:
         await tools.close()
 
@@ -581,5 +623,26 @@ async def test_temporal_relation_inputs_preserve_every_event_and_exact_direction
         assert isinstance(chronology, dict)
         assert chronology.get("last_event_relative_to_as_of") == "unknown"
         assert chronology.get("carrier_event_relative_to_last_event") == ["unknown"] * 6
+    finally:
+        await tools.close()
+
+
+async def test_all_pass_cannot_explain_a_failed_condition(tmp_path: Path) -> None:
+    tools = recorded_tools(
+        tmp_path,
+        Shipment(
+            shipment_id="shipment", status="in_transit", last_event_at=NOW - timedelta(hours=60)
+        ),
+    )
+    body = proposal_body(tools)
+    assessment = body["assessment"]
+    assert isinstance(assessment, dict)
+    assessment["shipment_delayed"] = False
+    body["decision"] = {"action": "manual_review", "evidence_ids": [e.id for e in tools.evidence]}
+    try:
+        with pytest.raises(AgentValidationError, match="reason_mismatch"):
+            await LocalModelAdapter(OneProposal(body)).propose(
+                AgentContext(case_id="case", order_id="order", as_of=NOW), tools
+            )
     finally:
         await tools.close()
