@@ -109,7 +109,7 @@ test('actual local Qwen reads, approval and dropped-write recovery', async ({
       expect.objectContaining({
         adapter: 'model',
         usage_tokens: expect.any(Number),
-        protocol_version: 'casework-json-schema-v4-supported-reason',
+        protocol_version: 'casework-json-schema-v4-guarded-deliberation',
       }),
     ]),
   );

@@ -4,9 +4,9 @@ Updated 2026-10-16. Repository: [rbtbuilds/casework-agent](https://github.com/rb
 
 ## V4 repair in progress
 
-The internal v4 protocol adds exact policy-relative age arithmetic, checks every model assessment and primary reason, and renders bounded prospective explanations from validated facts. Qwen still chooses its assessments, reason and action; the application writes the displayed prose. See [repair design](MODEL-REPAIR-V4.md). Historical v3 results below apply only to their recorded source.
+The v4 protocol computes exact signed age margins and UTC temporal relations, independently validates Qwen's selected action and citations, and renders operator-facing policy explanations from raw evidence. Intermediate assessments and reasons remain in the trace as untrusted diagnostics; they cannot authorise actions or alter displayed explanations. See [repair design](MODEL-REPAIR-V4.md). The broader factual-review gate remains unchanged; no zero-unsupported-claims claim is made.
 
-Focused regressions reproduce false-assessment publication, near-threshold precision, shared-zone daylight-saving/fold errors and an early proposal escaping worker failure handling. The implementation closes those paths. Strict checks, complete software tests, actual inference calibration and a separately authored fresh v4 challenge must finish before any new model-quality claim. The shared machine lease was busy with Evidence RAG at the first inference attempt; no model loaded and no challenge was opened.
+Strict-validation development experiments accepted 18/23, 22/23 and 20/23 workflows. The last produced 23/23 correct attempted actions but three intermediate-claim/reason failures; no failed workflow was reclassified. A development-only action-only probe produced 4/7 correct actions and was rejected. The final guarded-deliberation protocol still requires full calibration, browser verification and a first frozen fresh challenge. The separately authored v4 challenge remains sealed.
 
 ## Verified model and workflow
 

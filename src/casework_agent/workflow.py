@@ -50,6 +50,7 @@ class Workflow:
                     "protocol_version": MODEL_PROTOCOL_VERSION,
                     "explanation_renderer_version": EXPLANATION_VERSION,
                     "generation_schema_hashes": [value for value in adapter.schema_hashes],
+                    "assessment_diagnostics": adapter.assessment_diagnostics,
                     "exchange": [m.model_dump(mode="json") for m in adapter.trace],
                 }
             validate_decision(context, tools, decision)
@@ -57,7 +58,7 @@ class Workflow:
                 {
                     "tool_calls": tools.calls,
                     "http_requests": tools.request_count,
-                    "status": "validated",
+                    "status": "decision_validated",
                 }
             )
             self.repo.publish(id, decision, tools, trace, run_id)
@@ -69,6 +70,7 @@ class Workflow:
                         "protocol_version": MODEL_PROTOCOL_VERSION,
                         "explanation_renderer_version": EXPLANATION_VERSION,
                         "generation_schema_hashes": [value for value in adapter.schema_hashes],
+                        "assessment_diagnostics": adapter.assessment_diagnostics,
                         "exchange": [m.model_dump(mode="json") for m in adapter.trace],
                     }
                 )

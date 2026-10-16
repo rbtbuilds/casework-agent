@@ -132,7 +132,10 @@ async def test_unrepresentable_utc_clock_does_not_stop_following_case(
                 await worker.close()
 
 
-async def test_false_assessment_fails_gathering_without_proposal_or_writes(tmp_path: Path) -> None:
+@pytest.mark.parametrize("wrong_action", [False, True])
+async def test_intermediate_claims_are_diagnostic_and_cannot_authorize_wrong_action(
+    tmp_path: Path, wrong_action: bool
+) -> None:
     from casework_agent.workflow import Workflow
 
     class IncorrectAssessment(ScriptedReadClient):
@@ -146,6 +149,8 @@ async def test_false_assessment_fails_gathering_without_proposal_or_writes(tmp_p
             if body["kind"] == "proposal":
                 self.proposals += 1
                 body["assessment"]["shipment_delayed"] = False
+                if wrong_action:
+                    body["decision"]["action"] = "manual_review"
             return ModelReply(text=json.dumps(body))
 
     async with TestSystem(tmp_path) as system:
@@ -161,9 +166,15 @@ async def test_false_assessment_fails_gathering_without_proposal_or_writes(tmp_p
             )
             client = IncorrectAssessment()
             await Workflow(repo, Settings(root=tmp_path), client).gather(case.id)
-            failed = repo.get_case(case.id)
-            assert failed.state == "failed" and failed.proposal is None
-            assert failed.error and failed.error.message == "assessment_mismatch"
+            result = repo.get_case(case.id)
+            if wrong_action:
+                assert result.state == "failed" and result.proposal is None
+                assert result.error and result.error.message == "policy_mismatch"
+            else:
+                assert result.state == "needs_approval" and result.proposal is not None
+                assert result.proposal.action == "open_investigation"
+                assert "shipment is 'delayed'" in result.proposal.rationale
+                assert result.error is None and not result.operations
             counts = await system.counts()
             assert counts.tickets == 0 and counts.annotations == 0
             assert client.proposals == 1
@@ -172,8 +183,13 @@ async def test_false_assessment_fails_gathering_without_proposal_or_writes(tmp_p
             ).fetchone()
             assert row is not None
             trace = json.loads(row[0])
-            assert trace["status"] == "failed" and trace["error"] == "assessment_mismatch"
-            assert trace["explanation_renderer_version"] == "validated-reason-renderer-v2"
+            assert trace["status"] == ("failed" if wrong_action else "decision_validated")
+            assert trace["assessment_diagnostics"] == {
+                "authority": "untrusted_intermediate_model_output",
+                "mismatched_fields": ["shipment_delayed"],
+                "reason_supported": True,
+            }
+            assert trace["explanation_renderer_version"] == "observed-policy-renderer-v3"
             assert (
                 json.loads(trace["exchange"][-1]["content"])["assessment"]["shipment_delayed"]
                 is False

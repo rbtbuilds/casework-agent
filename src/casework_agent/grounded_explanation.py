@@ -5,7 +5,7 @@ from .policy import current_policy
 from .policy_assessment import PrimaryReason
 from .temporal import elapsed_microseconds, to_utc
 
-EXPLANATION_VERSION = "validated-reason-renderer-v2"
+EXPLANATION_VERSION = "observed-policy-renderer-v3"
 
 
 def explain(reason: PrimaryReason, order: Order, shipment: Shipment, as_of: datetime) -> str:

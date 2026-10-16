@@ -5,12 +5,18 @@ from typing import Annotated, Literal, Protocol, cast
 
 from pydantic import Field, TypeAdapter, ValidationError
 
-from .agent import AgentContext, AgentValidationError, validate_decision
+from .agent import AgentContext, AgentValidationError, validate_choice
 from .contracts import Action, AgentDecision, JsonDict, JsonValue, StrictModel
 from .grounded_explanation import explain
 from .hashing import canonical_hash
 from .policy import current_policy
-from .policy_assessment import PolicyAssessment, PrimaryReason, assess_policy, supports_reason
+from .policy_assessment import (
+    PolicyAssessment,
+    PrimaryReason,
+    assess_policy,
+    explanation_reason,
+    supports_reason,
+)
 from .temporal import elapsed_microseconds, temporal_relation, to_utc
 from .tools import ReadTools, ToolPermissionError
 
@@ -54,7 +60,7 @@ class ProposalRequest(StrictModel):
 REQUEST = TypeAdapter(Annotated[ToolRequest | ProposalRequest, Field(discriminator="kind")])
 
 
-MODEL_PROTOCOL_VERSION = "casework-json-schema-v4-supported-reason"
+MODEL_PROTOCOL_VERSION = "casework-json-schema-v4-guarded-deliberation"
 CASE_DEADLINE_SECONDS = 120
 
 
@@ -253,8 +259,9 @@ def system_instruction() -> str:
         "a timestamp fault changes check 5, not check 4; a non-delayed status changes check 2. "
         "Set primary_reason to any verified false assessment field explaining manual review, "
         "or all_pass only when all six are true. Return the assessment, primary_reason, "
-        "chosen action and citations. Do not generate prose: the application validates "
-        "your claims and renders the proposed-action explanation from observed facts. "
+        "chosen action and citations. These intermediate claims remain untrusted diagnostics. "
+        "Do not generate prose: the application independently validates the action and "
+        "renders its own policy explanation from observed facts. "
         "Cite the actual observation IDs. Policy: "
         + json.dumps(current_policy().model_dump(mode="json"), separators=(",", ":"))
     )
@@ -266,10 +273,12 @@ class LocalModelAdapter:
         self.trace: list[ChatMessage] = []
         self.usage_tokens: int | None = 0
         self.schema_hashes: list[str] = []
+        self.assessment_diagnostics: JsonDict = {}
 
     async def propose(self, context: AgentContext, tools: ReadTools) -> AgentDecision:
         self.usage_tokens = 0
         self.schema_hashes = []
+        self.assessment_diagnostics = {}
         try:
             async with asyncio.timeout(CASE_DEADLINE_SECONDS):
                 return await self._propose(context, tools)
@@ -312,14 +321,22 @@ class LocalModelAdapter:
                         or {e.source for e in tools.evidence} != {"order", "carrier", "policy"}
                     ):
                         raise AgentValidationError("missing_evidence")
-                    if request.assessment != assess_policy(
-                        tools.order, tools.shipment, context.as_of
-                    ):
-                        raise AgentValidationError("assessment_mismatch")
-                    if not supports_reason(request.assessment, request.primary_reason):
-                        raise AgentValidationError("reason_mismatch")
+                    observed = assess_policy(tools.order, tools.shipment, context.as_of)
+                    actual = observed.model_dump()
+                    self.assessment_diagnostics = {
+                        "authority": "untrusted_intermediate_model_output",
+                        "mismatched_fields": [
+                            name
+                            for name, value in request.assessment.model_dump().items()
+                            if value != actual[name]
+                        ],
+                        "reason_supported": supports_reason(observed, request.primary_reason),
+                    }
+                    validate_choice(
+                        context, tools, request.decision.action, request.decision.evidence_ids
+                    )
                     rationale = explain(
-                        request.primary_reason, tools.order, tools.shipment, context.as_of
+                        explanation_reason(observed), tools.order, tools.shipment, context.as_of
                     )
                     proposed = (
                         "investigation"
@@ -332,7 +349,6 @@ class LocalModelAdapter:
                         rationale=rationale,
                         draft_note=f"Fictional internal case: proposed {proposed}. {rationale} Approval is required before any write.",
                     )
-                    validate_decision(context, tools, decision)
                     self.trace = messages
                     return decision
                 args = request.arguments

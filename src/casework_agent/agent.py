@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Protocol
 
-from .contracts import AgentDecision, StrictModel
+from .contracts import Action, AgentDecision, StrictModel
 from .hashing import canonical_hash
 from .policy import allowed_action, current_policy
 from .tools import ReadTools
@@ -38,6 +38,12 @@ class FixtureAdapter:
 
 
 def validate_decision(context: AgentContext, tools: ReadTools, decision: AgentDecision) -> None:
+    validate_choice(context, tools, decision.action, decision.evidence_ids)
+
+
+def validate_choice(
+    context: AgentContext, tools: ReadTools, action: Action, evidence_ids: list[str]
+) -> None:
     if (
         tools.case_id != context.case_id
         or tools.order_id != context.order_id
@@ -49,10 +55,10 @@ def validate_decision(context: AgentContext, tools: ReadTools, decision: AgentDe
         )
     ):
         raise AgentValidationError("evidence_scope")
-    ids = set(decision.evidence_ids)
+    ids = set(evidence_ids)
     matching = [e for e in tools.evidence if e.id in ids]
     if (
-        len(ids) != len(decision.evidence_ids)
+        len(ids) != len(evidence_ids)
         or len(matching) != len(ids)
         or {e.source for e in matching} != {"order", "carrier", "policy"}
     ):
@@ -71,5 +77,5 @@ def validate_decision(context: AgentContext, tools: ReadTools, decision: AgentDe
         for e in matching
     ):
         raise AgentValidationError("evidence_revision")
-    if decision.action != allowed_action(tools.order, tools.shipment, context.as_of):
+    if action != allowed_action(tools.order, tools.shipment, context.as_of):
         raise AgentValidationError("policy_mismatch")

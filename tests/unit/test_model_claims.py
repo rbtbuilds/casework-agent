@@ -38,7 +38,9 @@ def recorded_tools(root: Path, shipment: Shipment) -> ReadTools:
 
 
 @pytest.mark.parametrize("fault", ["status", "conflict", "age"])
-async def test_correct_action_cannot_publish_a_false_assessment(tmp_path: Path, fault: str) -> None:
+async def test_false_intermediate_assessment_cannot_change_grounded_explanation(
+    tmp_path: Path, fault: str
+) -> None:
     shipment = Shipment(
         shipment_id="shipment", status="delayed", last_event_at=NOW - timedelta(hours=60)
     )
@@ -71,10 +73,20 @@ async def test_correct_action_cannot_publish_a_false_assessment(tmp_path: Path, 
         }
     )
     try:
-        with pytest.raises(AgentValidationError, match="assessment_mismatch"):
-            await LocalModelAdapter(client).propose(
-                AgentContext(case_id="case", order_id="order", as_of=NOW), tools
-            )
+        adapter = LocalModelAdapter(client)
+        decision = await adapter.propose(
+            AgentContext(case_id="case", order_id="order", as_of=NOW), tools
+        )
+        assert decision.action == "manual_review"
+        assert "conflict" not in decision.rationale
+        assert (
+            "in_transit"
+            if fault == "status"
+            else "missing"
+            if fault == "conflict"
+            else "172799999999"
+        ) in decision.rationale
+        assert adapter.assessment_diagnostics["mismatched_fields"]
         assert client.calls == 1
     finally:
         await tools.close()
@@ -152,10 +164,13 @@ async def test_correct_action_and_checks_cannot_publish_the_wrong_reason(tmp_pat
     )
     client = OneProposal(proposal_body(tools, reason="shipment_delayed"))
     try:
-        with pytest.raises(AgentValidationError, match="reason_mismatch"):
-            await LocalModelAdapter(client).propose(
-                AgentContext(case_id="case", order_id="order", as_of=NOW), tools
-            )
+        adapter = LocalModelAdapter(client)
+        decision = await adapter.propose(
+            AgentContext(case_id="case", order_id="order", as_of=NOW), tools
+        )
+        assert decision.action == "open_investigation"
+        assert "meeting" in decision.rationale
+        assert adapter.assessment_diagnostics["reason_supported"] is False
         assert client.calls == 1
     finally:
         await tools.close()
@@ -369,14 +384,16 @@ async def test_all_exclusions_have_checked_bounded_explanations(
         assert "money" not in decision.rationale + decision.draft_note
         if fault == "under":
             assert "172799999999" in decision.rationale
-        # The same valid action must fail when its model assessment contradicts the evidence.
+        # Intermediate model assertions cannot alter the independently rendered explanation.
         body["assessment"] = {name: value for name, value in zip(names, checks, strict=True)}
         claimed = body["assessment"]
         assert isinstance(claimed, dict)
         claimed[reason] = True
         client = OneProposal(body)
-        with pytest.raises(AgentValidationError, match="assessment_mismatch"):
-            await LocalModelAdapter(client).propose(context, tools)
+        adapter = LocalModelAdapter(client)
+        repeated = await adapter.propose(context, tools)
+        assert repeated == decision
+        assert adapter.assessment_diagnostics["mismatched_fields"] == [reason]
         assert client.calls == 1
     finally:
         await tools.close()
@@ -409,7 +426,7 @@ async def test_early_proposal_is_a_handled_failure_with_no_answer_feedback(tmp_p
 
 
 @pytest.mark.parametrize("reason", ["shipment_delayed", "age_at_least_48_hours"])
-async def test_any_verified_failed_condition_can_explain_manual_review(
+async def test_model_reason_cannot_change_canonical_policy_explanation(
     tmp_path: Path, reason: str
 ) -> None:
     tools = recorded_tools(
@@ -431,9 +448,8 @@ async def test_any_verified_failed_condition_can_explain_manual_review(
         )
         assert decision.action == "manual_review"
         assert "One reason for manual review" in decision.rationale
-        assert (
-            "in_transit" if reason == "shipment_delayed" else "3600000000"
-        ) in decision.rationale
+        assert "Shipment status is 'in_transit'" in decision.rationale
+        assert "3600000000" not in decision.rationale
     finally:
         await tools.close()
 
@@ -463,16 +479,17 @@ async def test_age_selected_explanation_is_truthful_for_unknown_or_future_time(
     body["decision"] = {"action": "manual_review", "evidence_ids": [e.id for e in tools.evidence]}
     as_of = NOW.replace(tzinfo=None) if clock == "case_naive" else NOW
     try:
-        decision = await LocalModelAdapter(OneProposal(body)).propose(
-            AgentContext(case_id="case", order_id="order", as_of=as_of), tools
-        )
+        from casework_agent.grounded_explanation import explain
+
+        assert tools.order and tools.shipment
+        text = explain("age_at_least_48_hours", tools.order, tools.shipment, as_of)
         if clock == "future":
-            assert "1 microsecond after the case clock" in decision.rationale
+            assert "1 microsecond after the case clock" in text
         else:
-            assert "age is unknown" in decision.rationale
-            assert ("missing" if clock == "missing" else "timezone") in decision.rationale
-            assert "below" not in decision.rationale
-        assert len(decision.draft_note) <= 500
+            assert "age is unknown" in text
+            assert ("missing" if clock == "missing" else "timezone") in text
+            assert "below" not in text
+        assert len(text) <= 350
     finally:
         await tools.close()
 
@@ -627,7 +644,7 @@ async def test_temporal_relation_inputs_preserve_every_event_and_exact_direction
         await tools.close()
 
 
-async def test_all_pass_cannot_explain_a_failed_condition(tmp_path: Path) -> None:
+async def test_model_all_pass_cannot_replace_a_verified_failed_reason(tmp_path: Path) -> None:
     tools = recorded_tools(
         tmp_path,
         Shipment(
@@ -640,9 +657,39 @@ async def test_all_pass_cannot_explain_a_failed_condition(tmp_path: Path) -> Non
     assessment["shipment_delayed"] = False
     body["decision"] = {"action": "manual_review", "evidence_ids": [e.id for e in tools.evidence]}
     try:
-        with pytest.raises(AgentValidationError, match="reason_mismatch"):
-            await LocalModelAdapter(OneProposal(body)).propose(
+        adapter = LocalModelAdapter(OneProposal(body))
+        decision = await adapter.propose(
+            AgentContext(case_id="case", order_id="order", as_of=NOW), tools
+        )
+        assert "Shipment status is 'in_transit'" in decision.rationale
+        assert adapter.assessment_diagnostics["reason_supported"] is False
+    finally:
+        await tools.close()
+
+
+@pytest.mark.parametrize("fault", ["action", "citation"])
+async def test_correct_intermediate_checks_cannot_rescue_invalid_choice(
+    tmp_path: Path, fault: str
+) -> None:
+    tools = recorded_tools(
+        tmp_path,
+        Shipment(shipment_id="shipment", status="delayed", last_event_at=NOW - timedelta(hours=60)),
+    )
+    body = proposal_body(tools)
+    choice = body["decision"]
+    assert isinstance(choice, dict)
+    choice["action" if fault == "action" else "evidence_ids"] = (
+        "manual_review" if fault == "action" else ["foreign", "missing", "invented"]
+    )
+    client = OneProposal(body)
+    try:
+        with pytest.raises(
+            AgentValidationError,
+            match="policy_mismatch" if fault == "action" else "evidence_coverage",
+        ):
+            await LocalModelAdapter(client).propose(
                 AgentContext(case_id="case", order_id="order", as_of=NOW), tools
             )
+        assert client.calls == 1
     finally:
         await tools.close()
