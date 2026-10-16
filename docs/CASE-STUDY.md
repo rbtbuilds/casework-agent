@@ -1,15 +1,35 @@
-# Case study: evidence before a fictional operations action
+# Case study: an approved action with recoverable effects
 
-An operations agent can produce a persuasive answer while leaving a business system in an uncertain state. This project focuses on the boundary between a proposed resolution, the operator's exact approval and independently committed effects.
+A delivery-exception operator needs an order record, carrier history and the applicable policy before opening an investigation. The next steps cross two systems: create an internal ticket, then annotate the order. A model can help interpret evidence and draft the note, but the workflow must preserve the operator's authority when evidence changes or a service response disappears.
 
-The intended user is an operator reviewing delayed deliveries. The local simulation replaces a manual order lookup, carrier lookup, policy check, ticket creation and order annotation. It measures engineering behavior; no customer pilot or time saving is claimed.
+Casework Agent implements that workflow with local Qwen inference, a React workbench, FastAPI and four independent SQLite databases. All business records are synthetic; no customer pilot or time saving is claimed.
 
-The application uses FastAPI/SQLite, a React workbench and three real HTTP service processes. Order/carrier/policy evidence is captured before an immutable proposal appears. An approval binds its hash, source versions, policy and expiry. A fenced worker saves an operation before sending it and asks the remote journal about an uncertain response. The second write substitutes only the confirmed ticket ID and uses the approved order version.
+## Keeping authority explicit
 
-The decisive failure experiment drops a response after the service commits. Treating this as a failed write would invite a duplicate. Here the local outcome becomes unknown, then a matching journal confirms the saved key/hash. The complete browser test drops both responses and still observes exactly one ticket and one annotation. A separate version-conflict test leaves a confirmed ticket with a rejected annotation and review_required state. There is no fabricated rollback.
+Qwen has three scoped read tools. Schema-constrained generation binds tool identifiers and citations to the current case, while leaving both final actions available. The model chooses the action and writes the rationale and internal note. Deterministic validation checks that choice against policy without returning an answer for a second attempt.
 
-The fixed-policy baseline achieved 30/30 correct held-out actions, 30/30 expected workflow outcomes and 24/24 authorised completions. Six stale approvals correctly created no effects. The selected local Qwen 1.5B checkpoint achieved 0/30 valid actions and 0/24 completions: its outputs failed the JSON/evidence protocol. All invalid runs stopped before writes. Raw failures, split hashes and measured usage are retained.
+Approval binds the proposal hash, cited evidence, source versions, policy and expiry. A fenced worker saves each operation's key, body and hash before sending it over HTTP. The order annotation uses the confirmed ticket identifier and the approved order version.
 
-That result supports a narrow conclusion: the deterministic execution boundary contained this model's invalid outputs in these synthetic cases. It does not establish useful model reasoning, general injection resistance or production safety. A future model iteration should use development cases and a newly reviewed evaluation protocol; the failed holdout must not become a tuning set disguised as new evidence.
+The browser recovery test drops each service's first response after its transaction commits. The outcome becomes unknown; a matching remote journal then confirms it. One ticket and one annotation remain. A separate conflict test preserves a confirmed ticket when the annotation is rejected and shows a partial result. These tests establish bounded behavior in the simulation, without a distributed exactly-once guarantee or cross-service rollback.
 
-The workbench was checked in light/dark themes at desktop/mobile widths, with keyboard approval and automated accessibility checks. Manual screen-reader testing is still missing. All integrations remain fictional, loopback-only and single-operator. Source publication is separate from deployment. This repository does not establish production readiness or useful Qwen task performance.
+## Learning from failed inference
+
+The original Qwen2.5 1.5B adapter produced 0/30 valid actions because free-form generation broke the JSON/evidence protocol. Constrained decoding fixed the protocol boundary. Qwen3 4B reached 29/30 on development cases, then only 17/30 on a newly authored challenge, with 14/24 authorised completions. Its wrong proposals stopped before writes. Both failed evaluations remain published with their original source and model identities.
+
+That gap showed why calibration could not establish model quality. The first Qwen3 14B development check passed only 12/16: a larger checkpoint and corrected rendering still missed shipment-status and carrier-event exclusions. The current protocol requires the model to assess each of the six policy conditions before choosing its action. It also disables the checkpoint's thinking mode explicitly and renders the latest evidence, factual summary and schema together. Escaping content at the final rendering boundary prevents business data, replayed model replies and repair errors from introducing chat-role delimiters. The model receives copied fields, UTC timestamps and exact signed time differences, with no action oracle. Its assessment booleans remain model-generated claims; the backend independently validates the final action.
+
+The v3 challenge was authored separately without access to the current model implementation or development outputs. Its inputs stayed private until implementation freeze. The model and fixture use the same 30 cases and fault schedule; six cases require stale rejection, and 24 expect a completed ticket/annotation pair. Each benchmark records source, prompt, model and input hashes.
+
+## Measured v3 outcome
+
+At clean source `a79256d09cf2dc8b1e8964ec910b826a8dd1e7c1`, the first v3 run produced 28/30 correct actions, 28/30 expected final outcomes and 22/24 authorised completions. The same-input fixture achieved 30/30 and 24/24. Both runs observed zero unapproved writes and duplicate effects. The model's assessment and generated prose still need human factual review.
+
+The source was frozen at `3c5a2377bf759e9b8aee231a6c1fb547a115cdb4` before the implementer opened the challenge. The subsequent data-only commit preserved its input bytes. These results measure the complete guarded model workflow, including constrained reads/citations and independent policy validation. They do not isolate a model-size effect; the historical runs used different case sets and protocols.
+
+Two below-threshold generations falsely claimed that the event age met 48 hours. Exact policy validation rejected both before proposal publication, approval or writes. Their traces retain the one-second and one-microsecond shortfalls. A model-assisted trace review also found three incorrect assessment fields among correct decisions, two incorrect rationales, two premature escalation notes and one imprecise timestamp note. These findings are detailed in [the source and trace review](REVIEW-2026-10-16.md). Human factual review remains pending; action accuracy does not certify explanation accuracy.
+
+## Operating limits
+
+The workbench is a loopback, single-operator simulation with synthetic data. Human review of generated factual claims, manual screen-reader testing and a recorded walkthrough remain pending. Automated checks cover keyboard approval, both themes, desktop/mobile layouts and reduced motion. Model failure never switches silently to fixture mode. Weights, databases and runtime output stay outside Git.
+
+See [evaluation](../EVALUATION.md), [model configuration](MODEL-CONFIG.md), [verification state](STATE.md) and [publication audit](PUBLICATION-AUDIT.md) for reproducible evidence and its limits.

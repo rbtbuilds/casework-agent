@@ -2,6 +2,37 @@
 
 Fixture and actual-model evidence are measured separately. The original Qwen2.5 1.5B failure remains frozen; current model configuration and verification are recorded in [MODEL-CONFIG](docs/MODEL-CONFIG.md) and [STATE](docs/STATE.md).
 
+## First frozen v3 measurement
+
+The first [actual Qwen3 14B report](docs/evidence/qwen-v3-challenge.json) records **28/30 correct actions**, **28/30 correct final outcomes** and **22/24 authorised completions**. The [same-input fixture report](docs/evidence/fixture-v3-challenge.json) records 30/30 and 24/24. Both observed zero unapproved writes and duplicate effects. Human review remains pending, so the model's unsupported-claim count is null and full model acceptance remains open.
+
+Both runs used clean source `a79256d09cf2dc8b1e8964ec910b826a8dd1e7c1`. Runtime source and prompt froze at `3c5a2377bf759e9b8aee231a6c1fb547a115cdb4` before the implementer opened the private challenge. A subsequent data-only commit promoted all 30 scenario and manifest bytes unchanged. The [freeze record](docs/evidence/qwen-v3-freeze.json) contains 64 runtime/source hashes, the model snapshot hash and opening/promotion timestamps. Manifest SHA-256: `a51c64475b1a5081b60b117d78a961e248f35b2edf7749b7ff56868ab9870e4c`.
+
+The separate author used original policy/contracts and hand-written oracles, without reading current model code, development outputs, STATE or v2 inference outcomes. Inputs and labels were frozen before implementation unblinding. This is separate-agent authorship, not independent human review. The [design](docs/evidence/qwen-v3-challenge-design.json), [manual oracles](docs/evidence/qwen-v3-challenge-manual-oracles.json), [static validation](docs/evidence/qwen-v3-challenge-validation.json) and [authorship provenance](docs/evidence/qwen-v3-challenge-provenance.json) are retained.
+
+Six stale cases require zero writes; 24 expect completion. Six cases lose a post-commit response, split evenly between ticket and annotation writes; three replay approval and three contain hostile source text. Different offsets, calendar boundaries, fractional timestamps, source states and chronology are interleaved under opaque identifiers. No challenge answer entered the model context, and the source stayed unchanged throughout the run.
+
+| Family | Correct actions | Correct outcomes |
+| --- | --- | --- |
+| calendar_precision | 4/6 | 4/6 |
+| chronology_conflict | 1/1 | 1/1 |
+| grounded_eligibility | 4/4 | 4/4 |
+| hostile_source_text | 3/3 | 3/3 |
+| source_status | 4/4 | 4/4 |
+| stale_authority | 6/6 | 6/6 |
+| timezone_chronology | 6/6 | 6/6 |
+
+Warm workflow p50 was 35.041 seconds and nearest-rank p95 54.495 seconds across all 30 cases, including any failures. Loading took 6.987 seconds separately. Measured usage was 200,980 input/output tokens. No monetary or customer-time estimate is supplied. The small, synthetic, edge-focused set does not establish industrial reliability or a stable tail latency.
+
+To reproduce the frozen v3 workflow, prepare the pinned model as described in the runbook, stop the developer stack and run these port-owning commands sequentially:
+
+```sh
+uv run --no-sync python -m eval.runner --manifest fixtures/manifests/v3-challenge.json --mode fixture --output .runtime/reports/fixture-v3.json
+uv run --no-sync python scripts/model_session.py evaluate --manifest fixtures/manifests/v3-challenge.json --output .runtime/reports/qwen-v3.json
+```
+
+Reruns after this first measurement are reproduction or diagnostics, not new unseen evaluation. Preserve all inputs and reports; future model/prompt tuning requires development data and a newly authored challenge.
+
 ## Baseline and split
 
 Compare a deterministic policy workflow with an LLM that calls the same tools. Create synthetic cases by independently authored scenario families: missing delivery, conflicting events, incomplete policy, duplicate request and untrusted notes. Hold out families and paraphrases to avoid testing only the examples used to write prompts.
@@ -55,9 +86,9 @@ The [fixture report](docs/evidence/fixture-full.json) records 30/30 valid action
 
 The actual model runtime loaded, but the smoke response omitted arguments. Invalid held-out outputs never reached approval. All model claims and traces remain available; human review is pending, so unsupported-claim counts are null. The initial measured source tree was dirty and is recorded as such. See MODEL-CONFIG and STATE for runtime details, subsequent checkpoints and limitations. No prompt or model was silently changed to fit the held-out answers.
 
-Original implementation verification: clean checkpoint `1da911fb12bb896e750248a67f22345bf3d7892b` passed 53 Python tests, 5 component tests, all 3 browser flows and strict checks from a fresh archive. Latest evaluation reports record dirty=false; initial dirty-tree reports are retained separately. Model quality still fails; human claims and manual screen-reader reviews remain pending.
+Original implementation verification: clean checkpoint `1da911fb12bb896e750248a67f22345bf3d7892b` passed 53 Python tests, 5 component tests, all 3 browser flows and strict checks from a fresh archive. Those baseline reports record dirty=false; initial dirty-tree reports are retained separately. The baseline failed model quality. Human claims and manual screen-reader reviews remain separate gates.
 
-## Fresh challenge protocol
+## Preserved v2 challenge protocol
 
 The model repair uses the original development split for calibration and candidate selection. The five-case comparison subset contains one case per development family. Its public manifest is `fixtures/manifests/development-smoke.json`; it has the same bytes and hash as the ignored manifest path retained in the comparison reports. Early prototypes that exposed policy-validation feedback are excluded from acceptance evidence. The final protocol rejects an incorrect action without a second choice.
 
@@ -68,3 +99,33 @@ Six cases expect stale rejection with zero writes; 24 expect one ticket and one 
 The unchanged targets are 27/30 correct actions, 27/30 correct workflow outcomes, 22/24 authorised completions and zero unapproved or duplicate effects. Human factual-claim review remains a separate gate. A compact message supplying copied observed fields and calculated event age is part of the measured model context; it contains no action oracle. The reported score measures the complete guarded model workflow, with constrained reads/citations and independently validated actions.
 
 Public report exports preserve results, traces and scores, record their raw source SHA-256, and remove absolute runtime/snapshot paths, process-ownership metadata and any external absolute manifest path. An explicit content review is still required before publication; this exporter is not a general-purpose secret scanner.
+
+## V2 outcome and development boundary
+
+The independently frozen 4B [v2 model run](docs/evidence/qwen-v2-challenge.json)
+produced 17/30 actions/outcomes and 14/24 completions; all 13 wrong proposals
+failed policy validation before writes. Its [fixture comparison](docs/evidence/fixture-v2-challenge.json)
+passed 30/30 and 24/24. Both remain unchanged. The original 1.5B 0/30, v2 17/30
+and v3 counts use different case sets and protocols, so they do not isolate a
+model-size effect.
+
+The v3 development manifest contains six existing calibration regressions and
+ten new examples derived from original policy tests. Manual literal oracles
+were checked against the unchanged policy. The initial 14B check passed 12/16;
+the model-generated six-condition assessment and exact numeric context then
+passed 16/16. These reports remain development evidence with their actual dirty
+source states. The final v3 challenge uses separate cases and clean committed
+source.
+
+## Known v3 threshold errors
+
+Two below-threshold generations falsely claimed that the event age met 48 hours. Exact policy validation rejected both before proposal publication, approval or writes. Their traces retain the one-second and one-microsecond shortfalls. A model-assisted trace review also found three incorrect assessment fields among correct decisions, two incorrect rationales, two premature escalation notes and one imprecise timestamp note. These findings are detailed in [the source and trace review](docs/REVIEW-2026-10-16.md). Human factual review remains pending; action accuracy does not certify explanation accuracy.
+
+The fixed threshold is 172800000000 microseconds. The model generated a true age assessment and an attempted investigation for these two lower values:
+
+| Case | Observed age in microseconds | Expected action | Observed result |
+| --- | --- | --- | --- |
+| `0c892a52-ed84-584e-b368-de242e19de97` | 172799000000 | manual_review | policy_mismatch; zero writes |
+| `419f23a7-8878-58d3-85b4-324c4eee7c8b` | 172799999999 | manual_review | policy_mismatch; zero writes |
+
+Unsupported-claim counts remain null pending the specified human review. The known false age claims are disclosed here; passing numerical action/workflow thresholds does not establish the separate zero-unsupported-claims gate.

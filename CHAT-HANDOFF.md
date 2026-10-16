@@ -20,6 +20,6 @@ Approval must remain bound to the exact proposal, cited evidence, source version
 
 Process tests share the documented loopback ports and run sequentially. Use the ownership-checked lifecycle helper to stop services. Actual inference acquires the shared machine lease before loading weights and releases it only after the owned model child exits.
 
-Keep fixture tests separate from actual-model evidence. The published Qwen benchmark failed its quality thresholds. Preserve frozen reports and inputs; model improvements require development-set work and a separately reviewed evaluation. Public authentication and production deployment are outside the implemented scope.
+Keep fixture tests separate from actual-model evidence. The original 1.5B and v2 4B benchmarks failed their quality thresholds. The current v3 14B run clears numerical action/workflow targets; human factual-claim review remains pending. See STATE and the frozen v3 reports for exact counts and sources. Preserve frozen reports and inputs; model improvements require development-set work and a separately reviewed evaluation. Public authentication and production deployment are outside the implemented scope.
 
 Record source changes, verification results and unresolved issues in docs/STATE.md. Keep contributor instructions portable and describe benchmark machines explicitly only where they establish measurement provenance.

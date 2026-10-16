@@ -1,0 +1,125 @@
+{
+  "source_commit": "a79256d09cf2dc8b1e8964ec910b826a8dd1e7c1",
+  "scope": "Fresh archive, new virtual environment and node_modules; no model installation or downloads; fixture browser checks.",
+  "checks": [
+    {
+      "command": [
+        "uv",
+        "sync",
+        "--locked"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "npm",
+        "--prefix",
+        "web",
+        "ci"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "ruff",
+        "check",
+        "."
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "pyright"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "pytest",
+        "-q"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "npm",
+        "--prefix",
+        "web",
+        "run",
+        "typecheck"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "npm",
+        "--prefix",
+        "web",
+        "test",
+        "--",
+        "--run"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "npm",
+        "--prefix",
+        "web",
+        "run",
+        "build"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "npm",
+        "--prefix",
+        "web",
+        "run",
+        "e2e"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "python",
+        "scripts/export_contracts.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "npm",
+        "--prefix",
+        "web",
+        "run",
+        "contracts"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "publication_export": {
+    "source_report_sha256": "c29970466eedf00be35a6aee7bafe3c9f3c79029753a9932bf442713e6ee2399",
+    "redacted_fields": [
+      "root"
+    ],
+    "measurements_changed": false
+  },
+  "coordinator_verification": {
+    "python_tests": 94,
+    "component_tests": 8,
+    "fixture_browser_passed": 3,
+    "actual_model_browser_skipped": 1,
+    "contract_regeneration_identical": true,
+    "log_sha256": "66244aaabe8ed4766f35c558d3f0fe824b1a3da6e4c57b4a8c9012753daf7aac"
+  }
+}

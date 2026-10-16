@@ -31,3 +31,14 @@ That failed run loaded in 4.136 seconds; failed-case p50 was 4.057 seconds and n
 `prepare --profile baseline1.5b` selects the original weights with the current protocol; it does not reproduce the old adapter. `prepare --profile qwen7b` selects the development comparison checkpoint `mlx-community/Qwen2.5-7B-Instruct-4bit`, revision `c26a38f6a37d0a51b4e9a1eb3026530fa35d9fed`. Neither comparison profile is an automatic fallback. The failed 4B comparison remains available as `prepare --profile qwen3-4b`. Restore the default with `prepare --profile qwen3-14b` and rerun the probe.
 
 Use the [runbook](RUNBOOK.md) for commands and [evaluation](../EVALUATION.md) for measured quality and limitations. Human review of generated factual claims, including the model's assessment booleans, remains pending.
+
+Two below-threshold generations falsely claimed that the event age met 48 hours. Exact policy validation rejected both before proposal publication, approval or writes. Their traces retain the one-second and one-microsecond shortfalls. A model-assisted trace review also found three incorrect assessment fields among correct decisions, two incorrect rationales, two premature escalation notes and one imprecise timestamp note. These findings are detailed in [the source and trace review](REVIEW-2026-10-16.md). Human factual review remains pending; action accuracy does not certify explanation accuracy.
+
+## Current measured workflow
+
+The first frozen v3 run at clean source `a79256d09cf2dc8b1e8964ec910b826a8dd1e7c1` produced
+28/30 correct actions, 28/30 expected final outcomes
+and 22/24 authorised completions. No unapproved or duplicate
+effects occurred. The [report](evidence/qwen-v3-challenge.json) includes the
+loaded snapshot identity and generation configuration. The matching fixture
+comparison is separate. Human factual review remains pending.

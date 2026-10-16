@@ -44,13 +44,13 @@ failure; the fixture completed 30/30 workflows and 24/24 authorised actions.
 Generated claims still lack human review. The 4B candidate failed the quality
 gate despite its stronger development results.
 
-The next development iteration tests a pinned 14B Qwen checkpoint, explicit
+At the next development checkpoint, the implementation tested a pinned 14B Qwen checkpoint, explicit
 non-thinking rendering, and one final user turn containing the latest evidence,
 compact facts and response schema. The v2 renderer put the schema in a separate
 last user message. JSON serialization now escapes angle brackets so business
 text cannot insert raw tokenizer role delimiters. These changes do not change
-the policy or supply an action. A new independently authored v3 challenge stays
-private until the next source freeze. V2 inputs and results remain immutable.
+the policy or supply an action. At that checkpoint, the new independently authored v3 challenge stayed
+private until source freeze. V2 inputs and results remain immutable.
 
 The first 14B development run passed **12/16** cases with zero unapproved or
 duplicate effects. The model quoted an excluded shipment status correctly but
@@ -61,7 +61,7 @@ adequate policy reasoning. The next development change requires an explicit,
 model-generated assessment of each policy condition before the action, with
 neutral timestamp differences to reduce calendar arithmetic. Those assessments
 are model outputs, not supplied eligibility answers. The independent challenge
-remains unopened.
+was still unopened at that checkpoint.
 
 The assessment protocol also supplies exact signed integer microsecond differences
 for event age and chronology, plus UTC timestamp copies and lowercased event
@@ -71,8 +71,8 @@ timestamps. The prompt describes the unchanged six conditions in order and
 requires proposed-action wording in the internal note. The decoder does not
 force a condition to pass or fail, and the backend does not derive its action
 from the model's checklist. Incorrect policy choices still fail once, without
-answer feedback. This iteration is being checked on the same development inputs;
-the private challenge has not been opened.
+answer feedback. This iteration was checked on the same development inputs;
+the private challenge had not been opened.
 
 Model preparation uses named profiles with immutable public revisions. A checkpoint's separate `.jinja` chat-template file is downloaded and hashed alongside its configuration, tokenizer and weights. A temporary pointer replaces the selected snapshot only after the download and hashing complete. The original 1.5B profile remains available.
 
@@ -100,4 +100,17 @@ effects. Its [report](evidence/qwen-v3-development.json) preserves the same
 16 development inputs as the initial 12/16 run. These are calibration results.
 A subsequent UTC-boundary guard makes unrepresentable dates handled errors;
 unit, HTTP-admission and same-worker continuation regressions cover that guard.
-The final 30-case challenge remains unopened at this source checkpoint.
+The final 30-case challenge was still unopened at source checkpoint
+`3c5a2377bf759e9b8aee231a6c1fb547a115cdb4`.
+
+## First v3 challenge result
+
+After source freeze `3c5a2377bf759e9b8aee231a6c1fb547a115cdb4`, the separately authored v3 inputs were promoted
+unchanged and measured at clean source `a79256d09cf2dc8b1e8964ec910b826a8dd1e7c1`. The first model run produced
+28/30 correct actions, 28/30 expected final outcomes
+and 22/24 authorised completions, with zero unapproved writes
+and duplicate effects. [Full model report](evidence/qwen-v3-challenge.json) and
+[same-input fixture comparison](evidence/fixture-v3-challenge.json) retain every
+case. Numerical targets pass; factual-claim review remains pending. These results
+measure the guarded workflow and do not isolate a model-size effect. All earlier
+failures and calibration reports remain unchanged.

@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Repaired local Qwen inference with pinned Qwen3 14B, constrained scoped reads/citations, model-generated policy assessments and exact numeric time context.
+- Kept both actions model-chosen, rejected policy mismatches without corrective feedback, and protected incoming/replayed content at the chat-template boundary.
+- Added a separately authored frozen v3 challenge, actual-model browser recovery evidence and preserved failed iterations.
+- Handled UTC conversion boundaries in API admission and model gathering without stopping subsequent worker processing.
+- Curated benchmark exports with explicit metadata redactions and audited publication artifacts; kept weights and runtime state ignored.
 - Revised the README and contributor documentation for a public technical audience, with supported runtime requirements separated from benchmark provenance.
 - Removed workstation-specific setup language, transient process IDs and chat-specific handoff instructions from maintained guidance.
 

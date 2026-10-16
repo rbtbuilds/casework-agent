@@ -31,3 +31,15 @@ Two dependency-cache entries were listed, but their payloads could not be inspec
 A separate read-only review checked the initial model-repair changes and four curated five-case development reports. Each export's source hash and declared redactions matched its ignored raw report; results, scores and gates were unchanged. No credentials, private paths, ownership tokens, customer records, runtime files, weights or unrelated material were found in that reviewed snapshot. The public smoke manifest matches the input hash retained in those reports.
 
 All 13 original evidence files remained byte-for-byte unchanged. The regression tests' invented private-owner path and `foreign` ownership marker are synthetic test inputs. The exporter removes specified provenance metadata; future report content still requires explicit inspection.
+
+## Final Qwen v3 publication review
+
+Follow-up dated 2026-10-16 covered all five unpublished commits after `d8956e0`: 156 new Git blobs across 133 paths, totaling 2,404,361 bytes, including intermediate file versions. All five commits use the verified GitHub noreply identity. The final working-tree audit covered 13 files and 482,985 bytes before the final review disclosures were appended. No credentials, private runtime paths, ownership tokens, weights, databases, customer data or unrelated material were detected in that scope. The path in the exporter regression is deliberately fictional.
+
+Both final challenge exports match their raw reports after only the declared redactions, and their raw hashes verify. Results, scores, gates and case order remain unchanged. The actual model records 28/30 actions and outcomes, 22/24 completions and zero unapproved or duplicate effects; the fixture records 30/30 and 24/24. Both use clean source `a79256d`. Known false age claims are disclosed, unsupported-claim counts remain null and full factual acceptance remains open.
+
+The fresh-archive report removes only its temporary root path and adds declared export/coordinator metadata. Raw-report and log hashes verify. All 11 commands exited successfully; the logs record 94 Python tests, eight component tests, three fixture browser passes and one explicitly skipped model test. All three regenerated contract files match the archived source. Actual inference and the native model browser run are separate evidence.
+
+The v3 scenario bytes, manifests, checksums, provenance and runtime freeze were also checked against their retained source artifacts. Actual-model browser screenshots contain only the fictional workbench, with no EXIF/text metadata or trailing content. Browser attribution distinguishes coordinator checks from identifiers present in the raw capture. Frozen historical evidence remains unchanged.
+
+The previously published-history audit and its limits still apply. This follow-up did not rewrite history or upload runtime artifacts. The [trace review](REVIEW-2026-10-16.md#frozen-v3-trace-review) records additional model explanation errors without changing measured reports or claiming completed human review.
