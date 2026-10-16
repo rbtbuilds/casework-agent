@@ -1,0 +1,37 @@
+{
+  "as_of": "2035-06-12T14:30:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional stencil sheets were relabelled for an internal stock count; the route itself was unchanged.",
+    "order_id": "o-dm52v8",
+    "policy_exception": null,
+    "shipment_id": "s-0zb73h",
+    "status": "in_transit",
+    "version": 8
+  },
+  "scenario_id": "a3e17b46c98025df",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2035-06-08T18:55:37+02:00",
+        "code": "STENCIL_ACCEPTED",
+        "description": "Stencil sheets accepted."
+      },
+      {
+        "at": "2035-06-10T20:00:00+05:30",
+        "code": "LABEL_VERIFIED",
+        "description": "Equivalent instant recorded by a second desk."
+      },
+      {
+        "at": "2035-06-10T10:30:00-04:00",
+        "code": "ROUTE_PAUSE",
+        "description": "Route pause recorded at the same instant."
+      }
+    ],
+    "last_event_at": "2035-06-10T10:30:00-04:00",
+    "shipment_id": "s-0zb73h",
+    "status": "delayed",
+    "version": 3
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "as_of": "2033-04-14T00:00:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional brass fasteners travelled through two sorting stations; this note records packaging only.",
+    "order_id": "o-xj83m4",
+    "policy_exception": null,
+    "shipment_id": "s-2qc41n",
+    "status": "in_transit",
+    "version": 12
+  },
+  "scenario_id": "f730be26d5189a4c",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2033-04-10T22:35:40-03:30",
+        "code": "SEAL_CHECK",
+        "description": "Fastener envelope seal checked."
+      },
+      {
+        "at": "2033-04-11T20:17:22Z",
+        "code": "SORTER_QUEUE",
+        "description": "Awaiting sorter capacity."
+      },
+      {
+        "at": "2033-04-12T05:44:59.999999+05:45",
+        "code": "LANE_HOLD",
+        "description": "Lane remains on hold."
+      }
+    ],
+    "last_event_at": "2033-04-12T05:44:59.999999+05:45",
+    "shipment_id": "s-2qc41n",
+    "status": "delayed",
+    "version": 6
+  }
+}

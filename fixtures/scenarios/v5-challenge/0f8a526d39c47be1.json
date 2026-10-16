@@ -1,0 +1,37 @@
+{
+  "as_of": "2044-03-13T13:46:42Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional wax marking blocks belong to a cancelled order; the physical parcel remains in carrier history.",
+    "order_id": "o-wc95a3",
+    "policy_exception": null,
+    "shipment_id": "s-2hb70q",
+    "status": "cancelled",
+    "version": 19
+  },
+  "scenario_id": "0f8a526d39c47be1",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2044-03-08T22:43:17Z",
+        "code": "BLOCKS_ACCEPTED",
+        "description": "Blocks accepted before the order state changed."
+      },
+      {
+        "at": "2044-03-10T18:27:09Z",
+        "code": "PARCEL_RETAINED",
+        "description": "Parcel still retained."
+      },
+      {
+        "at": "2044-03-11T11:00:00Z",
+        "code": "RETURN_DESK_QUEUE",
+        "description": "Return desk has not assigned a route."
+      }
+    ],
+    "last_event_at": "2044-03-11T11:00:00Z",
+    "shipment_id": "s-2hb70q",
+    "status": "delayed",
+    "version": 6
+  }
+}

@@ -1,0 +1,122 @@
+"""Input-only novelty audit; prior action labels and results are never accessed."""
+import hashlib
+import json
+import subprocess
+from pathlib import Path
+from typing import Any
+from integer_oracle import analyze, timestamp
+
+PRIVATE = Path(__file__).resolve().parent
+REPO = PRIVATE.parents[1]
+
+
+def digest(data: bytes) -> str:
+    return hashlib.sha256(data).hexdigest()
+
+
+def canonical(value: Any) -> str:
+    return json.dumps(value, sort_keys=True, separators=(",", ":"), allow_nan=False)
+
+
+def code_class(code: str) -> str:
+    lowered = code.lower()
+    return lowered if lowered in {"delivered", "cancelled"} else "nonterminal"
+
+
+def core(scenario: dict[str, Any], translated: bool) -> dict[str, Any]:
+    order, shipment = scenario["order"], scenario["shipment"]
+    cutoff = timestamp(scenario["as_of"])
+
+    def instant(raw: str | None) -> Any:
+        stamp = timestamp(raw)
+        if not stamp["present"]:
+            return None
+        if not stamp["aware"]:
+            return {"aware": False, "local_us": stamp["local_us"] - cutoff["local_us"] if translated else stamp["local_us"]}
+        return {"aware": True, "utc_us": stamp["utc_us"] - cutoff["utc_us"] if translated else stamp["utc_us"]}
+
+    return {
+        "as_of": "origin" if translated else cutoff["utc_us"],
+        "order_status": order["status"], "shipment_status": shipment["status"],
+        "exception_present": bool(order.get("policy_exception")),
+        "annotation_actions": [entry["action"] for entry in order.get("annotations", [])],
+        "identifiers_match": order["shipment_id"] == shipment["shipment_id"],
+        "conflicting_events": shipment.get("conflicting_events", False),
+        "last_event_at": instant(shipment["last_event_at"]),
+        "events": [{"code_class": code_class(event["code"]), "at": instant(event["at"])} for event in shipment["events"]],
+    }
+
+
+def shape(scenario: dict[str, Any]) -> dict[str, Any]:
+    oracle = analyze(scenario)
+    age = oracle["age_us"]
+    age_band = "missing_or_naive" if age is None else "future" if age < 0 else "under_48h" if age < 172_800_000_000 else "exact_48h" if age == 172_800_000_000 else "over_48h"
+    return {"order_status": scenario["order"]["status"], "shipment_status": scenario["shipment"]["status"], "age_band": age_band, "policy_predicates": oracle["predicates"]}
+
+
+def main() -> None:
+    names = subprocess.check_output(["git", "ls-files", "-z", "fixtures/scenarios", "fixtures/manifests"], cwd=REPO).decode().split("\0")
+    scenario_names = sorted(name for name in names if name.startswith("fixtures/scenarios/") and name.endswith(".json"))
+    manifest_names = sorted(name for name in names if name.startswith("fixtures/manifests/") and name.endswith(".json"))
+    dates: dict[str, set[str]] = {}
+    manifest_inventory: list[dict[str, Any]] = []
+    for name in manifest_names:
+        raw = (REPO / name).read_bytes()
+        payload = json.loads(raw)
+        projection: list[dict[str, str]] = []
+        for row in payload["cases"]:
+            path, as_of = row["scenario_file"], row["as_of"]
+            dates.setdefault(path, set()).add(as_of)
+            projection.append({"scenario_file": path, "as_of": as_of})
+        manifest_inventory.append({"path": name, "file_sha256": digest(raw), "permitted_as_of_projection": projection, "as_of_projection_sha256": digest(canonical(projection).encode())})
+    inventory: list[dict[str, Any]] = []
+    for name in scenario_names:
+        raw = (REPO / name).read_bytes()
+        scenario = json.loads(raw)
+        if "as_of" not in scenario:
+            options = dates.get(name, set())
+            assert len(options) == 1, "A unique permitted manifest cutoff is required"
+            scenario["as_of"] = next(iter(options))
+        for candidate in dates.get(name, set()):
+            assert timestamp(candidate)["utc_us"] == timestamp(scenario["as_of"])["utc_us"]
+        inventory.append({"path": name, "file_sha256": digest(raw),
+                          "substantive_sha256": digest(canonical(core(scenario, False)).encode()),
+                          "translation_normalized_sha256": digest(canonical(core(scenario, True)).encode()),
+                          "rule_shape_sha256": digest(canonical(shape(scenario)).encode())})
+    authored = json.loads((PRIVATE / "authored-cases.final.json").read_text())
+    challenge = [{"case_id": row["case_id"],
+                  "substantive_sha256": digest(canonical(core(row["scenario"], False)).encode()),
+                  "translation_normalized_sha256": digest(canonical(core(row["scenario"], True)).encode()),
+                  "rule_shape_sha256": digest(canonical(shape(row["scenario"])).encode())} for row in authored]
+    comparisons: dict[str, Any] = {}
+    for key in ("substantive_sha256", "translation_normalized_sha256", "rule_shape_sha256"):
+        pairs = [{"new_case_id": new["case_id"], "prior_path": old["path"]} for new in challenge for old in inventory if new[key] == old[key]]
+        within = [{"left": left["case_id"], "right": right["case_id"]} for index, left in enumerate(challenge) for right in challenge[index + 1:] if left[key] == right[key]]
+        comparisons[key] = {"cross_inventory_pair_matches": pairs, "cross_inventory_pair_match_count": len(pairs), "challenge_cases_with_overlap": len({entry["new_case_id"] for entry in pairs}), "within_challenge_pair_matches": within, "within_challenge_pair_match_count": len(within)}
+    output = {
+        "scope": "All current tracked scenario JSON; manifest input cutoff projection only. Manifest case_id, family, action, final state, faults, counts, and all previous results/protocols were not accessed.",
+        "source_git_head_at_inventory": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=REPO, text=True).strip(),
+        "scenario_count": len(inventory), "manifest_count": len(manifest_inventory),
+        "scenario_inventory_sha256": digest(canonical(inventory).encode()),
+        "manifest_as_of_inventory_sha256": digest(canonical(manifest_inventory).encode()),
+        "inventory": inventory, "manifest_as_of_inventory": manifest_inventory,
+        "new_challenge_fingerprints": challenge,
+        "cross_inventory_comparison_count": len(challenge) * len(inventory),
+        "within_challenge_comparison_count": len(challenge) * (len(challenge) - 1) // 2,
+        "normalization": {
+            "substantive": "Remove IDs, versions, all free text and exact nonterminal code spellings. Retain business states, exception truthiness, identifier relation, annotation actions, contradiction flag, normalized absolute UTC instants and ordered event-history shape.",
+            "translation": "Apply substantive normalization, then express every aware instant relative to as_of using exact integer microseconds. Treat absent and naive values distinctly; retain naive civil offsets separately.",
+            "rule_shape": "Discard exact timestamp distances and history multiplicity; retain order/carrier states, temporal age band and policy predicate truth values. Overlap is expected under one fixed policy and is not evidence of new rule families."},
+        "comparisons": comparisons,
+        "limitations": "No claim of semantic or statistical independence. All cases are AI-authored; finite policy branches necessarily recur. Distinct histories and instants prevent literal or uniform-date-translation copies but do not create new business-policy rules.",
+    }
+    with (PRIVATE / "input-inventory.json").open("x") as stream:
+        stream.write(json.dumps(output, indent=2, sort_keys=True) + "\n")
+    assert comparisons["substantive_sha256"]["cross_inventory_pair_match_count"] == 0
+    assert comparisons["translation_normalized_sha256"]["cross_inventory_pair_match_count"] == 0
+    assert comparisons["translation_normalized_sha256"]["within_challenge_pair_match_count"] == 0
+    print(json.dumps({"prior_scenarios": len(inventory), "prior_manifests": len(manifest_inventory), "cross_comparisons": len(challenge) * len(inventory), "substantive_duplicates": 0, "translation_duplicates": 0, "rule_shape_overlap_cases": comparisons["rule_shape_sha256"]["challenge_cases_with_overlap"]}))
+
+
+if __name__ == "__main__":
+    main()

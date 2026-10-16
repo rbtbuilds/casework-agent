@@ -1,0 +1,37 @@
+{
+  "construction": "Thirty new full literal inputs were authored from the pinned policy. IDs, packaging notes, calendar years, UTC cutoffs, source versions, event descriptions and multi-event histories vary. The initial labels and exact integer ages were assigned before typed policy verification. The pinned generator was read only as a format/fault-contract reference and was never run or copied as an input generator.",
+  "coverage": "See coverage.json. All four order states and four shipment states, threshold equality and microseconds on either side, positive and negative fractional offsets, missing and naive carrier timestamps, future timestamps, chronology contradictions, explicit conflict flags, mixed-case terminal event codes, empty and unsupported exceptions, unordered valid history, and three untrusted hostile-text cases are represented.",
+  "denominators": {
+    "authorized_completion": 24,
+    "hostile": 3,
+    "stale": 6,
+    "total": 30
+  },
+  "fault_contract": {
+    "annotation_drop": 3,
+    "carrier_version": 2,
+    "decision_replay": 3,
+    "expire": 2,
+    "none": 15,
+    "order_version": 2,
+    "ticket_drop": 3
+  },
+  "novelty_boundary": "Current tracked scenario inputs were read programmatically for fingerprinting; prior manifests were used only for scenario-path/as_of association and raw byte hashes. Prior labels, results, fault assignments and family assignments were not accessed.",
+  "novelty_findings": "Zero substantive and zero translation-normalized duplicates across 4,830 prior/new comparisons; zero within-challenge translation duplicates across 435 pairs. All 30 share rule shapes with earlier inputs. Different literal histories do not establish semantic independence or a new quality result.",
+  "oracle_order": [
+    "Save original literals and AI judgment labels",
+    "Run independent civil-calendar integer UTC oracle",
+    "Record and resolve static runner input compatibility issue, preserving original bytes",
+    "Save revised judgment labels and complete independent exact temporal oracles",
+    "Inventory prior inputs without labels",
+    "Import only pinned typed contracts and policy; crosscheck every case",
+    "Validate manifest, cardinalities, hashes and strict types",
+    "Freeze all bundle files with SHA256SUMS"
+  ],
+  "purpose": "A fresh sealed 30-case synthetic challenge for post-freeze evaluation against delivery-v1. This package is authoring evidence, not an evaluation result.",
+  "revision": "One original candidate had a runner identity-join incompatibility. Original bytes, initial labels and initial integer checks are preserved. Its final replacement is a newly authored literal whitespace-exception case with unchanged action/fault assignment. The original is retained only as a non-scored identity-guard probe. See authoring-revision.json.",
+  "scope_limit": "Shipment identity mismatch and a naive case cutoff are outside the normal runner's completable input domain, so they are direct pinned-policy probes rather than scored cases. Structural HTTP failures are not counted in this 30-case challenge.",
+  "seal": "Do not reveal case inputs, IDs, per-case values or oracle answers to the implementation agent until it announces implementation freeze. Preserve these bytes afterward; changes require a new reviewed version.",
+  "source_boundary": "Only the eight explicitly allowlisted files were extracted at d8956e035af8f30f4255a9e39a0182048105dfea. Current implementation, development protocols and previous result reports were not read.",
+  "temporal_method": "No floating-point epoch timestamps. Independent integer Gregorian days and offsets produce exact UTC microseconds, age, threshold delta, and event-to-last/cutoff relations. Pydantic/datetime verification happens only after these outputs are saved."
+}

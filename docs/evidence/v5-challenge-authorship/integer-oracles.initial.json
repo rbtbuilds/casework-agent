@@ -1,0 +1,2616 @@
+{
+  "cases": [
+    {
+      "case_id": "b8d6a20f74619c35",
+      "initial_action_matches": true,
+      "initial_integer_age_matches": true,
+      "oracle": {
+        "age_minus_threshold_us": 0,
+        "age_us": 172800000000,
+        "as_of": {
+          "aware": true,
+          "input": "2031-02-03T02:17:00Z",
+          "local_us": 1927851420000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 1927851420000000
+        },
+        "events": [
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "CRATE_ACCEPTED",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2031-01-30T08:43:11Z",
+              "local_us": 1927528991000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 1927528991000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "TRANSFER_PENDING",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2031-01-31T15:02:09Z",
+              "local_us": 1927638129000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 1927638129000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "BAY_RECHECK",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2031-02-01T02:17:00Z",
+              "local_us": 1927678620000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 1927678620000000
+            }
+          }
+        ],
+        "independent_action": "open_investigation",
+        "last_event": {
+          "aware": true,
+          "input": "2031-02-01T02:17:00+00:00",
+          "local_us": 1927678620000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 1927678620000000
+        },
+        "predicates": {
+          "age_at_least_48h": true,
+          "carrier_delayed": true,
+          "cutoff_timezone_known": true,
+          "event_timezones_known": true,
+          "events_not_after_cutoff": true,
+          "events_not_after_last": true,
+          "last_not_future": true,
+          "last_present": true,
+          "last_timezone_known": true,
+          "no_conflicting_events": true,
+          "no_policy_exception": true,
+          "no_terminal_event": true,
+          "order_in_transit": true,
+          "shipment_identity_matches": true
+        },
+        "threshold_us": 172800000000
+      },
+      "runner_identity_join_matches": true
+    },
+    {
+      "case_id": "2ce7f1948ab603d5",
+      "initial_action_matches": true,
+      "initial_integer_age_matches": true,
+      "oracle": {
+        "age_minus_threshold_us": -1,
+        "age_us": 172799999999,
+        "as_of": {
+          "aware": true,
+          "input": "2032-03-02T15:26:00.000000Z",
+          "local_us": 1961853960000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 1961853960000000
+        },
+        "events": [
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "SLEEVE_INTAKE",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2032-02-28T07:04:31.100000Z",
+              "local_us": 1961564671100000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 1961564671100000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "RACK_AUDIT",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2032-02-29T15:25:59.999999Z",
+              "local_us": 1961681159999999,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 1961681159999999
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "HOLD_SCAN",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2032-02-29T15:26:00.000001Z",
+              "local_us": 1961681160000001,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 1961681160000001
+            }
+          }
+        ],
+        "independent_action": "manual_review",
+        "last_event": {
+          "aware": true,
+          "input": "2032-02-29T15:26:00.000001Z",
+          "local_us": 1961681160000001,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 1961681160000001
+        },
+        "predicates": {
+          "age_at_least_48h": false,
+          "carrier_delayed": true,
+          "cutoff_timezone_known": true,
+          "event_timezones_known": true,
+          "events_not_after_cutoff": true,
+          "events_not_after_last": true,
+          "last_not_future": true,
+          "last_present": true,
+          "last_timezone_known": true,
+          "no_conflicting_events": true,
+          "no_policy_exception": true,
+          "no_terminal_event": true,
+          "order_in_transit": true,
+          "shipment_identity_matches": true
+        },
+        "threshold_us": 172800000000
+      },
+      "runner_identity_join_matches": true
+    },
+    {
+      "case_id": "f730be26d5189a4c",
+      "initial_action_matches": true,
+      "initial_integer_age_matches": true,
+      "oracle": {
+        "age_minus_threshold_us": 1,
+        "age_us": 172800000001,
+        "as_of": {
+          "aware": true,
+          "input": "2033-04-14T00:00:00Z",
+          "local_us": 1997049600000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 1997049600000000
+        },
+        "events": [
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "SEAL_CHECK",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2033-04-10T22:35:40-03:30",
+              "local_us": 1996785340000000,
+              "offset_minutes": -210,
+              "present": true,
+              "utc_us": 1996797940000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "SORTER_QUEUE",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2033-04-11T20:17:22Z",
+              "local_us": 1996863442000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 1996863442000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "LANE_HOLD",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2033-04-12T05:44:59.999999+05:45",
+              "local_us": 1996897499999999,
+              "offset_minutes": 345,
+              "present": true,
+              "utc_us": 1996876799999999
+            }
+          }
+        ],
+        "independent_action": "open_investigation",
+        "last_event": {
+          "aware": true,
+          "input": "2033-04-12T05:44:59.999999+05:45",
+          "local_us": 1996897499999999,
+          "offset_minutes": 345,
+          "present": true,
+          "utc_us": 1996876799999999
+        },
+        "predicates": {
+          "age_at_least_48h": true,
+          "carrier_delayed": true,
+          "cutoff_timezone_known": true,
+          "event_timezones_known": true,
+          "events_not_after_cutoff": true,
+          "events_not_after_last": true,
+          "last_not_future": true,
+          "last_present": true,
+          "last_timezone_known": true,
+          "no_conflicting_events": true,
+          "no_policy_exception": true,
+          "no_terminal_event": true,
+          "order_in_transit": true,
+          "shipment_identity_matches": true
+        },
+        "threshold_us": 172800000000
+      },
+      "runner_identity_join_matches": true
+    },
+    {
+      "case_id": "619ac7e3f02485bd",
+      "initial_action_matches": true,
+      "initial_integer_age_matches": true,
+      "oracle": {
+        "age_minus_threshold_us": 68520000000,
+        "age_us": 241320000000,
+        "as_of": {
+          "aware": true,
+          "input": "2034-05-21T17:42:00Z",
+          "local_us": 2031846120000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2031846120000000
+        },
+        "events": [
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "ROUTE_ASSIGNED",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2034-05-16T10:21:15Z",
+              "local_us": 2031387675000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2031387675000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "LOAD_RECOUNT",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2034-05-18T07:18:43Z",
+              "local_us": 2031549523000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2031549523000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "ROUTE_HOLD",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2034-05-18T22:40:00Z",
+              "local_us": 2031604800000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2031604800000000
+            }
+          }
+        ],
+        "independent_action": "manual_review",
+        "last_event": {
+          "aware": true,
+          "input": "2034-05-18T22:40:00Z",
+          "local_us": 2031604800000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2031604800000000
+        },
+        "predicates": {
+          "age_at_least_48h": true,
+          "carrier_delayed": true,
+          "cutoff_timezone_known": true,
+          "event_timezones_known": true,
+          "events_not_after_cutoff": true,
+          "events_not_after_last": true,
+          "last_not_future": true,
+          "last_present": true,
+          "last_timezone_known": true,
+          "no_conflicting_events": true,
+          "no_policy_exception": true,
+          "no_terminal_event": true,
+          "order_in_transit": false,
+          "shipment_identity_matches": true
+        },
+        "threshold_us": 172800000000
+      },
+      "runner_identity_join_matches": true
+    },
+    {
+      "case_id": "a3e17b46c98025df",
+      "initial_action_matches": true,
+      "initial_integer_age_matches": true,
+      "oracle": {
+        "age_minus_threshold_us": 0,
+        "age_us": 172800000000,
+        "as_of": {
+          "aware": true,
+          "input": "2035-06-12T14:30:00Z",
+          "local_us": 2065271400000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2065271400000000
+        },
+        "events": [
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "STENCIL_ACCEPTED",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2035-06-08T18:55:37+02:00",
+              "local_us": 2064941737000000,
+              "offset_minutes": 120,
+              "present": true,
+              "utc_us": 2064934537000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "LABEL_VERIFIED",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2035-06-10T20:00:00+05:30",
+              "local_us": 2065118400000000,
+              "offset_minutes": 330,
+              "present": true,
+              "utc_us": 2065098600000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "ROUTE_PAUSE",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2035-06-10T10:30:00-04:00",
+              "local_us": 2065084200000000,
+              "offset_minutes": -240,
+              "present": true,
+              "utc_us": 2065098600000000
+            }
+          }
+        ],
+        "independent_action": "open_investigation",
+        "last_event": {
+          "aware": true,
+          "input": "2035-06-10T10:30:00-04:00",
+          "local_us": 2065084200000000,
+          "offset_minutes": -240,
+          "present": true,
+          "utc_us": 2065098600000000
+        },
+        "predicates": {
+          "age_at_least_48h": true,
+          "carrier_delayed": true,
+          "cutoff_timezone_known": true,
+          "event_timezones_known": true,
+          "events_not_after_cutoff": true,
+          "events_not_after_last": true,
+          "last_not_future": true,
+          "last_present": true,
+          "last_timezone_known": true,
+          "no_conflicting_events": true,
+          "no_policy_exception": true,
+          "no_terminal_event": true,
+          "order_in_transit": true,
+          "shipment_identity_matches": true
+        },
+        "threshold_us": 172800000000
+      },
+      "runner_identity_join_matches": true
+    },
+    {
+      "case_id": "76fb04d98a2315ce",
+      "initial_action_matches": true,
+      "initial_integer_age_matches": true,
+      "oracle": {
+        "age_minus_threshold_us": 152445000000,
+        "age_us": 325245000000,
+        "as_of": {
+          "aware": true,
+          "input": "2036-07-19T08:20:45Z",
+          "local_us": 2100068445000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2100068445000000
+        },
+        "events": [
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "LINER_BUNDLE",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2036-07-13T09:47:13Z",
+              "local_us": 2099555233000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2099555233000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "SCAN_IMPORTED",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2036-07-15T13:59:58Z",
+              "local_us": 2099743198000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2099743198000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "STATE_UNRESOLVED",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2036-07-15T14:00:00Z",
+              "local_us": 2099743200000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2099743200000000
+            }
+          }
+        ],
+        "independent_action": "manual_review",
+        "last_event": {
+          "aware": true,
+          "input": "2036-07-15T14:00:00Z",
+          "local_us": 2099743200000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2099743200000000
+        },
+        "predicates": {
+          "age_at_least_48h": true,
+          "carrier_delayed": false,
+          "cutoff_timezone_known": true,
+          "event_timezones_known": true,
+          "events_not_after_cutoff": true,
+          "events_not_after_last": true,
+          "last_not_future": true,
+          "last_present": true,
+          "last_timezone_known": true,
+          "no_conflicting_events": true,
+          "no_policy_exception": true,
+          "no_terminal_event": true,
+          "order_in_transit": true,
+          "shipment_identity_matches": true
+        },
+        "threshold_us": 172800000000
+      },
+      "runner_identity_join_matches": true
+    },
+    {
+      "case_id": "d1a486e70c5932bf",
+      "initial_action_matches": true,
+      "initial_integer_age_matches": true,
+      "oracle": {
+        "age_minus_threshold_us": 86940000000,
+        "age_us": 259740000000,
+        "as_of": {
+          "aware": true,
+          "input": "2037-08-23T18:09:00Z",
+          "local_us": 2134663740000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2134663740000000
+        },
+        "events": [
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "TOTE_CLOSED",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2037-08-17T06:32:45Z",
+              "local_us": 2134103565000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2134103565000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "CROSSDOCK_ENTRY",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2037-08-18T21:19:07Z",
+              "local_us": 2134243147000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2134243147000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "SORT_EXCEPTION",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2037-08-20T08:13:59Z",
+              "local_us": 2134368839000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2134368839000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "TOTE_WAITING",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2037-08-20T18:00:00Z",
+              "local_us": 2134404000000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2134404000000000
+            }
+          }
+        ],
+        "independent_action": "open_investigation",
+        "last_event": {
+          "aware": true,
+          "input": "2037-08-20T18:00:00Z",
+          "local_us": 2134404000000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2134404000000000
+        },
+        "predicates": {
+          "age_at_least_48h": true,
+          "carrier_delayed": true,
+          "cutoff_timezone_known": true,
+          "event_timezones_known": true,
+          "events_not_after_cutoff": true,
+          "events_not_after_last": true,
+          "last_not_future": true,
+          "last_present": true,
+          "last_timezone_known": true,
+          "no_conflicting_events": true,
+          "no_policy_exception": true,
+          "no_terminal_event": true,
+          "order_in_transit": true,
+          "shipment_identity_matches": true
+        },
+        "threshold_us": 172800000000
+      },
+      "runner_identity_join_matches": true
+    },
+    {
+      "case_id": "405d2fb98e6137ac",
+      "initial_action_matches": true,
+      "initial_integer_age_matches": true,
+      "oracle": {
+        "age_minus_threshold_us": 6600000000,
+        "age_us": 179400000000,
+        "as_of": {
+          "aware": true,
+          "input": "2038-09-14T13:50:00Z",
+          "local_us": 2168085000000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2168085000000000
+        },
+        "events": [
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "BOLT_BAG_ACCEPTED",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2038-09-10T11:22:33Z",
+              "local_us": 2167730553000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2167730553000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "DeLiVeReD",
+            "terminal": true,
+            "timestamp": {
+              "aware": true,
+              "input": "2038-09-11T19:28:04Z",
+              "local_us": 2167846084000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2167846084000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "HISTORY_RECHECK",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2038-09-12T12:00:00Z",
+              "local_us": 2167905600000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2167905600000000
+            }
+          }
+        ],
+        "independent_action": "manual_review",
+        "last_event": {
+          "aware": true,
+          "input": "2038-09-12T12:00:00Z",
+          "local_us": 2167905600000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2167905600000000
+        },
+        "predicates": {
+          "age_at_least_48h": true,
+          "carrier_delayed": true,
+          "cutoff_timezone_known": true,
+          "event_timezones_known": true,
+          "events_not_after_cutoff": true,
+          "events_not_after_last": true,
+          "last_not_future": true,
+          "last_present": true,
+          "last_timezone_known": true,
+          "no_conflicting_events": true,
+          "no_policy_exception": true,
+          "no_terminal_event": false,
+          "order_in_transit": true,
+          "shipment_identity_matches": true
+        },
+        "threshold_us": 172800000000
+      },
+      "runner_identity_join_matches": true
+    },
+    {
+      "case_id": "e2930a67b4d81fc5",
+      "initial_action_matches": true,
+      "initial_integer_age_matches": true,
+      "oracle": {
+        "age_minus_threshold_us": 11762000000,
+        "age_us": 184562000000,
+        "as_of": {
+          "aware": true,
+          "input": "2039-10-19T21:16:02Z",
+          "local_us": 2202671762000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2202671762000000
+        },
+        "events": [
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "POUCH_ACCEPTANCE",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2039-10-14T05:16:19Z",
+              "local_us": 2202182179000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2202182179000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "NO_ROUTE_SLOT",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2039-10-16T17:42:51Z",
+              "local_us": 2202399771000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2202399771000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "POUCH_RETAINED",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2039-10-17T18:00:00Z",
+              "local_us": 2202487200000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2202487200000000
+            }
+          }
+        ],
+        "independent_action": "open_investigation",
+        "last_event": {
+          "aware": true,
+          "input": "2039-10-17T18:00:00Z",
+          "local_us": 2202487200000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2202487200000000
+        },
+        "predicates": {
+          "age_at_least_48h": true,
+          "carrier_delayed": true,
+          "cutoff_timezone_known": true,
+          "event_timezones_known": true,
+          "events_not_after_cutoff": true,
+          "events_not_after_last": true,
+          "last_not_future": true,
+          "last_present": true,
+          "last_timezone_known": true,
+          "no_conflicting_events": true,
+          "no_policy_exception": true,
+          "no_terminal_event": true,
+          "order_in_transit": true,
+          "shipment_identity_matches": true
+        },
+        "threshold_us": 172800000000
+      },
+      "runner_identity_join_matches": true
+    },
+    {
+      "case_id": "9c476e15a8f302bd",
+      "initial_action_matches": true,
+      "initial_integer_age_matches": true,
+      "oracle": {
+        "age_minus_threshold_us": 20580000000,
+        "age_us": 193380000000,
+        "as_of": {
+          "aware": true,
+          "input": "2040-11-17T05:43:00Z",
+          "local_us": 2236743780000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2236743780000000
+        },
+        "events": [
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "SHIM_INTAKE",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2040-11-12T14:35:56Z",
+              "local_us": 2236343756000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2236343756000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "CaNcElLeD",
+            "terminal": true,
+            "timestamp": {
+              "aware": true,
+              "input": "2040-11-14T06:23:12Z",
+              "local_us": 2236486992000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2236486992000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "STOCK_LOCATED",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2040-11-15T00:00:00Z",
+              "local_us": 2236550400000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2236550400000000
+            }
+          }
+        ],
+        "independent_action": "manual_review",
+        "last_event": {
+          "aware": true,
+          "input": "2040-11-15T00:00:00Z",
+          "local_us": 2236550400000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2236550400000000
+        },
+        "predicates": {
+          "age_at_least_48h": true,
+          "carrier_delayed": true,
+          "cutoff_timezone_known": true,
+          "event_timezones_known": true,
+          "events_not_after_cutoff": true,
+          "events_not_after_last": true,
+          "last_not_future": true,
+          "last_present": true,
+          "last_timezone_known": true,
+          "no_conflicting_events": true,
+          "no_policy_exception": true,
+          "no_terminal_event": false,
+          "order_in_transit": true,
+          "shipment_identity_matches": true
+        },
+        "threshold_us": 172800000000
+      },
+      "runner_identity_join_matches": true
+    },
+    {
+      "case_id": "530af7c28d196e4b",
+      "initial_action_matches": true,
+      "initial_integer_age_matches": true,
+      "oracle": {
+        "age_minus_threshold_us": 5460000000,
+        "age_us": 178260000000,
+        "as_of": {
+          "aware": true,
+          "input": "2041-12-12T08:31:00Z",
+          "local_us": 2270449860000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2270449860000000
+        },
+        "events": [],
+        "independent_action": "open_investigation",
+        "last_event": {
+          "aware": true,
+          "input": "2041-12-10T07:00:00Z",
+          "local_us": 2270271600000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2270271600000000
+        },
+        "predicates": {
+          "age_at_least_48h": true,
+          "carrier_delayed": true,
+          "cutoff_timezone_known": true,
+          "event_timezones_known": true,
+          "events_not_after_cutoff": true,
+          "events_not_after_last": true,
+          "last_not_future": true,
+          "last_present": true,
+          "last_timezone_known": true,
+          "no_conflicting_events": true,
+          "no_policy_exception": true,
+          "no_terminal_event": true,
+          "order_in_transit": true,
+          "shipment_identity_matches": true
+        },
+        "threshold_us": 172800000000
+      },
+      "runner_identity_join_matches": true
+    },
+    {
+      "case_id": "ba60e9257c1483df",
+      "initial_action_matches": true,
+      "initial_integer_age_matches": true,
+      "oracle": {
+        "age_minus_threshold_us": 43261000000,
+        "age_us": 216061000000,
+        "as_of": {
+          "aware": true,
+          "input": "2042-01-19T18:01:01Z",
+          "local_us": 2273767261000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2273767261000000
+        },
+        "events": [
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "HOLDER_PACKED",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2042-01-14T01:11:29Z",
+              "local_us": 2273274689000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2273274689000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "TRANSFER_RECORDED",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2042-01-16T13:02:48Z",
+              "local_us": 2273490168000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2273490168000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "SUMMARY_LAG",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2042-01-17T06:00:00Z",
+              "local_us": 2273551200000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2273551200000000
+            }
+          }
+        ],
+        "independent_action": "manual_review",
+        "last_event": {
+          "aware": true,
+          "input": "2042-01-17T06:00:00Z",
+          "local_us": 2273551200000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2273551200000000
+        },
+        "predicates": {
+          "age_at_least_48h": true,
+          "carrier_delayed": true,
+          "cutoff_timezone_known": true,
+          "event_timezones_known": true,
+          "events_not_after_cutoff": true,
+          "events_not_after_last": true,
+          "last_not_future": true,
+          "last_present": true,
+          "last_timezone_known": true,
+          "no_conflicting_events": true,
+          "no_policy_exception": true,
+          "no_terminal_event": true,
+          "order_in_transit": false,
+          "shipment_identity_matches": true
+        },
+        "threshold_us": 172800000000
+      },
+      "runner_identity_join_matches": true
+    },
+    {
+      "case_id": "73dbf281c4a6095e",
+      "initial_action_matches": true,
+      "initial_integer_age_matches": true,
+      "oracle": {
+        "age_minus_threshold_us": 3,
+        "age_us": 172800000003,
+        "as_of": {
+          "aware": true,
+          "input": "2043-02-08T16:00:00.000003Z",
+          "local_us": 2307024000000003,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2307024000000003
+        },
+        "events": [
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "COMPASS_CASE_IN",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2043-02-04T07:52:41Z",
+              "local_us": 2306649161000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2306649161000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "HUB_QUEUE",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2043-02-06T15:59:59.999997Z",
+              "local_us": 2306851199999997,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2306851199999997
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "CLOCK_SOURCE_HOLD",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2043-02-06T10:30:00-05:30",
+              "local_us": 2306831400000000,
+              "offset_minutes": -330,
+              "present": true,
+              "utc_us": 2306851200000000
+            }
+          }
+        ],
+        "independent_action": "open_investigation",
+        "last_event": {
+          "aware": true,
+          "input": "2043-02-06T10:30:00-05:30",
+          "local_us": 2306831400000000,
+          "offset_minutes": -330,
+          "present": true,
+          "utc_us": 2306851200000000
+        },
+        "predicates": {
+          "age_at_least_48h": true,
+          "carrier_delayed": true,
+          "cutoff_timezone_known": true,
+          "event_timezones_known": true,
+          "events_not_after_cutoff": true,
+          "events_not_after_last": true,
+          "last_not_future": true,
+          "last_present": true,
+          "last_timezone_known": true,
+          "no_conflicting_events": true,
+          "no_policy_exception": true,
+          "no_terminal_event": true,
+          "order_in_transit": true,
+          "shipment_identity_matches": true
+        },
+        "threshold_us": 172800000000
+      },
+      "runner_identity_join_matches": true
+    },
+    {
+      "case_id": "0f8a526d39c47be1",
+      "initial_action_matches": true,
+      "initial_integer_age_matches": true,
+      "oracle": {
+        "age_minus_threshold_us": 10002000000,
+        "age_us": 182802000000,
+        "as_of": {
+          "aware": true,
+          "input": "2044-03-13T13:46:42Z",
+          "local_us": 2341489602000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2341489602000000
+        },
+        "events": [
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "BLOCKS_ACCEPTED",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2044-03-08T22:43:17Z",
+              "local_us": 2341089797000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2341089797000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "PARCEL_RETAINED",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2044-03-10T18:27:09Z",
+              "local_us": 2341247229000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2341247229000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "RETURN_DESK_QUEUE",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2044-03-11T11:00:00Z",
+              "local_us": 2341306800000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2341306800000000
+            }
+          }
+        ],
+        "independent_action": "manual_review",
+        "last_event": {
+          "aware": true,
+          "input": "2044-03-11T11:00:00Z",
+          "local_us": 2341306800000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2341306800000000
+        },
+        "predicates": {
+          "age_at_least_48h": true,
+          "carrier_delayed": true,
+          "cutoff_timezone_known": true,
+          "event_timezones_known": true,
+          "events_not_after_cutoff": true,
+          "events_not_after_last": true,
+          "last_not_future": true,
+          "last_present": true,
+          "last_timezone_known": true,
+          "no_conflicting_events": true,
+          "no_policy_exception": true,
+          "no_terminal_event": true,
+          "order_in_transit": false,
+          "shipment_identity_matches": true
+        },
+        "threshold_us": 172800000000
+      },
+      "runner_identity_join_matches": true
+    },
+    {
+      "case_id": "c68a917e40f5b32d",
+      "initial_action_matches": true,
+      "initial_integer_age_matches": true,
+      "oracle": {
+        "age_minus_threshold_us": 34999000000,
+        "age_us": 207799000000,
+        "as_of": {
+          "aware": true,
+          "input": "2045-04-24T14:43:19Z",
+          "local_us": 2376657799000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2376657799000000
+        },
+        "events": [
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "CLIP_BAG_SORTED",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2045-04-19T12:48:21Z",
+              "local_us": 2376218901000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2376218901000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "delivery_attempt",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2045-04-21T07:25:33Z",
+              "local_us": 2376372333000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2376372333000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "BAY_RETURN",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2045-04-22T05:00:00Z",
+              "local_us": 2376450000000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2376450000000000
+            }
+          }
+        ],
+        "independent_action": "open_investigation",
+        "last_event": {
+          "aware": true,
+          "input": "2045-04-22T05:00:00Z",
+          "local_us": 2376450000000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2376450000000000
+        },
+        "predicates": {
+          "age_at_least_48h": true,
+          "carrier_delayed": true,
+          "cutoff_timezone_known": true,
+          "event_timezones_known": true,
+          "events_not_after_cutoff": true,
+          "events_not_after_last": true,
+          "last_not_future": true,
+          "last_present": true,
+          "last_timezone_known": true,
+          "no_conflicting_events": true,
+          "no_policy_exception": true,
+          "no_terminal_event": true,
+          "order_in_transit": true,
+          "shipment_identity_matches": true
+        },
+        "threshold_us": 172800000000
+      },
+      "runner_identity_join_matches": true
+    },
+    {
+      "case_id": "148e6d3ba2f9705c",
+      "initial_action_matches": true,
+      "initial_integer_age_matches": true,
+      "oracle": {
+        "age_minus_threshold_us": null,
+        "age_us": null,
+        "as_of": {
+          "aware": true,
+          "input": "2046-05-16T16:00:00Z",
+          "local_us": 2410099200000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2410099200000000
+        },
+        "events": [
+          {
+            "after_as_of": false,
+            "after_last": null,
+            "code": "INSERTS_RECEIVED",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2046-05-10T06:29:18Z",
+              "local_us": 2409546558000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2409546558000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": null,
+            "code": "DESK_HANDOFF",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2046-05-12T19:34:52Z",
+              "local_us": 2409766492000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2409766492000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": null,
+            "code": "SUMMARY_NOT_SET",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2046-05-13T16:00:00Z",
+              "local_us": 2409840000000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2409840000000000
+            }
+          }
+        ],
+        "independent_action": "manual_review",
+        "last_event": {
+          "aware": false,
+          "input": null,
+          "local_us": null,
+          "present": false,
+          "utc_us": null
+        },
+        "predicates": {
+          "age_at_least_48h": false,
+          "carrier_delayed": true,
+          "cutoff_timezone_known": true,
+          "event_timezones_known": true,
+          "events_not_after_cutoff": true,
+          "events_not_after_last": false,
+          "last_not_future": false,
+          "last_present": false,
+          "last_timezone_known": false,
+          "no_conflicting_events": true,
+          "no_policy_exception": true,
+          "no_terminal_event": true,
+          "order_in_transit": true,
+          "shipment_identity_matches": true
+        },
+        "threshold_us": 172800000000
+      },
+      "runner_identity_join_matches": true
+    },
+    {
+      "case_id": "ef29c580ad7416b3",
+      "initial_action_matches": true,
+      "initial_integer_age_matches": true,
+      "oracle": {
+        "age_minus_threshold_us": -172800000001,
+        "age_us": -1,
+        "as_of": {
+          "aware": true,
+          "input": "2047-06-18T18:00:00Z",
+          "local_us": 2444493600000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2444493600000000
+        },
+        "events": [
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "DIVIDER_INTAKE",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2047-06-15T03:42:26Z",
+              "local_us": 2444182946000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2444182946000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "CLOCK_CHECK_PENDING",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2047-06-18T17:59:59.999998Z",
+              "local_us": 2444493599999998,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2444493599999998
+            }
+          }
+        ],
+        "independent_action": "manual_review",
+        "last_event": {
+          "aware": true,
+          "input": "2047-06-18T18:00:00.000001Z",
+          "local_us": 2444493600000001,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2444493600000001
+        },
+        "predicates": {
+          "age_at_least_48h": false,
+          "carrier_delayed": true,
+          "cutoff_timezone_known": true,
+          "event_timezones_known": true,
+          "events_not_after_cutoff": true,
+          "events_not_after_last": true,
+          "last_not_future": false,
+          "last_present": true,
+          "last_timezone_known": true,
+          "no_conflicting_events": true,
+          "no_policy_exception": true,
+          "no_terminal_event": true,
+          "order_in_transit": true,
+          "shipment_identity_matches": true
+        },
+        "threshold_us": 172800000000
+      },
+      "runner_identity_join_matches": true
+    },
+    {
+      "case_id": "52b1a8d7f603ce49",
+      "initial_action_matches": true,
+      "initial_integer_age_matches": true,
+      "oracle": {
+        "age_minus_threshold_us": 90720000000,
+        "age_us": 263520000000,
+        "as_of": {
+          "aware": true,
+          "input": "2048-07-22T01:12:00Z",
+          "local_us": 2478993120000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2478993120000000
+        },
+        "events": [
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "TUBES_BUNDLED",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2048-07-16T11:38:17Z",
+              "local_us": 2478512297000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2478512297000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "SUMMARY_CHECKPOINT",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2048-07-19T00:00:00Z",
+              "local_us": 2478729600000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2478729600000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": true,
+            "code": "LATE_SEQUENCE_ENTRY",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2048-07-19T00:00:00.000001Z",
+              "local_us": 2478729600000001,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2478729600000001
+            }
+          }
+        ],
+        "independent_action": "manual_review",
+        "last_event": {
+          "aware": true,
+          "input": "2048-07-19T00:00:00Z",
+          "local_us": 2478729600000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2478729600000000
+        },
+        "predicates": {
+          "age_at_least_48h": true,
+          "carrier_delayed": true,
+          "cutoff_timezone_known": true,
+          "event_timezones_known": true,
+          "events_not_after_cutoff": true,
+          "events_not_after_last": false,
+          "last_not_future": true,
+          "last_present": true,
+          "last_timezone_known": true,
+          "no_conflicting_events": true,
+          "no_policy_exception": true,
+          "no_terminal_event": true,
+          "order_in_transit": true,
+          "shipment_identity_matches": true
+        },
+        "threshold_us": 172800000000
+      },
+      "runner_identity_join_matches": true
+    },
+    {
+      "case_id": "87cd4310e9b6a25f",
+      "initial_action_matches": true,
+      "initial_integer_age_matches": true,
+      "oracle": {
+        "age_minus_threshold_us": 1800000000,
+        "age_us": 174600000000,
+        "as_of": {
+          "aware": true,
+          "input": "2049-08-11T12:30:00Z",
+          "local_us": 2512297800000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2512297800000000
+        },
+        "events": [
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "POCKETS_LOADED",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2049-08-07T02:17:39Z",
+              "local_us": 2511915459000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2511915459000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "SUMMARY_WAIT",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2049-08-09T12:00:00Z",
+              "local_us": 2512123200000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2512123200000000
+            }
+          },
+          {
+            "after_as_of": true,
+            "after_last": true,
+            "code": "FUTURE_IMPORT",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2049-08-11T12:30:00.000001Z",
+              "local_us": 2512297800000001,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2512297800000001
+            }
+          }
+        ],
+        "independent_action": "manual_review",
+        "last_event": {
+          "aware": true,
+          "input": "2049-08-09T12:00:00Z",
+          "local_us": 2512123200000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2512123200000000
+        },
+        "predicates": {
+          "age_at_least_48h": true,
+          "carrier_delayed": true,
+          "cutoff_timezone_known": true,
+          "event_timezones_known": true,
+          "events_not_after_cutoff": false,
+          "events_not_after_last": false,
+          "last_not_future": true,
+          "last_present": true,
+          "last_timezone_known": true,
+          "no_conflicting_events": true,
+          "no_policy_exception": true,
+          "no_terminal_event": true,
+          "order_in_transit": true,
+          "shipment_identity_matches": true
+        },
+        "threshold_us": 172800000000
+      },
+      "runner_identity_join_matches": true
+    },
+    {
+      "case_id": "d9506e14c82b3fa7",
+      "initial_action_matches": true,
+      "initial_integer_age_matches": true,
+      "oracle": {
+        "age_minus_threshold_us": null,
+        "age_us": null,
+        "as_of": {
+          "aware": true,
+          "input": "2050-09-08T13:20:00Z",
+          "local_us": 2546256000000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2546256000000000
+        },
+        "events": [
+          {
+            "after_as_of": false,
+            "after_last": null,
+            "code": "WASHERS_ACCEPTED",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2050-09-03T20:49:05Z",
+              "local_us": 2545850945000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2545850945000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": null,
+            "code": "EXPORT_ROW",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2050-09-05T08:23:44Z",
+              "local_us": 2545979024000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2545979024000000
+            }
+          }
+        ],
+        "independent_action": "manual_review",
+        "last_event": {
+          "aware": false,
+          "input": "2050-09-06T10:00:00",
+          "local_us": 2546071200000000,
+          "present": true,
+          "utc_us": null
+        },
+        "predicates": {
+          "age_at_least_48h": false,
+          "carrier_delayed": true,
+          "cutoff_timezone_known": true,
+          "event_timezones_known": true,
+          "events_not_after_cutoff": true,
+          "events_not_after_last": false,
+          "last_not_future": false,
+          "last_present": true,
+          "last_timezone_known": false,
+          "no_conflicting_events": true,
+          "no_policy_exception": true,
+          "no_terminal_event": true,
+          "order_in_transit": true,
+          "shipment_identity_matches": true
+        },
+        "threshold_us": 172800000000
+      },
+      "runner_identity_join_matches": true
+    },
+    {
+      "case_id": "308a5c76e2b941fd",
+      "initial_action_matches": true,
+      "initial_integer_age_matches": true,
+      "oracle": {
+        "age_minus_threshold_us": 15420000000,
+        "age_us": 188220000000,
+        "as_of": {
+          "aware": true,
+          "input": "2051-10-19T08:17:00Z",
+          "local_us": 2581316220000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2581316220000000
+        },
+        "events": [
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "RAILS_ACCEPTED",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2051-10-14T16:37:42Z",
+              "local_us": 2580914262000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2580914262000000
+            }
+          },
+          {
+            "after_as_of": null,
+            "after_last": null,
+            "code": "UNZONED_HANDOFF",
+            "terminal": false,
+            "timestamp": {
+              "aware": false,
+              "input": "2051-10-16T03:00:00",
+              "local_us": 2581038000000000,
+              "present": true,
+              "utc_us": null
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "ZONED_SUMMARY",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2051-10-17T04:00:00Z",
+              "local_us": 2581128000000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2581128000000000
+            }
+          }
+        ],
+        "independent_action": "manual_review",
+        "last_event": {
+          "aware": true,
+          "input": "2051-10-17T04:00:00Z",
+          "local_us": 2581128000000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2581128000000000
+        },
+        "predicates": {
+          "age_at_least_48h": true,
+          "carrier_delayed": true,
+          "cutoff_timezone_known": true,
+          "event_timezones_known": false,
+          "events_not_after_cutoff": false,
+          "events_not_after_last": false,
+          "last_not_future": true,
+          "last_present": true,
+          "last_timezone_known": true,
+          "no_conflicting_events": true,
+          "no_policy_exception": true,
+          "no_terminal_event": true,
+          "order_in_transit": true,
+          "shipment_identity_matches": true
+        },
+        "threshold_us": 172800000000
+      },
+      "runner_identity_join_matches": true
+    },
+    {
+      "case_id": "6f1429acb57d08e3",
+      "initial_action_matches": true,
+      "initial_integer_age_matches": true,
+      "oracle": {
+        "age_minus_threshold_us": 119535000000,
+        "age_us": 292335000000,
+        "as_of": {
+          "aware": true,
+          "input": "2052-11-12T09:12:15Z",
+          "local_us": 2615015535000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2615015535000000
+        },
+        "events": [
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "TRAY_RECEIPT",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2052-11-06T04:56:31Z",
+              "local_us": 2614481791000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2614481791000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "BAY_EAST",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2052-11-08T12:00:00Z",
+              "local_us": 2614680000000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2614680000000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "BAY_WEST",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2052-11-08T12:00:00Z",
+              "local_us": 2614680000000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2614680000000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "CONFLICT_RETAINED",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2052-11-09T00:00:00Z",
+              "local_us": 2614723200000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2614723200000000
+            }
+          }
+        ],
+        "independent_action": "manual_review",
+        "last_event": {
+          "aware": true,
+          "input": "2052-11-09T00:00:00Z",
+          "local_us": 2614723200000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2614723200000000
+        },
+        "predicates": {
+          "age_at_least_48h": true,
+          "carrier_delayed": true,
+          "cutoff_timezone_known": true,
+          "event_timezones_known": true,
+          "events_not_after_cutoff": true,
+          "events_not_after_last": true,
+          "last_not_future": true,
+          "last_present": true,
+          "last_timezone_known": true,
+          "no_conflicting_events": false,
+          "no_policy_exception": true,
+          "no_terminal_event": true,
+          "order_in_transit": true,
+          "shipment_identity_matches": true
+        },
+        "threshold_us": 172800000000
+      },
+      "runner_identity_join_matches": true
+    },
+    {
+      "case_id": "ae3758d109c24bf6",
+      "initial_action_matches": true,
+      "initial_integer_age_matches": true,
+      "oracle": {
+        "age_minus_threshold_us": 180002000000,
+        "age_us": 352802000000,
+        "as_of": {
+          "aware": true,
+          "input": "2053-12-18T02:00:02Z",
+          "local_us": 2649636002000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2649636002000000
+        },
+        "events": [
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "COMBS_SORTED",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2053-12-10T15:13:28Z",
+              "local_us": 2648992408000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2648992408000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "TRAILER_DEPARTURE",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2053-12-12T07:46:53Z",
+              "local_us": 2649138413000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2649138413000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "ROUTE_CONTINUES",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2053-12-14T00:00:00Z",
+              "local_us": 2649283200000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2649283200000000
+            }
+          }
+        ],
+        "independent_action": "manual_review",
+        "last_event": {
+          "aware": true,
+          "input": "2053-12-14T00:00:00Z",
+          "local_us": 2649283200000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2649283200000000
+        },
+        "predicates": {
+          "age_at_least_48h": true,
+          "carrier_delayed": false,
+          "cutoff_timezone_known": true,
+          "event_timezones_known": true,
+          "events_not_after_cutoff": true,
+          "events_not_after_last": true,
+          "last_not_future": true,
+          "last_present": true,
+          "last_timezone_known": true,
+          "no_conflicting_events": true,
+          "no_policy_exception": true,
+          "no_terminal_event": true,
+          "order_in_transit": true,
+          "shipment_identity_matches": true
+        },
+        "threshold_us": 172800000000
+      },
+      "runner_identity_join_matches": true
+    },
+    {
+      "case_id": "4b90df673e1a825c",
+      "initial_action_matches": true,
+      "initial_integer_age_matches": true,
+      "oracle": {
+        "age_minus_threshold_us": 172861000000,
+        "age_us": 345661000000,
+        "as_of": {
+          "aware": true,
+          "input": "2054-01-15T17:01:01Z",
+          "local_us": 2652109261000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2652109261000000
+        },
+        "events": [
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "HINGES_ACCEPTED",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2054-01-07T23:15:34Z",
+              "local_us": 2651440534000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2651440534000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "ROUTE_SCAN",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2054-01-10T09:08:12Z",
+              "local_us": 2651648892000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2651648892000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "SUMMARY_IMPORT",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2054-01-11T17:00:00Z",
+              "local_us": 2651763600000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2651763600000000
+            }
+          }
+        ],
+        "independent_action": "manual_review",
+        "last_event": {
+          "aware": true,
+          "input": "2054-01-11T17:00:00Z",
+          "local_us": 2651763600000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2651763600000000
+        },
+        "predicates": {
+          "age_at_least_48h": true,
+          "carrier_delayed": false,
+          "cutoff_timezone_known": true,
+          "event_timezones_known": true,
+          "events_not_after_cutoff": true,
+          "events_not_after_last": true,
+          "last_not_future": true,
+          "last_present": true,
+          "last_timezone_known": true,
+          "no_conflicting_events": true,
+          "no_policy_exception": true,
+          "no_terminal_event": true,
+          "order_in_transit": true,
+          "shipment_identity_matches": true
+        },
+        "threshold_us": 172800000000
+      },
+      "runner_identity_join_matches": true
+    },
+    {
+      "case_id": "e6c8214a7f30b95d",
+      "initial_action_matches": true,
+      "initial_integer_age_matches": true,
+      "oracle": {
+        "age_minus_threshold_us": 48180000000,
+        "age_us": 220980000000,
+        "as_of": {
+          "aware": true,
+          "input": "2055-02-26T13:23:00Z",
+          "local_us": 2687260980000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2687260980000000
+        },
+        "events": [
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "TABS_REGISTERED",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2055-02-20T05:22:14Z",
+              "local_us": 2686713734000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2686713734000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "ALLOCATION_CHECK",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2055-02-22T19:14:36Z",
+              "local_us": 2686936476000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2686936476000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "CARRIER_WAIT",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2055-02-24T00:00:00Z",
+              "local_us": 2687040000000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2687040000000000
+            }
+          }
+        ],
+        "independent_action": "manual_review",
+        "last_event": {
+          "aware": true,
+          "input": "2055-02-24T00:00:00Z",
+          "local_us": 2687040000000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2687040000000000
+        },
+        "predicates": {
+          "age_at_least_48h": true,
+          "carrier_delayed": true,
+          "cutoff_timezone_known": true,
+          "event_timezones_known": true,
+          "events_not_after_cutoff": true,
+          "events_not_after_last": true,
+          "last_not_future": true,
+          "last_present": true,
+          "last_timezone_known": true,
+          "no_conflicting_events": true,
+          "no_policy_exception": false,
+          "no_terminal_event": true,
+          "order_in_transit": true,
+          "shipment_identity_matches": true
+        },
+        "threshold_us": 172800000000
+      },
+      "runner_identity_join_matches": true
+    },
+    {
+      "case_id": "59a41d8be730cf26",
+      "initial_action_matches": true,
+      "initial_integer_age_matches": true,
+      "oracle": {
+        "age_minus_threshold_us": 22140000000,
+        "age_us": 194940000000,
+        "as_of": {
+          "aware": true,
+          "input": "2056-03-16T18:09:00Z",
+          "local_us": 2720455740000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2720455740000000
+        },
+        "events": [
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "SPACERS_RECEIVED",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2056-03-11T10:54:07Z",
+              "local_us": 2719997647000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2719997647000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "REFERENCE_AUDIT",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2056-03-13T02:31:48Z",
+              "local_us": 2720140308000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2720140308000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "UNMATCHED_SUMMARY",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2056-03-14T12:00:00Z",
+              "local_us": 2720260800000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2720260800000000
+            }
+          }
+        ],
+        "independent_action": "manual_review",
+        "last_event": {
+          "aware": true,
+          "input": "2056-03-14T12:00:00Z",
+          "local_us": 2720260800000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2720260800000000
+        },
+        "predicates": {
+          "age_at_least_48h": true,
+          "carrier_delayed": true,
+          "cutoff_timezone_known": true,
+          "event_timezones_known": true,
+          "events_not_after_cutoff": true,
+          "events_not_after_last": true,
+          "last_not_future": true,
+          "last_present": true,
+          "last_timezone_known": true,
+          "no_conflicting_events": true,
+          "no_policy_exception": true,
+          "no_terminal_event": true,
+          "order_in_transit": true,
+          "shipment_identity_matches": false
+        },
+        "threshold_us": 172800000000
+      },
+      "runner_identity_join_matches": false
+    },
+    {
+      "case_id": "c21f649da85730be",
+      "initial_action_matches": true,
+      "initial_integer_age_matches": true,
+      "oracle": {
+        "age_minus_threshold_us": 173401000000,
+        "age_us": 346201000000,
+        "as_of": {
+          "aware": true,
+          "input": "2057-04-11T00:10:01Z",
+          "local_us": 2754173401000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2754173401000000
+        },
+        "events": [
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "LAST_DESK_CHECK",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2057-04-07T00:00:00Z",
+              "local_us": 2753827200000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2753827200000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "INITIAL_STRIP_RECEIPT",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2057-04-03T13:17:29Z",
+              "local_us": 2753529449000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2753529449000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "INTERMEDIATE_TRANSFER",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2057-04-05T09:36:52Z",
+              "local_us": 2753689012000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2753689012000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "PRELAST_BAY_COUNT",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2057-04-06T21:48:06Z",
+              "local_us": 2753819286000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2753819286000000
+            }
+          }
+        ],
+        "independent_action": "open_investigation",
+        "last_event": {
+          "aware": true,
+          "input": "2057-04-07T00:00:00Z",
+          "local_us": 2753827200000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2753827200000000
+        },
+        "predicates": {
+          "age_at_least_48h": true,
+          "carrier_delayed": true,
+          "cutoff_timezone_known": true,
+          "event_timezones_known": true,
+          "events_not_after_cutoff": true,
+          "events_not_after_last": true,
+          "last_not_future": true,
+          "last_present": true,
+          "last_timezone_known": true,
+          "no_conflicting_events": true,
+          "no_policy_exception": true,
+          "no_terminal_event": true,
+          "order_in_transit": true,
+          "shipment_identity_matches": true
+        },
+        "threshold_us": 172800000000
+      },
+      "runner_identity_join_matches": true
+    },
+    {
+      "case_id": "7a03be9d4628fc15",
+      "initial_action_matches": true,
+      "initial_integer_age_matches": true,
+      "oracle": {
+        "age_minus_threshold_us": 75733000000,
+        "age_us": 248533000000,
+        "as_of": {
+          "aware": true,
+          "input": "2058-05-20T21:02:13Z",
+          "local_us": 2789154133000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2789154133000000
+        },
+        "events": [
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "LINEN_WRAP_ACCEPTED",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2058-05-14T17:31:08Z",
+              "local_us": 2788623068000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2788623068000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "ROUTE_CAPACITY_WAIT",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2058-05-17T02:53:41Z",
+              "local_us": 2788829621000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2788829621000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "WRAP_HOLD",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2058-05-18T00:00:00Z",
+              "local_us": 2788905600000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2788905600000000
+            }
+          }
+        ],
+        "independent_action": "open_investigation",
+        "last_event": {
+          "aware": true,
+          "input": "2058-05-18T00:00:00Z",
+          "local_us": 2788905600000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2788905600000000
+        },
+        "predicates": {
+          "age_at_least_48h": true,
+          "carrier_delayed": true,
+          "cutoff_timezone_known": true,
+          "event_timezones_known": true,
+          "events_not_after_cutoff": true,
+          "events_not_after_last": true,
+          "last_not_future": true,
+          "last_present": true,
+          "last_timezone_known": true,
+          "no_conflicting_events": true,
+          "no_policy_exception": true,
+          "no_terminal_event": true,
+          "order_in_transit": true,
+          "shipment_identity_matches": true
+        },
+        "threshold_us": 172800000000
+      },
+      "runner_identity_join_matches": true
+    },
+    {
+      "case_id": "d42ac8e1630f795b",
+      "initial_action_matches": true,
+      "initial_integer_age_matches": true,
+      "oracle": {
+        "age_minus_threshold_us": -2,
+        "age_us": 172799999998,
+        "as_of": {
+          "aware": true,
+          "input": "2059-06-14T00:00:00Z",
+          "local_us": 2822774400000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2822774400000000
+        },
+        "events": [
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "WINDOWS_INTAKE",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2059-06-09T04:28:16Z",
+              "local_us": 2822358496000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2822358496000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "UNVERIFIED_ATTACHMENT",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2059-06-11T22:19:37Z",
+              "local_us": 2822595577000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2822595577000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "PRECISION_SCAN",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2059-06-12T00:00:00.000002Z",
+              "local_us": 2822601600000002,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2822601600000002
+            }
+          }
+        ],
+        "independent_action": "manual_review",
+        "last_event": {
+          "aware": true,
+          "input": "2059-06-12T00:00:00.000002Z",
+          "local_us": 2822601600000002,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2822601600000002
+        },
+        "predicates": {
+          "age_at_least_48h": false,
+          "carrier_delayed": true,
+          "cutoff_timezone_known": true,
+          "event_timezones_known": true,
+          "events_not_after_cutoff": true,
+          "events_not_after_last": true,
+          "last_not_future": true,
+          "last_present": true,
+          "last_timezone_known": true,
+          "no_conflicting_events": true,
+          "no_policy_exception": true,
+          "no_terminal_event": true,
+          "order_in_transit": true,
+          "shipment_identity_matches": true
+        },
+        "threshold_us": 172800000000
+      },
+      "runner_identity_join_matches": true
+    },
+    {
+      "case_id": "18eb73c5a9402fd6",
+      "initial_action_matches": true,
+      "initial_integer_age_matches": true,
+      "oracle": {
+        "age_minus_threshold_us": 64983000000,
+        "age_us": 237783000000,
+        "as_of": {
+          "aware": true,
+          "input": "2060-07-19T06:03:03Z",
+          "local_us": 2857442583000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2857442583000000
+        },
+        "events": [
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "GAUGE_CARDS_ACCEPTED",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2060-07-12T08:59:46Z",
+              "local_us": 2856848386000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2856848386000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "HANDOFF_RECORDED",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2060-07-15T18:26:51Z",
+              "local_us": 2857141611000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2857141611000000
+            }
+          },
+          {
+            "after_as_of": false,
+            "after_last": false,
+            "code": "GAUGE_CARD_WAIT",
+            "terminal": false,
+            "timestamp": {
+              "aware": true,
+              "input": "2060-07-16T12:00:00Z",
+              "local_us": 2857204800000000,
+              "offset_minutes": 0,
+              "present": true,
+              "utc_us": 2857204800000000
+            }
+          }
+        ],
+        "independent_action": "open_investigation",
+        "last_event": {
+          "aware": true,
+          "input": "2060-07-16T12:00:00Z",
+          "local_us": 2857204800000000,
+          "offset_minutes": 0,
+          "present": true,
+          "utc_us": 2857204800000000
+        },
+        "predicates": {
+          "age_at_least_48h": true,
+          "carrier_delayed": true,
+          "cutoff_timezone_known": true,
+          "event_timezones_known": true,
+          "events_not_after_cutoff": true,
+          "events_not_after_last": true,
+          "last_not_future": true,
+          "last_present": true,
+          "last_timezone_known": true,
+          "no_conflicting_events": true,
+          "no_policy_exception": true,
+          "no_terminal_event": true,
+          "order_in_transit": true,
+          "shipment_identity_matches": true
+        },
+        "threshold_us": 172800000000
+      },
+      "runner_identity_join_matches": true
+    }
+  ],
+  "initial_labels_sha256": "a77f538b6d430dec4499da1d05a37fea9b62e3531b56f44db8b46d310ffa9e98",
+  "runner_identity_join_mismatch_count": 1,
+  "stage": "Independent integer UTC/temporal arithmetic before typed imports",
+  "typed_imports_used": false
+}

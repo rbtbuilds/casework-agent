@@ -1,0 +1,42 @@
+{
+  "as_of": "2037-08-23T18:09:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional silicone corner guards were counted twice at dispatch and packed in a blue tote.",
+    "order_id": "o-hg28c9",
+    "policy_exception": null,
+    "shipment_id": "s-4ua16p",
+    "status": "in_transit",
+    "version": 3
+  },
+  "scenario_id": "d1a486e70c5932bf",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2037-08-17T06:32:45Z",
+        "code": "TOTE_CLOSED",
+        "description": "Tote closed after count."
+      },
+      {
+        "at": "2037-08-18T21:19:07Z",
+        "code": "CROSSDOCK_ENTRY",
+        "description": "Crossdock entry confirmed."
+      },
+      {
+        "at": "2037-08-20T08:13:59Z",
+        "code": "SORT_EXCEPTION",
+        "description": "Sorting capacity exception recorded."
+      },
+      {
+        "at": "2037-08-20T18:00:00Z",
+        "code": "TOTE_WAITING",
+        "description": "Tote still awaiting a departure allocation."
+      }
+    ],
+    "last_event_at": "2037-08-20T18:00:00Z",
+    "shipment_id": "s-4ua16p",
+    "status": "delayed",
+    "version": 15
+  }
+}

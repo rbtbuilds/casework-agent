@@ -1,0 +1,43 @@
+{
+  "authority": "Existing independent integer UTC/temporal oracles and original AI-authored labels remain authoritative; the current implementation was only compared against them.",
+  "case_ids_inputs_oracle_answers_in_report": false,
+  "counts": {
+    "cases_checked": 30,
+    "exact_temporal_comparisons": 384,
+    "manifest_contracts_passed": 1,
+    "policy_action_agreements": 30,
+    "typed_input_contracts_passed": 30
+  },
+  "current_policy_hash": "39ba01ac808a9d7abaf10f24e800748b37c2afd1e9fd831d2b0eff6992cb882f",
+  "disagreement_and_error_counts": {
+    "exact_temporal_disagreements": 0
+  },
+  "manifest_sha256": "0d298900fc37f758e9ba744d03b4e1d8b429c7a5151a24778fbbcafed2c896f5",
+  "manual_oracles_sha256": "87f2856ea0615259febf7823fd74dd00c93717fa111471c81115db909e929758",
+  "model_inference": false,
+  "model_lease": false,
+  "original_frozen_bytes_unchanged": true,
+  "original_frozen_hashes_verified_before_and_after": 65,
+  "original_policy_reference_commit": "d8956e035af8f30f4255a9e39a0182048105dfea",
+  "original_sha256sums_sha256": "505d71fc65a76361c1c5d73a2891a117c73a41c905a83a28110ec6283e5cdc73",
+  "python": "3.12.14",
+  "quality_claim": "None; compatibility and integrity verification only.",
+  "reference_commit": "03542d5946a4ab8541221e1c549131c6fc07f395",
+  "reference_imports": {
+    "casework_agent.contracts": "reference/src/casework_agent/contracts.py",
+    "casework_agent.hashing": "reference/src/casework_agent/hashing.py",
+    "casework_agent.policy": "reference/src/casework_agent/policy.py",
+    "casework_agent.temporal": "reference/src/casework_agent/temporal.py",
+    "eval.contracts": "reference/eval/contracts.py"
+  },
+  "scope": "Additional compatibility of already sealed labels and independent integer temporal oracles with policy/contracts at the requested published commit. No relabeling or frozen-input edits.",
+  "seal_status": "Challenge remains sealed pending explicit implementation-freeze announcement.",
+  "services": false,
+  "source_hashes_sha256": "2de99b6d0cc6daac082fbd4238de2381f172d61ba422528cfce3e0c1f7150cb7",
+  "status": "passed",
+  "strict_typecheck": {
+    "errors": 0,
+    "files_analyzed": 1,
+    "warnings": 0
+  }
+}

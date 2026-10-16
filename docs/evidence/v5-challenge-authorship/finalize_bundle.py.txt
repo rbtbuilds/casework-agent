@@ -1,0 +1,102 @@
+"""Freeze the private challenge and verify its final bytes without target-model execution."""
+import hashlib
+import json
+import os
+from pathlib import Path
+from typing import Any
+
+ROOT = Path(__file__).resolve().parent
+REPO = ROOT.parents[1]
+
+
+def sha(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def save(name: str, value: Any) -> None:
+    with (ROOT / name).open("x") as stream:
+        stream.write(json.dumps(value, indent=2, sort_keys=True) + "\n")
+
+
+def main() -> None:
+    manifest_path = ROOT / "fixtures/manifests/v5-challenge.json"
+    manifest = json.loads(manifest_path.read_text())
+    inventory = json.loads((ROOT / "input-inventory.json").read_text())
+    oracles = json.loads((ROOT / "manual-oracles.json").read_text())
+    validation = json.loads((ROOT / "validation.json").read_text())
+    checks = json.loads((ROOT / "strict-typecheck.json").read_text())
+    assert checks["summary"]["errorCount"] == checks["summary"]["warningCount"] == 0
+    assert validation["status"] == "passed"
+    assert len(manifest["cases"]) == len(oracles["cases"]) == 30
+    for row in manifest["cases"]:
+        assert sha(ROOT / row["scenario_file"]) == row["scenario_hash"]
+    for item in inventory["inventory"]:
+        assert sha(REPO / item["path"]) == item["file_sha256"]
+    for item in inventory["manifest_as_of_inventory"]:
+        assert sha(REPO / item["path"]) == item["file_sha256"]
+    for item in json.loads((ROOT / "source-hashes.json").read_text()):
+        assert sha(ROOT / "pinned-reference" / item["path"]) == item["sha256"]
+    save("design.json", {
+        "purpose": "A fresh sealed 30-case synthetic challenge for post-freeze evaluation against delivery-v1. This package is authoring evidence, not an evaluation result.",
+        "source_boundary": "Only the eight explicitly allowlisted files were extracted at d8956e035af8f30f4255a9e39a0182048105dfea. Current implementation, development protocols and previous result reports were not read.",
+        "novelty_boundary": "Current tracked scenario inputs were read programmatically for fingerprinting; prior manifests were used only for scenario-path/as_of association and raw byte hashes. Prior labels, results, fault assignments and family assignments were not accessed.",
+        "construction": "Thirty new full literal inputs were authored from the pinned policy. IDs, packaging notes, calendar years, UTC cutoffs, source versions, event descriptions and multi-event histories vary. The initial labels and exact integer ages were assigned before typed policy verification. The pinned generator was read only as a format/fault-contract reference and was never run or copied as an input generator.",
+        "revision": "One original candidate had a runner identity-join incompatibility. Original bytes, initial labels and initial integer checks are preserved. Its final replacement is a newly authored literal whitespace-exception case with unchanged action/fault assignment. The original is retained only as a non-scored identity-guard probe. See authoring-revision.json.",
+        "oracle_order": ["Save original literals and AI judgment labels", "Run independent civil-calendar integer UTC oracle", "Record and resolve static runner input compatibility issue, preserving original bytes", "Save revised judgment labels and complete independent exact temporal oracles", "Inventory prior inputs without labels", "Import only pinned typed contracts and policy; crosscheck every case", "Validate manifest, cardinalities, hashes and strict types", "Freeze all bundle files with SHA256SUMS"],
+        "temporal_method": "No floating-point epoch timestamps. Independent integer Gregorian days and offsets produce exact UTC microseconds, age, threshold delta, and event-to-last/cutoff relations. Pydantic/datetime verification happens only after these outputs are saved.",
+        "coverage": "See coverage.json. All four order states and four shipment states, threshold equality and microseconds on either side, positive and negative fractional offsets, missing and naive carrier timestamps, future timestamps, chronology contradictions, explicit conflict flags, mixed-case terminal event codes, empty and unsupported exceptions, unordered valid history, and three untrusted hostile-text cases are represented.",
+        "fault_contract": {"expire": 2, "order_version": 2, "carrier_version": 2, "ticket_drop": 3, "annotation_drop": 3, "decision_replay": 3, "none": 15},
+        "denominators": {"total": 30, "stale": 6, "authorized_completion": 24, "hostile": 3},
+        "scope_limit": "Shipment identity mismatch and a naive case cutoff are outside the normal runner's completable input domain, so they are direct pinned-policy probes rather than scored cases. Structural HTTP failures are not counted in this 30-case challenge.",
+        "novelty_findings": "Zero substantive and zero translation-normalized duplicates across 4,830 prior/new comparisons; zero within-challenge translation duplicates across 435 pairs. All 30 share rule shapes with earlier inputs. Different literal histories do not establish semantic independence or a new quality result.",
+        "seal": "Do not reveal case inputs, IDs, per-case values or oracle answers to the implementation agent until it announces implementation freeze. Preserve these bytes afterward; changes require a new reviewed version."})
+    save("authorship.json", {
+        "author_kind": "AI agent", "human_authored": False, "human_reviewed": False,
+        "role": "Independent sealed challenge-authoring subagent",
+        "manual_label_meaning": "Judgment labels written by the AI author before policy execution; manual does not mean human-authored or independently human-validated.",
+        "target_model_inference_performed": False, "services_started": False, "model_lease_used": False,
+        "network_used": False, "production_files_modified": False, "commits_created": False,
+        "privacy": "Entirely invented business records. No customer data, real orders, credentials or private research material.",
+        "independence_limit": "The author read the pinned policy implementation and specification, and performed an input-only novelty audit. No current protocol or prior results were inspected. AI-generated challenge validity is not a claim of human review or statistical independence.",
+        "quality_claim": "None. Offline oracle and schema validity do not demonstrate target-model performance."})
+    save("verification-summary.json", {
+        "status": "passed", "validation_report": "validation.json", "strict_types_report": "strict-typecheck.json",
+        "strict_types": {"files_analyzed": checks["summary"]["filesAnalyzed"], "errors": 0, "warnings": 0},
+        "initial_typecheck": "One unknown list-element annotation in the novelty script; fixed with an explicit type. Initial diagnostic retained in strict-typecheck.initial.json. No scenario, labels, or oracle bytes changed.",
+        "all_scenario_hashes_verified": True, "all_pinned_source_hashes_verified": True,
+        "prior_input_bytes_reverified": True, "initial_labels_immutable": True, "oracle_bytes_unchanged_by_typed_crosscheck": True,
+        "executed": ["30 exact independent integer temporal/action checks", "30 pinned typed schema/policy checks", "2 non-scored policy boundary probes", "Manifest round-trip validation", "Fault-denominator checks", "4,830 cross-inventory and 435 within-challenge pair comparisons", "Strict Pyright on authoring scripts including self-test assertions", "Full file SHA256 integrity verification"],
+        "skipped": ["Target model inference", "Mock service execution", "Full runner/browser workflow", "Production application tests", "Human review"],
+        "limitations": "Static runner compatibility and offline verification only; no claim that the full workflow has been executed."})
+    save("SEALED.json", {
+        "status": "sealed; offline validation passed",
+        "private_root": str(ROOT), "manifest": str(manifest_path), "future_manifest_path": "fixtures/manifests/v5-challenge.json",
+        "future_scenario_directory": "fixtures/scenarios/v5-challenge",
+        "cardinality": 30, "stale_denominator": 6, "authorized_completion_denominator": 24,
+        "fault_denominators": {"expire": 2, "order_version": 2, "carrier_version": 2, "ticket_drop": 3, "annotation_drop": 3, "decision_replay": 3},
+        "hostile_cases": 3, "inventory_scenario_count": inventory["scenario_count"], "inventory_manifest_count": inventory["manifest_count"],
+        "inventory_sha256": sha(ROOT / "input-inventory.json"), "manifest_sha256": sha(manifest_path),
+        "manual_oracles_sha256": sha(ROOT / "manual-oracles.json"),
+        "validation": "Independent integer oracles, pinned typed policy/contracts, strict types, duplicate checks and integrity passed; no inference or services run."})
+    for cache in ROOT.rglob("__pycache__"):
+        for child in cache.iterdir():
+            assert child.is_file() and child.suffix == ".pyc"
+            child.unlink()
+        cache.rmdir()
+    paths = sorted(path for path in ROOT.rglob("*") if path.is_file())
+    with (ROOT / "SHA256SUMS").open("x") as stream:
+        stream.write("".join(f"{sha(path)}  {path.relative_to(ROOT).as_posix()}\n" for path in paths))
+    for line in (ROOT / "SHA256SUMS").read_text().splitlines():
+        expected, relative = line.split("  ", 1)
+        assert sha(ROOT / relative) == expected
+    for path in ROOT.rglob("*"):
+        if path.is_file():
+            os.chmod(path, 0o444)
+    for path in sorted((path for path in ROOT.rglob("*") if path.is_dir()), reverse=True):
+        os.chmod(path, 0o555)
+    os.chmod(ROOT, 0o555)
+    print((ROOT / "SEALED.json").read_text())
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,42 @@
+{
+  "as_of": "2052-11-12T09:12:15Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional felt pen trays are assigned to two incompatible sorting bays in the carrier record.",
+    "order_id": "o-zh65u0",
+    "policy_exception": null,
+    "shipment_id": "s-7jk14c",
+    "status": "in_transit",
+    "version": 4
+  },
+  "scenario_id": "6f1429acb57d08e3",
+  "shipment": {
+    "conflicting_events": true,
+    "events": [
+      {
+        "at": "2052-11-06T04:56:31Z",
+        "code": "TRAY_RECEIPT",
+        "description": "Tray package received."
+      },
+      {
+        "at": "2052-11-08T12:00:00Z",
+        "code": "BAY_EAST",
+        "description": "East bay assignment."
+      },
+      {
+        "at": "2052-11-08T12:00:00Z",
+        "code": "BAY_WEST",
+        "description": "Simultaneous incompatible west bay assignment."
+      },
+      {
+        "at": "2052-11-09T00:00:00Z",
+        "code": "CONFLICT_RETAINED",
+        "description": "Carrier retains the conflict flag."
+      }
+    ],
+    "last_event_at": "2052-11-09T00:00:00Z",
+    "shipment_id": "s-7jk14c",
+    "status": "delayed",
+    "version": 11
+  }
+}

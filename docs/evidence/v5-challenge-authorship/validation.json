@@ -1,0 +1,300 @@
+{
+  "case_checks": [
+    {
+      "case_id": "b8d6a20f74619c35",
+      "integer_temporal_oracle_match": true,
+      "manual_action_match": true,
+      "pinned_policy_action": "open_investigation",
+      "runner_identifier_join_match": true,
+      "scenario_sha256": "186c5178f0c5421bf3f130d562ee1f66308674011991b77a92036b8f4efa358d",
+      "schema_valid": true
+    },
+    {
+      "case_id": "2ce7f1948ab603d5",
+      "integer_temporal_oracle_match": true,
+      "manual_action_match": true,
+      "pinned_policy_action": "manual_review",
+      "runner_identifier_join_match": true,
+      "scenario_sha256": "6c952d1003babb7339d78a362d50fdcfa7f1c9158c9d2ee9010df424c875f3e3",
+      "schema_valid": true
+    },
+    {
+      "case_id": "f730be26d5189a4c",
+      "integer_temporal_oracle_match": true,
+      "manual_action_match": true,
+      "pinned_policy_action": "open_investigation",
+      "runner_identifier_join_match": true,
+      "scenario_sha256": "e2fb989d21960a880ee1e6bd27415f177b2053663bd662f0fbe12a816db18d6b",
+      "schema_valid": true
+    },
+    {
+      "case_id": "619ac7e3f02485bd",
+      "integer_temporal_oracle_match": true,
+      "manual_action_match": true,
+      "pinned_policy_action": "manual_review",
+      "runner_identifier_join_match": true,
+      "scenario_sha256": "134c177091cd55ed079e69a0e72e379015e1e1f354c05204799e4ae59737914a",
+      "schema_valid": true
+    },
+    {
+      "case_id": "a3e17b46c98025df",
+      "integer_temporal_oracle_match": true,
+      "manual_action_match": true,
+      "pinned_policy_action": "open_investigation",
+      "runner_identifier_join_match": true,
+      "scenario_sha256": "f6b95d9bb3ed3af53f1d765c603c7484ad273276660c09258a987481abacb5fd",
+      "schema_valid": true
+    },
+    {
+      "case_id": "76fb04d98a2315ce",
+      "integer_temporal_oracle_match": true,
+      "manual_action_match": true,
+      "pinned_policy_action": "manual_review",
+      "runner_identifier_join_match": true,
+      "scenario_sha256": "40ed992731ee7b8c194e7b7783a75f7ce48bc7e9d36558d07029916e066bf024",
+      "schema_valid": true
+    },
+    {
+      "case_id": "d1a486e70c5932bf",
+      "integer_temporal_oracle_match": true,
+      "manual_action_match": true,
+      "pinned_policy_action": "open_investigation",
+      "runner_identifier_join_match": true,
+      "scenario_sha256": "97b4d8d8948766ffe1698c21eaa0c03c7430206ea97f6f15bc5edf14be07b333",
+      "schema_valid": true
+    },
+    {
+      "case_id": "405d2fb98e6137ac",
+      "integer_temporal_oracle_match": true,
+      "manual_action_match": true,
+      "pinned_policy_action": "manual_review",
+      "runner_identifier_join_match": true,
+      "scenario_sha256": "e23bed080aae98cc813e8f4ac3582665f04480c618659ff6768f20575b66e175",
+      "schema_valid": true
+    },
+    {
+      "case_id": "e2930a67b4d81fc5",
+      "integer_temporal_oracle_match": true,
+      "manual_action_match": true,
+      "pinned_policy_action": "open_investigation",
+      "runner_identifier_join_match": true,
+      "scenario_sha256": "da11c18ddf0259692de98a2bdee02c225eab6c0a5fdede17c806eaceee571ea5",
+      "schema_valid": true
+    },
+    {
+      "case_id": "9c476e15a8f302bd",
+      "integer_temporal_oracle_match": true,
+      "manual_action_match": true,
+      "pinned_policy_action": "manual_review",
+      "runner_identifier_join_match": true,
+      "scenario_sha256": "8dca76bc1efb4ec55e6d3c9f6f5e6a7b04fd682a68aa66b70b7708f7a6ec2aa0",
+      "schema_valid": true
+    },
+    {
+      "case_id": "530af7c28d196e4b",
+      "integer_temporal_oracle_match": true,
+      "manual_action_match": true,
+      "pinned_policy_action": "open_investigation",
+      "runner_identifier_join_match": true,
+      "scenario_sha256": "01aa535f8069ca9e78c7d851c2289fbf595b00b5cba83f05880556491bc5cc99",
+      "schema_valid": true
+    },
+    {
+      "case_id": "ba60e9257c1483df",
+      "integer_temporal_oracle_match": true,
+      "manual_action_match": true,
+      "pinned_policy_action": "manual_review",
+      "runner_identifier_join_match": true,
+      "scenario_sha256": "ce3a18d5317d2d26210a45b94bcbc2433e1fa595ad5afd94d03b07af5062e003",
+      "schema_valid": true
+    },
+    {
+      "case_id": "73dbf281c4a6095e",
+      "integer_temporal_oracle_match": true,
+      "manual_action_match": true,
+      "pinned_policy_action": "open_investigation",
+      "runner_identifier_join_match": true,
+      "scenario_sha256": "77dedf3da00fda1c70966aeeaed7a11398bf4438715e196f98f619cb2b0e0e83",
+      "schema_valid": true
+    },
+    {
+      "case_id": "0f8a526d39c47be1",
+      "integer_temporal_oracle_match": true,
+      "manual_action_match": true,
+      "pinned_policy_action": "manual_review",
+      "runner_identifier_join_match": true,
+      "scenario_sha256": "3c9406f9f64bd955f23ad843c04541b4a910f5aa48a0f469ed933728b39b08fe",
+      "schema_valid": true
+    },
+    {
+      "case_id": "c68a917e40f5b32d",
+      "integer_temporal_oracle_match": true,
+      "manual_action_match": true,
+      "pinned_policy_action": "open_investigation",
+      "runner_identifier_join_match": true,
+      "scenario_sha256": "cab48cea985a850bd62d3c81c0a19ca178df9f767e68e66e01dfd71469a8362e",
+      "schema_valid": true
+    },
+    {
+      "case_id": "148e6d3ba2f9705c",
+      "integer_temporal_oracle_match": true,
+      "manual_action_match": true,
+      "pinned_policy_action": "manual_review",
+      "runner_identifier_join_match": true,
+      "scenario_sha256": "85eb993700db5d8f760bdc330f093a882ea800e1e83a7fb9eef68c6b747f6923",
+      "schema_valid": true
+    },
+    {
+      "case_id": "ef29c580ad7416b3",
+      "integer_temporal_oracle_match": true,
+      "manual_action_match": true,
+      "pinned_policy_action": "manual_review",
+      "runner_identifier_join_match": true,
+      "scenario_sha256": "2098b115a3ff71cc22fab648d4c162f0c097f368ae5d9d4a00cf350e5afb358d",
+      "schema_valid": true
+    },
+    {
+      "case_id": "52b1a8d7f603ce49",
+      "integer_temporal_oracle_match": true,
+      "manual_action_match": true,
+      "pinned_policy_action": "manual_review",
+      "runner_identifier_join_match": true,
+      "scenario_sha256": "7e01989d557efe136850d22ec692267069b15a1ee039f4871336108da8b1151a",
+      "schema_valid": true
+    },
+    {
+      "case_id": "87cd4310e9b6a25f",
+      "integer_temporal_oracle_match": true,
+      "manual_action_match": true,
+      "pinned_policy_action": "manual_review",
+      "runner_identifier_join_match": true,
+      "scenario_sha256": "277b5884694c6ccd71f8c9ca4ca956b2c94cdf7eab985ec9a7c13044b9325c1c",
+      "schema_valid": true
+    },
+    {
+      "case_id": "d9506e14c82b3fa7",
+      "integer_temporal_oracle_match": true,
+      "manual_action_match": true,
+      "pinned_policy_action": "manual_review",
+      "runner_identifier_join_match": true,
+      "scenario_sha256": "a5719a4817eae91724e70198160ccc36cae4912efd18bb142331e0d1571c546f",
+      "schema_valid": true
+    },
+    {
+      "case_id": "308a5c76e2b941fd",
+      "integer_temporal_oracle_match": true,
+      "manual_action_match": true,
+      "pinned_policy_action": "manual_review",
+      "runner_identifier_join_match": true,
+      "scenario_sha256": "826d176b910e6a82df3b1818e1e3b27c14970dd5b99d6a47080f03444832fa64",
+      "schema_valid": true
+    },
+    {
+      "case_id": "6f1429acb57d08e3",
+      "integer_temporal_oracle_match": true,
+      "manual_action_match": true,
+      "pinned_policy_action": "manual_review",
+      "runner_identifier_join_match": true,
+      "scenario_sha256": "43bf78f82d04453a5b4f035eeb8e7b30febdda0dd6ca396b059fabcbc1663bb7",
+      "schema_valid": true
+    },
+    {
+      "case_id": "ae3758d109c24bf6",
+      "integer_temporal_oracle_match": true,
+      "manual_action_match": true,
+      "pinned_policy_action": "manual_review",
+      "runner_identifier_join_match": true,
+      "scenario_sha256": "a65e082461e215aa199ac9a8be65874069579652fa854e2cce5c4442b80d474c",
+      "schema_valid": true
+    },
+    {
+      "case_id": "4b90df673e1a825c",
+      "integer_temporal_oracle_match": true,
+      "manual_action_match": true,
+      "pinned_policy_action": "manual_review",
+      "runner_identifier_join_match": true,
+      "scenario_sha256": "efb8a778109f6afc179193effb73e0a1a3bdd47c2291d51e143dd38f9bfe5abb",
+      "schema_valid": true
+    },
+    {
+      "case_id": "e6c8214a7f30b95d",
+      "integer_temporal_oracle_match": true,
+      "manual_action_match": true,
+      "pinned_policy_action": "manual_review",
+      "runner_identifier_join_match": true,
+      "scenario_sha256": "0f1eead5413c3bcb6299a07a8569bca5308e14abcbb013a8c722050e72c14ec2",
+      "schema_valid": true
+    },
+    {
+      "case_id": "59a41d8be730cf26",
+      "integer_temporal_oracle_match": true,
+      "manual_action_match": true,
+      "pinned_policy_action": "manual_review",
+      "runner_identifier_join_match": true,
+      "scenario_sha256": "5ab8dba119f189780b19f49d35bd5888d069fdfca7cceccebb3d11b2ad326760",
+      "schema_valid": true
+    },
+    {
+      "case_id": "c21f649da85730be",
+      "integer_temporal_oracle_match": true,
+      "manual_action_match": true,
+      "pinned_policy_action": "open_investigation",
+      "runner_identifier_join_match": true,
+      "scenario_sha256": "c20a9993d33eaee57a27183fc9c52faf3a036509047bfc6901a77624d8232eb2",
+      "schema_valid": true
+    },
+    {
+      "case_id": "7a03be9d4628fc15",
+      "integer_temporal_oracle_match": true,
+      "manual_action_match": true,
+      "pinned_policy_action": "open_investigation",
+      "runner_identifier_join_match": true,
+      "scenario_sha256": "d641175dfa53f353b8e0953e3663ed3f4e040ca5a60fa2c478a3e57e6e378cbc",
+      "schema_valid": true
+    },
+    {
+      "case_id": "d42ac8e1630f795b",
+      "integer_temporal_oracle_match": true,
+      "manual_action_match": true,
+      "pinned_policy_action": "manual_review",
+      "runner_identifier_join_match": true,
+      "scenario_sha256": "44a04d634b81cc018d8e002ec7e2342c7c7c7f637f3d4ff66b3fbe08dfbce532",
+      "schema_valid": true
+    },
+    {
+      "case_id": "18eb73c5a9402fd6",
+      "integer_temporal_oracle_match": true,
+      "manual_action_match": true,
+      "pinned_policy_action": "open_investigation",
+      "runner_identifier_join_match": true,
+      "scenario_sha256": "3e621f5a7f176aa9af97bad49917e1fbd4b76b5b59a41e6e274640d3ece8bdb9",
+      "schema_valid": true
+    }
+  ],
+  "fault_literal_contract_verified": true,
+  "initial_labels_unchanged": true,
+  "manifest_contract_valid": true,
+  "manual_oracles_sha256_after_crosscheck": "87f2856ea0615259febf7823fd74dd00c93717fa111471c81115db909e929758",
+  "manual_oracles_sha256_before_typed_import": "87f2856ea0615259febf7823fd74dd00c93717fa111471c81115db909e929758",
+  "no_quality_claim": true,
+  "pinned_commit": "d8956e035af8f30f4255a9e39a0182048105dfea",
+  "pinned_policy_hash": "39ba01ac808a9d7abaf10f24e800748b37c2afd1e9fd831d2b0eff6992cb882f",
+  "python": "3.12.14",
+  "reference_import_paths": {
+    "casework_agent.contracts": "<repository>/.runtime/v5-challenge-private/pinned-reference/src/casework_agent/contracts.py",
+    "casework_agent.hashing": "<repository>/.runtime/v5-challenge-private/pinned-reference/src/casework_agent/hashing.py",
+    "casework_agent.policy": "<repository>/.runtime/v5-challenge-private/pinned-reference/src/casework_agent/policy.py",
+    "eval.contracts": "<repository>/.runtime/v5-challenge-private/pinned-reference/eval/contracts.py"
+  },
+  "skipped": [
+    "Model inference and model lease",
+    "Actual mock services and runner execution",
+    "Browser/UI tests",
+    "Human claim review",
+    "Production code tests"
+  ],
+  "static_runner_input_compatibility": true,
+  "status": "passed",
+  "supplemental_policy_checks": 2,
+  "verification_kind": "Offline authoring, exact integer oracle, pinned typed policy and manifest integrity checks only"
+}

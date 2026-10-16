@@ -1,0 +1,37 @@
+{
+  "as_of": "2049-08-11T12:30:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional document corner pockets have an imported event beyond the immutable case cutoff.",
+    "order_id": "o-fv04z6",
+    "policy_exception": null,
+    "shipment_id": "s-1xa58m",
+    "status": "in_transit",
+    "version": 2
+  },
+  "scenario_id": "87cd4310e9b6a25f",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2049-08-07T02:17:39Z",
+        "code": "POCKETS_LOADED",
+        "description": "Pocket sleeves loaded."
+      },
+      {
+        "at": "2049-08-09T12:00:00Z",
+        "code": "SUMMARY_WAIT",
+        "description": "Carrier waiting summary recorded."
+      },
+      {
+        "at": "2049-08-11T12:30:00.000001Z",
+        "code": "FUTURE_IMPORT",
+        "description": "Imported timestamp exceeds the cutoff by one microsecond."
+      }
+    ],
+    "last_event_at": "2049-08-09T12:00:00Z",
+    "shipment_id": "s-1xa58m",
+    "status": "delayed",
+    "version": 16
+  }
+}

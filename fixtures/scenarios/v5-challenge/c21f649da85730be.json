@@ -1,0 +1,42 @@
+{
+  "as_of": "2057-04-11T00:10:01Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional cork alignment strips have a carrier export sorted by source desk rather than time.",
+    "order_id": "o-kb92e6",
+    "policy_exception": null,
+    "shipment_id": "s-1pr38w",
+    "status": "in_transit",
+    "version": 16
+  },
+  "scenario_id": "c21f649da85730be",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2057-04-07T00:00:00Z",
+        "code": "LAST_DESK_CHECK",
+        "description": "Last desk check is listed first."
+      },
+      {
+        "at": "2057-04-03T13:17:29Z",
+        "code": "INITIAL_STRIP_RECEIPT",
+        "description": "Initial receipt is listed second."
+      },
+      {
+        "at": "2057-04-05T09:36:52Z",
+        "code": "INTERMEDIATE_TRANSFER",
+        "description": "Intermediate transfer is listed third."
+      },
+      {
+        "at": "2057-04-06T21:48:06Z",
+        "code": "PRELAST_BAY_COUNT",
+        "description": "Bay count still precedes the summary."
+      }
+    ],
+    "last_event_at": "2057-04-07T00:00:00Z",
+    "shipment_id": "s-1pr38w",
+    "status": "delayed",
+    "version": 7
+  }
+}

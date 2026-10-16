@@ -1,0 +1,223 @@
+{
+  "coordinator_first_opening_started_at": "2026-10-16T17:20:15.479730+00:00",
+  "commit_before_opening": "3a8dddb3c32b7285df1fb214b01e4d5d95c96612",
+  "freeze_sha256": "39c17942111475d7b6daea4f57771c7a455587f5254a5ce201436131d1b5aa61",
+  "dirty_before_opening": false,
+  "promotion_completed_at": "2026-10-16T17:22:14.297322+00:00",
+  "promoted_bytes_unchanged": true,
+  "promoted_files_sha256": {
+    "fixtures/manifests/v5-challenge.json": "0d298900fc37f758e9ba744d03b4e1d8b429c7a5151a24778fbbcafed2c896f5",
+    "fixtures/scenarios/v5-challenge/b8d6a20f74619c35.json": "186c5178f0c5421bf3f130d562ee1f66308674011991b77a92036b8f4efa358d",
+    "fixtures/scenarios/v5-challenge/2ce7f1948ab603d5.json": "6c952d1003babb7339d78a362d50fdcfa7f1c9158c9d2ee9010df424c875f3e3",
+    "fixtures/scenarios/v5-challenge/f730be26d5189a4c.json": "e2fb989d21960a880ee1e6bd27415f177b2053663bd662f0fbe12a816db18d6b",
+    "fixtures/scenarios/v5-challenge/619ac7e3f02485bd.json": "134c177091cd55ed079e69a0e72e379015e1e1f354c05204799e4ae59737914a",
+    "fixtures/scenarios/v5-challenge/a3e17b46c98025df.json": "f6b95d9bb3ed3af53f1d765c603c7484ad273276660c09258a987481abacb5fd",
+    "fixtures/scenarios/v5-challenge/76fb04d98a2315ce.json": "40ed992731ee7b8c194e7b7783a75f7ce48bc7e9d36558d07029916e066bf024",
+    "fixtures/scenarios/v5-challenge/d1a486e70c5932bf.json": "97b4d8d8948766ffe1698c21eaa0c03c7430206ea97f6f15bc5edf14be07b333",
+    "fixtures/scenarios/v5-challenge/405d2fb98e6137ac.json": "e23bed080aae98cc813e8f4ac3582665f04480c618659ff6768f20575b66e175",
+    "fixtures/scenarios/v5-challenge/e2930a67b4d81fc5.json": "da11c18ddf0259692de98a2bdee02c225eab6c0a5fdede17c806eaceee571ea5",
+    "fixtures/scenarios/v5-challenge/9c476e15a8f302bd.json": "8dca76bc1efb4ec55e6d3c9f6f5e6a7b04fd682a68aa66b70b7708f7a6ec2aa0",
+    "fixtures/scenarios/v5-challenge/530af7c28d196e4b.json": "01aa535f8069ca9e78c7d851c2289fbf595b00b5cba83f05880556491bc5cc99",
+    "fixtures/scenarios/v5-challenge/ba60e9257c1483df.json": "ce3a18d5317d2d26210a45b94bcbc2433e1fa595ad5afd94d03b07af5062e003",
+    "fixtures/scenarios/v5-challenge/73dbf281c4a6095e.json": "77dedf3da00fda1c70966aeeaed7a11398bf4438715e196f98f619cb2b0e0e83",
+    "fixtures/scenarios/v5-challenge/0f8a526d39c47be1.json": "3c9406f9f64bd955f23ad843c04541b4a910f5aa48a0f469ed933728b39b08fe",
+    "fixtures/scenarios/v5-challenge/c68a917e40f5b32d.json": "cab48cea985a850bd62d3c81c0a19ca178df9f767e68e66e01dfd71469a8362e",
+    "fixtures/scenarios/v5-challenge/148e6d3ba2f9705c.json": "85eb993700db5d8f760bdc330f093a882ea800e1e83a7fb9eef68c6b747f6923",
+    "fixtures/scenarios/v5-challenge/ef29c580ad7416b3.json": "2098b115a3ff71cc22fab648d4c162f0c097f368ae5d9d4a00cf350e5afb358d",
+    "fixtures/scenarios/v5-challenge/52b1a8d7f603ce49.json": "7e01989d557efe136850d22ec692267069b15a1ee039f4871336108da8b1151a",
+    "fixtures/scenarios/v5-challenge/87cd4310e9b6a25f.json": "277b5884694c6ccd71f8c9ca4ca956b2c94cdf7eab985ec9a7c13044b9325c1c",
+    "fixtures/scenarios/v5-challenge/d9506e14c82b3fa7.json": "a5719a4817eae91724e70198160ccc36cae4912efd18bb142331e0d1571c546f",
+    "fixtures/scenarios/v5-challenge/308a5c76e2b941fd.json": "826d176b910e6a82df3b1818e1e3b27c14970dd5b99d6a47080f03444832fa64",
+    "fixtures/scenarios/v5-challenge/6f1429acb57d08e3.json": "43bf78f82d04453a5b4f035eeb8e7b30febdda0dd6ca396b059fabcbc1663bb7",
+    "fixtures/scenarios/v5-challenge/ae3758d109c24bf6.json": "a65e082461e215aa199ac9a8be65874069579652fa854e2cce5c4442b80d474c",
+    "fixtures/scenarios/v5-challenge/4b90df673e1a825c.json": "efb8a778109f6afc179193effb73e0a1a3bdd47c2291d51e143dd38f9bfe5abb",
+    "fixtures/scenarios/v5-challenge/e6c8214a7f30b95d.json": "0f1eead5413c3bcb6299a07a8569bca5308e14abcbb013a8c722050e72c14ec2",
+    "fixtures/scenarios/v5-challenge/59a41d8be730cf26.json": "5ab8dba119f189780b19f49d35bd5888d069fdfca7cceccebb3d11b2ad326760",
+    "fixtures/scenarios/v5-challenge/c21f649da85730be.json": "c20a9993d33eaee57a27183fc9c52faf3a036509047bfc6901a77624d8232eb2",
+    "fixtures/scenarios/v5-challenge/7a03be9d4628fc15.json": "d641175dfa53f353b8e0953e3663ed3f4e040ca5a60fa2c478a3e57e6e378cbc",
+    "fixtures/scenarios/v5-challenge/d42ac8e1630f795b.json": "44a04d634b81cc018d8e002ec7e2342c7c7c7f637f3d4ff66b3fbe08dfbce532",
+    "fixtures/scenarios/v5-challenge/18eb73c5a9402fd6.json": "3e621f5a7f176aa9af97bad49917e1fbd4b76b5b59a41e6e274640d3ece8bdb9"
+  },
+  "verified_original_bundle_files": 65,
+  "original_bundle_sha256": "505d71fc65a76361c1c5d73a2891a117c73a41c905a83a28110ec6283e5cdc73",
+  "source_before_model_measurement": "3a8dddb3c32b7285df1fb214b01e4d5d95c96612",
+  "authorship_exports": [
+    {
+      "source": "authorship.json",
+      "source_sha256": "eeddcc808f029f3c8af5eb9c17d961b544690b8393cfa5c58f30c74928a60050",
+      "public_path": "docs/evidence/v5-challenge-authorship/authorship.json",
+      "public_sha256": "eeddcc808f029f3c8af5eb9c17d961b544690b8393cfa5c58f30c74928a60050",
+      "metadata_redaction": null
+    },
+    {
+      "source": "design.json",
+      "source_sha256": "7688c4acad6c9eb29f1dc1065b74ceef8b7edc1b241379610cd62ff49a65d914",
+      "public_path": "docs/evidence/v5-challenge-authorship/design.json",
+      "public_sha256": "7688c4acad6c9eb29f1dc1065b74ceef8b7edc1b241379610cd62ff49a65d914",
+      "metadata_redaction": null
+    },
+    {
+      "source": "authoring-revision.json",
+      "source_sha256": "96ae469163359a7015a5f863fa7d28177f3f444d39bfe6fdff861471074d4e50",
+      "public_path": "docs/evidence/v5-challenge-authorship/authoring-revision.json",
+      "public_sha256": "96ae469163359a7015a5f863fa7d28177f3f444d39bfe6fdff861471074d4e50",
+      "metadata_redaction": null
+    },
+    {
+      "source": "authored-cases.json",
+      "source_sha256": "137bb90bbe3aa3dba8634c6529af060a27052705c70c7027c4bb823fa03066b6",
+      "public_path": "docs/evidence/v5-challenge-authorship/authored-cases.json",
+      "public_sha256": "137bb90bbe3aa3dba8634c6529af060a27052705c70c7027c4bb823fa03066b6",
+      "metadata_redaction": null
+    },
+    {
+      "source": "authored-cases.final.json",
+      "source_sha256": "eda0faf8251b28cc7662c57cec27d717037199e3ed31a8bc4d5e487123edd562",
+      "public_path": "docs/evidence/v5-challenge-authorship/authored-cases.final.json",
+      "public_sha256": "eda0faf8251b28cc7662c57cec27d717037199e3ed31a8bc4d5e487123edd562",
+      "metadata_redaction": null
+    },
+    {
+      "source": "manual-labels.initial.json",
+      "source_sha256": "a77f538b6d430dec4499da1d05a37fea9b62e3531b56f44db8b46d310ffa9e98",
+      "public_path": "docs/evidence/v5-challenge-authorship/manual-labels.initial.json",
+      "public_sha256": "a77f538b6d430dec4499da1d05a37fea9b62e3531b56f44db8b46d310ffa9e98",
+      "metadata_redaction": null
+    },
+    {
+      "source": "manual-labels.final.json",
+      "source_sha256": "57a608a29ab140e73ee1ffc22aa92978c51b620fb30646f66242f604cdecbe4d",
+      "public_path": "docs/evidence/v5-challenge-authorship/manual-labels.final.json",
+      "public_sha256": "57a608a29ab140e73ee1ffc22aa92978c51b620fb30646f66242f604cdecbe4d",
+      "metadata_redaction": null
+    },
+    {
+      "source": "integer-oracles.initial.json",
+      "source_sha256": "2d9b9dc608de738e88a08b44af4af80fcc97f804b35d27050319324180b40f6e",
+      "public_path": "docs/evidence/v5-challenge-authorship/integer-oracles.initial.json",
+      "public_sha256": "2d9b9dc608de738e88a08b44af4af80fcc97f804b35d27050319324180b40f6e",
+      "metadata_redaction": null
+    },
+    {
+      "source": "manual-oracles.json",
+      "source_sha256": "87f2856ea0615259febf7823fd74dd00c93717fa111471c81115db909e929758",
+      "public_path": "docs/evidence/v5-challenge-authorship/manual-oracles.json",
+      "public_sha256": "87f2856ea0615259febf7823fd74dd00c93717fa111471c81115db909e929758",
+      "metadata_redaction": null
+    },
+    {
+      "source": "coverage.json",
+      "source_sha256": "322e987e8e749bc612ed5c5f8586cff0cb951f0fcdd8e4c2f3ce40a176a219af",
+      "public_path": "docs/evidence/v5-challenge-authorship/coverage.json",
+      "public_sha256": "322e987e8e749bc612ed5c5f8586cff0cb951f0fcdd8e4c2f3ce40a176a219af",
+      "metadata_redaction": null
+    },
+    {
+      "source": "input-inventory.json",
+      "source_sha256": "085ef3965119e6b463bef4d389e407014ce79f5deb80629c7079e4cc93db9523",
+      "public_path": "docs/evidence/v5-challenge-authorship/input-inventory.json",
+      "public_sha256": "085ef3965119e6b463bef4d389e407014ce79f5deb80629c7079e4cc93db9523",
+      "metadata_redaction": null
+    },
+    {
+      "source": "validation.json",
+      "source_sha256": "958d3ed141cd40ea0e0b59d95056d334201e8887263bf9b231d6ec6036e719b5",
+      "public_path": "docs/evidence/v5-challenge-authorship/validation.json",
+      "public_sha256": "ad4acfeb1b87c6aa8027376052190d73c51fef8a000499dfa6b80c48ab09e0f3",
+      "metadata_redaction": "Absolute repository prefix replaced with <repository>."
+    },
+    {
+      "source": "verification-summary.json",
+      "source_sha256": "2c63816d039290687f3a5f583399acb1cf3007390df2482b60361abaee7d3410",
+      "public_path": "docs/evidence/v5-challenge-authorship/verification-summary.json",
+      "public_sha256": "2c63816d039290687f3a5f583399acb1cf3007390df2482b60361abaee7d3410",
+      "metadata_redaction": null
+    },
+    {
+      "source": "source-hashes.json",
+      "source_sha256": "eb394fb554425bf7b19f24b37e24714cfc746625546bd9d8c155882cb530312e",
+      "public_path": "docs/evidence/v5-challenge-authorship/source-hashes.json",
+      "public_sha256": "eb394fb554425bf7b19f24b37e24714cfc746625546bd9d8c155882cb530312e",
+      "metadata_redaction": null
+    },
+    {
+      "source": "strict-typecheck.initial.json",
+      "source_sha256": "86017e96127eca7edc38d1e7c8c4568ba390a3d1f2045ca27f6470237ca374e4",
+      "public_path": "docs/evidence/v5-challenge-authorship/strict-typecheck.initial.json",
+      "public_sha256": "5eba394db53b9014456210272c2af171e467e02956dc81f978c1b678f98f5773",
+      "metadata_redaction": "Absolute repository prefix replaced with <repository>."
+    },
+    {
+      "source": "strict-typecheck.json",
+      "source_sha256": "a29f112150721b88e524726fd67dbe2e8d891f1efa328eaa081197846ac8dc42",
+      "public_path": "docs/evidence/v5-challenge-authorship/strict-typecheck.json",
+      "public_sha256": "a29f112150721b88e524726fd67dbe2e8d891f1efa328eaa081197846ac8dc42",
+      "metadata_redaction": null
+    },
+    {
+      "source": "SEALED.json",
+      "source_sha256": "be2c274e2c47aca4c1ea3eaaf6ee485bafaaea2353495da5654d05e2d2ce862e",
+      "public_path": "docs/evidence/v5-challenge-authorship/SEALED.json",
+      "public_sha256": "82ddfd3904fccb56c31d7dc4d5653c3a0b9388d34d7eca85fcc565acacf5c8d6",
+      "metadata_redaction": "Absolute repository prefix replaced with <repository>."
+    },
+    {
+      "source": "SHA256SUMS",
+      "source_sha256": "505d71fc65a76361c1c5d73a2891a117c73a41c905a83a28110ec6283e5cdc73",
+      "public_path": "docs/evidence/v5-challenge-authorship/SHA256SUMS",
+      "public_sha256": "505d71fc65a76361c1c5d73a2891a117c73a41c905a83a28110ec6283e5cdc73",
+      "metadata_redaction": null
+    },
+    {
+      "source": "initial-labels.sha256",
+      "source_sha256": "0a7dfb6cf65727b7e891f8ed1e2d7e6cd5504e7bcb2fee862b60dc25ee32cdbf",
+      "public_path": "docs/evidence/v5-challenge-authorship/initial-labels.sha256",
+      "public_sha256": "0a7dfb6cf65727b7e891f8ed1e2d7e6cd5504e7bcb2fee862b60dc25ee32cdbf",
+      "metadata_redaction": null
+    },
+    {
+      "source": "integer_oracle.py",
+      "source_sha256": "0e61f44bc7d4718dc7456ff091df44ed6356cdce40cbab2947e4ff0087d8ec0b",
+      "public_path": "docs/evidence/v5-challenge-authorship/integer_oracle.py.txt",
+      "public_sha256": "0e61f44bc7d4718dc7456ff091df44ed6356cdce40cbab2947e4ff0087d8ec0b",
+      "metadata_redaction": null
+    },
+    {
+      "source": "novelty_inventory.py",
+      "source_sha256": "aa0ad4ea14965951caa012ece5b11b432ad4ff272ae583e4520e07881d1b8e06",
+      "public_path": "docs/evidence/v5-challenge-authorship/novelty_inventory.py.txt",
+      "public_sha256": "aa0ad4ea14965951caa012ece5b11b432ad4ff272ae583e4520e07881d1b8e06",
+      "metadata_redaction": null
+    },
+    {
+      "source": "verify_and_materialize.py",
+      "source_sha256": "7672bcc4eb46e53e896827c1b4bb5289baf35f6bd1e35f161742c6c7d5cda304",
+      "public_path": "docs/evidence/v5-challenge-authorship/verify_and_materialize.py.txt",
+      "public_sha256": "7672bcc4eb46e53e896827c1b4bb5289baf35f6bd1e35f161742c6c7d5cda304",
+      "metadata_redaction": null
+    },
+    {
+      "source": "prepare_revision.py",
+      "source_sha256": "3ee964952ea56b79def7d36428fab0a75ae55671890fe2c202986b885c526198",
+      "public_path": "docs/evidence/v5-challenge-authorship/prepare_revision.py.txt",
+      "public_sha256": "3ee964952ea56b79def7d36428fab0a75ae55671890fe2c202986b885c526198",
+      "metadata_redaction": null
+    },
+    {
+      "source": "finalize_bundle.py",
+      "source_sha256": "395dcc58e555bb5e784b63669b02184bd708e4aff21e7ef056ef0b95a7de84ad",
+      "public_path": "docs/evidence/v5-challenge-authorship/finalize_bundle.py.txt",
+      "public_sha256": "395dcc58e555bb5e784b63669b02184bd708e4aff21e7ef056ef0b95a7de84ad",
+      "metadata_redaction": null
+    },
+    {
+      "source": "compatibility-03542d5/compatibility.json",
+      "source_sha256": "384fef854aa1576f90eea9847e497202318e070014cbd18e62d3e638b4bc5648",
+      "public_path": "docs/evidence/v5-challenge-authorship/compatibility-03542d5--compatibility.json",
+      "public_sha256": "384fef854aa1576f90eea9847e497202318e070014cbd18e62d3e638b4bc5648",
+      "metadata_redaction": null
+    }
+  ],
+  "authorship_scope": "Separate AI author, not human-reviewed. One static runner-join replacement occurred before typed verification and sealing, without action/fault relabeling; initial inputs/labels/oracles preserved. No model outcomes informed authorship. All 30 new inputs share coarse rule shapes with prior cases; no statistical independence claim.",
+  "privacy": "Only metadata repository-prefix redactions; scenario, manifest and oracle bytes unchanged."
+}

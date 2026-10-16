@@ -1,0 +1,37 @@
+{
+  "as_of": "2034-05-21T17:42:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional spool dividers have a carrier reference, but the order lifecycle field is unresolved.",
+    "order_id": "o-pb09w5",
+    "policy_exception": null,
+    "shipment_id": "s-7kt22e",
+    "status": "unknown",
+    "version": 5
+  },
+  "scenario_id": "619ac7e3f02485bd",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2034-05-16T10:21:15Z",
+        "code": "ROUTE_ASSIGNED",
+        "description": "Carrier route assigned."
+      },
+      {
+        "at": "2034-05-18T07:18:43Z",
+        "code": "LOAD_RECOUNT",
+        "description": "Load recount registered."
+      },
+      {
+        "at": "2034-05-18T22:40:00Z",
+        "code": "ROUTE_HOLD",
+        "description": "Route hold is the latest carrier fact."
+      }
+    ],
+    "last_event_at": "2034-05-18T22:40:00Z",
+    "shipment_id": "s-7kt22e",
+    "status": "delayed",
+    "version": 11
+  }
+}

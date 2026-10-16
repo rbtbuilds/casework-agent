@@ -1,0 +1,37 @@
+{
+  "as_of": "2045-04-24T14:43:19Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional storage-bin clips returned to the carrier bay after an unsuccessful access attempt.",
+    "order_id": "o-yk40e1",
+    "policy_exception": null,
+    "shipment_id": "s-0ln62v",
+    "status": "in_transit",
+    "version": 6
+  },
+  "scenario_id": "c68a917e40f5b32d",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2045-04-19T12:48:21Z",
+        "code": "CLIP_BAG_SORTED",
+        "description": "Clip bag sorted."
+      },
+      {
+        "at": "2045-04-21T07:25:33Z",
+        "code": "delivery_attempt",
+        "description": "Access unavailable; parcel retained."
+      },
+      {
+        "at": "2045-04-22T05:00:00Z",
+        "code": "BAY_RETURN",
+        "description": "Parcel returned to bay without terminal completion."
+      }
+    ],
+    "last_event_at": "2045-04-22T05:00:00Z",
+    "shipment_id": "s-0ln62v",
+    "status": "delayed",
+    "version": 10
+  }
+}

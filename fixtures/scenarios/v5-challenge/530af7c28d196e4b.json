@@ -1,0 +1,21 @@
+{
+  "as_of": "2041-12-12T08:31:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional felt pads have a carrier summary timestamp; this export includes no individual history rows.",
+    "order_id": "o-bw49r2",
+    "policy_exception": null,
+    "shipment_id": "s-7pj06x",
+    "status": "in_transit",
+    "version": 11
+  },
+  "scenario_id": "530af7c28d196e4b",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [],
+    "last_event_at": "2041-12-10T07:00:00Z",
+    "shipment_id": "s-7pj06x",
+    "status": "delayed",
+    "version": 5
+  }
+}

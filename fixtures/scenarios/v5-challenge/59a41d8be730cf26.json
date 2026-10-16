@@ -1,0 +1,37 @@
+{
+  "as_of": "2056-03-16T18:09:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional polymer spacers have a visually blank exception field containing source whitespace.",
+    "order_id": "o-dh03v9",
+    "policy_exception": " \t ",
+    "shipment_id": "s-6zn45p",
+    "status": "in_transit",
+    "version": 5
+  },
+  "scenario_id": "59a41d8be730cf26",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2056-03-10T07:16:39Z",
+        "code": "SPACER_CASSETTE_IN",
+        "description": "Spacer cassette received."
+      },
+      {
+        "at": "2056-03-12T19:42:05Z",
+        "code": "FIELD_EXPORT",
+        "description": "Source fields exported without trimming."
+      },
+      {
+        "at": "2056-03-14T12:00:00Z",
+        "code": "CASSETTE_HOLD",
+        "description": "Cassette remains on hold."
+      }
+    ],
+    "last_event_at": "2056-03-14T12:00:00Z",
+    "shipment_id": "s-6zn45p",
+    "status": "delayed",
+    "version": 10
+  }
+}

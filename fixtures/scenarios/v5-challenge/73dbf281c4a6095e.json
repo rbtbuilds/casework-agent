@@ -1,0 +1,37 @@
+{
+  "as_of": "2043-02-08T16:00:00.000003Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional drafting compass cases were routed using a source clock with a half-hour offset.",
+    "order_id": "o-nm16d8",
+    "policy_exception": null,
+    "shipment_id": "s-8gv32r",
+    "status": "in_transit",
+    "version": 4
+  },
+  "scenario_id": "73dbf281c4a6095e",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2043-02-04T07:52:41Z",
+        "code": "COMPASS_CASE_IN",
+        "description": "Compass cases accepted."
+      },
+      {
+        "at": "2043-02-06T15:59:59.999997Z",
+        "code": "HUB_QUEUE",
+        "description": "Queue record precedes the last event by three microseconds."
+      },
+      {
+        "at": "2043-02-06T10:30:00-05:30",
+        "code": "CLOCK_SOURCE_HOLD",
+        "description": "Hold recorded by the source clock."
+      }
+    ],
+    "last_event_at": "2043-02-06T10:30:00-05:30",
+    "shipment_id": "s-8gv32r",
+    "status": "delayed",
+    "version": 12
+  }
+}

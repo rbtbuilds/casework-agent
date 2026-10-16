@@ -1,0 +1,51 @@
+{
+  "label_action_changed": false,
+  "preserved_initial_labels": "manual-labels.initial.json",
+  "preserved_initial_oracles": "integer-oracles.initial.json",
+  "preserved_original_inputs": "authored-cases.json",
+  "reason": "The runner requests the shipment by the order reference. A different payload identifier cannot be assumed to produce a gathered proposal under the mock lookup contract. Keep the required 30 runnable cases / 24 completion denominator and test the identity-mismatch policy guard separately outside scored fixtures.",
+  "replacement_is_fresh_literal": true,
+  "revised_case_id": "59a41d8be730cf26",
+  "supplemental_policy_probe": {
+    "expected_action": "manual_review",
+    "included_in_manifest_denominator": false,
+    "scenario": {
+      "as_of": "2056-03-16T18:09:00Z",
+      "order": {
+        "annotations": [],
+        "note": "Fictional polymer spacers have an order reference that does not match the carrier payload identifier.",
+        "order_id": "o-dh03v9",
+        "policy_exception": null,
+        "shipment_id": "s-6zn45p",
+        "status": "in_transit",
+        "version": 5
+      },
+      "scenario_id": "59a41d8be730cf26",
+      "shipment": {
+        "conflicting_events": false,
+        "events": [
+          {
+            "at": "2056-03-11T10:54:07Z",
+            "code": "SPACERS_RECEIVED",
+            "description": "Spacers received under the carrier payload reference."
+          },
+          {
+            "at": "2056-03-13T02:31:48Z",
+            "code": "REFERENCE_AUDIT",
+            "description": "Reference discrepancy logged."
+          },
+          {
+            "at": "2056-03-14T12:00:00Z",
+            "code": "UNMATCHED_SUMMARY",
+            "description": "Summary belongs to the mismatched identifier."
+          }
+        ],
+        "last_event_at": "2056-03-14T12:00:00Z",
+        "shipment_id": "s-8cg27r",
+        "status": "delayed",
+        "version": 10
+      }
+    }
+  },
+  "typed_policy_executed_before_revision": false
+}

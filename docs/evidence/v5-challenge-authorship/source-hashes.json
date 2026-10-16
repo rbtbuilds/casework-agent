@@ -1,0 +1,42 @@
+[
+  {
+    "source_commit": "d8956e035af8f30f4255a9e39a0182048105dfea",
+    "path": "docs/SPEC.md",
+    "sha256": "418098ea388fdc1c27a80bc30ca05ab1c298761d24d33db5e78d9710380d46b1"
+  },
+  {
+    "source_commit": "d8956e035af8f30f4255a9e39a0182048105dfea",
+    "path": "src/casework_agent/policy.py",
+    "sha256": "f5053a636ad2d3ccba0e236cc6cb4580e8255fab8e84562cb41ab85f6dbf0f70"
+  },
+  {
+    "source_commit": "d8956e035af8f30f4255a9e39a0182048105dfea",
+    "path": "src/casework_agent/contracts.py",
+    "sha256": "4992248a04f9fa6c0d908b8999e47a5be34c4eff10d9b199d4b7e627fb24903d"
+  },
+  {
+    "source_commit": "d8956e035af8f30f4255a9e39a0182048105dfea",
+    "path": "src/casework_agent/hashing.py",
+    "sha256": "f8d7838fb81653bb51ed16433145f1b9a8c749297cb0e1612ab24f63d43debb3"
+  },
+  {
+    "source_commit": "d8956e035af8f30f4255a9e39a0182048105dfea",
+    "path": "eval/contracts.py",
+    "sha256": "29051ef36b3c646640a04f6e32a2cd0bdccb70ad64de9dd21e2dc9b1e28ce571"
+  },
+  {
+    "source_commit": "d8956e035af8f30f4255a9e39a0182048105dfea",
+    "path": "eval/runner.py",
+    "sha256": "c03ca71fbc40a00f74d65e733e0f484c8191c20096dde169aba7f60abf215e34"
+  },
+  {
+    "source_commit": "d8956e035af8f30f4255a9e39a0182048105dfea",
+    "path": "eval/services.py",
+    "sha256": "110f72d1ae7127b1e486598ef5cbc856289fc85877347b7e826c1998aa65ea8d"
+  },
+  {
+    "source_commit": "d8956e035af8f30f4255a9e39a0182048105dfea",
+    "path": "scripts/freeze_scenarios.py",
+    "sha256": "cc2e4e67c059b4e68baedff7f273fa87524d9ccd54d81cfd02e10356c3ca0961"
+  }
+]

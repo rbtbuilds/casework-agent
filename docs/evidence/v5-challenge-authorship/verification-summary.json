@@ -1,0 +1,34 @@
+{
+  "all_pinned_source_hashes_verified": true,
+  "all_scenario_hashes_verified": true,
+  "executed": [
+    "30 exact independent integer temporal/action checks",
+    "30 pinned typed schema/policy checks",
+    "2 non-scored policy boundary probes",
+    "Manifest round-trip validation",
+    "Fault-denominator checks",
+    "4,830 cross-inventory and 435 within-challenge pair comparisons",
+    "Strict Pyright on authoring scripts including self-test assertions",
+    "Full file SHA256 integrity verification"
+  ],
+  "initial_labels_immutable": true,
+  "initial_typecheck": "One unknown list-element annotation in the novelty script; fixed with an explicit type. Initial diagnostic retained in strict-typecheck.initial.json. No scenario, labels, or oracle bytes changed.",
+  "limitations": "Static runner compatibility and offline verification only; no claim that the full workflow has been executed.",
+  "oracle_bytes_unchanged_by_typed_crosscheck": true,
+  "prior_input_bytes_reverified": true,
+  "skipped": [
+    "Target model inference",
+    "Mock service execution",
+    "Full runner/browser workflow",
+    "Production application tests",
+    "Human review"
+  ],
+  "status": "passed",
+  "strict_types": {
+    "errors": 0,
+    "files_analyzed": 5,
+    "warnings": 0
+  },
+  "strict_types_report": "strict-typecheck.json",
+  "validation_report": "validation.json"
+}

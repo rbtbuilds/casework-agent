@@ -1,0 +1,30 @@
+{
+    "version": "1.1.414",
+    "time": "1792169364587",
+    "generalDiagnostics": [
+        {
+            "file": "<repository>/.runtime/v5-challenge-private/novelty_inventory.py",
+            "severity": "error",
+            "message": "Type of \"append\" is partially unknown\n  Type of \"append\" is \"(object: Unknown, /) -> None\"",
+            "range": {
+                "start": {
+                    "line": 69,
+                    "character": 12
+                },
+                "end": {
+                    "line": 69,
+                    "character": 29
+                }
+            },
+            "rule": "reportUnknownMemberType"
+        }
+    ],
+    "summary": {
+        "filesAnalyzed": 4,
+        "errorCount": 1,
+        "warningCount": 0,
+        "informationCount": 0,
+        "timeInSec": 0.403
+    }
+}
+

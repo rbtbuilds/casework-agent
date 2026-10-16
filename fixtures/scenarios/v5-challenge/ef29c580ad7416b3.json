@@ -1,0 +1,32 @@
+{
+  "as_of": "2047-06-18T18:00:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional foam dividers have a summary scan whose clock is slightly ahead of the case cutoff.",
+    "order_id": "o-mu57g9",
+    "policy_exception": null,
+    "shipment_id": "s-6rc03f",
+    "status": "in_transit",
+    "version": 7
+  },
+  "scenario_id": "ef29c580ad7416b3",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2047-06-15T03:42:26Z",
+        "code": "DIVIDER_INTAKE",
+        "description": "Divider pack received."
+      },
+      {
+        "at": "2047-06-18T17:59:59.999998Z",
+        "code": "CLOCK_CHECK_PENDING",
+        "description": "Clock check requested before the summary instant."
+      }
+    ],
+    "last_event_at": "2047-06-18T18:00:00.000001Z",
+    "shipment_id": "s-6rc03f",
+    "status": "delayed",
+    "version": 3
+  }
+}

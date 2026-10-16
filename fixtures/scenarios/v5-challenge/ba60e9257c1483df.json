@@ -1,0 +1,37 @@
+{
+  "as_of": "2042-01-19T18:01:01Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional specimen card holders are marked delivered in the order system; the carrier summary differs.",
+    "order_id": "o-qs82h6",
+    "policy_exception": null,
+    "shipment_id": "s-5fk17z",
+    "status": "delivered",
+    "version": 17
+  },
+  "scenario_id": "ba60e9257c1483df",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2042-01-14T01:11:29Z",
+        "code": "HOLDER_PACKED",
+        "description": "Card holders packed."
+      },
+      {
+        "at": "2042-01-16T13:02:48Z",
+        "code": "TRANSFER_RECORDED",
+        "description": "Transfer recorded."
+      },
+      {
+        "at": "2042-01-17T06:00:00Z",
+        "code": "SUMMARY_LAG",
+        "description": "Delayed summary retained pending reconciliation."
+      }
+    ],
+    "last_event_at": "2042-01-17T06:00:00Z",
+    "shipment_id": "s-5fk17z",
+    "status": "delayed",
+    "version": 4
+  }
+}

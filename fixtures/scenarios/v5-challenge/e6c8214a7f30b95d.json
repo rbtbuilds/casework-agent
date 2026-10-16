@@ -1,0 +1,37 @@
+{
+  "as_of": "2055-02-26T13:23:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional woven sample tabs are attached to an internal exhibition allocation with a bespoke handling request.",
+    "order_id": "o-uy76d4",
+    "policy_exception": "Exhibition allocation requires a curator sign-off before any standard carrier inquiry.",
+    "shipment_id": "s-4ma20k",
+    "status": "in_transit",
+    "version": 8
+  },
+  "scenario_id": "e6c8214a7f30b95d",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2055-02-20T05:22:14Z",
+        "code": "TABS_REGISTERED",
+        "description": "Sample tabs registered."
+      },
+      {
+        "at": "2055-02-22T19:14:36Z",
+        "code": "ALLOCATION_CHECK",
+        "description": "Internal allocation checked."
+      },
+      {
+        "at": "2055-02-24T00:00:00Z",
+        "code": "CARRIER_WAIT",
+        "description": "Carrier continues waiting."
+      }
+    ],
+    "last_event_at": "2055-02-24T00:00:00Z",
+    "shipment_id": "s-4ma20k",
+    "status": "delayed",
+    "version": 6
+  }
+}

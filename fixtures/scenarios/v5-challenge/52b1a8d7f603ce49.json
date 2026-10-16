@@ -1,0 +1,37 @@
+{
+  "as_of": "2048-07-22T01:12:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional paper-core tubes have a scan list that extends just beyond the carrier summary timestamp.",
+    "order_id": "o-aj68k4",
+    "policy_exception": null,
+    "shipment_id": "s-9np21d",
+    "status": "in_transit",
+    "version": 8
+  },
+  "scenario_id": "52b1a8d7f603ce49",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2048-07-16T11:38:17Z",
+        "code": "TUBES_BUNDLED",
+        "description": "Tubes bundled."
+      },
+      {
+        "at": "2048-07-19T00:00:00Z",
+        "code": "SUMMARY_CHECKPOINT",
+        "description": "Summary checkpoint recorded."
+      },
+      {
+        "at": "2048-07-19T00:00:00.000001Z",
+        "code": "LATE_SEQUENCE_ENTRY",
+        "description": "History extends one microsecond past the summary."
+      }
+    ],
+    "last_event_at": "2048-07-19T00:00:00Z",
+    "shipment_id": "s-9np21d",
+    "status": "delayed",
+    "version": 14
+  }
+}

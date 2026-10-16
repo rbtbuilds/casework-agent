@@ -1,0 +1,37 @@
+{
+  "as_of": "2036-07-19T08:20:45Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional museum drawer liners remain listed in transit; the carrier supplied no recognized lifecycle state.",
+    "order_id": "o-rq35s1",
+    "policy_exception": null,
+    "shipment_id": "s-6yn90k",
+    "status": "in_transit",
+    "version": 14
+  },
+  "scenario_id": "76fb04d98a2315ce",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2036-07-13T09:47:13Z",
+        "code": "LINER_BUNDLE",
+        "description": "Bundle entered the carrier intake."
+      },
+      {
+        "at": "2036-07-15T13:59:58Z",
+        "code": "SCAN_IMPORTED",
+        "description": "Historical scan imported."
+      },
+      {
+        "at": "2036-07-15T14:00:00Z",
+        "code": "STATE_UNRESOLVED",
+        "description": "Carrier state mapping remains unresolved."
+      }
+    ],
+    "last_event_at": "2036-07-15T14:00:00Z",
+    "shipment_id": "s-6yn90k",
+    "status": "unknown",
+    "version": 7
+  }
+}

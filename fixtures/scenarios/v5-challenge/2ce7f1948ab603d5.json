@@ -1,0 +1,37 @@
+{
+  "as_of": "2032-03-02T15:26:00.000000Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional drafting rulers are bundled in a flat sleeve. The intake team recorded a leap-day check.",
+    "order_id": "o-hr61ba",
+    "policy_exception": null,
+    "shipment_id": "s-5nv87t",
+    "status": "in_transit",
+    "version": 2
+  },
+  "scenario_id": "2ce7f1948ab603d5",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2032-02-28T07:04:31.100000Z",
+        "code": "SLEEVE_INTAKE",
+        "description": "Flat sleeve registered."
+      },
+      {
+        "at": "2032-02-29T15:25:59.999999Z",
+        "code": "RACK_AUDIT",
+        "description": "Rack check immediately precedes the latest scan."
+      },
+      {
+        "at": "2032-02-29T15:26:00.000001Z",
+        "code": "HOLD_SCAN",
+        "description": "Hold scan retained at source precision."
+      }
+    ],
+    "last_event_at": "2032-02-29T15:26:00.000001Z",
+    "shipment_id": "s-5nv87t",
+    "status": "delayed",
+    "version": 9
+  }
+}

@@ -1,0 +1,138 @@
+"""Typed verification uses the allowlisted pinned reference after independent oracles exist."""
+import ast
+import hashlib
+import json
+import platform
+import sys
+from collections import Counter
+from datetime import UTC, datetime
+from pathlib import Path
+from typing import Any
+
+PRIVATE = Path(__file__).resolve().parent
+REFERENCE = PRIVATE / "pinned-reference"
+assert (PRIVATE / "manual-oracles.json").is_file()
+ORACLE_BYTES_BEFORE_IMPORT = (PRIVATE / "manual-oracles.json").read_bytes()
+sys.path.insert(0, str(REFERENCE))
+sys.path.insert(0, str(REFERENCE / "src"))
+
+from casework_agent.contracts import CaseSeed, Order, Shipment  # noqa: E402
+from casework_agent.policy import allowed_action, current_policy  # noqa: E402
+from eval.contracts import Manifest  # noqa: E402
+from integer_oracle import analyze, self_test  # noqa: E402
+
+
+def sha(data: bytes) -> str:
+    return hashlib.sha256(data).hexdigest()
+
+
+def save(path: Path, value: Any) -> None:
+    with path.open("x") as stream:
+        stream.write(json.dumps(value, indent=2, sort_keys=True) + "\n")
+
+
+def exact_datetime_us(value: datetime | None) -> int | None:
+    if value is None or value.tzinfo is None:
+        return None
+    span = value.astimezone(UTC) - datetime(1970, 1, 1, tzinfo=UTC)
+    return span.days * 86_400_000_000 + span.seconds * 1_000_000 + span.microseconds
+
+
+def main() -> None:
+    self_test()
+    oracle = json.loads(ORACLE_BYTES_BEFORE_IMPORT)
+    cases = json.loads((PRIVATE / "authored-cases.final.json").read_text())
+    initial_hash = (PRIVATE / "initial-labels.sha256").read_text().split()[0]
+    assert initial_hash == sha((PRIVATE / "manual-labels.initial.json").read_bytes())
+    assert oracle["initial_labels_sha256"] == initial_hash
+    assert oracle["final_labels_sha256"] == sha((PRIVATE / "manual-labels.final.json").read_bytes())
+    assert len(cases) == len(oracle["cases"]) == 30
+    assert len({case["case_id"] for case in cases}) == 30
+    imports = {name: str(Path(sys.modules[name].__file__ or "").resolve()) for name in ("casework_agent.contracts", "casework_agent.policy", "casework_agent.hashing", "eval.contracts")}
+    assert all(Path(path).is_relative_to(REFERENCE) for path in imports.values())
+    faults = Counter(case["fault"] for case in cases)
+    assert dict(faults) == {"expire": 2, "order_version": 2, "carrier_version": 2, "ticket_drop": 3, "annotation_drop": 3, "decision_replay": 3, "none": 15}
+    assert sum(case["hostile"] for case in cases) == 3
+    runner_ast = ast.parse((REFERENCE / "eval/runner.py").read_text())
+    services_ast = ast.parse((REFERENCE / "eval/services.py").read_text())
+    source_literals = {node.value for tree in (runner_ast, services_ast) for node in ast.walk(tree) if isinstance(node, ast.Constant) and isinstance(node.value, str)}
+    assert set(faults) - {"none"} <= source_literals
+    manifest_rows: list[dict[str, Any]] = []
+    typed_checks: list[dict[str, Any]] = []
+    for row, manual in zip(cases, oracle["cases"], strict=True):
+        scenario = row["scenario"]
+        assert set(scenario) == {"scenario_id", "as_of", "order", "shipment"}
+        assert row["case_id"] == scenario["scenario_id"] == manual["case_id"]
+        order = Order.model_validate(scenario["order"])
+        shipment = Shipment.model_validate(scenario["shipment"])
+        seed = CaseSeed.model_validate({"scenario_id": scenario["scenario_id"], "order_id": order.order_id, "as_of": scenario["as_of"], "mode": "fixture"})
+        assert order.shipment_id == shipment.shipment_id
+        actual = allowed_action(order, shipment, seed.as_of)
+        assert actual == row["expected_action"] == manual["manual_action"] == manual["oracle"]["independent_action"]
+        independent = manual["oracle"]
+        assert exact_datetime_us(seed.as_of) == independent["as_of"]["utc_us"]
+        assert exact_datetime_us(shipment.last_event_at) == independent["last_event"]["utc_us"]
+        assert (shipment.last_event_at is not None and shipment.last_event_at.tzinfo is not None) == independent["last_event"]["aware"]
+        for event, event_oracle in zip(shipment.events, independent["events"], strict=True):
+            assert exact_datetime_us(event.at) == event_oracle["timestamp"]["utc_us"]
+            assert (event.at.tzinfo is not None) == event_oracle["timestamp"]["aware"]
+        relative = f"fixtures/scenarios/v5-challenge/{row['case_id']}.json"
+        destination = PRIVATE / relative
+        save(destination, scenario)
+        assert len(destination.read_bytes()) < 32 * 1024
+        stale = row["fault"] in {"expire", "order_version", "carrier_version"}
+        manifest_rows.append({"case_id": row["case_id"], "family": row["family"], "scenario_file": relative,
+                              "scenario_hash": sha(destination.read_bytes()), "as_of": scenario["as_of"],
+                              "expected_action": row["expected_action"], "expected_final_state": "stale" if stale else "completed",
+                              "expected_ticket_count": 0 if stale else 1, "expected_annotation_count": 0 if stale else 1,
+                              "fault_checkpoint": row["fault"], "split": "holdout"})
+        typed_checks.append({"case_id": row["case_id"], "schema_valid": True, "pinned_policy_action": actual,
+                             "manual_action_match": True, "integer_temporal_oracle_match": True,
+                             "runner_identifier_join_match": True, "scenario_sha256": sha(destination.read_bytes())})
+    manifest_value = {"version": 5, "authorship": "Original fictional scenarios and initial labels authored by an independent AI agent from pinned policy/contracts; not human-authored or human-reviewed; no customer data and no model-quality claim.", "cases": manifest_rows}
+    manifest = Manifest.model_validate(manifest_value)
+    assert len(manifest.cases) == 30
+    assert sum(row.expected_final_state == "completed" for row in manifest.cases) == 24
+    assert sum(row.expected_final_state == "stale" for row in manifest.cases) == 6
+    save(PRIVATE / "fixtures/manifests/v5-challenge.json", manifest_value)
+    assert Manifest.model_validate_json((PRIVATE / "fixtures/manifests/v5-challenge.json").read_text()) == manifest
+    revision = json.loads((PRIVATE / "authoring-revision.json").read_text())
+    probe = revision["supplemental_policy_probe"]["scenario"]
+    assert analyze(probe)["independent_action"] == "manual_review"
+    assert allowed_action(Order.model_validate(probe["order"]), Shipment.model_validate(probe["shipment"]), datetime.fromisoformat(probe["as_of"])) == "manual_review"
+    first = cases[0]["scenario"]
+    naive_as_of = datetime.fromisoformat(first["as_of"]).replace(tzinfo=None)
+    assert allowed_action(Order.model_validate(first["order"]), Shipment.model_validate(first["shipment"]), naive_as_of) == "manual_review"
+    guard_coverage: dict[str, Any] = {}
+    for key in oracle["cases"][0]["oracle"]["predicates"]:
+        guard_coverage[key] = {"true_cases": [entry["case_id"] for entry in oracle["cases"] if entry["oracle"]["predicates"][key]],
+                               "false_cases": [entry["case_id"] for entry in oracle["cases"] if not entry["oracle"]["predicates"][key]]}
+    coverage = {
+        "scored_case_count": 30, "fault_counts": dict(faults), "stale_denominator": 6,
+        "authorized_completion_denominator": 24, "hostile_case_count": 3,
+        "action_counts": dict(Counter(row["expected_action"] for row in cases)),
+        "order_states": dict(Counter(row["scenario"]["order"]["status"] for row in cases)),
+        "carrier_states": dict(Counter(row["scenario"]["shipment"]["status"] for row in cases)),
+        "policy_guard_coverage": guard_coverage,
+        "supplemental_non_scored_guards": {"shipment_identity_matches": "false tested from preserved original candidate", "cutoff_timezone_known": "false tested as a direct policy probe; CaseSeed rejects a naive cutoff"},
+        "scope_limits": "The 30 scored cases cover all executable policy outcomes, business states, missing/naive carrier values, offsets, precision, contradictions, exceptions, hostile text and required fault classes. Shipment identity mismatch and naive as_of are direct policy probes outside the 30 cases because the normal runner cannot gather them as a completable case. Structural HTTP failures, UI execution, inference, service recovery and claim quality were not run by this authoring task."}
+    save(PRIVATE / "coverage.json", coverage)
+    validation = {
+        "status": "passed", "verification_kind": "Offline authoring, exact integer oracle, pinned typed policy and manifest integrity checks only",
+        "python": platform.python_version(), "pinned_commit": "d8956e035af8f30f4255a9e39a0182048105dfea",
+        "pinned_policy_hash": current_policy().hash, "reference_import_paths": imports,
+        "manual_oracles_sha256_before_typed_import": sha(ORACLE_BYTES_BEFORE_IMPORT),
+        "manual_oracles_sha256_after_crosscheck": sha((PRIVATE / "manual-oracles.json").read_bytes()),
+        "initial_labels_unchanged": initial_hash == sha((PRIVATE / "manual-labels.initial.json").read_bytes()),
+        "manifest_contract_valid": True, "fault_literal_contract_verified": True,
+        "static_runner_input_compatibility": True, "case_checks": typed_checks,
+        "supplemental_policy_checks": 2,
+        "skipped": ["Model inference and model lease", "Actual mock services and runner execution", "Browser/UI tests", "Human claim review", "Production code tests"],
+        "no_quality_claim": True}
+    assert validation["manual_oracles_sha256_before_typed_import"] == validation["manual_oracles_sha256_after_crosscheck"]
+    save(PRIVATE / "validation.json", validation)
+    print("Pinned typed verification passed: 30 schemas, actions, integer temporal crosschecks and scenario hashes; manifest contract and required fault denominators passed.")
+
+
+if __name__ == "__main__":
+    main()

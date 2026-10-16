@@ -1,0 +1,37 @@
+{
+  "as_of": "2046-05-16T16:00:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional binder spine inserts have several individual scans, but the last-event summary value is absent.",
+    "order_id": "o-er23p5",
+    "policy_exception": null,
+    "shipment_id": "s-4wd89j",
+    "status": "in_transit",
+    "version": 13
+  },
+  "scenario_id": "148e6d3ba2f9705c",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2046-05-10T06:29:18Z",
+        "code": "INSERTS_RECEIVED",
+        "description": "Spine inserts received."
+      },
+      {
+        "at": "2046-05-12T19:34:52Z",
+        "code": "DESK_HANDOFF",
+        "description": "Desk handoff recorded."
+      },
+      {
+        "at": "2046-05-13T16:00:00Z",
+        "code": "SUMMARY_NOT_SET",
+        "description": "History exists without a summary timestamp."
+      }
+    ],
+    "last_event_at": null,
+    "shipment_id": "s-4wd89j",
+    "status": "delayed",
+    "version": 9
+  }
+}

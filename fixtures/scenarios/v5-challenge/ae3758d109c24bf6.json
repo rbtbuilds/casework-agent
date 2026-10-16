@@ -1,0 +1,37 @@
+{
+  "as_of": "2053-12-18T02:00:02Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional cable combs have an old route scan but the carrier still classifies the shipment as in transit.",
+    "order_id": "o-pn12x7",
+    "policy_exception": null,
+    "shipment_id": "s-0fv83t",
+    "status": "in_transit",
+    "version": 6
+  },
+  "scenario_id": "ae3758d109c24bf6",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2053-12-10T15:13:28Z",
+        "code": "COMBS_SORTED",
+        "description": "Cable combs sorted."
+      },
+      {
+        "at": "2053-12-12T07:46:53Z",
+        "code": "TRAILER_DEPARTURE",
+        "description": "Trailer departure recorded."
+      },
+      {
+        "at": "2053-12-14T00:00:00Z",
+        "code": "ROUTE_CONTINUES",
+        "description": "Carrier continues to report transit."
+      }
+    ],
+    "last_event_at": "2053-12-14T00:00:00Z",
+    "shipment_id": "s-0fv83t",
+    "status": "in_transit",
+    "version": 9
+  }
+}

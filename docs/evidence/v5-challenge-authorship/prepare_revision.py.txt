@@ -1,0 +1,73 @@
+"""Resolve a runner representability issue while retaining the initial authored bytes."""
+import copy
+import hashlib
+import json
+from pathlib import Path
+from typing import Any
+from integer_oracle import analyze, self_test
+
+ROOT = Path(__file__).resolve().parent
+
+
+def save(name: str, data: Any) -> None:
+    with (ROOT / name).open("x") as stream:
+        stream.write(json.dumps(data, indent=2, sort_keys=True) + "\n")
+
+
+def main() -> None:
+    original = json.loads((ROOT / "authored-cases.json").read_text())
+    rows = copy.deepcopy(original)
+    row = rows[25]
+    assert row["case_id"] == "59a41d8be730cf26"
+    initial_scenario = copy.deepcopy(row["scenario"])
+    row["family"] = "whitespace_policy_exception"
+    row["reason"] = "A whitespace-only exception is nonempty and truthy under the fixed policy; no trimming is specified."
+    row["scenario"] = {
+        "scenario_id": "59a41d8be730cf26",
+        "as_of": "2056-03-16T18:09:00Z",
+        "order": {"order_id": "o-dh03v9", "shipment_id": "s-6zn45p", "status": "in_transit", "version": 5,
+                  "note": "Fictional polymer spacers have a visually blank exception field containing source whitespace.",
+                  "policy_exception": " \t ", "annotations": []},
+        "shipment": {"shipment_id": "s-6zn45p", "status": "delayed", "version": 10,
+                     "last_event_at": "2056-03-14T12:00:00Z", "conflicting_events": False,
+                     "events": [
+                         {"code": "SPACER_CASSETTE_IN", "at": "2056-03-10T07:16:39Z", "description": "Spacer cassette received."},
+                         {"code": "FIELD_EXPORT", "at": "2056-03-12T19:42:05Z", "description": "Source fields exported without trimming."},
+                         {"code": "CASSETTE_HOLD", "at": "2056-03-14T12:00:00Z", "description": "Cassette remains on hold."}]} }
+    save("authored-cases.final.json", rows)
+    save("manual-labels.final.json", {
+        "authorship": "AI-agent initial and revised judgment labels; no human review and no typed policy execution before label assignment.",
+        "cases": [{k: v for k, v in item.items() if k != "scenario"} for item in rows]})
+    save("authoring-revision.json", {
+        "reason": "The runner requests the shipment by the order reference. A different payload identifier cannot be assumed to produce a gathered proposal under the mock lookup contract. Keep the required 30 runnable cases / 24 completion denominator and test the identity-mismatch policy guard separately outside scored fixtures.",
+        "typed_policy_executed_before_revision": False,
+        "preserved_original_inputs": "authored-cases.json",
+        "preserved_initial_labels": "manual-labels.initial.json",
+        "preserved_initial_oracles": "integer-oracles.initial.json",
+        "revised_case_id": row["case_id"],
+        "label_action_changed": False,
+        "replacement_is_fresh_literal": True,
+        "supplemental_policy_probe": {"scenario": initial_scenario, "expected_action": "manual_review", "included_in_manifest_denominator": False}})
+    self_test()
+    checks: list[dict[str, Any]] = []
+    for item in rows:
+        oracle = analyze(item["scenario"])
+        assert oracle["independent_action"] == item["expected_action"]
+        assert oracle["age_us"] == item["expected_age_us"]
+        assert item["scenario"]["order"]["shipment_id"] == item["scenario"]["shipment"]["shipment_id"]
+        checks.append({"case_id": item["case_id"], "manual_action": item["expected_action"],
+                       "manual_age_us": item["expected_age_us"], "oracle": oracle,
+                       "action_agrees": True, "integer_age_agrees": True})
+    save("manual-oracles.json", {
+        "stage": "Independent integer UTC/temporal calculations and original AI-authored action labels, frozen before typed crosscheck",
+        "method": "Gregorian integer civil days, integer microseconds, explicit numeric offsets; no datetime, Pydantic, production, model, or policy imports",
+        "initial_labels_sha256": hashlib.sha256((ROOT / "manual-labels.initial.json").read_bytes()).hexdigest(),
+        "final_labels_sha256": hashlib.sha256((ROOT / "manual-labels.final.json").read_bytes()).hexdigest(),
+        "revision_record": "authoring-revision.json", "cases": checks,
+        "supplemental_mismatch_oracle": analyze(initial_scenario),
+        "self_tests": "10 independent parser assertions passed"})
+    print("Final independent integer oracles and labels saved. Static runner identifier joins now match for all 30 cases.")
+
+
+if __name__ == "__main__":
+    main()

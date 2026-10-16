@@ -1,0 +1,37 @@
+{
+  "as_of": "2039-10-19T21:16:02Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional woven cable sleeves were put in a sealed pouch. The source exception field is present but empty.",
+    "order_id": "o-tz10f7",
+    "policy_exception": "",
+    "shipment_id": "s-1cm68w",
+    "status": "in_transit",
+    "version": 10
+  },
+  "scenario_id": "e2930a67b4d81fc5",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2039-10-14T05:16:19Z",
+        "code": "POUCH_ACCEPTANCE",
+        "description": "Pouch acceptance registered."
+      },
+      {
+        "at": "2039-10-16T17:42:51Z",
+        "code": "NO_ROUTE_SLOT",
+        "description": "No route slot allocated."
+      },
+      {
+        "at": "2039-10-17T18:00:00Z",
+        "code": "POUCH_RETAINED",
+        "description": "Pouch retained for the next allocation."
+      }
+    ],
+    "last_event_at": "2039-10-17T18:00:00Z",
+    "shipment_id": "s-1cm68w",
+    "status": "delayed",
+    "version": 13
+  }
+}

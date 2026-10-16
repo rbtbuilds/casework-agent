@@ -1,0 +1,37 @@
+{
+  "as_of": "2038-09-14T13:50:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional display plinth bolts have incompatible carrier history entries awaiting operator review.",
+    "order_id": "o-lk64n3",
+    "policy_exception": null,
+    "shipment_id": "s-9et25m",
+    "status": "in_transit",
+    "version": 6
+  },
+  "scenario_id": "405d2fb98e6137ac",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2038-09-10T11:22:33Z",
+        "code": "BOLT_BAG_ACCEPTED",
+        "description": "Bolt bag accepted."
+      },
+      {
+        "at": "2038-09-11T19:28:04Z",
+        "code": "DeLiVeReD",
+        "description": "Terminal scan appears in the history."
+      },
+      {
+        "at": "2038-09-12T12:00:00Z",
+        "code": "HISTORY_RECHECK",
+        "description": "History entry sent for recheck."
+      }
+    ],
+    "last_event_at": "2038-09-12T12:00:00Z",
+    "shipment_id": "s-9et25m",
+    "status": "delayed",
+    "version": 8
+  }
+}

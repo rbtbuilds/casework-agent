@@ -1,0 +1,37 @@
+{
+  "as_of": "2031-02-03T02:17:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional archive sleeves were placed in a reusable crate; the dispatch log records no promised arrival.",
+    "order_id": "o-ny44q2",
+    "policy_exception": null,
+    "shipment_id": "s-8wm30r",
+    "status": "in_transit",
+    "version": 7
+  },
+  "scenario_id": "b8d6a20f74619c35",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2031-01-30T08:43:11Z",
+        "code": "CRATE_ACCEPTED",
+        "description": "Crate received at the north intake."
+      },
+      {
+        "at": "2031-01-31T15:02:09Z",
+        "code": "TRANSFER_PENDING",
+        "description": "Transfer assignment recorded."
+      },
+      {
+        "at": "2031-02-01T02:17:00Z",
+        "code": "BAY_RECHECK",
+        "description": "Crate remains in the transfer bay."
+      }
+    ],
+    "last_event_at": "2031-02-01T02:17:00+00:00",
+    "shipment_id": "s-8wm30r",
+    "status": "delayed",
+    "version": 4
+  }
+}

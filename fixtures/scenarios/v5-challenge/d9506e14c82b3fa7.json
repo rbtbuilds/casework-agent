@@ -1,0 +1,32 @@
+{
+  "as_of": "2050-09-08T13:20:00Z",
+  "order": {
+    "annotations": [],
+    "note": "Fictional fibre washers came with a carrier export that omitted the summary timestamp timezone.",
+    "order_id": "o-kt71r8",
+    "policy_exception": null,
+    "shipment_id": "s-3bg46y",
+    "status": "in_transit",
+    "version": 9
+  },
+  "scenario_id": "d9506e14c82b3fa7",
+  "shipment": {
+    "conflicting_events": false,
+    "events": [
+      {
+        "at": "2050-09-03T20:49:05Z",
+        "code": "WASHERS_ACCEPTED",
+        "description": "Fibre washers accepted."
+      },
+      {
+        "at": "2050-09-05T08:23:44Z",
+        "code": "EXPORT_ROW",
+        "description": "An earlier timestamp retains its timezone."
+      }
+    ],
+    "last_event_at": "2050-09-06T10:00:00",
+    "shipment_id": "s-3bg46y",
+    "status": "delayed",
+    "version": 7
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "author_kind": "AI agent",
+  "commits_created": false,
+  "human_authored": false,
+  "human_reviewed": false,
+  "independence_limit": "The author read the pinned policy implementation and specification, and performed an input-only novelty audit. No current protocol or prior results were inspected. AI-generated challenge validity is not a claim of human review or statistical independence.",
+  "manual_label_meaning": "Judgment labels written by the AI author before policy execution; manual does not mean human-authored or independently human-validated.",
+  "model_lease_used": false,
+  "network_used": false,
+  "privacy": "Entirely invented business records. No customer data, real orders, credentials or private research material.",
+  "production_files_modified": false,
+  "quality_claim": "None. Offline oracle and schema validity do not demonstrate target-model performance.",
+  "role": "Independent sealed challenge-authoring subagent",
+  "services_started": false,
+  "target_model_inference_performed": false
+}
