@@ -1,6 +1,7 @@
 from .agent import AgentContext, FixtureAdapter, validate_decision
 from .config import Settings
 from .contracts import ApprovalRequest, CaseView, JsonDict
+from .grounded_explanation import EXPLANATION_VERSION
 from .hashing import canonical_hash
 from .model_adapter import MODEL_PROTOCOL_VERSION, LocalModelAdapter, ModelClient
 from .model_session import ModelSession
@@ -47,6 +48,7 @@ class Workflow:
                     "adapter": "model",
                     "usage_tokens": adapter.usage_tokens,
                     "protocol_version": MODEL_PROTOCOL_VERSION,
+                    "explanation_renderer_version": EXPLANATION_VERSION,
                     "generation_schema_hashes": [value for value in adapter.schema_hashes],
                     "exchange": [m.model_dump(mode="json") for m in adapter.trace],
                 }
@@ -65,6 +67,7 @@ class Workflow:
                     {
                         "usage_tokens": adapter.usage_tokens,
                         "protocol_version": MODEL_PROTOCOL_VERSION,
+                        "explanation_renderer_version": EXPLANATION_VERSION,
                         "generation_schema_hashes": [value for value in adapter.schema_hashes],
                         "exchange": [m.model_dump(mode="json") for m in adapter.trace],
                     }

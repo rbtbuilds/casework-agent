@@ -117,7 +117,11 @@ async def test_wrong_policy_action_fails_without_feedback_or_second_guess(tmp_pa
                             "timestamps_known_and_consistent": True,
                             "age_at_least_48_hours": True,
                         },
-                        "decision": decision.model_dump(mode="json"),
+                        "primary_reason": "all_pass",
+                        "decision": {
+                            "action": decision.action,
+                            "evidence_ids": decision.evidence_ids,
+                        },
                     }
                 )
             )

@@ -1,13 +1,17 @@
 import asyncio
 import json
-from datetime import UTC, datetime, timedelta
+from datetime import datetime
 from typing import Annotated, Literal, Protocol, cast
 
 from pydantic import Field, TypeAdapter, ValidationError
 
 from .agent import AgentContext, AgentValidationError, validate_decision
-from .contracts import AgentDecision, JsonDict, JsonValue, StrictModel
+from .contracts import Action, AgentDecision, JsonDict, JsonValue, StrictModel
+from .grounded_explanation import explain
 from .hashing import canonical_hash
+from .policy import current_policy
+from .policy_assessment import PolicyAssessment, PrimaryReason, assess_policy, first_failed_check
+from .temporal import elapsed_microseconds, to_utc
 from .tools import ReadTools, ToolPermissionError
 
 
@@ -35,25 +39,22 @@ class ToolRequest(StrictModel):
     arguments: JsonDict
 
 
-class PolicyAssessment(StrictModel):
-    order_in_transit: bool
-    shipment_delayed: bool
-    no_policy_exception: bool
-    no_conflicting_or_terminal_events: bool
-    timestamps_known_and_consistent: bool
-    age_at_least_48_hours: bool
+class ModelChoice(StrictModel):
+    action: Action
+    evidence_ids: list[str] = Field(min_length=3, max_length=8)
 
 
 class ProposalRequest(StrictModel):
     kind: Literal["proposal"]
     assessment: PolicyAssessment
-    decision: AgentDecision
+    primary_reason: PrimaryReason
+    decision: ModelChoice
 
 
 REQUEST = TypeAdapter(Annotated[ToolRequest | ProposalRequest, Field(discriminator="kind")])
 
 
-MODEL_PROTOCOL_VERSION = "casework-json-schema-v3-assessment"
+MODEL_PROTOCOL_VERSION = "casework-json-schema-v4-grounded"
 CASE_DEADLINE_SECONDS = 120
 
 
@@ -96,12 +97,11 @@ def generation_schema(context: AgentContext, tools: ReadTools) -> JsonDict:
         read("get_policy")
     if alternatives:
         return {"anyOf": alternatives}
-    decision = AgentDecision.model_json_schema()
+    decision = ModelChoice.model_json_schema()
     definitions = decision.pop("$defs", {})
+    definitions.update(ProposalRequest.model_json_schema().get("$defs", {}))
     properties = decision["properties"]
-    decision["properties"] = {
-        name: properties[name] for name in ("rationale", "action", "draft_note", "evidence_ids")
-    }
+    decision["properties"] = {name: properties[name] for name in ("action", "evidence_ids")}
     decision["properties"]["evidence_ids"] = {
         "type": "array",
         "items": {"type": "string"},
@@ -116,9 +116,12 @@ def generation_schema(context: AgentContext, tools: ReadTools) -> JsonDict:
             "properties": {
                 "kind": {"const": "proposal"},
                 "assessment": PolicyAssessment.model_json_schema(),
+                "primary_reason": ProposalRequest.model_json_schema()["properties"][
+                    "primary_reason"
+                ],
                 "decision": decision,
             },
-            "required": ["kind", "assessment", "decision"],
+            "required": ["kind", "assessment", "primary_reason", "decision"],
         },
     )
 
@@ -130,17 +133,17 @@ def decision_facts(context: AgentContext, tools: ReadTools) -> JsonDict:
     last_event = shipment.last_event_at
 
     def utc(value: datetime | None) -> str | None:
-        if value is None or value.tzinfo is None:
-            return None
         try:
-            return value.astimezone(UTC).isoformat()
-        except OverflowError as exc:
+            converted = to_utc(value)
+            return converted.isoformat() if converted is not None else None
+        except ValueError as exc:
             raise AgentValidationError("timestamp_out_of_utc_range") from exc
 
     def delta_us(later: datetime | None, earlier: datetime | None) -> int | None:
-        if later is None or earlier is None or later.tzinfo is None or earlier.tzinfo is None:
-            return None
-        return (later - earlier) // timedelta(microseconds=1)
+        try:
+            return elapsed_microseconds(later, earlier)
+        except ValueError as exc:
+            raise AgentValidationError("timestamp_out_of_utc_range") from exc
 
     age = delta_us(context.as_of, last_event)
     return {
@@ -152,7 +155,10 @@ def decision_facts(context: AgentContext, tools: ReadTools) -> JsonDict:
         "conflicting_events": shipment.conflicting_events,
         "last_event_at": last_event.isoformat() if last_event is not None else None,
         "last_event_at_utc": utc(last_event),
-        "elapsed_hours_since_last_event": age / 3_600_000_000 if age is not None else None,
+        "delay_threshold_microseconds": current_policy().delay_hours * 3_600_000_000,
+        "age_minus_threshold_microseconds": age - current_policy().delay_hours * 3_600_000_000
+        if age is not None
+        else None,
         "elapsed_microseconds_since_last_event": age,
         "carrier_events": [
             {
@@ -191,14 +197,17 @@ def system_instruction() -> str:
         "and microseconds_before_as_of; both differences must be nonnegative. "
         "Any null or negative difference makes this false. An empty event list adds no failure.\n"
         "6. age_at_least_48_hours: elapsed_microseconds_since_last_event must be non-null "
-        "and >=172800000000. Use the exact integer without rounding.\n"
+        "and age_minus_threshold_microseconds must be nonnegative. "
+        "This is exact age minus the policy threshold: a negative value (even -1) "
+        "means below threshold, zero means exactly threshold, positive means above. "
+        "Null means unknown and false. Never round or estimate hours.\n"
         "Choose open_investigation ONLY if all six booleans are true. Otherwise manual_review. "
-        "An old event cannot override a false check. In rationale name the first failed check "
-        "and its observed value, or briefly explain why all six pass. "
-        "Keep rationale to at most three short factual sentences. "
-        "Start draft_note with 'Fictional internal case:' and describe the proposed action; "
-        "do not claim an action has already been performed. "
-        "Do not promise delivery, compensation, refunds or customer contact. "
+        "An old event cannot override a false check. Evaluate every condition independently: "
+        "a timestamp fault changes check 5, not check 4; a non-delayed status changes check 2. "
+        "Set primary_reason to the FIRST false assessment field in checklist order, "
+        "or all_pass only when all six are true. Return the assessment, primary_reason, "
+        "chosen action and citations. Do not generate prose: the application validates "
+        "your claims and renders the proposed-action explanation from observed facts. "
         "Cite the actual observation IDs. Policy: "
         + json.dumps(current_policy().model_dump(mode="json"), separators=(",", ":"))
     )
@@ -251,9 +260,35 @@ class LocalModelAdapter:
             try:
                 request = REQUEST.validate_json(reply.text)
                 if isinstance(request, ProposalRequest):
-                    validate_decision(context, tools, request.decision)
+                    if (
+                        tools.order is None
+                        or tools.shipment is None
+                        or {e.source for e in tools.evidence} != {"order", "carrier", "policy"}
+                    ):
+                        raise AgentValidationError("missing_evidence")
+                    if request.assessment != assess_policy(
+                        tools.order, tools.shipment, context.as_of
+                    ):
+                        raise AgentValidationError("assessment_mismatch")
+                    if request.primary_reason != first_failed_check(request.assessment):
+                        raise AgentValidationError("reason_mismatch")
+                    rationale = explain(
+                        request.primary_reason, tools.order, tools.shipment, context.as_of
+                    )
+                    proposed = (
+                        "investigation"
+                        if request.decision.action == "open_investigation"
+                        else "manual review"
+                    )
+                    decision = AgentDecision(
+                        action=request.decision.action,
+                        evidence_ids=request.decision.evidence_ids,
+                        rationale=rationale,
+                        draft_note=f"Fictional internal case: proposed {proposed}. {rationale} Approval is required before any write.",
+                    )
+                    validate_decision(context, tools, decision)
                     self.trace = messages
-                    return request.decision
+                    return decision
                 args = request.arguments
                 if (
                     request.name == "get_order"
@@ -279,7 +314,7 @@ class LocalModelAdapter:
                     )
                 )
             except (ValidationError, ToolPermissionError, AgentValidationError) as exc:
-                if isinstance(exc, AgentValidationError) and str(exc) == "policy_mismatch":
+                if isinstance(exc, AgentValidationError):
                     raise
                 errors += 1
                 if errors > 1:

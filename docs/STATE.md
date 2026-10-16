@@ -2,6 +2,12 @@
 
 Updated 2026-10-16. Repository: [rbtbuilds/casework-agent](https://github.com/rbtbuilds/casework-agent).
 
+## V4 repair in progress
+
+The internal v4 protocol adds exact policy-relative age arithmetic, checks every model assessment and primary reason, and renders bounded prospective explanations from validated facts. Qwen still chooses its assessments, reason and action; the application writes the displayed prose. See [repair design](MODEL-REPAIR-V4.md). Historical v3 results below apply only to their recorded source.
+
+Focused regressions reproduce false-assessment publication, near-threshold precision, shared-zone daylight-saving/fold errors and an early proposal escaping worker failure handling. The implementation closes those paths. Strict checks, complete software tests, actual inference calibration and a separately authored fresh v4 challenge must finish before any new model-quality claim. The shared machine lease was busy with Evidence RAG at the first inference attempt; no model loaded and no challenge was opened.
+
 ## Verified model and workflow
 
 Pinned `mlx-community/Qwen3-14B-4bit`, revision `a4d9b2df59d2c150bef02fcbe0d91046b7ca33a4`, runs through MLX LM with explicit non-thinking chat rendering and Outlines JSON Schema decoding. Qwen generates six policy-assessment booleans, chooses its action and drafts the note. Both boolean values and both final actions remain available; the backend supplies no eligibility answer and rejects an incorrect policy decision without feedback or a second choice.

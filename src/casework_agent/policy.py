@@ -10,6 +10,7 @@ from .contracts import (
     TicketIntent,
 )
 from .hashing import canonical_hash
+from .temporal import to_utc
 
 RULES = [
     "Only in-transit delayed orders with >=48h since last event and no conflicting/delivered evidence or policy exception may open an investigation.",
@@ -39,16 +40,18 @@ def allowed_action(order: Order, shipment: Shipment, as_of: datetime) -> Action:
         or any(e.code.lower() in {"delivered", "cancelled"} for e in shipment.events)
     ):
         return "manual_review"
-    if shipment.last_event_at.tzinfo is None or as_of.tzinfo is None:
+    try:
+        last, now = to_utc(shipment.last_event_at), to_utc(as_of)
+        events = [to_utc(event.at) for event in shipment.events]
+    except ValueError:
         return "manual_review"
-    if shipment.last_event_at > as_of or any(
-        event.at.tzinfo is None or event.at > shipment.last_event_at or event.at > as_of
-        for event in shipment.events
-    ):
+    if last is None or now is None:
+        return "manual_review"
+    if last > now or any(event is None or event > last or event > now for event in events):
         return "manual_review"
     return (
         "open_investigation"
-        if as_of - shipment.last_event_at >= timedelta(hours=48)
+        if now - last >= timedelta(hours=current_policy().delay_hours)
         else "manual_review"
     )
 

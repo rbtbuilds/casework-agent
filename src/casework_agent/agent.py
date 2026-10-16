@@ -38,6 +38,17 @@ class FixtureAdapter:
 
 
 def validate_decision(context: AgentContext, tools: ReadTools, decision: AgentDecision) -> None:
+    if (
+        tools.case_id != context.case_id
+        or tools.order_id != context.order_id
+        or (tools.order is not None and tools.order.order_id != context.order_id)
+        or (
+            tools.order is not None
+            and tools.shipment is not None
+            and tools.shipment.shipment_id != tools.order.shipment_id
+        )
+    ):
+        raise AgentValidationError("evidence_scope")
     ids = set(decision.evidence_ids)
     matching = [e for e in tools.evidence if e.id in ids]
     if (

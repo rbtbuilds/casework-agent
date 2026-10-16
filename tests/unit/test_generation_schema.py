@@ -7,7 +7,7 @@ from jsonschema import Draft202012Validator
 
 from casework_agent.agent import AgentContext
 from casework_agent.config import Settings
-from casework_agent.contracts import AgentDecision, CarrierEvent, JsonDict, Order, Shipment
+from casework_agent.contracts import CarrierEvent, JsonDict, Order, Shipment
 from casework_agent.policy import current_policy
 from casework_agent.tools import ReadTools
 
@@ -79,13 +79,12 @@ async def test_final_schema_keeps_the_action_model_chosen_but_binds_citations(
         for action in ["open_investigation", "manual_review"]:
             decision: JsonDict = {
                 "action": action,
-                "rationale": "Recorded evidence.",
-                "draft_note": "Fictional internal note.",
                 "evidence_ids": [e.id for e in tools.evidence],
             }
             proposal: JsonDict = {
                 "kind": "proposal",
                 "assessment": assessment,
+                "primary_reason": "all_pass",
                 "decision": decision,
             }
             assert schema.is_valid(proposal)
@@ -95,7 +94,7 @@ async def test_final_schema_keeps_the_action_model_chosen_but_binds_citations(
                 {**proposal, "decision": {**decision, "evidence_ids": ["invented"] * 3}}
             )
             assert not schema.is_valid({**proposal, "decision": {**decision, "action": "refund"}})
-            AgentDecision.model_validate(decision)
+
         assert not schema.is_valid({"kind": "tool", "name": "get_policy", "arguments": {}})
     finally:
         await tools.close()
@@ -214,13 +213,56 @@ async def test_model_facts_use_business_clock_and_raw_status_without_policy_answ
     )
     try:
         facts = decision_facts(context, tools)
-        assert facts["elapsed_hours_since_last_event"] == 60.0
+        assert facts["elapsed_microseconds_since_last_event"] == 216000000000
         assert facts["shipment_status"] == "in_transit"
         assert facts["order_status"] == "in_transit"
         assert not {"action", "expected_action", "allowed_action", "eligible"} & facts.keys()
         tools.shipment.last_event_at = None
-        assert decision_facts(context, tools)["elapsed_hours_since_last_event"] is None
+        assert decision_facts(context, tools)["elapsed_microseconds_since_last_event"] is None
         tools.shipment.last_event_at = datetime(2026, 10, 13)
-        assert decision_facts(context, tools)["elapsed_hours_since_last_event"] is None
+        assert decision_facts(context, tools)["elapsed_microseconds_since_last_event"] is None
+    finally:
+        await tools.close()
+
+
+async def test_grounded_schema_allows_model_choices_but_forbids_free_text(tmp_path: Path) -> None:
+    from casework_agent.model_adapter import generation_schema
+
+    tools = ReadTools("case", "order", Settings(root=tmp_path))
+    context = AgentContext(case_id="case", order_id="order", as_of=datetime.now(UTC))
+    tools.order = Order(order_id="order", shipment_id="shipment", status="in_transit")
+    tools.shipment = Shipment(shipment_id="shipment", status="delayed", last_event_at=context.as_of)
+    tools.record("order", "order", "1", tools.order)
+    tools.record("carrier", "shipment", "1", tools.shipment)
+    policy = current_policy()
+    tools.record("policy", policy.version, policy.hash, policy)
+    try:
+        schema = validator(generation_schema(context, tools))
+        proposal: JsonDict = {
+            "kind": "proposal",
+            "assessment": {
+                name: False
+                for name in [
+                    "order_in_transit",
+                    "shipment_delayed",
+                    "no_policy_exception",
+                    "no_conflicting_or_terminal_events",
+                    "timestamps_known_and_consistent",
+                    "age_at_least_48_hours",
+                ]
+            },
+            "primary_reason": "all_pass",
+            "decision": {
+                "action": "open_investigation",
+                "evidence_ids": [e.id for e in tools.evidence],
+            },
+        }
+        assert schema.is_valid(proposal)
+        choice = proposal["decision"]
+        assert isinstance(choice, dict)
+        assert not schema.is_valid(
+            {**proposal, "decision": {**choice, "rationale": "Invented fact"}}
+        )
+        assert schema.is_valid({**proposal, "primary_reason": "shipment_delayed"})
     finally:
         await tools.close()

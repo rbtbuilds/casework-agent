@@ -12,6 +12,7 @@ from typing import Literal, cast
 from casework_agent.clock import FrozenClock
 from casework_agent.config import Settings
 from casework_agent.contracts import ApprovalRequest, CaseSeed, JsonDict, uid
+from casework_agent.grounded_explanation import EXPLANATION_VERSION
 from casework_agent.hashing import canonical_hash
 from casework_agent.model_adapter import (
     MODEL_PROTOCOL_VERSION,
@@ -193,6 +194,7 @@ async def evaluate(
         "web_lock_hash": digest(ROOT / "web/package-lock.json"),
         "request_schema_hash": canonical_hash(REQUEST.json_schema()),
         "model_protocol_version": MODEL_PROTOCOL_VERSION if mode == "model" else None,
+        "explanation_renderer_version": EXPLANATION_VERSION if mode == "model" else None,
         "system_instruction_hash": canonical_hash(system_instruction())
         if mode == "model"
         else None,

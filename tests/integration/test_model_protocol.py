@@ -60,7 +60,10 @@ class ScriptedReadClient:
                     "timestamps_known_and_consistent": True,
                     "age_at_least_48_hours": True,
                 },
-                "decision": cast(JsonDict, decision.model_dump(mode="json")),
+                "primary_reason": "all_pass",
+                "decision": cast(
+                    JsonDict, decision.model_dump(mode="json", include={"action", "evidence_ids"})
+                ),
             }
         return ModelReply(text=json.dumps(body))
 
@@ -113,6 +116,126 @@ async def test_unrepresentable_utc_clock_does_not_stop_following_case(
                 assert failed.state == "failed"
                 assert failed.error and failed.error.code == "timestamp_out_of_utc_range"
                 assert failed.proposal is None and not failed.operations
+                following = repo.create_case(
+                    CaseSeed(
+                        scenario_id="following",
+                        order_id="o-001",
+                        mode="fixture",
+                        as_of=datetime(2026, 10, 15, 12, tzinfo=UTC),
+                    )
+                )
+                assert await worker.tick()
+                assert repo.get_case(following.id).state == "needs_approval"
+                counts = await system.counts()
+                assert counts.tickets == 0 and counts.annotations == 0
+            finally:
+                await worker.close()
+
+
+async def test_false_assessment_fails_gathering_without_proposal_or_writes(tmp_path: Path) -> None:
+    from casework_agent.workflow import Workflow
+
+    class IncorrectAssessment(ScriptedReadClient):
+        proposals = 0
+
+        async def complete(
+            self, messages: list[ChatMessage], *, response_schema: JsonDict | None = None
+        ) -> ModelReply:
+            reply = await super().complete(messages, response_schema=response_schema)
+            body = json.loads(reply.text)
+            if body["kind"] == "proposal":
+                self.proposals += 1
+                body["assessment"]["shipment_delayed"] = False
+            return ModelReply(text=json.dumps(body))
+
+    async with TestSystem(tmp_path) as system:
+        await system.start()
+        with Repository.open(tmp_path / ".runtime/app.sqlite3") as repo:
+            case = repo.create_case(
+                CaseSeed(
+                    scenario_id="false-assessment",
+                    order_id="o-001",
+                    mode="model",
+                    as_of=datetime(2026, 10, 15, 12, tzinfo=UTC),
+                )
+            )
+            client = IncorrectAssessment()
+            await Workflow(repo, Settings(root=tmp_path), client).gather(case.id)
+            failed = repo.get_case(case.id)
+            assert failed.state == "failed" and failed.proposal is None
+            assert failed.error and failed.error.message == "assessment_mismatch"
+            counts = await system.counts()
+            assert counts.tickets == 0 and counts.annotations == 0
+            assert client.proposals == 1
+            row = repo.con.execute(
+                "SELECT payload_json FROM agent_runs WHERE case_id=?", (case.id,)
+            ).fetchone()
+            assert row is not None
+            trace = json.loads(row[0])
+            assert trace["status"] == "failed" and trace["error"] == "assessment_mismatch"
+            assert trace["explanation_renderer_version"] == "validated-reason-renderer-v1"
+            assert (
+                json.loads(trace["exchange"][-1]["content"])["assessment"]["shipment_delayed"]
+                is False
+            )
+
+
+async def test_early_proposal_records_failure_and_worker_processes_next_case(
+    tmp_path: Path,
+) -> None:
+    class EarlyProposal:
+        calls = 0
+
+        async def complete(
+            self, messages: list[ChatMessage], *, response_schema: JsonDict | None = None
+        ) -> ModelReply:
+            self.calls += 1
+            return ModelReply(
+                text=json.dumps(
+                    {
+                        "kind": "proposal",
+                        "primary_reason": "all_pass",
+                        "assessment": {
+                            "order_in_transit": True,
+                            "shipment_delayed": True,
+                            "no_policy_exception": True,
+                            "no_conflicting_or_terminal_events": True,
+                            "timestamps_known_and_consistent": True,
+                            "age_at_least_48_hours": True,
+                        },
+                        "decision": {
+                            "action": "open_investigation",
+                            "evidence_ids": ["a", "b", "c"],
+                        },
+                    }
+                )
+            )
+
+    async with TestSystem(tmp_path) as system:
+        await system.start()
+        with Repository.open(tmp_path / ".runtime/app.sqlite3") as repo:
+            client = EarlyProposal()
+            worker = Worker(repo, Settings(root=tmp_path), model=client)
+            try:
+                failed = repo.create_case(
+                    CaseSeed(
+                        scenario_id="early",
+                        order_id="o-001",
+                        mode="model",
+                        as_of=datetime(2026, 10, 15, 12, tzinfo=UTC),
+                    )
+                )
+                assert await worker.tick()
+                case = repo.get_case(failed.id)
+                assert case.state == "failed" and case.proposal is None and not case.operations
+                assert case.error and case.error.code == "missing_evidence"
+                assert client.calls == 1
+                row = repo.con.execute(
+                    "SELECT payload_json FROM agent_runs WHERE case_id=?", (case.id,)
+                ).fetchone()
+                trace = json.loads(row[0])
+                assert trace["status"] == "failed" and trace["tool_calls"] == 0
+                assert json.loads(trace["exchange"][-1]["content"])["kind"] == "proposal"
                 following = repo.create_case(
                     CaseSeed(
                         scenario_id="following",
