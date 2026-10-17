@@ -217,7 +217,12 @@ test("record evidence, exact approval and confirmed HTTP effects", async ({
     await page.waitForTimeout(5000);
   }
   expect(errors).toEqual([]);
-  await page.screenshot({ path: `${root}/completed.png`, fullPage: true });
+  const completionImage = await page.screenshot({
+    path: `${root}/completed.png`,
+    fullPage: false,
+  });
+  expect(completionImage.readUInt32BE(16)).toBe(1440);
+  expect(completionImage.readUInt32BE(20)).toBe(1000);
   const capturedWallSeconds = (performance.now() - start) / 1000;
   const video = page.video();
   if (!video) throw new Error("Recording was not enabled.");
@@ -227,12 +232,27 @@ test("record evidence, exact approval and confirmed HTTP effects", async ({
     viewport: { width: 1440, height: 100 },
   });
   const captions = await captionContext.newPage();
-  for (const [index, item] of chapters.entries()) {
-    await captions.setContent(
-      `<body style="margin:0;background:#0b1220;color:#f1f5f9;font:18px/1.5 system-ui;padding:15px 24px;box-sizing:border-box"><strong>${item.title}</strong><div style="color:#cbd5e1;font-size:16px">${item.detail}</div></body>`,
-    );
-    await captions.screenshot({ path: `${root}/caption-${index}.png` });
-  }
+  const staticCaption =
+    mode === "model"
+      ? {
+          title:
+            "ACTUAL LOCAL QWEN | Evidence, exact approval and guarded execution",
+          detail:
+            "Synthetic records | Real local HTTP services | Exposed example | Original speed",
+        }
+      : {
+          title:
+            "FIXTURE RECOVERY | Lost write responses and same-key journal confirmation",
+          detail:
+            "Deterministic decision | Real HTTP writes | Both responses dropped after commit | Original speed",
+        };
+  await captions.setContent(
+    `<body style="margin:0;background:#0b1220;color:#f1f5f9;font:18px/1.5 system-ui;padding:15px 24px;box-sizing:border-box"><strong>${staticCaption.title}</strong><div style="color:#cbd5e1;font-size:16px">${staticCaption.detail}</div></body>`,
+  );
+  await expect(
+    captions.getByText(staticCaption.title, { exact: true }),
+  ).toBeVisible();
+  await captions.screenshot({ path: `${root}/caption.png` });
   await captionContext.close();
   writeFileSync(
     `${root}/recording.json`,
@@ -250,7 +270,8 @@ test("record evidence, exact approval and confirmed HTTP effects", async ({
         scenario: "fixtures/scenarios/dev-delay-01.json",
         provenance:
           "New automated browser demonstration on an exposed example, not unseen evaluation. Uncut recording; caption strip added below the viewport.",
-        chapters,
+        test_clock_events: chapters,
+        static_caption: staticCaption,
         captured_wall_seconds: capturedWallSeconds,
         before,
         after,

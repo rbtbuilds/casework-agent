@@ -17,43 +17,31 @@ def render(root: Path, output: Path) -> None:
     if not source.is_file() or not recording.is_file():
         raise FileNotFoundError("A successful recording and its evidence are required.")
     data: dict[str, Any] = json.loads(recording.read_text())
-    chapters: list[dict[str, Any]] = data["chapters"]
-    if not chapters or data["browser_errors"]:
-        raise ValueError("No chapters or browser errors present.")
+    caption = root / "caption.png"
+    if not caption.is_file():
+        raise FileNotFoundError("A static mode caption is required.")
+    if data["browser_errors"] or data["mode"] not in {"model", "fixture"}:
+        raise ValueError("Invalid mode or browser errors present.")
     ffmpeg, ffprobe = shutil.which("ffmpeg"), shutil.which("ffprobe")
     if not ffmpeg or not ffprobe:
         raise RuntimeError("Install FFmpeg, including ffprobe, to render recordings.")
-    source_media: dict[str, Any] = json.loads(
-        subprocess.check_output(
-            [ffprobe, "-v", "error", "-show_format", "-of", "json", str(source)], text=True
-        )
-    )
-    # Playwright can start the page video before the test body clock begins.
-    # Align their closing boundary instead of putting captions ahead of actions.
-    offset = max(
-        0.0, float(source_media["format"]["duration"]) - float(data["captured_wall_seconds"])
-    )
-    command = [ffmpeg, "-n", "-hide_banner", "-loglevel", "error", "-i", str(source)]
-    graph = ["[0:v]pad=iw:ih+100:0:0:color=0x0b1220[v0]"]
-    for index, chapter in enumerate(chapters):
-        caption = root / f"caption-{index}.png"
-        if not caption.is_file():
-            raise FileNotFoundError(caption.name)
-        command.extend(["-i", str(caption)])
-        start = 0 if index == 0 else float(chapter["seconds"]) + offset
-        end = (
-            float(chapters[index + 1]["seconds"]) + offset if index + 1 < len(chapters) else 100000
-        )
-        graph.append(
-            f"[v{index}][{index + 1}:v]overlay=0:1000:"
-            f"enable='gte(t,{start})*lt(t,{end})'[v{index + 1}]"
-        )
+    command = [
+        ffmpeg,
+        "-n",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-i",
+        str(source),
+        "-i",
+        str(caption),
+    ]
     command.extend(
         [
             "-filter_complex",
-            ";".join(graph),
+            "[0:v]pad=iw:ih+100:0:0:color=0x0b1220[p];[p][1:v]overlay=0:1000[out]",
             "-map",
-            f"[v{len(chapters)}]",
+            "[out]",
             "-an",
             "-c:v",
             "libx264",
@@ -89,10 +77,12 @@ def render(root: Path, output: Path) -> None:
         "mode": data["mode"],
         "source_commit": data["source_commit"],
         "source_dirty": data["source_dirty"],
-        "chapters": chapters,
+        "static_caption": data["static_caption"],
+        "caption_png_sha256": hashlib.sha256(caption.read_bytes()).hexdigest(),
+        "test_clock_events": data["test_clock_events"],
         "media": probe,
         "human_review": "pending",
-        "caption_clock_offset_seconds": offset,
+        "caption_timing": "Permanent mode/workflow label; no inferred video phase timestamps",
     }
     with output.with_suffix(".json").open("x") as file:
         file.write(json.dumps(evidence, indent=2) + "\n")
