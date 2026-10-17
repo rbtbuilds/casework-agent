@@ -1,40 +1,45 @@
 {
   "kind": "Uncut real browser capture with a caption strip below the viewport; no speed change",
-  "source_video_sha256": "db7ce022476923bb8b230eac1e1dd8bdd71ed94c9f523d033782788539a6988b",
-  "recording_evidence_sha256": "47b2bfada812407f145ec9ea5497deb6acbd63b0c057239649b4519ff7c4a586",
-  "renderer_sha256": "0fb0f9ccfcb752860b2f26fe03968152eb761dadbd2bd0445fc36cd0b2b036b0",
-  "video_sha256": "e24eda322c49ec3447d4549201d7ce4f50523fb4048ed314bfb158113c273838",
+  "source_video_sha256": "958a7a55a063973f043f8bcf31872a2fb27257ca33ae40678da571d2bc252e23",
+  "recording_evidence_sha256": "a42c490f9da1cea47b8b9cbcb813f3c864e88595b53e084c8d7888b00bb2399b",
+  "renderer_sha256": "adff451f33121b197f15ad3a024a0d6c1e9c559de6c05afe13745202dbdbe540",
+  "video_sha256": "6ee7f3bbedcb16779dc17f9471c47c82791240e1ca78e1c2c3c2d78eaf545a4e",
   "mode": "model",
-  "source_commit": "f6271f9a324ee6f1f115e1d675dd544fec3ec128",
+  "source_commit": "7a4bc9c1f665078bf7d9f81cfd5032851e669c4a",
   "source_dirty": false,
-  "chapters": [
+  "static_caption": {
+    "title": "ACTUAL LOCAL QWEN | Evidence, exact approval and guarded execution",
+    "detail": "Synthetic records | Real local HTTP services | Exposed example | Original speed"
+  },
+  "caption_png_sha256": "1d25aaba653250c64d3008ad09371d677a34219153b129f77a975320d608a489",
+  "test_clock_events": [
     {
-      "seconds": 1.479100000000244e-05,
+      "seconds": 1.2667000000021744e-05,
       "title": "Read evidence. Review the exact proposal. Approve once.",
       "detail": "ACTUAL QWEN / synthetic records"
     },
     {
-      "seconds": 2.77805575,
+      "seconds": 2.751858792,
       "title": "Qwen gathers scoped evidence and evaluates six conditions.",
       "detail": "Live inference at original speed. No fixture fallback or case replay."
     },
     {
-      "seconds": 28.261367625,
+      "seconds": 26.856373458,
       "title": "Evidence is visible; zero tickets or annotations before approval.",
       "detail": "Verified against both remote SQLite stores and journals. Displayed prose is application-rendered."
     },
     {
-      "seconds": 33.862111625,
+      "seconds": 32.474481167,
       "title": "Approve the displayed note, source versions and proposal hash.",
       "detail": "Approval is an automated browser action for this recording; no human factual sign-off is implied."
     },
     {
-      "seconds": 37.898180083,
+      "seconds": 36.514528375,
       "title": "Exact approval committed; the worker sends the saved operations.",
       "detail": "The model has no write tools. Approval grants only the two displayed fictional effects."
     },
     {
-      "seconds": 39.231623375,
+      "seconds": 36.839686958,
       "title": "Confirmed: one ticket, one annotation, one send per operation.",
       "detail": "ACTUAL QWEN / synthetic records | Journal keys, request hashes and effect bodies match; no duplicate writes."
     }
@@ -69,11 +74,11 @@
         "time_base": "1/12800",
         "start_pts": 0,
         "start_time": "0.000000",
-        "duration_ts": 585728,
-        "duration": "45.760000",
-        "bit_rate": "111320",
+        "duration_ts": 532480,
+        "duration": "41.600000",
+        "bit_rate": "105983",
         "bits_per_raw_sample": "8",
-        "nb_frames": "1144",
+        "nb_frames": "1040",
         "extradata_size": 47,
         "disposition": {
           "default": 1,
@@ -110,9 +115,9 @@
       "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
       "format_long_name": "QuickTime / MOV",
       "start_time": "0.000000",
-      "duration": "45.760000",
-      "size": "651401",
-      "bit_rate": "113881",
+      "duration": "41.600000",
+      "size": "564501",
+      "bit_rate": "108557",
       "probe_score": 100,
       "tags": {
         "major_brand": "isom",
@@ -124,5 +129,5 @@
     }
   },
   "human_review": "pending",
-  "caption_clock_offset_seconds": 1.926792459000005
+  "caption_timing": "Permanent mode/workflow label; no inferred video phase timestamps"
 }

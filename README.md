@@ -8,7 +8,7 @@ A local Qwen agent for delivery exceptions, with exact human approval and durabl
 
 [![Watch actual Qwen gather evidence and wait for exact approval](docs/media/casework-qwen-poster.png)](docs/media/casework-qwen.mp4)
 
-**[Watch actual Qwen - 46 seconds](docs/media/casework-qwen.mp4)** · **[Watch fixture recovery - 30 seconds](docs/media/casework-recovery.mp4)** · [Reproduce the recordings](docs/WALKTHROUGH.md) · [Read the case study](docs/CASE-STUDY.md)
+**[Watch actual Qwen - 42 seconds](docs/media/casework-qwen.mp4)** · **[Watch fixture recovery - 29 seconds](docs/media/casework-recovery.mp4)** · [Reproduce the recordings](docs/WALKTHROUGH.md) · [Read the case study](docs/CASE-STUDY.md)
 
 The main recording uses actual local inference. The separate recovery clip uses a labelled fixture decision and real HTTP services with both write responses lost after commit. Both verify zero effects before approval, the exact approved proposal and one confirmed ticket/annotation pair. Captions are added below uncut browser footage at the original speed. These are demonstrations on an exposed example, not new unseen evaluations.
 
@@ -78,7 +78,7 @@ The earlier 14B v3 challenge recorded 28/30 actions and outcomes with 22/24 comp
 
 ## Verification
 
-The presentation and retained-evidence audit revision passes **164 Python tests**, strict Python and TypeScript checks including test files, eight component tests, build and unchanged contract regeneration. All four actual-service browser flows pass, including Qwen, alongside the two separately recorded demonstrations. [Current verification and audit boundaries](docs/STATE.md).
+The presentation and retained-evidence audit revision passes **165 Python tests**, strict Python and TypeScript checks including test files, eight component tests, build and unchanged contract regeneration. All four actual-service browser flows pass, including Qwen, alongside the two separately recorded demonstrations. [Current verification and audit boundaries](docs/STATE.md).
 
 A [fresh source archive](docs/evidence/qwen-v5-runtime-clean-checkout.json) passed locked installation, 151 Python tests, eight component tests, strict Python and TypeScript checks, build, unchanged contract regeneration and three fixture browser flows. Its optional model test was explicitly skipped.
 

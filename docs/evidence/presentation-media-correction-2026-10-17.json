@@ -1,0 +1,34 @@
+{
+  "kind": "Explicit media correction after independent AI-assisted review; not a new model evaluation",
+  "reviewed_commit": "98fe5a489c8fa4cdb56503c63260973edb24bdeb",
+  "corrected_capture_source": "7a4bc9c1f665078bf7d9f81cfd5032851e669c4a",
+  "findings": [
+    {
+      "severity": "Important",
+      "finding": "Inferred video/test clock offset caused phase captions to lag confirmed UI outcomes.",
+      "correction": "Permanent mode/workflow caption; no inferred video phase timestamps.",
+      "regression": "Static-caption requirement failed before correction and passed afterward."
+    },
+    {
+      "reviewer_severity": "Minor",
+      "final_severity": "Important for legible final evidence",
+      "finding": "Full-page screenshot while recording resized the last video frames.",
+      "correction": "Viewport-only screenshot plus1440x1000 PNG dimension assertions.",
+      "regression": "RED (1840px) -> GREEN (1000px) in both final captures."
+    }
+  ],
+  "superseded_media": {
+    "qwen": {
+      "mp4_sha256": "e24eda322c49ec3447d4549201d7ce4f50523fb4048ed314bfb158113c273838",
+      "webm_sha256": "db7ce022476923bb8b230eac1e1dd8bdd71ed94c9f523d033782788539a6988b"
+    },
+    "recovery": {
+      "mp4_sha256": "8909f257c4ef584211e8d07af004161192d000bf092e3d4af04eca255f57400d",
+      "webm_sha256": "f181e17063181f79756b0a86db737180ae7d22a6cfca87eac84fd4263cc99418"
+    }
+  },
+  "superseded_artifacts_verifiable_at_commit": "98fe5a489c8fa4cdb56503c63260973edb24bdeb",
+  "frozen_v5_reports_unchanged": true,
+  "old_recording_assertions_and_publication_inventory": "Retained unchanged as the 98fe5a4 snapshot; their media hashes identify that superseded version, not current primary media.",
+  "human_factual_review": "pending"
+}

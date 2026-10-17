@@ -31,27 +31,27 @@
 
 **Files:** New `scripts/audit_retained_v5.py`, `tests/unit/test_retained_audit.py`, dated evidence JSON and `docs/EVIDENCE-AUDIT-2026-10-17.md`.
 
-- [ ] Run the frozen trace and pre-sealed oracle auditors into fresh outputs.
-- [ ] Add mutation tests for unsupported observations/effects/approval assertions; observe failures before implementing the supplemental auditor.
-- [ ] Compare retained source payloads, policy, approval hashes, operation bodies/keys and remote effects deterministically; list semantic conclusions separately as AI-assisted review.
-- [ ] Preserve human fields and frozen bytes; commit the audit and evidence.
+- [x] Run the frozen trace and pre-sealed oracle auditors into fresh outputs.
+- [x] Add mutation tests for unsupported observations/effects/approval assertions; observe failures before implementing the supplemental auditor.
+- [x] Compare retained source payloads, policy, approval hashes, operation bodies/keys and remote effects deterministically; list semantic conclusions separately as AI-assisted review.
+- [x] Preserve human fields and frozen bytes; commit the audit and evidence.
 
 ### Task 2: Record portable browser demonstrations
 
 **Files:** New `web/walkthrough.config.ts`, `web/walkthrough.spec.ts`, curated videos/recording evidence, `docs/WALKTHROUGH.md`.
 
-- [ ] Record one actual-model main flow against clean HTTP services, with evidence inspection, exact approval and zero effects before approval assertions.
-- [ ] Record one separate fixture flow with both post-commit response drops; verify uncertainty events, remote journals, one send per key and one ticket/annotation pair.
-- [ ] Save uncut browser video, measured chapter timings and machine-readable assertions. Export small captioned MP4s with no speed changes.
-- [ ] Check readable frames, durations, browser errors, public metadata and reproduction commands; commit capture tooling and evidence.
+- [x] Record one actual-model main flow against clean HTTP services, with evidence inspection, exact approval and zero effects before approval assertions.
+- [x] Record one separate fixture flow with both post-commit response drops; verify uncertainty events, remote journals, one send per key and one ticket/annotation pair.
+- [x] Save uncut browser video, test-clock diagnostics and machine-readable assertions. Use a permanent mode/workflow caption after the timing review. Export small captioned MP4s with no speed changes.
+- [x] Check readable frames, durations, browser errors, public metadata and reproduction commands; commit capture tooling and evidence.
 
 ### Task 3: Finish presentation and verification
 
 **Files:** `README.md`, `docs/CASE-STUDY.md`, `docs/RUNBOOK.md`, `EVALUATION.md`, `docs/STATE.md`, `docs/PUBLICATION-AUDIT.md` and new dated verification artifact.
 
-- [ ] Lead README with a playable demonstration link and concise current case study; preserve historical reports.
-- [ ] Run full pytest including startup regression, Ruff, strict Pyright including tests, strict TypeScript, Vitest, build, contract regeneration and all actual-service browser flows including Qwen sequentially.
-- [ ] Independently review final branch diff and evidence; fix concrete important findings with regressions.
-- [ ] Restore the original demo and confirm preserved business rows/readiness; record exact checks, limitations and publication scope; make scoped local commits.
+- [x] Lead README with a playable demonstration link and concise current case study; preserve historical reports.
+- [x] Run full pytest including startup regression, Ruff, strict Pyright including tests, strict TypeScript, Vitest, build, contract regeneration and all actual-service browser flows including Qwen sequentially.
+- [x] Independently review final branch diff and evidence; fix concrete important findings with regressions.
+- [x] Restore the original demo and confirm preserved business rows/readiness; record exact checks, limitations and publication scope; make scoped local commits.
 
 Publication: prior explicit repository creation/push authorization remains applicable. Verify scope and public assets before any push; no deployment or release.

@@ -1,45 +1,50 @@
 {
   "kind": "Uncut real browser capture with a caption strip below the viewport; no speed change",
-  "source_video_sha256": "f181e17063181f79756b0a86db737180ae7d22a6cfca87eac84fd4263cc99418",
-  "recording_evidence_sha256": "356653108a247b917c1b1d1b38ee23bd69e6ea70954587cd02765ab65548e879",
-  "renderer_sha256": "0fb0f9ccfcb752860b2f26fe03968152eb761dadbd2bd0445fc36cd0b2b036b0",
-  "video_sha256": "8909f257c4ef584211e8d07af004161192d000bf092e3d4af04eca255f57400d",
+  "source_video_sha256": "385540a7e110b6f99a74cfd7dfb46362a89b84f2e2345269fd3ed5cbc12560bd",
+  "recording_evidence_sha256": "4b6e26c0eeefb81d14cc9339f02da7836823847b57db529852cc7cb35631706d",
+  "renderer_sha256": "adff451f33121b197f15ad3a024a0d6c1e9c559de6c05afe13745202dbdbe540",
+  "video_sha256": "459b3ca6a070e6495e631bcd9c75e678446c5f1d9ab95f8eddcf7e620a772a52",
   "mode": "fixture",
-  "source_commit": "f6271f9a324ee6f1f115e1d675dd544fec3ec128",
+  "source_commit": "7a4bc9c1f665078bf7d9f81cfd5032851e669c4a",
   "source_dirty": false,
-  "chapters": [
+  "static_caption": {
+    "title": "FIXTURE RECOVERY | Lost write responses and same-key journal confirmation",
+    "detail": "Deterministic decision | Real HTTP writes | Both responses dropped after commit | Original speed"
+  },
+  "caption_png_sha256": "2a870b9a47d20bd0dd2b5435f37bd8f4a86d6226625c2da88320a57dd7949d04",
+  "test_clock_events": [
     {
-      "seconds": 1.4541000000008354e-05,
+      "seconds": 1.8167000000005374e-05,
       "title": "Read evidence. Review the exact proposal. Approve once.",
       "detail": "FIXTURE RECOVERY / no model inference"
     },
     {
-      "seconds": 2.754424125,
+      "seconds": 2.720319542,
       "title": "Fixture decision; real API, worker and three HTTP services.",
       "detail": "Fault injection drops both write responses AFTER their remote transactions commit."
     },
     {
-      "seconds": 4.0735125,
+      "seconds": 4.042690417,
       "title": "Evidence is visible; zero tickets or annotations before approval.",
       "detail": "Verified against both remote SQLite stores and journals. Displayed prose is application-rendered."
     },
     {
-      "seconds": 9.674892125,
+      "seconds": 9.643312917,
       "title": "Approve the displayed note, source versions and proposal hash.",
       "detail": "Approval is an automated browser action for this recording; no human factual sign-off is implied."
     },
     {
-      "seconds": 13.709588250000001,
+      "seconds": 13.678542917,
       "title": "Lost responses are unknown; the worker reconciles the SAME saved keys.",
       "detail": "Recovery is automatic. The durable timeline retains both uncertainty events."
     },
     {
-      "seconds": 15.026512,
+      "seconds": 15.000915625,
       "title": "Confirmed: one ticket, one annotation, one send per operation.",
       "detail": "FIXTURE RECOVERY / no model inference | Journal keys, request hashes and effect bodies match; no duplicate writes."
     },
     {
-      "seconds": 19.608802583,
+      "seconds": 19.577101749999997,
       "title": "Both lost responses remain in the durable audit timeline.",
       "detail": "Remote journals confirmed the existing effects. No replacement key or second send was needed."
     }
@@ -74,11 +79,11 @@
         "time_base": "1/12800",
         "start_pts": 0,
         "start_time": "0.000000",
-        "duration_ts": 390144,
-        "duration": "30.480000",
-        "bit_rate": "149254",
+        "duration_ts": 376832,
+        "duration": "29.440000",
+        "bit_rate": "128260",
         "bits_per_raw_sample": "8",
-        "nb_frames": "762",
+        "nb_frames": "736",
         "extradata_size": 47,
         "disposition": {
           "default": 1,
@@ -115,9 +120,9 @@
       "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
       "format_long_name": "QuickTime / MOV",
       "start_time": "0.000000",
-      "duration": "30.480000",
-      "size": "578726",
-      "bit_rate": "151896",
+      "duration": "29.440000",
+      "size": "481751",
+      "bit_rate": "130910",
       "probe_score": 100,
       "tags": {
         "major_brand": "isom",
@@ -129,5 +134,5 @@
     }
   },
   "human_review": "pending",
-  "caption_clock_offset_seconds": 5.7851807919999985
+  "caption_timing": "Permanent mode/workflow label; no inferred video phase timestamps"
 }

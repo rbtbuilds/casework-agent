@@ -1,0 +1,51 @@
+{
+  "kind": "Corrected fixed-viewport captures with permanent mode captions; not model-quality measurements",
+  "recordings": [
+    {
+      "name": "qwen",
+      "recording": "docs/evidence/walkthrough-v2-qwen-2026-10-17.json",
+      "recording_sha256": "a42c490f9da1cea47b8b9cbcb813f3c864e88595b53e084c8d7888b00bb2399b",
+      "mp4": "docs/media/casework-qwen.mp4",
+      "mp4_sha256": "6ee7f3bbedcb16779dc17f9471c47c82791240e1ca78e1c2c3c2d78eaf545a4e",
+      "original_webm": "docs/media/casework-qwen.webm",
+      "original_webm_sha256": "958a7a55a063973f043f8bcf31872a2fb27257ca33ae40678da571d2bc252e23",
+      "source_commit": "7a4bc9c1f665078bf7d9f81cfd5032851e669c4a",
+      "source_dirty": false,
+      "mode": "model",
+      "duration_seconds": 41.6,
+      "assertions": "0 effects/journals before exact proposal approval; 1 ticket + 1 annotation after; both operation keys/hashes/bodies match actual HTTP service journals; 1 send per operation; zero browser errors",
+      "uncertainty_events": 0,
+      "model_requests": 10,
+      "caption_timing": "Permanent mode/workflow label; no inferred video phase timestamps"
+    },
+    {
+      "name": "recovery",
+      "recording": "docs/evidence/walkthrough-v2-recovery-2026-10-17.json",
+      "recording_sha256": "4b6e26c0eeefb81d14cc9339f02da7836823847b57db529852cc7cb35631706d",
+      "mp4": "docs/media/casework-recovery.mp4",
+      "mp4_sha256": "459b3ca6a070e6495e631bcd9c75e678446c5f1d9ab95f8eddcf7e620a772a52",
+      "original_webm": "docs/media/casework-recovery.webm",
+      "original_webm_sha256": "385540a7e110b6f99a74cfd7dfb46362a89b84f2e2345269fd3ed5cbc12560bd",
+      "source_commit": "7a4bc9c1f665078bf7d9f81cfd5032851e669c4a",
+      "source_dirty": false,
+      "mode": "fixture",
+      "duration_seconds": 29.44,
+      "assertions": "0 effects/journals before exact proposal approval; 1 ticket + 1 annotation after; both operation keys/hashes/bodies match actual HTTP service journals; 1 send per operation; zero browser errors",
+      "uncertainty_events": 2,
+      "model_requests": 0,
+      "caption_timing": "Permanent mode/workflow label; no inferred video phase timestamps"
+    }
+  ],
+  "model_configuration_checked": {
+    "model_id": "mlx-community/Qwen3-14B-4bit",
+    "revision": "a4d9b2df59d2c150bef02fcbe0d91046b7ca33a4",
+    "snapshot_hash": "ca031ea5eef9f3c42f3bf3ee438491f53b326a41d31bde3289d931fef194355d",
+    "probe_sha256": "30d022306f2aba21c1c04eadf79641692d9a563eda36a3addfc658fef13fed56",
+    "attribution": "CLI uses the repository model root; unchanged ModelSession verifies file hashes before loading. This is coordinator configuration attribution, not a model identifier emitted by the browser trace."
+  },
+  "human_review": "pending",
+  "published_example_is_exposed": true,
+  "new_unseen_evaluation": false,
+  "originals_preserved": true,
+  "supersedes": "walkthrough-bindings-2026-10-17.json at98fe5a4; see presentation-media-correction-2026-10-17.json"
+}

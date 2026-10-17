@@ -1,0 +1,219 @@
+{
+  "kind": "Final corrected publication inventory; bounded text scan and media/source-context inspection, not general security certification",
+  "baseline": "27c81cf4110517e5ca75d09679870419d7c2f627",
+  "capture_source": "7a4bc9c1f665078bf7d9f81cfd5032851e669c4a",
+  "files": [
+    {
+      "path": "EVALUATION.md",
+      "bytes": 29085,
+      "sha256": "88e3abb440039d6adaa28e6f02fbcb1c1085b548cd7bf371e2fb88369a161b36"
+    },
+    {
+      "path": "README.md",
+      "bytes": 9539,
+      "sha256": "ba01629138d57ad97c6e6e436549db09c60d375dc89189245e0f9502123d91eb"
+    },
+    {
+      "path": "docs/CASE-STUDY.md",
+      "bytes": 4398,
+      "sha256": "fd07b655e984e57153d8ceab4e7c8774a9d8f33848116cb6df93328f23296f47"
+    },
+    {
+      "path": "docs/EVIDENCE-AUDIT-2026-10-17.md",
+      "bytes": 6716,
+      "sha256": "48d7802bbe646dca931aa0f779157a4df736bc0c97b6d7a5c615bf9d9250e2d0"
+    },
+    {
+      "path": "docs/PUBLICATION-AUDIT.md",
+      "bytes": 15942,
+      "sha256": "9627cf9eebb1437790c2ebad27420c3d85c6e4e9eae234271aba83f22825e28a"
+    },
+    {
+      "path": "docs/RUNBOOK.md",
+      "bytes": 11533,
+      "sha256": "095733983c35014e1ce5faadd2322003f3b9b1283d6aca268f403f8908af82d7"
+    },
+    {
+      "path": "docs/STATE.md",
+      "bytes": 10701,
+      "sha256": "6556a9ef1589480f92f49dcf0623bd8ad6d89406ff0532299fb7a5536c1f0175"
+    },
+    {
+      "path": "docs/WALKTHROUGH.md",
+      "bytes": 4777,
+      "sha256": "64bb7099d165ccd9db633548387697a3c2b52a85ee74e83ed8a1d559220fef48"
+    },
+    {
+      "path": "docs/evidence/presentation-final-review-2026-10-17.json",
+      "bytes": 2860,
+      "sha256": "87c6064b2a7d90788c899c624e969b651e3f7c822a231e209c267e68639e6466"
+    },
+    {
+      "path": "docs/evidence/presentation-final-verification-2026-10-17.json",
+      "bytes": 7147,
+      "sha256": "594fdf879da270da21244f78b86c9c964482ec8a5b925fd7efaa20249f4dc3a8"
+    },
+    {
+      "path": "docs/evidence/presentation-media-correction-2026-10-17.json",
+      "bytes": 1745,
+      "sha256": "c4b86f44982319f1fd93f62d340c2aded8507d8438baead2791e9f442c054aa4"
+    },
+    {
+      "path": "docs/evidence/presentation-verification-2026-10-17.json",
+      "bytes": 6317,
+      "sha256": "ab86c0c1eb2bea6f3e20c1b36560c15c944544b30141c2a35778f49ccbb295f8"
+    },
+    {
+      "path": "docs/evidence/publication-review-2026-10-17.json",
+      "bytes": 6554,
+      "sha256": "3ed8ea71c8b7dbecd41b28f1f91a74e5491cde9e53d80e273a1c32b26049942f"
+    },
+    {
+      "path": "docs/evidence/v5-challenge-trace-recheck-2026-10-17.json",
+      "bytes": 26809,
+      "sha256": "db24e00f6d689b281d0e9db8ed4063c56690c12dd73a1b308dda062747e34a8e"
+    },
+    {
+      "path": "docs/evidence/v5-development-trace-recheck-2026-10-17.json",
+      "bytes": 47548,
+      "sha256": "a178aa9bd8544f8aa32b90b6ca1e0811642f8b2bb89c39b088a9819d37ace46a"
+    },
+    {
+      "path": "docs/evidence/v5-oracle-recheck-2026-10-17.json",
+      "bytes": 5965,
+      "sha256": "f0b991a3964be141178e0e40076ee2057833151efd1dcbb7e71393369cdd7fef"
+    },
+    {
+      "path": "docs/evidence/v5-retained-bindings-2026-10-17.json",
+      "bytes": 4669,
+      "sha256": "0119f100cff75469f47c15ea9cf12089bd9dc88ba1d8b574acca18d24868e392"
+    },
+    {
+      "path": "docs/evidence/v5-retained-database-export-2026-10-17.json",
+      "bytes": 446796,
+      "sha256": "54e4b0539fbc81ab16f4e1f16e5dae43627251df6a13e2c79b77792f54a4c500"
+    },
+    {
+      "path": "docs/evidence/v5-retained-development-bindings-2026-10-17.json",
+      "bytes": 8512,
+      "sha256": "0fddcf09e6a0b37999daab61f68737074e8e1bb401179308717c50f42c77dd68"
+    },
+    {
+      "path": "docs/evidence/v5-retained-development-export-2026-10-17.json",
+      "bytes": 810420,
+      "sha256": "10bcb24bbf978cd8a3bd47a255e3cd672eb662bec5c447eaf618168c194296e8"
+    },
+    {
+      "path": "docs/evidence/v5-semantic-review-2026-10-17.json",
+      "bytes": 78151,
+      "sha256": "bbdf9fd86c35a3df28e3d59fc52b2278404649a3f900ec1da81f5762de5aab79"
+    },
+    {
+      "path": "docs/evidence/walkthrough-bindings-2026-10-17.json",
+      "bytes": 2653,
+      "sha256": "9dd6b0745b7680fa7735cc3e5e46a8d4f1cfaa3f8daa077eda327a224b68cf03"
+    },
+    {
+      "path": "docs/evidence/walkthrough-qwen-2026-10-17.json",
+      "bytes": 76336,
+      "sha256": "47b2bfada812407f145ec9ea5497deb6acbd63b0c057239649b4519ff7c4a586"
+    },
+    {
+      "path": "docs/evidence/walkthrough-recovery-2026-10-17.json",
+      "bytes": 14985,
+      "sha256": "356653108a247b917c1b1d1b38ee23bd69e6ea70954587cd02765ab65548e879"
+    },
+    {
+      "path": "docs/evidence/walkthrough-v2-bindings-2026-10-17.json",
+      "bytes": 2958,
+      "sha256": "f0e36edd092167b98bd22370073787f8e0674e34c1200c6c511c42cb51548f88"
+    },
+    {
+      "path": "docs/evidence/walkthrough-v2-qwen-2026-10-17.json",
+      "bytes": 76544,
+      "sha256": "a42c490f9da1cea47b8b9cbcb813f3c864e88595b53e084c8d7888b00bb2399b"
+    },
+    {
+      "path": "docs/evidence/walkthrough-v2-recovery-2026-10-17.json",
+      "bytes": 15223,
+      "sha256": "4b6e26c0eeefb81d14cc9339f02da7836823847b57db529852cc7cb35631706d"
+    },
+    {
+      "path": "docs/media/casework-qwen-poster.png",
+      "bytes": 458215,
+      "sha256": "449cadce22e182a5649387ac8ad842f7df5327b4b3999f3840ebf676e6a8871f"
+    },
+    {
+      "path": "docs/media/casework-qwen.json",
+      "bytes": 4731,
+      "sha256": "fefaa6248214696e8bd68d4d729eb2a5137e0493958c2f45ba1b50e4261d7ad1"
+    },
+    {
+      "path": "docs/media/casework-qwen.mp4",
+      "bytes": 564501,
+      "sha256": "6ee7f3bbedcb16779dc17f9471c47c82791240e1ca78e1c2c3c2d78eaf545a4e"
+    },
+    {
+      "path": "docs/media/casework-qwen.webm",
+      "bytes": 4613653,
+      "sha256": "958a7a55a063973f043f8bcf31872a2fb27257ca33ae40678da571d2bc252e23"
+    },
+    {
+      "path": "docs/media/casework-recovery.json",
+      "bytes": 5019,
+      "sha256": "b69bc578684b98d0e9d08bd11d9c41ce8a2e7abe58bcd934f8e599b153362027"
+    },
+    {
+      "path": "docs/media/casework-recovery.mp4",
+      "bytes": 481751,
+      "sha256": "459b3ca6a070e6495e631bcd9c75e678446c5f1d9ab95f8eddcf7e620a772a52"
+    },
+    {
+      "path": "docs/media/casework-recovery.webm",
+      "bytes": 3361266,
+      "sha256": "385540a7e110b6f99a74cfd7dfb46362a89b84f2e2345269fd3ed5cbc12560bd"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-10-17-presentation-audit.md",
+      "bytes": 4283,
+      "sha256": "e8eacd890004874b5e1f4db51c1344ab567cf6aa3af511a4b4b65d01d03792f1"
+    },
+    {
+      "path": "scripts/audit_retained_v5.py",
+      "bytes": 12624,
+      "sha256": "b0026acd238197f1b29b821e13badc4973d96c2ca2fcc221a6725abfcf92b132"
+    },
+    {
+      "path": "scripts/render_walkthrough.py",
+      "bytes": 3794,
+      "sha256": "adff451f33121b197f15ad3a024a0d6c1e9c559de6c05afe13745202dbdbe540"
+    },
+    {
+      "path": "tests/unit/test_retained_audit.py",
+      "bytes": 4105,
+      "sha256": "f012c8b728882d14ac52e7bababdb930151b69e6535c95f800e0670b2718f235"
+    },
+    {
+      "path": "tests/unit/test_walkthrough_render.py",
+      "bytes": 1066,
+      "sha256": "c2c91ec5bef3f20d9f2660546e1edda714f183b8f60b7cb0d9f95e2a37940e47"
+    },
+    {
+      "path": "web/walkthrough.config.ts",
+      "bytes": 1243,
+      "sha256": "263698227611d24f3d9e6d2c0195ffed5ab607588b87fcd8ea4fc0181b0d9e91"
+    },
+    {
+      "path": "web/walkthrough.spec.ts",
+      "bytes": 11182,
+      "sha256": "801381870b5795da2a381309f0bb0799ebaee18adfe056ab5299116a182845aa"
+    }
+  ],
+  "file_count": 41,
+  "bytes": 11262316,
+  "pattern_findings": [],
+  "superseded_inventory": "publication-review-2026-10-17.json identifies the98fe5a4 snapshot and remains unchanged; verify its hashes at that Git revision.",
+  "limitations": "Excludes this subsequently written inventory itself; historical disclosures remain applicable. Semantic review is AI-assisted and human review remains pending.",
+  "media_review": "Permanent mode captions; fixed viewport verified by PNG dimension assertions and final-frame inspection; uncut original WebM files match sidecar hashes; no desktop/address bar/audio or private host metadata.",
+  "original_application_fixture_evidence_files_preserved": 359
+}

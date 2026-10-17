@@ -1,0 +1,178 @@
+{
+  "date": "2026-10-17",
+  "source_commit": "7a4bc9c1f665078bf7d9f81cfd5032851e669c4a",
+  "scope": "Final post-review recording/audit tooling and documentation; application/model/policy unchanged. Supersedes preliminary164-test verification at98fe5a4.",
+  "checks": [
+    {
+      "check": "ruff",
+      "command": ".venv/bin/ruff check .",
+      "exit_code": 0,
+      "log_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "result": "All checks passed!"
+    },
+    {
+      "check": "pyright",
+      "command": ".venv/bin/pyright",
+      "exit_code": 0,
+      "log_sha256": "6d88a1b220adb7a3d62092b6e38431f0b3fe8babe9864fab90e5849766260332",
+      "result": "0 errors, 0 warnings"
+    },
+    {
+      "check": "pytest",
+      "command": ".venv/bin/pytest -q",
+      "exit_code": 0,
+      "log_sha256": "4b1574d352a9d37c483d3ae4d07814785903768c7f494b71fc40d83935a082c1",
+      "result": "165 passed"
+    },
+    {
+      "check": "typescript",
+      "command": "npm --prefix web run typecheck",
+      "exit_code": 0,
+      "log_sha256": "83985c9bc3ee2000f00b9a9e10e6cbaeda9c237eaae34a513935247198f81e35",
+      "result": "tsc --noEmit"
+    },
+    {
+      "check": "vitest",
+      "command": "npm --prefix web test -- --run",
+      "exit_code": 0,
+      "log_sha256": "55959199a2ac0b52dbecfa3473ff8e2bdc3bef2f40ca5c25f5b143054b26a75f",
+      "result": "8 passed"
+    },
+    {
+      "check": "build",
+      "command": "npm --prefix web run build",
+      "exit_code": 0,
+      "log_sha256": "28d8161b23bf94e94a4fba1f772cfcf8f2059f234f046759e24c04a254d314c2",
+      "result": "built in"
+    },
+    {
+      "check": "browser",
+      "command": "CASEWORK_REAL_MODEL=1 PLAYWRIGHT_BROWSERS_PATH=\"$PWD/.runtime/pw-browsers\" npm --prefix web run e2e",
+      "exit_code": 0,
+      "log_sha256": "97a2b01b423293f8fa1dd9dc1e8bed3b26026d87b827c062a63cb6064107e78c",
+      "result": "4 passed"
+    },
+    {
+      "check": "contracts_python",
+      "command": ".venv/bin/python scripts/export_contracts.py",
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "result": "success; no contract diff"
+    },
+    {
+      "check": "contracts_typescript",
+      "command": "npm --prefix web run contracts",
+      "exit_code": 0,
+      "log_sha256": "5d8717db203769d33ce9e941b57d79185f4fa867168e16c73c305c4945b7c8dc",
+      "result": "openapi-typescript"
+    },
+    {
+      "check": "contracts_unchanged",
+      "command": "git diff --exit-code -- contracts/openapi.json web/src/api/generated.ts web/src/api/case.schema.json",
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "result": "success; no contract diff"
+    }
+  ],
+  "recording_checks": [
+    {
+      "mode": "model",
+      "command": "CASEWORK_RECORDING_MODE=model CASEWORK_BROWSER_ROOT=\"$PWD/.runtime/record-model-N\" PLAYWRIGHT_BROWSERS_PATH=\"$PWD/.runtime/pw-browsers\" npm --prefix web run e2e -- --config walkthrough.config.ts",
+      "exit_code": 0,
+      "result": "1 passed; zero browser errors",
+      "log_sha256": "1ade2b73777f3b30130c8285b3cd949e73c66eb32e252e8827a3e19e31080045"
+    },
+    {
+      "mode": "fixture",
+      "command": "CASEWORK_RECORDING_MODE=fixture CASEWORK_BROWSER_ROOT=\"$PWD/.runtime/record-fixture-N\" PLAYWRIGHT_BROWSERS_PATH=\"$PWD/.runtime/pw-browsers\" npm --prefix web run e2e -- --config walkthrough.config.ts",
+      "exit_code": 0,
+      "result": "1 passed; zero browser errors",
+      "log_sha256": "cd06645a1df958d9f49aeea1812f769d832bd7baa6b73dbe2491a00e5fe80b19"
+    }
+  ],
+  "frozen_preservation": {
+    "baseline": "27c81cf4110517e5ca75d09679870419d7c2f627",
+    "checked_files": 359,
+    "changed": [],
+    "paths_sha256": "2c9a582bf1b9cf04e65f01065b4e28a53644e125d089e2d656a36a2c119809c5"
+  },
+  "original_demo_database_hashes_preserved_before_restart": {
+    "orders.sqlite3": true,
+    "tickets.sqlite3": true,
+    "carrier.sqlite3": true,
+    ".runtime/app.sqlite3": true
+  },
+  "restored_demo": {
+    "api_status": 200,
+    "web_status": 200,
+    "health": {
+      "status": "ok",
+      "schema_version": 2,
+      "model_available": true,
+      "fixture_available": true,
+      "worker_heartbeat": "2026-10-17T19:12:17.291958+00:00"
+    },
+    "case_count": 2,
+    "ml_lease_present": false
+  },
+  "media_comparisons": [
+    {
+      "recording": "qwen",
+      "cropped_mp4_vs_original_webm_ssim": 0.997536,
+      "decoded_frames": 1040,
+      "verification": "Entire original 1440x1000 browser viewport compared after lossy H.264 export. Caption strip is outside this crop.",
+      "log_sha256": "abbcd4857d9af323fcb54b43bc2abc4f82f11c88b8b2d0dcb9ebcb95c286dee8"
+    },
+    {
+      "recording": "recovery",
+      "cropped_mp4_vs_original_webm_ssim": 0.997199,
+      "decoded_frames": 736,
+      "verification": "Entire original 1440x1000 browser viewport compared after lossy H.264 export. Caption strip is outside this crop.",
+      "log_sha256": "666600096a23e69c9fe80db494134cb1226a89a40764309f7318bf905784e9dd"
+    }
+  ],
+  "transient_failures": [
+    {
+      "test": "recording fixture uncertainty event viewport assertion",
+      "result": "Intentional regression failed with viewport ratio 0; scroll correction then passed final fixture capture.",
+      "log_sha256": "428b8b8321e499f158fdf8cd4c1acf41f2fdf57b30dd18090506e0f1fd84d92a"
+    },
+    {
+      "reported_prior_failure": "107 unit passes plus startup failure from existing demo owning 8212",
+      "resolution": "Verified recorded process owners; stopped with lifecycle helper; full 164-test suite passed sequentially with no skip; original database hashes unchanged before restoring demo."
+    }
+  ],
+  "human_review": "pending",
+  "manual_screen_reader_test": "not_performed",
+  "new_unseen_evaluation": false,
+  "skipped_requested_automated_checks": [],
+  "limitations": [
+    "Read-only retained-database consistency cannot independently prove historical authenticity.",
+    "Semantic prose review is AI-assisted, not human review.",
+    "Published cases are exposed reproductions.",
+    "No new clean-archive measurement in this task."
+  ],
+  "second_lifecycle_preservation": {
+    "all_four_original_database_hashes_unchanged": true,
+    "databases": [
+      "orders.sqlite3",
+      "tickets.sqlite3",
+      "carrier.sqlite3",
+      ".runtime/app.sqlite3"
+    ]
+  },
+  "post_review_regressions": [
+    {
+      "name": "static caption required before encoder",
+      "red_log_sha256": "a24ba674e26b62c6acc7672753729aaf0a5973b63811952c7543fcd28d1f1289",
+      "green": "3 renderer tests pass; both final media exports use permanent mode captions."
+    },
+    {
+      "name": "fixed viewport throughout recording",
+      "red_log_sha256": "c021a68adb285a46a7cf88637d58cabac45fac204ebd0e89e8f7c221427e90f6",
+      "red": "Screenshot was1840px high instead of1000px.",
+      "green": "Both final recording tests assert1440x1000; final video frames visually inspected at full scale."
+    }
+  ],
+  "caption_policy": "Permanent mode/workflow caption; test-clock event diagnostics are not mapped to video phase timestamps."
+}

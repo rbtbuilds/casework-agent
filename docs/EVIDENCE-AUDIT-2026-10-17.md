@@ -38,6 +38,7 @@ Human factual review remains **pending**: `unsupported_claims` is null, `claims_
 Run from the repository root after `uv sync --locked`. Use fresh output names; auditors refuse to overwrite evidence.
 
 ```sh
+mkdir -p .runtime
 uv run --no-sync python docs/evidence/v5-trace-auditor.py.txt docs/evidence/qwen-v5-challenge.json fixtures/manifests/v5-challenge.json .runtime/v5-trace-audit.json --protocol docs/evidence/qwen-v5-protocol.json
 uv run --no-sync python docs/evidence/v5-oracle-comparison.py.txt docs/evidence/qwen-v5-challenge.json .runtime/v5-trace-audit.json .runtime/v5-oracle-audit.json
 uv run --no-sync python scripts/audit_retained_v5.py --report docs/evidence/qwen-v5-challenge.json --manifest fixtures/manifests/v5-challenge.json --snapshots docs/evidence/v5-retained-database-export-2026-10-17.json --output .runtime/v5-effects-audit.json

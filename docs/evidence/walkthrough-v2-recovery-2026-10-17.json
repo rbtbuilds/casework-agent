@@ -1,0 +1,412 @@
+{
+  "mode": "fixture",
+  "label": "FIXTURE RECOVERY / no model inference",
+  "source_commit": "7a4bc9c1f665078bf7d9f81cfd5032851e669c4a",
+  "source_dirty": false,
+  "scenario": "fixtures/scenarios/dev-delay-01.json",
+  "provenance": "New automated browser demonstration on an exposed example, not unseen evaluation. Uncut recording; caption strip added below the viewport.",
+  "test_clock_events": [
+    {
+      "seconds": 0.000018167000000005374,
+      "title": "Read evidence. Review the exact proposal. Approve once.",
+      "detail": "FIXTURE RECOVERY / no model inference"
+    },
+    {
+      "seconds": 2.720319542,
+      "title": "Fixture decision; real API, worker and three HTTP services.",
+      "detail": "Fault injection drops both write responses AFTER their remote transactions commit."
+    },
+    {
+      "seconds": 4.042690417,
+      "title": "Evidence is visible; zero tickets or annotations before approval.",
+      "detail": "Verified against both remote SQLite stores and journals. Displayed prose is application-rendered."
+    },
+    {
+      "seconds": 9.643312917,
+      "title": "Approve the displayed note, source versions and proposal hash.",
+      "detail": "Approval is an automated browser action for this recording; no human factual sign-off is implied."
+    },
+    {
+      "seconds": 13.678542917,
+      "title": "Lost responses are unknown; the worker reconciles the SAME saved keys.",
+      "detail": "Recovery is automatic. The durable timeline retains both uncertainty events."
+    },
+    {
+      "seconds": 15.000915625,
+      "title": "Confirmed: one ticket, one annotation, one send per operation.",
+      "detail": "FIXTURE RECOVERY / no model inference | Journal keys, request hashes and effect bodies match; no duplicate writes."
+    },
+    {
+      "seconds": 19.577101749999997,
+      "title": "Both lost responses remain in the durable audit timeline.",
+      "detail": "Remote journals confirmed the existing effects. No replacement key or second send was needed."
+    }
+  ],
+  "static_caption": {
+    "title": "FIXTURE RECOVERY | Lost write responses and same-key journal confirmation",
+    "detail": "Deterministic decision | Real HTTP writes | Both responses dropped after commit | Original speed"
+  },
+  "captured_wall_seconds": 24.600444917,
+  "before": {
+    "tickets": {
+      "effects": [],
+      "journals": []
+    },
+    "orders": {
+      "effects": [],
+      "journals": []
+    },
+    "runs": [
+      {
+        "adapter": "fixture",
+        "http_requests": 2,
+        "status": "decision_validated",
+        "tool_calls": 3,
+        "usage_tokens": null
+      }
+    ]
+  },
+  "after": {
+    "tickets": {
+      "effects": [
+        {
+          "ticket_id": "ffcd0f64-a6f7-43dc-abdb-4c64dbf4e16c",
+          "order_id": "o-001",
+          "action": "open_investigation",
+          "queue": "delivery_investigation",
+          "priority": "normal",
+          "internal_note": "Fictional internal case: review the recorded carrier delay; no customer contact or compensation is authorised.",
+          "operation_key": "cw:47043d1a-d4ab-4673-b2c7-769099a0afbd:1:ticket"
+        }
+      ],
+      "journals": [
+        {
+          "key": "cw:47043d1a-d4ab-4673-b2c7-769099a0afbd:1:ticket",
+          "request_hash": "dda574124970fe3688759725870900cb32cdf42af00c587020ace78423beed38",
+          "outcome": "succeeded",
+          "http_status": 201,
+          "response_json": {
+            "ticket_id": "ffcd0f64-a6f7-43dc-abdb-4c64dbf4e16c",
+            "order_id": "o-001",
+            "action": "open_investigation",
+            "queue": "delivery_investigation",
+            "priority": "normal",
+            "internal_note": "Fictional internal case: review the recorded carrier delay; no customer contact or compensation is authorised.",
+            "operation_key": "cw:47043d1a-d4ab-4673-b2c7-769099a0afbd:1:ticket"
+          },
+          "committed_at": "2026-10-17T19:09:14.032482Z"
+        }
+      ]
+    },
+    "orders": {
+      "effects": [
+        {
+          "annotation_id": "cac2508c-6b43-4021-818e-c2087193935d",
+          "ticket_id": "ffcd0f64-a6f7-43dc-abdb-4c64dbf4e16c",
+          "action": "open_investigation",
+          "operation_key": "cw:47043d1a-d4ab-4673-b2c7-769099a0afbd:1:annotation"
+        }
+      ],
+      "journals": [
+        {
+          "key": "cw:47043d1a-d4ab-4673-b2c7-769099a0afbd:1:annotation",
+          "request_hash": "3fbbb8abc3d031d4310007d65a448746c98e831ce046e98332db4bba24815d99",
+          "outcome": "succeeded",
+          "http_status": 201,
+          "response_json": {
+            "annotation_id": "cac2508c-6b43-4021-818e-c2087193935d",
+            "ticket_id": "ffcd0f64-a6f7-43dc-abdb-4c64dbf4e16c",
+            "action": "open_investigation",
+            "operation_key": "cw:47043d1a-d4ab-4673-b2c7-769099a0afbd:1:annotation"
+          },
+          "committed_at": "2026-10-17T19:09:14.151361Z"
+        }
+      ]
+    },
+    "runs": [
+      {
+        "adapter": "fixture",
+        "http_requests": 2,
+        "status": "decision_validated",
+        "tool_calls": 3,
+        "usage_tokens": null
+      }
+    ]
+  },
+  "approval": {
+    "body": {
+      "proposal_id": "e3765652-a082-4a43-b348-880aeb45e082",
+      "proposal_hash": "386a888c7f58806c0acb80adda0f1c691bdad94240a0a0ed3cc21b24f6d15aaf",
+      "expected_case_version": 3,
+      "decision": "approve"
+    },
+    "key": "4b0f7a19-414b-4db0-be5e-5ca82b29ffc8"
+  },
+  "case": {
+    "id": "47043d1a-d4ab-4673-b2c7-769099a0afbd",
+    "scenario_id": "dev-delay-01",
+    "order_id": "o-001",
+    "as_of": "2026-10-15T12:00:00Z",
+    "mode": "fixture",
+    "state": "completed",
+    "version": 10,
+    "proposal": {
+      "id": "e3765652-a082-4a43-b348-880aeb45e082",
+      "case_id": "47043d1a-d4ab-4673-b2c7-769099a0afbd",
+      "version": 1,
+      "policy_hash": "72e45db2932d7b28783012cd3b8908f64389da5445bc5d4f5b8cef04b324cbf0",
+      "evidence_ids": [
+        "e8d6db08-96f0-4f0d-bc0f-cba580e77964",
+        "b8ee2679-e65d-4080-9822-4a1855962af2",
+        "2c844399-33f1-43ec-9564-8821fb5676f6"
+      ],
+      "evidence_hashes": [
+        "71fde8a95cd31abab670d132a50038a0554220ae5d00f4c67e443aee9f04161a",
+        "87bca08247526384ac91acd8ce45b6b7350707e2053095ffcd82ebfbcab1a841",
+        "72e45db2932d7b28783012cd3b8908f64389da5445bc5d4f5b8cef04b324cbf0"
+      ],
+      "order_version": 1,
+      "shipment_version": 1,
+      "action": "open_investigation",
+      "rationale": "Fixed fictional policy applied to the observed order,carrier and policy evidence.",
+      "draft_note": "Fictional internal case: review the recorded carrier delay; no customer contact or compensation is authorised.",
+      "intents": [
+        {
+          "kind": "create_ticket",
+          "order_id": "o-001",
+          "action": "open_investigation",
+          "queue": "delivery_investigation",
+          "priority": "normal",
+          "internal_note": "Fictional internal case: review the recorded carrier delay; no customer contact or compensation is authorised."
+        },
+        {
+          "kind": "annotate_order",
+          "order_id": "o-001",
+          "action": "open_investigation",
+          "ticket_ref": "$ticket",
+          "expected_order_version": 1
+        }
+      ],
+      "created_at": "2026-10-17T19:09:03.045200Z",
+      "expires_at": "2026-10-17T19:24:03.045200Z",
+      "hash": "386a888c7f58806c0acb80adda0f1c691bdad94240a0a0ed3cc21b24f6d15aaf"
+    },
+    "evidence": [
+      {
+        "id": "e8d6db08-96f0-4f0d-bc0f-cba580e77964",
+        "case_id": "47043d1a-d4ab-4673-b2c7-769099a0afbd",
+        "source": "order",
+        "source_id": "o-001",
+        "source_version": "1",
+        "payload": {
+          "order_id": "o-001",
+          "shipment_id": "s-001",
+          "status": "in_transit",
+          "version": 1,
+          "note": "Fictional parcel. Please investigate the carrier delay.",
+          "policy_exception": null,
+          "annotations": []
+        },
+        "payload_hash": "71fde8a95cd31abab670d132a50038a0554220ae5d00f4c67e443aee9f04161a",
+        "fetched_at": "2026-10-17T19:09:03.042362Z"
+      },
+      {
+        "id": "b8ee2679-e65d-4080-9822-4a1855962af2",
+        "case_id": "47043d1a-d4ab-4673-b2c7-769099a0afbd",
+        "source": "carrier",
+        "source_id": "s-001",
+        "source_version": "1",
+        "payload": {
+          "shipment_id": "s-001",
+          "status": "delayed",
+          "version": 1,
+          "last_event_at": "2026-10-12T12:00:00Z",
+          "conflicting_events": false,
+          "events": []
+        },
+        "payload_hash": "87bca08247526384ac91acd8ce45b6b7350707e2053095ffcd82ebfbcab1a841",
+        "fetched_at": "2026-10-17T19:09:03.044893Z"
+      },
+      {
+        "id": "2c844399-33f1-43ec-9564-8821fb5676f6",
+        "case_id": "47043d1a-d4ab-4673-b2c7-769099a0afbd",
+        "source": "policy",
+        "source_id": "delivery-v1",
+        "source_version": "39ba01ac808a9d7abaf10f24e800748b37c2afd1e9fd831d2b0eff6992cb882f",
+        "payload": {
+          "version": "delivery-v1",
+          "hash": "39ba01ac808a9d7abaf10f24e800748b37c2afd1e9fd831d2b0eff6992cb882f",
+          "delay_hours": 48,
+          "approval_ttl_seconds": 900,
+          "rules": [
+            "Only in-transit delayed orders with >=48h since last event and no conflicting/delivered evidence or policy exception may open an investigation.",
+            "All other valid evidence escalates to manual review.",
+            "No refund,payment,customer contact or delivery promise. Fictional internal action only."
+          ]
+        },
+        "payload_hash": "72e45db2932d7b28783012cd3b8908f64389da5445bc5d4f5b8cef04b324cbf0",
+        "fetched_at": "2026-10-17T19:09:03.044969Z"
+      }
+    ],
+    "operations": [
+      {
+        "id": "85c28670-884b-40f1-9df6-b142ccef6c2b",
+        "case_id": "47043d1a-d4ab-4673-b2c7-769099a0afbd",
+        "approval_id": "f57dfb75-6bf3-472b-a4fd-3e828e79de79",
+        "ordinal": 1,
+        "kind": "create_ticket",
+        "key": "cw:47043d1a-d4ab-4673-b2c7-769099a0afbd:1:ticket",
+        "request_json": {
+          "order_id": "o-001",
+          "action": "open_investigation",
+          "queue": "delivery_investigation",
+          "priority": "normal",
+          "internal_note": "Fictional internal case: review the recorded carrier delay; no customer contact or compensation is authorised."
+        },
+        "request_hash": "dda574124970fe3688759725870900cb32cdf42af00c587020ace78423beed38",
+        "state": "succeeded",
+        "attempts": 1,
+        "remote_id": "ffcd0f64-a6f7-43dc-abdb-4c64dbf4e16c",
+        "response_json": {
+          "ticket_id": "ffcd0f64-a6f7-43dc-abdb-4c64dbf4e16c",
+          "order_id": "o-001",
+          "action": "open_investigation",
+          "queue": "delivery_investigation",
+          "priority": "normal",
+          "internal_note": "Fictional internal case: review the recorded carrier delay; no customer contact or compensation is authorised.",
+          "operation_key": "cw:47043d1a-d4ab-4673-b2c7-769099a0afbd:1:ticket"
+        },
+        "last_error": null,
+        "worker_generation": 1
+      },
+      {
+        "id": "a4a1a7a3-e299-42e3-9c2d-01c1d0b472ad",
+        "case_id": "47043d1a-d4ab-4673-b2c7-769099a0afbd",
+        "approval_id": "f57dfb75-6bf3-472b-a4fd-3e828e79de79",
+        "ordinal": 2,
+        "kind": "annotate_order",
+        "key": "cw:47043d1a-d4ab-4673-b2c7-769099a0afbd:1:annotation",
+        "request_json": {
+          "order_id": "o-001",
+          "ticket_id": "ffcd0f64-a6f7-43dc-abdb-4c64dbf4e16c",
+          "action": "open_investigation",
+          "expected_order_version": 1
+        },
+        "request_hash": "3fbbb8abc3d031d4310007d65a448746c98e831ce046e98332db4bba24815d99",
+        "state": "succeeded",
+        "attempts": 1,
+        "remote_id": "cac2508c-6b43-4021-818e-c2087193935d",
+        "response_json": {
+          "annotation_id": "cac2508c-6b43-4021-818e-c2087193935d",
+          "ticket_id": "ffcd0f64-a6f7-43dc-abdb-4c64dbf4e16c",
+          "action": "open_investigation",
+          "operation_key": "cw:47043d1a-d4ab-4673-b2c7-769099a0afbd:1:annotation"
+        },
+        "last_error": null,
+        "worker_generation": 1
+      }
+    ],
+    "events": [
+      {
+        "id": 1,
+        "case_id": "47043d1a-d4ab-4673-b2c7-769099a0afbd",
+        "kind": "case_created",
+        "payload": {
+          "mode": "fixture"
+        },
+        "created_at": "2026-10-17T19:09:03.003415Z"
+      },
+      {
+        "id": 2,
+        "case_id": "47043d1a-d4ab-4673-b2c7-769099a0afbd",
+        "kind": "gathering_started",
+        "payload": {},
+        "created_at": "2026-10-17T19:09:03.020820Z"
+      },
+      {
+        "id": 3,
+        "case_id": "47043d1a-d4ab-4673-b2c7-769099a0afbd",
+        "kind": "proposal_published",
+        "payload": {},
+        "created_at": "2026-10-17T19:09:03.045368Z"
+      },
+      {
+        "id": 4,
+        "case_id": "47043d1a-d4ab-4673-b2c7-769099a0afbd",
+        "kind": "approved",
+        "payload": {},
+        "created_at": "2026-10-17T19:09:13.993253Z"
+      },
+      {
+        "id": 5,
+        "case_id": "47043d1a-d4ab-4673-b2c7-769099a0afbd",
+        "kind": "operation_claimed",
+        "payload": {},
+        "created_at": "2026-10-17T19:09:14.028143Z"
+      },
+      {
+        "id": 6,
+        "case_id": "47043d1a-d4ab-4673-b2c7-769099a0afbd",
+        "kind": "preflight",
+        "payload": {
+          "checked_at": "2026-10-17T19:09:14.028148+00:00",
+          "key": "cw:47043d1a-d4ab-4673-b2c7-769099a0afbd:1:ticket",
+          "order_version": 1,
+          "shipment_version": 1
+        },
+        "created_at": "2026-10-17T19:09:14.028152Z"
+      },
+      {
+        "id": 7,
+        "case_id": "47043d1a-d4ab-4673-b2c7-769099a0afbd",
+        "kind": "outcome_unconfirmed",
+        "payload": {},
+        "created_at": "2026-10-17T19:09:14.038310Z"
+      },
+      {
+        "id": 8,
+        "case_id": "47043d1a-d4ab-4673-b2c7-769099a0afbd",
+        "kind": "operation_succeeded",
+        "payload": {},
+        "created_at": "2026-10-17T19:09:14.044212Z"
+      },
+      {
+        "id": 9,
+        "case_id": "47043d1a-d4ab-4673-b2c7-769099a0afbd",
+        "kind": "operation_claimed",
+        "payload": {},
+        "created_at": "2026-10-17T19:09:14.147002Z"
+      },
+      {
+        "id": 10,
+        "case_id": "47043d1a-d4ab-4673-b2c7-769099a0afbd",
+        "kind": "preflight",
+        "payload": {
+          "checked_at": "2026-10-17T19:09:14.147007+00:00",
+          "key": "cw:47043d1a-d4ab-4673-b2c7-769099a0afbd:1:annotation",
+          "order_version": 1,
+          "shipment_version": 1
+        },
+        "created_at": "2026-10-17T19:09:14.147010Z"
+      },
+      {
+        "id": 11,
+        "case_id": "47043d1a-d4ab-4673-b2c7-769099a0afbd",
+        "kind": "outcome_unconfirmed",
+        "payload": {},
+        "created_at": "2026-10-17T19:09:14.154473Z"
+      },
+      {
+        "id": 12,
+        "case_id": "47043d1a-d4ab-4673-b2c7-769099a0afbd",
+        "kind": "operation_succeeded",
+        "payload": {},
+        "created_at": "2026-10-17T19:09:14.159983Z"
+      }
+    ],
+    "available_actions": [],
+    "error": null
+  },
+  "browser_errors": [],
+  "human_review": "pending"
+}

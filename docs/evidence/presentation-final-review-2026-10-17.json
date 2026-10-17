@@ -1,0 +1,60 @@
+{
+  "kind": "Independent AI-assisted source/evidence review and implementer correction record; not human factual sign-off",
+  "reviewed_range": {
+    "base": "27c81cf4110517e5ca75d09679870419d7c2f627",
+    "head": "98fe5a489c8fa4cdb56503c63260973edb24bdeb"
+  },
+  "original_verdict": "NEEDS-WORK: caption timing and end-frame resize",
+  "review_confirmed": {
+    "retained_database_cases": 83,
+    "generated_fields_correct": 498,
+    "supported_reasons_actions": 83,
+    "prose_pairs_checked": 83,
+    "distinct_prose_pairs": 38,
+    "preserved_files": 359,
+    "human_fields": "pending"
+  },
+  "corrected_source": "7a4bc9c1f665078bf7d9f81cfd5032851e669c4a",
+  "corrections": "See presentation-media-correction-2026-10-17.json and presentation-final-verification-2026-10-17.json. One scoped correction pass, regressions RED->GREEN; no second reviewer sign-off is claimed.",
+  "final_status": "Findings corrected by implementer and verified:165 Python passes, all strict checks,8 component passes,4 browser passes and2 recording passes.",
+  "rulings": [
+    {
+      "decision": "Use requested checkout on feature branch, not another worktree",
+      "reason": "Explicit path scope; clean checkout with no competing edits",
+      "cost_if_wrong": "Checkout conflicts; none observed."
+    },
+    {
+      "decision": "No approval checkpoint",
+      "reason": "Explicit autonomous completion and existing push authorization",
+      "cost_if_wrong": "Misread scope; work remains within explicitly authorized repository."
+    },
+    {
+      "decision": "Permanent mode captions instead of synchronized phase captions",
+      "reason": "Video/test clock alignment was unproven",
+      "cost_if_wrong": "Less phase narration; original UI and machine assertions retain the complete flow."
+    },
+    {
+      "decision": "Treat capture resize as important for this presentation",
+      "reason": "Final recovery evidence must stay legible",
+      "cost_if_wrong": "One extra scoped recording correction."
+    },
+    {
+      "decision": "Reviewer did not execute suites or lifecycle actions",
+      "reason": "Read-only assignment; implementer supplies fresh logs/hashes and restoration checks",
+      "cost_if_wrong": "Verification may be overstated; exact recorded outputs are published separately."
+    },
+    {
+      "decision": "Historical authenticity and production/unseen generalization remain unproven",
+      "reason": "Retained consistency cannot establish either",
+      "cost_if_wrong": "No broader claim is made."
+    },
+    {
+      "decision": "Human factual review and screen-reader testing remain pending",
+      "reason": "Neither was performed; agent review cannot fill them",
+      "cost_if_wrong": "These gates remain open."
+    }
+  ],
+  "deferred_minor_findings": [],
+  "human_review": "pending",
+  "no_application_or_model_behavior_change": true
+}
