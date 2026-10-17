@@ -2,6 +2,8 @@
 
 Fixture and actual-model evidence are measured separately. The original Qwen2.5 1.5B failure remains frozen; current model configuration and verification are recorded in [MODEL-CONFIG](docs/MODEL-CONFIG.md) and [STATE](docs/STATE.md).
 
+The [17 October retained-evidence audit](docs/EVIDENCE-AUDIT-2026-10-17.md) rechecks all 83 v5 attempts against observations, proposals, exact approvals and retained remote effects/journals. It adds portable synthetic database exports without changing frozen reports. AI-assisted semantic review remains separate from deterministic checks and pending human review. The [browser recordings](docs/WALKTHROUGH.md) are new demonstrations on the exposed development example; they do not add unseen cases or replace the first-run measurements below.
+
 ## First frozen v5 measurement
 
 The first [actual Qwen3 14B report](docs/evidence/qwen-v5-challenge.json) records **30/30 correct actions**, **30/30 expected outcomes**, **180/180 correct model-generated fields**, **30/30 supported selected reasons** and **24/24 authorized completions**. The [same-input fixture](docs/evidence/fixture-v5-challenge.json) also records 30/30 and 24/24. Six deliberately stale cases produce zero writes; all 24 other cases complete with one ticket and annotation each. Unapproved and duplicate effects are zero in both modes.

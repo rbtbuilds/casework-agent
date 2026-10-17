@@ -1,53 +1,29 @@
-# Case study: an approved action with recoverable effects
+# Case study: a local agent with explicit authority and recoverable effects
 
-A delivery-exception operator needs an order record, carrier history and the applicable policy before opening an investigation. The next steps cross two systems: create an internal ticket, then annotate the order. A model can select an action from evidence, but the workflow must preserve the operator's authority when evidence changes or a service response disappears.
+A delivery-exception operator must combine an order, carrier history and policy before opening an internal investigation. The action crosses two systems: create a ticket, then annotate the order. If evidence changes or a write response disappears, the application must preserve what was approved and distinguish a failed request from an unknown outcome.
 
-Casework Agent implements that workflow with local Qwen inference, a React workbench, FastAPI and four independent SQLite databases. All business records are synthetic; no customer pilot or time saving is claimed.
+Casework Agent demonstrates that workflow with local Qwen3 14B inference, FastAPI, React/TypeScript and four independent SQLite databases. All records and effects are fictional. [Watch the browser demonstrations](WALKTHROUGH.md).
 
-## Keeping authority explicit
+## The engineering work
 
-Qwen has three scoped read tools. Schema-constrained generation binds tool identifiers and citations to the current case, while leaving both final actions available. The model chooses the action. Deterministic validation checks that choice against policy without returning an answer for a second attempt. The application writes its own policy explanation and internal note from the observed evidence. Intermediate model assessments and reasons remain diagnostic, with errors preserved; they cannot change the displayed explanation.
+**Constrain the model's scope.** Qwen chooses three case-scoped read tools, evaluates six policy conditions in separate contexts, then selects an action and reason from its unchanged answers. Schema constraints leave both Boolean values and both actions available. The application independently validates claims, citations, policy and source versions. Semantic mistakes fail without correction, a second choice or fixture substitution. Exact arithmetic and UTC relations are supplied features.
 
-Approval binds the proposal hash, cited evidence, source versions, policy and expiry. A fenced worker saves each operation's key, body and hash before sending it over HTTP. The order annotation uses the confirmed ticket identifier and the approved order version.
+**Bind authority to an immutable proposal.** Application code renders the displayed explanation and exact note from observed evidence. Approval binds their proposal hash, source versions, policy and expiry. The browser sends that exact identifier/hash and its current case version; stale evidence cannot authorize a newer proposal. The model has no write tools.
 
-The browser recovery test drops each service's first response after its transaction commits. The outcome becomes unknown; a matching remote journal then confirms it. One ticket and one annotation remain. A separate conflict test preserves a confirmed ticket when the annotation is rejected and shows a partial result. These tests establish bounded behavior in the simulation, without a distributed exactly-once guarantee or cross-service rollback.
+**Persist before sending.** A fenced worker saves each operation's key, payload and hash before HTTP. The dependent annotation uses the confirmed ticket ID and approved order version. A missing response remains unknown until a matching remote journal confirms it, or a bounded identical-key replay resolves it. Partial results remain visible. This provides per-key duplicate protection in the simulation; there is no cross-service rollback or distributed exactly-once guarantee.
 
-## Learning from failed inference
+## What the evidence supports
 
-The original Qwen2.5 1.5B adapter produced 0/30 valid actions because free-form generation broke the JSON/evidence protocol. Constrained decoding fixed the protocol boundary. Qwen3 4B reached 29/30 on development cases, then only 17/30 on a newly authored challenge, with 14/24 authorised completions. Its wrong proposals stopped before writes. Both failed evaluations remain published with their original source and model identities.
+The first frozen v5 challenge produced **30/30 correct actions/outcomes, 180/180 correct model conditions and 24/24 authorized completions**, with six deliberate stale approvals producing no writes. The same-input fixture comparison is separate. All 300 actual-model requests remain available; no semantic retries or replacement answers occurred. Warm workflow p50 was 18.03 seconds and p95 24.77 seconds on the recorded Apple Silicon configuration.
 
-That gap showed why calibration could not establish model quality. The first Qwen3 14B development check passed only 12/16: a larger checkpoint and corrected rendering still missed shipment-status and carrier-event exclusions. The v3 protocol required the model to assess each of the six policy conditions jointly before choosing its action. It also disables the checkpoint's thinking mode explicitly and renders the latest evidence, factual summary and schema together. Escaping content at the final rendering boundary prevents business data, replayed model replies and repair errors from introducing chat-role delimiters. The model receives copied fields, UTC timestamps and exact signed time differences, with no action oracle. Its assessment booleans remain model-generated claims; the backend independently validates the final action.
+The [retained-evidence audit](EVIDENCE-AUDIT-2026-10-17.md) recomputes conditions independently and binds proposals, approvals and operation payloads to the original remote journals and effects. Its semantic review of displayed prose is explicitly AI-assisted. Human factual-review fields remain pending.
 
-The v3 challenge was authored separately without access to the current model implementation or development outputs. Its inputs stayed private until implementation freeze. The model and fixture use the same 30 cases and fault schedule; six cases require stale rejection, and 24 expect a completed ticket/annotation pair. Each benchmark records source, prompt, model and input hashes.
+The browser demonstrations show source gathering, zero writes before exact approval and one confirmed pair afterward. A separate fixture clip drops both write responses after commit and shows the retained uncertainty/recovery events. Complete process tests additionally cover restart boundaries, generation fencing, stale approvals, interrupted gathering and partial conflicts. [Verification state](STATE.md) records exact commands, counts and limitations.
 
-## Measured v3 outcome
+## What changed after failure
 
-At clean source `a79256d09cf2dc8b1e8964ec910b826a8dd1e7c1`, the first v3 run produced 28/30 correct actions, 28/30 expected final outcomes and 22/24 authorised completions. The same-input fixture achieved 30/30 and 24/24. Both runs observed zero unapproved writes and duplicate effects. The model's assessment and generated prose still need human factual review.
+The original 1.5B run achieved 0/30 valid actions. Later protocols still made age, missing-timezone and intermediate-claim errors. Those reports remain frozen. Isolating each condition fixed the retained v5 cases without feeding validator answers back to the model. A separate shutdown defect required a workflow fix to persist partial traces and propagate cancellation. Model quality and durable execution needed distinct tests.
 
-The source was frozen at `3c5a2377bf759e9b8aee231a6c1fb547a115cdb4` before the implementer opened the challenge. The subsequent data-only commit preserved its input bytes. These results measure the complete guarded model workflow, including constrained reads/citations and independent policy validation. They do not isolate a model-size effect; the historical runs used different case sets and protocols.
+This is a guarded workflow and recovery demonstration. The deterministic validator already knows the fixed policy, so the model does not establish a decision-quality advantage over ordinary code. The small AI-authored synthetic challenge does not estimate production accuracy or customer savings. Published cases are now exposed; later executions are reproductions. Public authentication, tenant isolation and manual screen-reader verification remain outside the completed work.
 
-Two below-threshold generations falsely claimed that the event age met 48 hours. Exact policy validation rejected both before proposal publication, approval or writes. Their traces retain the one-second and one-microsecond shortfalls. A model-assisted trace review also found three incorrect assessment fields among correct decisions, two incorrect rationales, two premature escalation notes and one imprecise timestamp note. These findings are detailed in [the source and trace review](REVIEW-2026-10-16.md). Human factual review remains pending; action accuracy does not certify explanation accuracy.
-
-## V4: separating action selection from explanation
-
-The remaining age errors motivated exact signed policy-relative arithmetic and explicit UTC temporal relations. Strictly validating redundant model assessments exposed additional failures, while an action-only experiment also reduced accuracy. Those failed development results remain published.
-
-The retained model selects the action after structured intermediate generation. Its booleans and selected reason have no authority over explanations or execution. Code independently validates the action and citations, then derives a prospective policy explanation from raw observations. The original broader factual-review gate remains unchanged.
-
-After 23/23 exposed calibration cases and actual-model browser recovery passed, source and model identities were frozen before opening a separately authored 30-case challenge. The first run records **29/30 correct actions**, **29/30 correct final outcomes** and **23/24 authorised completions**; the same-input fixture records 30/30 actions/outcomes and 24/24 completions. Both observed zero unapproved and duplicate effects. The fresh run retains 2 incorrect intermediate assessment fields across 2 attempts and 2 unsupported selected reasons. These are recorded in trace diagnostics and cannot change displayed explanations or authorise writes. Human review remains pending; the broader zero-unsupported-claims gate is not claimed.
-
-The model's action remains independently selected and may fail validation. For this fixed policy, code already knows the permitted answer, so these measurements establish a guarded inference/workflow demonstration rather than a model advantage over deterministic logic. The application-generated explanation is not a claim about Qwen's reasoning.
-
-## V5: getting the generated conditions right
-
-The next repair tested whether joint generation confused independent conditions. Paired exposed-input replays reproduced both v4 errors, while fresh per-condition contexts answered them correctly. The retained protocol gives each condition only its rule and relevant facts, then passes the six unchanged model answers to a final choice request. Wrong claims and unsupported reasons are again rejected, even with a correct action; no semantic correction or second choice is allowed.
-
-After 53 exposed development cases passed, the implementation and independent auditor froze before a separate AI author revealed 30 new literal cases. The first actual run produced 180/180 correct fields, 30/30 supported reasons/actions/outcomes and 24/24 authorized completions. All 300 requests remain auditable. Integer oracles and independent AI-assisted review agree; no repairs or replacements were needed. Human factual review remains pending.
-
-A final source review caught partial traces being lost during graceful shutdown. A separately verified workflow correction preserves those traces through existing generation fences and propagates cancellation. It does not change model inputs or the frozen measurement. This illustrates why correct model outputs and reliable application behavior require distinct evidence.
-
-## Operating limits
-
-The workbench is a loopback, single-operator simulation with synthetic data. Human review of generated factual claims, manual screen-reader testing and a recorded walkthrough remain pending. Automated checks cover keyboard approval, both themes, desktop/mobile layouts and reduced motion. Model failure never switches silently to fixture mode. Weights, databases and runtime output stay outside Git.
-
-See [evaluation](../EVALUATION.md), [model configuration](MODEL-CONFIG.md), [verification state](STATE.md) and [publication audit](PUBLICATION-AUDIT.md) for reproducible evidence and its limits.
+See [evaluation and frozen history](../EVALUATION.md), [runbook](RUNBOOK.md) and [publication audit](PUBLICATION-AUDIT.md) for source identities, reproduction and evidence boundaries.

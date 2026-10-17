@@ -203,6 +203,13 @@ test("record evidence, exact approval and confirmed HTTP effects", async ({
     await expect(
       page.getByText("outcome unconfirmed", { exact: true }),
     ).toHaveCount(2);
+    await page
+      .getByText("outcome unconfirmed", { exact: true })
+      .last()
+      .scrollIntoViewIfNeeded();
+    await expect(
+      page.getByText("outcome unconfirmed", { exact: true }).last(),
+    ).toBeInViewport();
     chapter(
       "Both lost responses remain in the durable audit timeline.",
       "Remote journals confirmed the existing effects. No replacement key or second send was needed.",

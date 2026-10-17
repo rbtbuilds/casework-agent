@@ -48,6 +48,8 @@ git diff --exit-code -- contracts/openapi.json web/src/api/generated.ts web/src/
 
 Browser runs create fresh `.runtime/browser-*` databases and stop their foreground owner. Model process unit tests use scripted/invalid children and are not inference evidence. Temporary pytest data stays in this project's `.runtime/pytest`.
 
+For reproducible, asserted browser videos, use the separate [walkthrough recorder](WALKTHROUGH.md). It keeps actual-Qwen and fixture-recovery captures distinct. The [retained-evidence audit](EVIDENCE-AUDIT-2026-10-17.md) can also be reproduced without weights or services.
+
 ## Local Qwen
 
 ```sh

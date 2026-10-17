@@ -6,7 +6,11 @@ A local Qwen agent for delivery exceptions, with exact human approval and durabl
 
 **Actual-model result:** 30/30 correct decisions and workflows, 180/180 correct model-generated condition checks, and 24/24 authorised completions on the first frozen v5 synthetic challenge. [Full evaluation](EVALUATION.md).
 
-![Actual local Qwen proposal awaiting exact approval](docs/evidence/qwen-v5-runtime-proposal.png)
+[![Watch actual Qwen gather evidence and wait for exact approval](docs/evidence/qwen-v5-runtime-proposal.png)](docs/media/casework-qwen.mp4)
+
+**[Watch actual Qwen](docs/media/casework-qwen.mp4)** · **[Watch fixture recovery](docs/media/casework-recovery.mp4)** · [Reproduce the recordings](docs/WALKTHROUGH.md) · [Read the case study](docs/CASE-STUDY.md)
+
+The main recording uses actual local inference. The separate recovery clip uses a labelled fixture decision and real HTTP services with both write responses lost after commit. Both verify zero effects before approval, the exact approved proposal and one confirmed ticket/annotation pair. Captions are added below uncut browser footage at the original speed. These are demonstrations on an exposed example, not new unseen evaluations.
 
 ## Run the model
 
@@ -61,6 +65,8 @@ The first frozen v5 challenge used 30 separately AI-authored synthetic cases, in
 | Unapproved / duplicate effects | 0 / 0 | 0 / 0 |
 
 All 300 actual-model requests were retained. Independent AI-assisted review agrees with the sealed integer oracles, including missing timezones, chronology contradictions and exact microsecond boundaries. There were no syntax repairs, semantic retries or replacement answers. The 53 exposed development cases separately passed 318/318 checks and 53/53 decisions. Human factual review remains pending.
+
+The [retained-evidence audit](docs/EVIDENCE-AUDIT-2026-10-17.md) checks all 83 v5 attempts against source observations and their saved approvals, operation bodies, remote journals and actual effects. It separates deterministic comparisons, AI-assisted prose review and conclusions the evidence cannot establish. Portable public exports make those checks reproducible without weights or live services.
 
 Warm workflow p50 was 18.03 seconds and p95 24.77 seconds on an Apple M5 Pro with 24 GiB memory; loading is recorded separately. This is a small synthetic challenge. Code supplies exact arithmetic and UTC relations and already knows the permitted policy action; the results demonstrate guarded model inference and workflow execution. [Reports, traces and reproduction](EVALUATION.md) identify the frozen source, model and inputs.
 
