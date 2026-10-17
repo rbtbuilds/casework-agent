@@ -218,6 +218,7 @@ test("record evidence, exact approval and confirmed HTTP effects", async ({
   }
   expect(errors).toEqual([]);
   await page.screenshot({ path: `${root}/completed.png`, fullPage: true });
+  const capturedWallSeconds = (performance.now() - start) / 1000;
   const video = page.video();
   if (!video) throw new Error("Recording was not enabled.");
   await page.close();
@@ -250,6 +251,7 @@ test("record evidence, exact approval and confirmed HTTP effects", async ({
         provenance:
           "New automated browser demonstration on an exposed example, not unseen evaluation. Uncut recording; caption strip added below the viewport.",
         chapters,
+        captured_wall_seconds: capturedWallSeconds,
         before,
         after,
         approval: {

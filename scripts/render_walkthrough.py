@@ -23,6 +23,16 @@ def render(root: Path, output: Path) -> None:
     ffmpeg, ffprobe = shutil.which("ffmpeg"), shutil.which("ffprobe")
     if not ffmpeg or not ffprobe:
         raise RuntimeError("Install FFmpeg, including ffprobe, to render recordings.")
+    source_media: dict[str, Any] = json.loads(
+        subprocess.check_output(
+            [ffprobe, "-v", "error", "-show_format", "-of", "json", str(source)], text=True
+        )
+    )
+    # Playwright can start the page video before the test body clock begins.
+    # Align their closing boundary instead of putting captions ahead of actions.
+    offset = max(
+        0.0, float(source_media["format"]["duration"]) - float(data["captured_wall_seconds"])
+    )
     command = [ffmpeg, "-n", "-hide_banner", "-loglevel", "error", "-i", str(source)]
     graph = ["[0:v]pad=iw:ih+100:0:0:color=0x0b1220[v0]"]
     for index, chapter in enumerate(chapters):
@@ -30,8 +40,10 @@ def render(root: Path, output: Path) -> None:
         if not caption.is_file():
             raise FileNotFoundError(caption.name)
         command.extend(["-i", str(caption)])
-        start = 0 if index == 0 else float(chapter["seconds"])
-        end = float(chapters[index + 1]["seconds"]) if index + 1 < len(chapters) else 100000
+        start = 0 if index == 0 else float(chapter["seconds"]) + offset
+        end = (
+            float(chapters[index + 1]["seconds"]) + offset if index + 1 < len(chapters) else 100000
+        )
         graph.append(
             f"[v{index}][{index + 1}:v]overlay=0:1000:"
             f"enable='gte(t,{start})*lt(t,{end})'[v{index + 1}]"
@@ -80,6 +92,7 @@ def render(root: Path, output: Path) -> None:
         "chapters": chapters,
         "media": probe,
         "human_review": "pending",
+        "caption_clock_offset_seconds": offset,
     }
     with output.with_suffix(".json").open("x") as file:
         file.write(json.dumps(evidence, indent=2) + "\n")
