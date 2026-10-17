@@ -18,6 +18,8 @@ The reported earlier 107-unit-pass/startup failure was a reserved-port collision
 
 The lifecycle helper has restored the original demo with its two existing cases. API and web both returned HTTP 200, model/fixture availability is true, and the shared ML lease is released. No original database was reset or replaced.
 
+A final public GitHub check confirmed MP4 file pages do not contain an inline player. The README therefore includes an animated preview and explicit MP4 download links; the source recordings are unchanged. [Preview provenance](evidence/github-preview-2026-10-17.json).
+
 Exact commands, log hashes, source boundaries and restoration evidence are recorded in [the dated verification artifact](evidence/presentation-final-verification-2026-10-17.json). Public asset and metadata checks are recorded in [the publication audit](PUBLICATION-AUDIT.md).
 
 ## First frozen v5 measurement

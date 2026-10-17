@@ -6,11 +6,11 @@ A local Qwen agent for delivery exceptions, with exact human approval and durabl
 
 **Actual-model result:** 30/30 correct decisions and workflows, 180/180 correct model-generated condition checks, and 24/24 authorised completions on the first frozen v5 synthetic challenge. [Full evaluation](EVALUATION.md).
 
-[![Watch actual Qwen gather evidence and wait for exact approval](docs/media/casework-qwen-poster.png)](docs/media/casework-qwen.mp4)
+[![Actual Qwen browser walkthrough - animated preview](docs/media/casework-qwen-preview.gif)](docs/media/casework-qwen.mp4?raw=1)
 
-**[Watch actual Qwen - 42 seconds](docs/media/casework-qwen.mp4)** · **[Watch fixture recovery - 29 seconds](docs/media/casework-recovery.mp4)** · [Reproduce the recordings](docs/WALKTHROUGH.md) · [Read the case study](docs/CASE-STUDY.md)
+**[Download actual Qwen MP4 - 42 seconds](docs/media/casework-qwen.mp4?raw=1)** · **[Download fixture recovery MP4 - 29 seconds](docs/media/casework-recovery.mp4?raw=1)** · [Reproduce the recordings](docs/WALKTHROUGH.md) · [Read the case study](docs/CASE-STUDY.md)
 
-The main recording uses actual local inference. The separate recovery clip uses a labelled fixture decision and real HTTP services with both write responses lost after commit. Both verify zero effects before approval, the exact approved proposal and one confirmed ticket/annotation pair. Captions are added below uncut browser footage at the original speed. These are demonstrations on an exposed example, not new unseen evaluations.
+The animated preview plays the main recording at its original speed with five frames per second. Full-resolution MP4 downloads are linked above; GitHub's repository file view does not provide a video player. The main recording uses actual local inference. The separate recovery clip uses a labelled fixture decision and real HTTP services with both write responses lost after commit. Both verify zero effects before approval, the exact approved proposal and one confirmed ticket/annotation pair. Captions are added below uncut browser footage at the original speed. These are demonstrations on an exposed example, not new unseen evaluations.
 
 ## Run the model
 

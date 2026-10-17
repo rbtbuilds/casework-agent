@@ -1,0 +1,19 @@
+{
+  "kind": "GitHub README presentation follow-up; no source recording, model or application change",
+  "reason": "Public GitHub MP4 blob page returnedHTTP200 with no video element, exposing only View raw. Use explicit raw-download links and an inline animated preview.",
+  "source_commit": "c2e8a044b4e48465d7c816449a929413214ea2e3",
+  "source_mp4": "docs/media/casework-qwen.mp4",
+  "source_mp4_sha256": "6ee7f3bbedcb16779dc17f9471c47c82791240e1ca78e1c2c3c2d78eaf545a4e",
+  "preview": "docs/media/casework-qwen-preview.gif",
+  "preview_sha256": "71662796001fc3750dd7a75291b7c56eeb706c6c7f4f3ce54a41c1a4529a6297",
+  "bytes": 1508896,
+  "width": 1100,
+  "height": 840,
+  "fps": 5,
+  "duration_seconds": 41.6,
+  "editing": "Frame-rate-reduced, resized GIF at original speed; full workflow retained. No generated or substituted application state.",
+  "command": "ffmpeg -i docs/media/casework-qwen.mp4 -filter_complex '[0:v]fps=5,scale=1100:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=128:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=4:diff_mode=rectangle' -loop 0 .runtime/qwen-preview-reproduction.gif",
+  "prior_publication_inventory": "publication-final-review-2026-10-17.json describes thec2e8a04 snapshot; this follow-up changes only README, WALKTHROUGH, STATE and adds this preview/evidence.",
+  "frozen_v5_evidence_unchanged": true,
+  "human_review": "pending"
+}

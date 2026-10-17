@@ -4,12 +4,14 @@ The main clip demonstrates actual pinned Qwen inference on the exposed delayed-d
 
 | Recording | Mode | Duration | Evidence |
 | --- | --- | --- | --- |
-| [Main walkthrough](media/casework-qwen.mp4) | Actual Qwen3 14B | 41.60 s | [Browser assertions](evidence/walkthrough-v2-qwen-2026-10-17.json), [uncut WebM](media/casework-qwen.webm), [media hashes](media/casework-qwen.json) |
-| [Ambiguous-write recovery](media/casework-recovery.mp4) | Fixture decision, actual HTTP effects | 29.44 s | [Browser assertions](evidence/walkthrough-v2-recovery-2026-10-17.json), [uncut WebM](media/casework-recovery.webm), [media hashes](media/casework-recovery.json) |
+| [Main MP4 download](media/casework-qwen.mp4?raw=1) | Actual Qwen3 14B | 41.60 s | [Browser assertions](evidence/walkthrough-v2-qwen-2026-10-17.json), [uncut WebM](media/casework-qwen.webm), [media hashes](media/casework-qwen.json) |
+| [Recovery MP4 download](media/casework-recovery.mp4?raw=1) | Fixture decision, actual HTTP effects | 29.44 s | [Browser assertions](evidence/walkthrough-v2-recovery-2026-10-17.json), [uncut WebM](media/casework-recovery.webm), [media hashes](media/casework-recovery.json) |
 
 Both captures use clean committed source `7a4bc9c`. The [capture binding](evidence/walkthrough-v2-bindings-2026-10-17.json) records source, modes, model configuration attribution and hashes separately from browser-emitted data. The main case has ten actual model requests and six correct condition answers. The recovery clip retains two uncertainty events and one send per saved operation. The permanent mode/workflow caption makes no phase-timing claim. The original videos remain available for comparison. The [correction record](evidence/presentation-media-correction-2026-10-17.json) preserves the superseded `98fe5a4` version and review findings.
 
 The recorder inspects source records, verifies zero ticket/annotation rows and journal entries before approval, checks the exact proposal ID/hash/case version sent by the browser, then verifies the persisted operations against both actual remote journals and effects. The recovery run drops both write responses after commit. Its durable timeline retains two uncertainty events, then confirms one ticket and one annotation with the same saved keys and one send per operation.
+
+The README includes a five-frame-per-second animated preview at the original speed because GitHub repository MP4 pages offer a raw download rather than an inline player. The full-resolution MP4s and uncut WebMs remain the source recordings. Preview provenance and its portable FFmpeg command are in [the GitHub presentation check](evidence/github-preview-2026-10-17.json).
 
 ## Record a reproduction
 
