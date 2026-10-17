@@ -1,12 +1,28 @@
-# Two-minute walkthrough guide
+# Browser walkthrough
 
-This is a presenter guide; a recorded walkthrough remains pending. Prepare and probe the pinned model before starting. Actual-model screenshots are in `docs/evidence/qwen-v4-*.png`.
+The main clip demonstrates actual pinned Qwen inference on the exposed delayed-delivery example. The separate recovery clip uses the explicitly labelled deterministic fixture decision and real local HTTP services. Neither clip is unseen model-quality evidence. Approval is automated through the actual browser control; it does not complete human factual review.
 
-- 0:00-0:20: Show the fictional-records banner, select Local Qwen model and open the delayed-delivery example. The business records are synthetic; the integrations use actual local HTTP.
-- 0:20-0:50: While Qwen gathers evidence, explain its scoped order, shipment and policy reads. Inspect a source record's ID, version and hash when the proposal appears. Gathering time depends on hardware; the measured timing report is linked in EVALUATION.
-- 0:50-1:10: Show the model-selected action, application-generated policy explanation, exact internal note, source versions, expiry and proposal hash. Approve using the keyboard. Authority is saved before the first write.
-- 1:10-1:35: Show both confirmed outcomes and the durable timeline. In the browser test configuration, each service drops its first post-commit response. The unknown outcome is followed by journal confirmation, with one effect per key.
-- 1:35-1:45: Explain the separate partial-conflict test: a ticket can exist while the annotation is rejected. The interface retains that partial result for review.
-- 1:45-2:00: Show the first frozen v4 model result beside its fixture comparison. Link the preserved earlier failures, intermediate-claim diagnostics and pending human factual review. No production deployment or customer saving is claimed.
+The recorder inspects source records, verifies zero ticket/annotation rows and journal entries before approval, checks the exact proposal ID/hash/case version sent by the browser, then verifies the persisted operations against both actual remote journals and effects. The recovery run drops both write responses after commit. Its durable timeline retains two uncertainty events, then confirms one ticket and one annotation with the same saved keys and one send per operation.
 
-For an immediate demonstration without weights, select Fixture workflow explicitly and identify it as deterministic execution. It does not demonstrate model reasoning.
+## Record a reproduction
+
+Use Python 3.12, uv, Node 24 and locked dependencies. Install Chromium and prepare/probe the pinned model as described in [RUNBOOK](RUNBOOK.md). Fixture recording requires no model. Rendering requires local FFmpeg with the libx264 encoder and ffprobe. No cloud service or credentials are used.
+
+First inspect `scripts/dev.py status`. Stop a pre-existing owned demo with the lifecycle helper before recording; do not stop an unrelated listener or change reserved ports. The recorder's foreground supervisor stops its own services when the test exits. Each invocation needs a new runtime directory because databases are preserved.
+
+```sh
+uv run --no-sync python scripts/dev.py status
+uv run --no-sync python scripts/dev.py stop
+CASEWORK_RECORDING_MODE=model CASEWORK_BROWSER_ROOT="$PWD/.runtime/record-model-1" PLAYWRIGHT_BROWSERS_PATH="$PWD/.runtime/pw-browsers" npm --prefix web run e2e -- --config walkthrough.config.ts
+uv run --no-sync python scripts/render_walkthrough.py .runtime/record-model-1 .runtime/qwen-walkthrough-1.mp4
+CASEWORK_RECORDING_MODE=fixture CASEWORK_BROWSER_ROOT="$PWD/.runtime/record-recovery-1" PLAYWRIGHT_BROWSERS_PATH="$PWD/.runtime/pw-browsers" npm --prefix web run e2e -- --config walkthrough.config.ts
+uv run --no-sync python scripts/render_walkthrough.py .runtime/record-recovery-1 .runtime/recovery-walkthrough-1.mp4
+# Restore the original demo only if it was running before these checks:
+uv run --no-sync python scripts/dev.py start
+```
+
+The standard ModelSession owns the shared ML lease for actual inference. A busy lease fails explicitly before loading; no fixture is substituted. Recording retries are disabled. Failed attempts remain local and are not presented as successful captures.
+
+Each successful recording writes `recording.json`, an uncut `walkthrough.webm`, a completion screenshot and caption PNGs under its ignored runtime root. The renderer adds a 100-pixel caption strip below the original 1440x1000 viewport and exports H.264 MP4 at the original speed with no cuts or synthetic application states. Its JSON sidecar records hashes, measured chapters, mode, source commit/dirty status and codec/duration. Browser and recording test files participate in the strict TypeScript check.
+
+The caption strip explains assertions already checked by the recording. Short-lived remote uncertainty may resolve between browser polls; the recovery clip shows the retained uncertainty events and confirmed effects, rather than manufacturing a paused failure screen. Separate complete process tests exercise restart and unresolved-outcome boundaries.

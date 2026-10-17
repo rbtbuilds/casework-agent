@@ -1,0 +1,1503 @@
+{
+  "kind": "Independent AI-assisted post-run deterministic trace audit; not human factual review",
+  "report_sha256": "a302f9faa619fdf31e124763b7617ab877fc0b8b424dfeab17ffcb859844d368",
+  "manifest_sha256": "aa75fd59afdf3973bd0a6387c8770afcbe64575d9c1964e36805d61861484bd9",
+  "audit_script_sha256": "ee249ed277dbdf11358bd13d7b28a881bb16d33966c31d23dbc4c3369a5ecaed",
+  "protocol_sha256": "2612c6a9a21cc8446b81742b83d9a10d8ac8b0bd0f47875f96cfb5625d80a114",
+  "cases": [
+    {
+      "case_id": "dev-clear_delay-01",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "dev-benign_update-01",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": false,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": false
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": false,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": false
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "dev-missing_timestamp-01",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": false,
+        "age_at_least_48_hours": false
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": false,
+        "age_at_least_48_hours": false
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "dev-duplicate_request-01",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "dev-benign_note-01",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "dev-missing_timestamp-06",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": false,
+        "age_at_least_48_hours": false
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": false,
+        "age_at_least_48_hours": false
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "v3dev-01",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": false
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": false
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "v3dev-02",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "v3dev-03",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": false,
+        "age_at_least_48_hours": false
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": false,
+        "age_at_least_48_hours": false
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "v3dev-04",
+      "expected_assessment": {
+        "order_in_transit": false,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "model_assessment": {
+        "order_in_transit": false,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "v3dev-05",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": false,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": false,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "v3dev-06",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": false,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": false,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "v3dev-07",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": false,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": false,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "v3dev-08",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": false,
+        "age_at_least_48_hours": true
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": false,
+        "age_at_least_48_hours": true
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "v3dev-09",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": false,
+        "age_at_least_48_hours": true
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": false,
+        "age_at_least_48_hours": true
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "v3dev-10",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": false,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": false,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "0c892a52-ed84-584e-b368-de242e19de97",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": false
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": false
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "419f23a7-8878-58d3-85b4-324c4eee7c8b",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": false
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": false
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "4fada86c-6b91-541f-ae17-353022862da8",
+      "expected_assessment": {
+        "order_in_transit": false,
+        "shipment_delayed": false,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "model_assessment": {
+        "order_in_transit": false,
+        "shipment_delayed": false,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "6e1be28e-8c75-5821-b085-51c02061afdc",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": false,
+        "age_at_least_48_hours": true
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": false,
+        "age_at_least_48_hours": true
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "5a1bd13e-596e-5ad7-8edd-5d4ac4e1a4cc",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": false,
+        "age_at_least_48_hours": true
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": false,
+        "age_at_least_48_hours": true
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "e0746dec-3ef7-545d-b700-75985253b06d",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "db0bbc2c-7e1b-52df-bca0-f2f5407045e3",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": false,
+        "age_at_least_48_hours": false
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": false,
+        "age_at_least_48_hours": false
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "3f087aca-8184-54b0-bd57-8eaee65fadc8",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "515304b7-e79b-5921-89d4-1127a80a6c3c",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": false
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": false
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "585a8004-d27d-5b1c-8061-d43a0c701f17",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "4b512706-6187-53ec-bb70-e07cf72168b1",
+      "expected_assessment": {
+        "order_in_transit": false,
+        "shipment_delayed": false,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": false
+      },
+      "model_assessment": {
+        "order_in_transit": false,
+        "shipment_delayed": false,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": false
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "425595c3-e357-5667-92a1-7fab95450cbb",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "8afed6d5-6f2a-5b7b-aed0-244c0cd8f72f",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": false,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": false,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "04326e69-53b1-5530-be0e-9bfec12ddcad",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": false,
+        "age_at_least_48_hours": false
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": false,
+        "age_at_least_48_hours": false
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "85399891-d0d3-5b4b-be09-464ba3760c4c",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": false,
+        "age_at_least_48_hours": true
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": false,
+        "age_at_least_48_hours": true
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "ef813106-f116-5ace-9d88-040f05192922",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": false,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": false,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "e188b84b-cea8-55d8-a8e9-a3a2308bc1e9",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "13db351a-a162-517f-a7e7-f8ac7ecea3ae",
+      "expected_assessment": {
+        "order_in_transit": false,
+        "shipment_delayed": false,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": false
+      },
+      "model_assessment": {
+        "order_in_transit": false,
+        "shipment_delayed": false,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": false
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "a72cbd6c-6cc9-5ec9-9b9c-653f4469e4d5",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": false,
+        "age_at_least_48_hours": true
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": false,
+        "age_at_least_48_hours": true
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "1506e2e7-6664-59d7-8461-bb0e180e981d",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "2f51827e-694b-58f9-bfe2-7cbfaab4414c",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": false,
+        "age_at_least_48_hours": false
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": false,
+        "age_at_least_48_hours": false
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "c8150f11-1c87-5c65-b822-59f61c4dc415",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "667d283f-a92b-51c7-b7b3-f2d680b63e44",
+      "expected_assessment": {
+        "order_in_transit": false,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "model_assessment": {
+        "order_in_transit": false,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "e7fdf008-11c4-5b38-ba44-735ed5496f23",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "11caea64-b0ae-5dc6-9cdb-5f1ec61bd4dd",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": false
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": false
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "a491ee6d-67e7-5454-9c31-9662bf1e80dc",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "aa3fbfc2-97f6-5679-a481-86113399e5e6",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": false,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": false,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "f04dc25f-4c08-5f4b-ad01-ad6dde161ea3",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": false,
+        "age_at_least_48_hours": false
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": false,
+        "age_at_least_48_hours": false
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "892a18a6-bded-579b-9cb5-53d191a8f0ef",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": false,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": false,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "b1e92c56-11fa-5c48-97c9-ca914495032c",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "64c6132e-196e-559a-a8c5-42537537c527",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": false,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": false,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "17e058b6-f952-5f7d-9e07-aaf15b113935",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "b2dcf7ca-1ddf-5f53-a4fe-06c89b23e526",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": false,
+        "age_at_least_48_hours": true
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": false,
+        "age_at_least_48_hours": true
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "330584cf-b78a-56c3-81a9-024ca97735c0",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": false
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": false
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "0e0668cb-be41-529f-8281-9c99845386e5",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": false,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": false,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "e13d2a3b-9a26-5b24-b24d-c55e579af712",
+      "expected_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": false,
+        "age_at_least_48_hours": false
+      },
+      "model_assessment": {
+        "order_in_transit": true,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": false,
+        "age_at_least_48_hours": false
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    },
+    {
+      "case_id": "a17d653b-4da7-5e22-b04b-ba1a4d47fe80",
+      "expected_assessment": {
+        "order_in_transit": false,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "model_assessment": {
+        "order_in_transit": false,
+        "shipment_delayed": true,
+        "no_policy_exception": true,
+        "no_conflicting_or_terminal_events": true,
+        "timestamps_known_and_consistent": true,
+        "age_at_least_48_hours": true
+      },
+      "fields_correct": 6,
+      "incorrect_fields": [],
+      "missing_fields": [],
+      "reason_supported": true,
+      "raw_action_correct": true,
+      "inference_calls": 10,
+      "schema_errors": 0,
+      "repair_calls": 0,
+      "trace_issues": []
+    }
+  ],
+  "totals": {
+    "cases": 53,
+    "fields_correct": 318,
+    "fields_total": 318,
+    "supported_reasons": 53,
+    "raw_actions_correct": 53,
+    "trace_issues": 0,
+    "syntax_errors": 0,
+    "syntax_repairs": 0
+  }
+}

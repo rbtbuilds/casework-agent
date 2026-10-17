@@ -1,0 +1,224 @@
+{
+  "kind": "deterministic retained-evidence audit; not human review",
+  "human_review": "pending",
+  "remote_effect_verification": "retained_database_exports",
+  "issues": [],
+  "cases": [
+    {
+      "case_id": "b8d6a20f74619c35",
+      "issues": [],
+      "approved": false,
+      "tickets": 0,
+      "annotations": 0
+    },
+    {
+      "case_id": "2ce7f1948ab603d5",
+      "issues": [],
+      "approved": false,
+      "tickets": 0,
+      "annotations": 0
+    },
+    {
+      "case_id": "f730be26d5189a4c",
+      "issues": [],
+      "approved": false,
+      "tickets": 0,
+      "annotations": 0
+    },
+    {
+      "case_id": "619ac7e3f02485bd",
+      "issues": [],
+      "approved": false,
+      "tickets": 0,
+      "annotations": 0
+    },
+    {
+      "case_id": "a3e17b46c98025df",
+      "issues": [],
+      "approved": false,
+      "tickets": 0,
+      "annotations": 0
+    },
+    {
+      "case_id": "76fb04d98a2315ce",
+      "issues": [],
+      "approved": false,
+      "tickets": 0,
+      "annotations": 0
+    },
+    {
+      "case_id": "d1a486e70c5932bf",
+      "issues": [],
+      "approved": true,
+      "tickets": 1,
+      "annotations": 1
+    },
+    {
+      "case_id": "405d2fb98e6137ac",
+      "issues": [],
+      "approved": true,
+      "tickets": 1,
+      "annotations": 1
+    },
+    {
+      "case_id": "e2930a67b4d81fc5",
+      "issues": [],
+      "approved": true,
+      "tickets": 1,
+      "annotations": 1
+    },
+    {
+      "case_id": "9c476e15a8f302bd",
+      "issues": [],
+      "approved": true,
+      "tickets": 1,
+      "annotations": 1
+    },
+    {
+      "case_id": "530af7c28d196e4b",
+      "issues": [],
+      "approved": true,
+      "tickets": 1,
+      "annotations": 1
+    },
+    {
+      "case_id": "ba60e9257c1483df",
+      "issues": [],
+      "approved": true,
+      "tickets": 1,
+      "annotations": 1
+    },
+    {
+      "case_id": "73dbf281c4a6095e",
+      "issues": [],
+      "approved": true,
+      "tickets": 1,
+      "annotations": 1
+    },
+    {
+      "case_id": "0f8a526d39c47be1",
+      "issues": [],
+      "approved": true,
+      "tickets": 1,
+      "annotations": 1
+    },
+    {
+      "case_id": "c68a917e40f5b32d",
+      "issues": [],
+      "approved": true,
+      "tickets": 1,
+      "annotations": 1
+    },
+    {
+      "case_id": "148e6d3ba2f9705c",
+      "issues": [],
+      "approved": true,
+      "tickets": 1,
+      "annotations": 1
+    },
+    {
+      "case_id": "ef29c580ad7416b3",
+      "issues": [],
+      "approved": true,
+      "tickets": 1,
+      "annotations": 1
+    },
+    {
+      "case_id": "52b1a8d7f603ce49",
+      "issues": [],
+      "approved": true,
+      "tickets": 1,
+      "annotations": 1
+    },
+    {
+      "case_id": "87cd4310e9b6a25f",
+      "issues": [],
+      "approved": true,
+      "tickets": 1,
+      "annotations": 1
+    },
+    {
+      "case_id": "d9506e14c82b3fa7",
+      "issues": [],
+      "approved": true,
+      "tickets": 1,
+      "annotations": 1
+    },
+    {
+      "case_id": "308a5c76e2b941fd",
+      "issues": [],
+      "approved": true,
+      "tickets": 1,
+      "annotations": 1
+    },
+    {
+      "case_id": "6f1429acb57d08e3",
+      "issues": [],
+      "approved": true,
+      "tickets": 1,
+      "annotations": 1
+    },
+    {
+      "case_id": "ae3758d109c24bf6",
+      "issues": [],
+      "approved": true,
+      "tickets": 1,
+      "annotations": 1
+    },
+    {
+      "case_id": "4b90df673e1a825c",
+      "issues": [],
+      "approved": true,
+      "tickets": 1,
+      "annotations": 1
+    },
+    {
+      "case_id": "e6c8214a7f30b95d",
+      "issues": [],
+      "approved": true,
+      "tickets": 1,
+      "annotations": 1
+    },
+    {
+      "case_id": "59a41d8be730cf26",
+      "issues": [],
+      "approved": true,
+      "tickets": 1,
+      "annotations": 1
+    },
+    {
+      "case_id": "c21f649da85730be",
+      "issues": [],
+      "approved": true,
+      "tickets": 1,
+      "annotations": 1
+    },
+    {
+      "case_id": "7a03be9d4628fc15",
+      "issues": [],
+      "approved": true,
+      "tickets": 1,
+      "annotations": 1
+    },
+    {
+      "case_id": "d42ac8e1630f795b",
+      "issues": [],
+      "approved": true,
+      "tickets": 1,
+      "annotations": 1
+    },
+    {
+      "case_id": "18eb73c5a9402fd6",
+      "issues": [],
+      "approved": true,
+      "tickets": 1,
+      "annotations": 1
+    }
+  ],
+  "input_sha256": {
+    "report": "af19942e39cf48680f0348f5d4050820d2ceb92e857c7f759eb9050b8e4513dd",
+    "manifest": "0d298900fc37f758e9ba744d03b4e1d8b429c7a5151a24778fbbcafed2c896f5",
+    "auditor": "b0026acd238197f1b29b821e13badc4973d96c2ca2fcc221a6725abfcf92b132",
+    "snapshots": "54e4b0539fbc81ab16f4e1f16e5dae43627251df6a13e2c79b77792f54a4c500"
+  }
+}
