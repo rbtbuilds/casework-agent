@@ -1,0 +1,133 @@
+{
+  "kind": "Uncut real browser capture with a caption strip below the viewport; no speed change",
+  "source_video_sha256": "f181e17063181f79756b0a86db737180ae7d22a6cfca87eac84fd4263cc99418",
+  "recording_evidence_sha256": "356653108a247b917c1b1d1b38ee23bd69e6ea70954587cd02765ab65548e879",
+  "renderer_sha256": "0fb0f9ccfcb752860b2f26fe03968152eb761dadbd2bd0445fc36cd0b2b036b0",
+  "video_sha256": "8909f257c4ef584211e8d07af004161192d000bf092e3d4af04eca255f57400d",
+  "mode": "fixture",
+  "source_commit": "f6271f9a324ee6f1f115e1d675dd544fec3ec128",
+  "source_dirty": false,
+  "chapters": [
+    {
+      "seconds": 1.4541000000008354e-05,
+      "title": "Read evidence. Review the exact proposal. Approve once.",
+      "detail": "FIXTURE RECOVERY / no model inference"
+    },
+    {
+      "seconds": 2.754424125,
+      "title": "Fixture decision; real API, worker and three HTTP services.",
+      "detail": "Fault injection drops both write responses AFTER their remote transactions commit."
+    },
+    {
+      "seconds": 4.0735125,
+      "title": "Evidence is visible; zero tickets or annotations before approval.",
+      "detail": "Verified against both remote SQLite stores and journals. Displayed prose is application-rendered."
+    },
+    {
+      "seconds": 9.674892125,
+      "title": "Approve the displayed note, source versions and proposal hash.",
+      "detail": "Approval is an automated browser action for this recording; no human factual sign-off is implied."
+    },
+    {
+      "seconds": 13.709588250000001,
+      "title": "Lost responses are unknown; the worker reconciles the SAME saved keys.",
+      "detail": "Recovery is automatic. The durable timeline retains both uncertainty events."
+    },
+    {
+      "seconds": 15.026512,
+      "title": "Confirmed: one ticket, one annotation, one send per operation.",
+      "detail": "FIXTURE RECOVERY / no model inference | Journal keys, request hashes and effect bodies match; no duplicate writes."
+    },
+    {
+      "seconds": 19.608802583,
+      "title": "Both lost responses remain in the durable audit timeline.",
+      "detail": "Remote journals confirmed the existing effects. No replacement key or second send was needed."
+    }
+  ],
+  "media": {
+    "streams": [
+      {
+        "index": 0,
+        "codec_name": "h264",
+        "codec_long_name": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+        "profile": "High",
+        "codec_type": "video",
+        "codec_tag_string": "avc1",
+        "codec_tag": "0x31637661",
+        "mime_codec_string": "avc1.640028",
+        "width": 1440,
+        "height": 1100,
+        "coded_width": 1440,
+        "coded_height": 1100,
+        "has_b_frames": 2,
+        "sample_aspect_ratio": "1:1",
+        "display_aspect_ratio": "72:55",
+        "pix_fmt": "yuv420p",
+        "level": 40,
+        "chroma_location": "center",
+        "field_order": "progressive",
+        "is_avc": "true",
+        "nal_length_size": "4",
+        "id": "0x1",
+        "r_frame_rate": "25/1",
+        "avg_frame_rate": "25/1",
+        "time_base": "1/12800",
+        "start_pts": 0,
+        "start_time": "0.000000",
+        "duration_ts": 390144,
+        "duration": "30.480000",
+        "bit_rate": "149254",
+        "bits_per_raw_sample": "8",
+        "nb_frames": "762",
+        "extradata_size": 47,
+        "disposition": {
+          "default": 1,
+          "dub": 0,
+          "original": 0,
+          "comment": 0,
+          "lyrics": 0,
+          "karaoke": 0,
+          "forced": 0,
+          "hearing_impaired": 0,
+          "visual_impaired": 0,
+          "clean_effects": 0,
+          "attached_pic": 0,
+          "timed_thumbnails": 0,
+          "non_diegetic": 0,
+          "captions": 0,
+          "descriptions": 0,
+          "metadata": 0,
+          "dependent": 0,
+          "still_image": 0,
+          "multilayer": 0
+        },
+        "tags": {
+          "language": "und",
+          "handler_name": "VideoHandler",
+          "encoder": "Lavc63.1.101 libx264"
+        }
+      }
+    ],
+    "format": {
+      "nb_streams": 1,
+      "nb_programs": 0,
+      "nb_stream_groups": 0,
+      "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+      "format_long_name": "QuickTime / MOV",
+      "start_time": "0.000000",
+      "duration": "30.480000",
+      "size": "578726",
+      "bit_rate": "151896",
+      "probe_score": 100,
+      "tags": {
+        "major_brand": "isom",
+        "minor_version": "512",
+        "compatible_brands": "isomiso2avc1mp41",
+        "title": "FIXTURE RECOVERY / no model inference",
+        "encoder": "Lavf63.1.101"
+      }
+    }
+  },
+  "human_review": "pending",
+  "caption_clock_offset_seconds": 5.7851807919999985
+}

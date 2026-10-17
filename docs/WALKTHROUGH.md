@@ -2,6 +2,13 @@
 
 The main clip demonstrates actual pinned Qwen inference on the exposed delayed-delivery example. The separate recovery clip uses the explicitly labelled deterministic fixture decision and real local HTTP services. Neither clip is unseen model-quality evidence. Approval is automated through the actual browser control; it does not complete human factual review.
 
+| Recording | Mode | Duration | Evidence |
+| --- | --- | --- | --- |
+| [Main walkthrough](media/casework-qwen.mp4) | Actual Qwen3 14B | 45.76 s | [Browser assertions](evidence/walkthrough-qwen-2026-10-17.json), [uncut WebM](media/casework-qwen.webm), [media hashes](media/casework-qwen.json) |
+| [Ambiguous-write recovery](media/casework-recovery.mp4) | Fixture decision, actual HTTP effects | 30.48 s | [Browser assertions](evidence/walkthrough-recovery-2026-10-17.json), [uncut WebM](media/casework-recovery.webm), [media hashes](media/casework-recovery.json) |
+
+Both captures use clean committed source `f6271f9`. The [capture binding](evidence/walkthrough-bindings-2026-10-17.json) records source, modes, model configuration attribution and hashes separately from browser-emitted data. The main case has ten actual model requests and six correct condition answers. The recovery clip retains two uncertainty events and one send per saved operation. Caption timing accounts for video beginning before the test body's clock; the original videos remain available for comparison.
+
 The recorder inspects source records, verifies zero ticket/annotation rows and journal entries before approval, checks the exact proposal ID/hash/case version sent by the browser, then verifies the persisted operations against both actual remote journals and effects. The recovery run drops both write responses after commit. Its durable timeline retains two uncertainty events, then confirms one ticket and one annotation with the same saved keys and one send per operation.
 
 ## Record a reproduction

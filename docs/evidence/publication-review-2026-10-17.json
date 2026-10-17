@@ -1,0 +1,183 @@
+{
+  "kind": "Bounded pre-publication text/content inventory, not general security certification",
+  "baseline": "27c81cf4110517e5ca75d09679870419d7c2f627",
+  "source_head_before_final_assets": "f6271f9a324ee6f1f115e1d675dd544fec3ec128",
+  "file_count": 34,
+  "bytes": 11842351,
+  "files": [
+    {
+      "path": "EVALUATION.md",
+      "sha256": "88e3abb440039d6adaa28e6f02fbcb1c1085b548cd7bf371e2fb88369a161b36",
+      "bytes": 29085
+    },
+    {
+      "path": "README.md",
+      "sha256": "24cacc7355d5ea64d89f758109449dfe58a5ce4714bb08f9cd1e3fb3aeae708b",
+      "bytes": 9539
+    },
+    {
+      "path": "docs/CASE-STUDY.md",
+      "sha256": "fd07b655e984e57153d8ceab4e7c8774a9d8f33848116cb6df93328f23296f47",
+      "bytes": 4398
+    },
+    {
+      "path": "docs/EVIDENCE-AUDIT-2026-10-17.md",
+      "sha256": "5eb0840ca0f37b6fb4885179adc426f2dfd9898344787c5517832ac658269adb",
+      "bytes": 6698
+    },
+    {
+      "path": "docs/PUBLICATION-AUDIT.md",
+      "sha256": "f1238e97a028fdc1bba240682af3a52440b0422a2c1e07d659a3cdc4b2c8c166",
+      "bytes": 14411
+    },
+    {
+      "path": "docs/RUNBOOK.md",
+      "sha256": "095733983c35014e1ce5faadd2322003f3b9b1283d6aca268f403f8908af82d7",
+      "bytes": 11533
+    },
+    {
+      "path": "docs/STATE.md",
+      "sha256": "39d400b8c6d4c9281290b7dabb923672fbeb3b68a660d2c7ec9a6ff85b34ab36",
+      "bytes": 10405
+    },
+    {
+      "path": "docs/WALKTHROUGH.md",
+      "sha256": "af755d4ec3f42b5a6837b8b446b94b801a83643cdeb8a663f63e134d7d3215ce",
+      "bytes": 4553
+    },
+    {
+      "path": "docs/evidence/presentation-verification-2026-10-17.json",
+      "sha256": "ab86c0c1eb2bea6f3e20c1b36560c15c944544b30141c2a35778f49ccbb295f8",
+      "bytes": 6317
+    },
+    {
+      "path": "docs/evidence/v5-challenge-trace-recheck-2026-10-17.json",
+      "sha256": "db24e00f6d689b281d0e9db8ed4063c56690c12dd73a1b308dda062747e34a8e",
+      "bytes": 26809
+    },
+    {
+      "path": "docs/evidence/v5-development-trace-recheck-2026-10-17.json",
+      "sha256": "a178aa9bd8544f8aa32b90b6ca1e0811642f8b2bb89c39b088a9819d37ace46a",
+      "bytes": 47548
+    },
+    {
+      "path": "docs/evidence/v5-oracle-recheck-2026-10-17.json",
+      "sha256": "f0b991a3964be141178e0e40076ee2057833151efd1dcbb7e71393369cdd7fef",
+      "bytes": 5965
+    },
+    {
+      "path": "docs/evidence/v5-retained-bindings-2026-10-17.json",
+      "sha256": "0119f100cff75469f47c15ea9cf12089bd9dc88ba1d8b574acca18d24868e392",
+      "bytes": 4669
+    },
+    {
+      "path": "docs/evidence/v5-retained-database-export-2026-10-17.json",
+      "sha256": "54e4b0539fbc81ab16f4e1f16e5dae43627251df6a13e2c79b77792f54a4c500",
+      "bytes": 446796
+    },
+    {
+      "path": "docs/evidence/v5-retained-development-bindings-2026-10-17.json",
+      "sha256": "0fddcf09e6a0b37999daab61f68737074e8e1bb401179308717c50f42c77dd68",
+      "bytes": 8512
+    },
+    {
+      "path": "docs/evidence/v5-retained-development-export-2026-10-17.json",
+      "sha256": "10bcb24bbf978cd8a3bd47a255e3cd672eb662bec5c447eaf618168c194296e8",
+      "bytes": 810420
+    },
+    {
+      "path": "docs/evidence/v5-semantic-review-2026-10-17.json",
+      "sha256": "bbdf9fd86c35a3df28e3d59fc52b2278404649a3f900ec1da81f5762de5aab79",
+      "bytes": 78151
+    },
+    {
+      "path": "docs/evidence/walkthrough-bindings-2026-10-17.json",
+      "sha256": "9dd6b0745b7680fa7735cc3e5e46a8d4f1cfaa3f8daa077eda327a224b68cf03",
+      "bytes": 2653
+    },
+    {
+      "path": "docs/evidence/walkthrough-qwen-2026-10-17.json",
+      "sha256": "47b2bfada812407f145ec9ea5497deb6acbd63b0c057239649b4519ff7c4a586",
+      "bytes": 76336
+    },
+    {
+      "path": "docs/evidence/walkthrough-recovery-2026-10-17.json",
+      "sha256": "356653108a247b917c1b1d1b38ee23bd69e6ea70954587cd02765ab65548e879",
+      "bytes": 14985
+    },
+    {
+      "path": "docs/media/casework-qwen-poster.png",
+      "sha256": "92b328fca9ecc3083daf426db3d077c811a7121fcf71aa10ccc5e33562cd3da3",
+      "bytes": 458510
+    },
+    {
+      "path": "docs/media/casework-qwen.json",
+      "sha256": "41ed2494432aa8587a1611b4f781a2ed8d220ba22fca65208667545d5ed2f012",
+      "bytes": 4386
+    },
+    {
+      "path": "docs/media/casework-qwen.mp4",
+      "sha256": "e24eda322c49ec3447d4549201d7ce4f50523fb4048ed314bfb158113c273838",
+      "bytes": 651401
+    },
+    {
+      "path": "docs/media/casework-qwen.webm",
+      "sha256": "db7ce022476923bb8b230eac1e1dd8bdd71ed94c9f523d033782788539a6988b",
+      "bytes": 4970448
+    },
+    {
+      "path": "docs/media/casework-recovery.json",
+      "sha256": "175aac33b54efa5342b287f6f3bb5c19acb65eb000759b5207d4345f39c22a8d",
+      "bytes": 4648
+    },
+    {
+      "path": "docs/media/casework-recovery.mp4",
+      "sha256": "8909f257c4ef584211e8d07af004161192d000bf092e3d4af04eca255f57400d",
+      "bytes": 578726
+    },
+    {
+      "path": "docs/media/casework-recovery.webm",
+      "sha256": "f181e17063181f79756b0a86db737180ae7d22a6cfca87eac84fd4263cc99418",
+      "bytes": 3516799
+    },
+    {
+      "path": "docs/superpowers/plans/2026-10-17-presentation-audit.md",
+      "sha256": "d05f24a5701cf80073a8a53f179bf7c04ba351f4bb464d4e162235f71d207555",
+      "bytes": 4222
+    },
+    {
+      "path": "scripts/audit_retained_v5.py",
+      "sha256": "b0026acd238197f1b29b821e13badc4973d96c2ca2fcc221a6725abfcf92b132",
+      "bytes": 12624
+    },
+    {
+      "path": "scripts/render_walkthrough.py",
+      "sha256": "0fb0f9ccfcb752860b2f26fe03968152eb761dadbd2bd0445fc36cd0b2b036b0",
+      "bytes": 4438
+    },
+    {
+      "path": "tests/unit/test_retained_audit.py",
+      "sha256": "f012c8b728882d14ac52e7bababdb930151b69e6535c95f800e0670b2718f235",
+      "bytes": 4105
+    },
+    {
+      "path": "tests/unit/test_walkthrough_render.py",
+      "sha256": "fd5044a5f297dc08be79aa8ed707146b9635e78b18a9a7570f2ab22fe2e524ce",
+      "bytes": 616
+    },
+    {
+      "path": "web/walkthrough.config.ts",
+      "sha256": "263698227611d24f3d9e6d2c0195ffed5ab607588b87fcd8ea4fc0181b0d9e91",
+      "bytes": 1243
+    },
+    {
+      "path": "web/walkthrough.spec.ts",
+      "sha256": "ae881ed20249579be4acaef68cf51e97c8d0cdc25e2292a0db67ca71dbe59364",
+      "bytes": 10402
+    }
+  ],
+  "pattern_findings": [],
+  "media_review": "Synthetic headless workbench only; no desktop/address bar/audio; MP4 metadata has no host paths or owner fields; raw WebM hashes match published originals.",
+  "limits": "Inventory excludes this subsequently written inventory itself; final reviewer reads it separately. Prior published-history disclosures remain applicable.",
+  "human_factual_review": "pending"
+}

@@ -6,9 +6,9 @@ A local Qwen agent for delivery exceptions, with exact human approval and durabl
 
 **Actual-model result:** 30/30 correct decisions and workflows, 180/180 correct model-generated condition checks, and 24/24 authorised completions on the first frozen v5 synthetic challenge. [Full evaluation](EVALUATION.md).
 
-[![Watch actual Qwen gather evidence and wait for exact approval](docs/evidence/qwen-v5-runtime-proposal.png)](docs/media/casework-qwen.mp4)
+[![Watch actual Qwen gather evidence and wait for exact approval](docs/media/casework-qwen-poster.png)](docs/media/casework-qwen.mp4)
 
-**[Watch actual Qwen](docs/media/casework-qwen.mp4)** · **[Watch fixture recovery](docs/media/casework-recovery.mp4)** · [Reproduce the recordings](docs/WALKTHROUGH.md) · [Read the case study](docs/CASE-STUDY.md)
+**[Watch actual Qwen - 46 seconds](docs/media/casework-qwen.mp4)** · **[Watch fixture recovery - 30 seconds](docs/media/casework-recovery.mp4)** · [Reproduce the recordings](docs/WALKTHROUGH.md) · [Read the case study](docs/CASE-STUDY.md)
 
 The main recording uses actual local inference. The separate recovery clip uses a labelled fixture decision and real HTTP services with both write responses lost after commit. Both verify zero effects before approval, the exact approved proposal and one confirmed ticket/annotation pair. Captions are added below uncut browser footage at the original speed. These are demonstrations on an exposed example, not new unseen evaluations.
 
@@ -77,6 +77,8 @@ The original Qwen2.5 1.5B run produced 0/30 valid actions. A constrained Qwen3 4
 The earlier 14B v3 challenge recorded 28/30 actions and outcomes with 22/24 completions, including two blocked age errors and incorrect explanations. Its inputs, replies and reports remain frozen. V4 then reached 29/30 but retained a missing-timezone failure and incorrect intermediate assertions. The [v5 repair](docs/MODEL-REPAIR-V5.md) isolates each condition and restores strict claim validation; prior failed reports remain unchanged.
 
 ## Verification
+
+The presentation and retained-evidence audit revision passes **164 Python tests**, strict Python and TypeScript checks including test files, eight component tests, build and unchanged contract regeneration. All four actual-service browser flows pass, including Qwen, alongside the two separately recorded demonstrations. [Current verification and audit boundaries](docs/STATE.md).
 
 A [fresh source archive](docs/evidence/qwen-v5-runtime-clean-checkout.json) passed locked installation, 151 Python tests, eight component tests, strict Python and TypeScript checks, build, unchanged contract regeneration and three fixture browser flows. Its optional model test was explicitly skipped.
 

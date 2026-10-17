@@ -1,0 +1,128 @@
+{
+  "kind": "Uncut real browser capture with a caption strip below the viewport; no speed change",
+  "source_video_sha256": "db7ce022476923bb8b230eac1e1dd8bdd71ed94c9f523d033782788539a6988b",
+  "recording_evidence_sha256": "47b2bfada812407f145ec9ea5497deb6acbd63b0c057239649b4519ff7c4a586",
+  "renderer_sha256": "0fb0f9ccfcb752860b2f26fe03968152eb761dadbd2bd0445fc36cd0b2b036b0",
+  "video_sha256": "e24eda322c49ec3447d4549201d7ce4f50523fb4048ed314bfb158113c273838",
+  "mode": "model",
+  "source_commit": "f6271f9a324ee6f1f115e1d675dd544fec3ec128",
+  "source_dirty": false,
+  "chapters": [
+    {
+      "seconds": 1.479100000000244e-05,
+      "title": "Read evidence. Review the exact proposal. Approve once.",
+      "detail": "ACTUAL QWEN / synthetic records"
+    },
+    {
+      "seconds": 2.77805575,
+      "title": "Qwen gathers scoped evidence and evaluates six conditions.",
+      "detail": "Live inference at original speed. No fixture fallback or case replay."
+    },
+    {
+      "seconds": 28.261367625,
+      "title": "Evidence is visible; zero tickets or annotations before approval.",
+      "detail": "Verified against both remote SQLite stores and journals. Displayed prose is application-rendered."
+    },
+    {
+      "seconds": 33.862111625,
+      "title": "Approve the displayed note, source versions and proposal hash.",
+      "detail": "Approval is an automated browser action for this recording; no human factual sign-off is implied."
+    },
+    {
+      "seconds": 37.898180083,
+      "title": "Exact approval committed; the worker sends the saved operations.",
+      "detail": "The model has no write tools. Approval grants only the two displayed fictional effects."
+    },
+    {
+      "seconds": 39.231623375,
+      "title": "Confirmed: one ticket, one annotation, one send per operation.",
+      "detail": "ACTUAL QWEN / synthetic records | Journal keys, request hashes and effect bodies match; no duplicate writes."
+    }
+  ],
+  "media": {
+    "streams": [
+      {
+        "index": 0,
+        "codec_name": "h264",
+        "codec_long_name": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+        "profile": "High",
+        "codec_type": "video",
+        "codec_tag_string": "avc1",
+        "codec_tag": "0x31637661",
+        "mime_codec_string": "avc1.640028",
+        "width": 1440,
+        "height": 1100,
+        "coded_width": 1440,
+        "coded_height": 1100,
+        "has_b_frames": 2,
+        "sample_aspect_ratio": "1:1",
+        "display_aspect_ratio": "72:55",
+        "pix_fmt": "yuv420p",
+        "level": 40,
+        "chroma_location": "center",
+        "field_order": "progressive",
+        "is_avc": "true",
+        "nal_length_size": "4",
+        "id": "0x1",
+        "r_frame_rate": "25/1",
+        "avg_frame_rate": "25/1",
+        "time_base": "1/12800",
+        "start_pts": 0,
+        "start_time": "0.000000",
+        "duration_ts": 585728,
+        "duration": "45.760000",
+        "bit_rate": "111320",
+        "bits_per_raw_sample": "8",
+        "nb_frames": "1144",
+        "extradata_size": 47,
+        "disposition": {
+          "default": 1,
+          "dub": 0,
+          "original": 0,
+          "comment": 0,
+          "lyrics": 0,
+          "karaoke": 0,
+          "forced": 0,
+          "hearing_impaired": 0,
+          "visual_impaired": 0,
+          "clean_effects": 0,
+          "attached_pic": 0,
+          "timed_thumbnails": 0,
+          "non_diegetic": 0,
+          "captions": 0,
+          "descriptions": 0,
+          "metadata": 0,
+          "dependent": 0,
+          "still_image": 0,
+          "multilayer": 0
+        },
+        "tags": {
+          "language": "und",
+          "handler_name": "VideoHandler",
+          "encoder": "Lavc63.1.101 libx264"
+        }
+      }
+    ],
+    "format": {
+      "nb_streams": 1,
+      "nb_programs": 0,
+      "nb_stream_groups": 0,
+      "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+      "format_long_name": "QuickTime / MOV",
+      "start_time": "0.000000",
+      "duration": "45.760000",
+      "size": "651401",
+      "bit_rate": "113881",
+      "probe_score": 100,
+      "tags": {
+        "major_brand": "isom",
+        "minor_version": "512",
+        "compatible_brands": "isomiso2avc1mp41",
+        "title": "ACTUAL QWEN / synthetic records",
+        "encoder": "Lavf63.1.101"
+      }
+    }
+  },
+  "human_review": "pending",
+  "caption_clock_offset_seconds": 1.926792459000005
+}

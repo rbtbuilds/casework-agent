@@ -1,0 +1,48 @@
+{
+  "kind": "Coordinator capture binding, distinct from browser-emitted records and model-quality measurements",
+  "recordings": [
+    {
+      "name": "qwen",
+      "recording": "docs/evidence/walkthrough-qwen-2026-10-17.json",
+      "recording_sha256": "47b2bfada812407f145ec9ea5497deb6acbd63b0c057239649b4519ff7c4a586",
+      "mp4": "docs/media/casework-qwen.mp4",
+      "mp4_sha256": "e24eda322c49ec3447d4549201d7ce4f50523fb4048ed314bfb158113c273838",
+      "original_webm": "docs/media/casework-qwen.webm",
+      "original_webm_sha256": "db7ce022476923bb8b230eac1e1dd8bdd71ed94c9f523d033782788539a6988b",
+      "source_commit": "f6271f9a324ee6f1f115e1d675dd544fec3ec128",
+      "source_dirty": false,
+      "mode": "model",
+      "duration_seconds": 45.76,
+      "assertions": "0 effects/journals before exact proposal approval; 1 ticket + 1 annotation after; both operation keys/hashes/bodies match actual HTTP service journals; 1 send per operation; zero browser errors",
+      "uncertainty_events": 0,
+      "model_requests": 10
+    },
+    {
+      "name": "recovery",
+      "recording": "docs/evidence/walkthrough-recovery-2026-10-17.json",
+      "recording_sha256": "356653108a247b917c1b1d1b38ee23bd69e6ea70954587cd02765ab65548e879",
+      "mp4": "docs/media/casework-recovery.mp4",
+      "mp4_sha256": "8909f257c4ef584211e8d07af004161192d000bf092e3d4af04eca255f57400d",
+      "original_webm": "docs/media/casework-recovery.webm",
+      "original_webm_sha256": "f181e17063181f79756b0a86db737180ae7d22a6cfca87eac84fd4263cc99418",
+      "source_commit": "f6271f9a324ee6f1f115e1d675dd544fec3ec128",
+      "source_dirty": false,
+      "mode": "fixture",
+      "duration_seconds": 30.48,
+      "assertions": "0 effects/journals before exact proposal approval; 1 ticket + 1 annotation after; both operation keys/hashes/bodies match actual HTTP service journals; 1 send per operation; zero browser errors",
+      "uncertainty_events": 2,
+      "model_requests": 0
+    }
+  ],
+  "model_configuration_checked": {
+    "model_id": "mlx-community/Qwen3-14B-4bit",
+    "revision": "a4d9b2df59d2c150bef02fcbe0d91046b7ca33a4",
+    "snapshot_hash": "ca031ea5eef9f3c42f3bf3ee438491f53b326a41d31bde3289d931fef194355d",
+    "probe_sha256": "30d022306f2aba21c1c04eadf79641692d9a563eda36a3addfc658fef13fed56",
+    "attribution": "CLI uses the repository model root; unchanged ModelSession verifies file hashes before loading. This is coordinator configuration attribution, not a model identifier emitted by the browser trace."
+  },
+  "human_review": "pending",
+  "published_example_is_exposed": true,
+  "new_unseen_evaluation": false,
+  "originals_preserved": true
+}

@@ -1,6 +1,24 @@
 # Verification state
 
-Updated 2026-10-16. Casework Agent is a synthetic, single-operator loopback application.
+Updated 2026-10-17. Casework Agent is a synthetic, single-operator loopback application.
+
+## Portfolio presentation and retained-evidence audit
+
+The new [retained-evidence audit](EVIDENCE-AUDIT-2026-10-17.md) covers all 83 existing v5 attempts. Frozen independent trace checks again find 498/498 correct condition answers, 83/83 supported reasons/actions, 830 requests and zero trace issues or syntax repairs. The challenge's pre-sealed integer oracles independently agree on all 180 challenge fields. New read-only database exports bind observed payloads, proposal hashes, exact approvals, saved request bodies/keys, remote journals and actual effects: 71 approved ticket/annotation pairs and 12 stale zero-effect cases. These are consistency checks of retained artifacts, not a new unseen evaluation or proof of historical database authenticity.
+
+The separate [AI-assisted semantic ledger](evidence/v5-semantic-review-2026-10-17.json) finds no unsupported factual statement in the 83 rendered rationales/prospective notes. It does not fill human fields: actual-model `unsupported_claims` remains null, `claims_review_complete` false and `claims_review` false. Supported, unsupported and uncertain conclusions are reported separately. The fixed-policy validator already knows the permitted answer; the demonstration establishes guarded workflow execution and recovery.
+
+The [main recording](media/casework-qwen.mp4) is **45.76 seconds of actual Qwen inference**; the [separate recovery clip](media/casework-recovery.mp4) is **30.48 seconds with a fixture decision and real HTTP services**. Both use clean committed capture source `f6271f9`, no retries and the exposed `dev-delay-01` example. The main capture retains ten model requests and six correct conditions. Both verify zero remote effects/journals before exact browser approval, then one confirmed ticket/annotation pair and one send per operation. Recovery retains both post-commit uncertainty events; the camera explicitly brings them into view. Original uncut WebM footage, captioned MP4s, hashes and raw browser assertions are public. [Recording provenance and reproduction](WALKTHROUGH.md).
+
+No application, model, policy, prompt or decoder behavior changed. All **359 original application/fixture/evidence files** checked against `27c81cf` remain byte-identical. New code is audit/recording tooling and its tests. A recording regression first failed because the final uncertainty event was outside the viewport; the scroll correction passed the final capture. Caption timing now accounts for Playwright starting video before the test-body clock. Earlier local media trials remain ignored and are not passed off as new evaluation evidence.
+
+Current full verification passes **164 Python tests**, Ruff, strict Pyright including tests, strict TypeScript including browser/recording files, **eight component tests**, build, unchanged contract regeneration and **all four actual-service browser flows including Qwen**. The two recording flows also pass separately. No requested automated suite was skipped. The historical clean-archive results below remain at their original source and counts; no new clean-archive measurement is claimed.
+
+The reported earlier 107-unit-pass/startup failure was a reserved-port collision with the live demo on 8212. This audit verified all five recorded process identities, stopped them through `scripts/dev.py`, ran port-owning suites sequentially and included the startup/failure tests in full pytest. All four original stopped database hashes matched before restoration. Human factual review and manual screen-reader testing remain unperformed.
+
+The lifecycle helper has restored the original demo with its two existing cases. API and web both returned HTTP 200, model/fixture availability is true, and the shared ML lease is released. No original database was reset or replaced.
+
+Exact commands, log hashes, source boundaries and restoration evidence are recorded in [the dated verification artifact](evidence/presentation-verification-2026-10-17.json). Public asset and metadata checks are recorded in [the publication audit](PUBLICATION-AUDIT.md).
 
 ## First frozen v5 measurement
 
@@ -34,4 +52,4 @@ The pinned snapshot is `mlx-community/Qwen3-14B-4bit`, revision `a4d9b2df59d2c15
 
 The existing developer stack was stopped through ownership checks for sequential process tests; its databases are preserved. Use `scripts/dev.py status` for current ownership rather than archived process IDs. The standard lifecycle helper restored the existing stack after verification, preserving its databases; API and web readiness both returned HTTP 200 and the model compatibility probe remains available. Weights, databases, private runtime state and credentials remain ignored. See the bounded [publication audit](PUBLICATION-AUDIT.md).
 
-Manual human factual review, screen-reader testing and a recorded walkthrough remain pending. No public authentication, tenant isolation, production validation, measured customer saving, cross-service rollback or distributed exactly-once guarantee is claimed. See [evaluation](../EVALUATION.md), [configuration](MODEL-CONFIG.md) and [runbook](RUNBOOK.md).
+Manual human factual review and screen-reader testing remain pending. The recorded walkthrough is complete, with modes and evidence linked above. No public authentication, tenant isolation, production validation, measured customer saving, cross-service rollback or distributed exactly-once guarantee is claimed. See [evaluation](../EVALUATION.md), [configuration](MODEL-CONFIG.md) and [runbook](RUNBOOK.md).
